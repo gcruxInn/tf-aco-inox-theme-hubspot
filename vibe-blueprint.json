@@ -1,0 +1,28 @@
+{
+  "project": "TFAHUB251",
+  "brand": "TF Aço Inox",
+  "design_tokens": {
+    "colors": {
+      "primary": "#C0C0C0",
+      "secondary": "#1A1A1B",
+      "accent": "#F5F5F5",
+      "text": "#FFFFFF",
+      "industrial_silver": "#C0C0C0",
+      "industrial_lead": "#333333",
+      "industrial_black": "#000000"
+    },
+    "typography": "Inter, sans-serif"
+  },
+  "modules": {
+    "technical_gallery": {
+      "name": "Galeria Técnica",
+      "path": "modules/technical-gallery.module"
+    },
+    "inox_calculator": {
+      "name": "Calculadora de Inox",
+      "path": "modules/inox-calculator.module"
+    }
+  },
+  "deployment": "Native HubSpot CMS",
+  "security_layer": "Serverless-First"
+}

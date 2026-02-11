@@ -1,0 +1,36 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# HubSpot
+hubspot.config.yml
+.hscms-secret
+*.autoprefix.css
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Build
+dist/
+build/
+
+# Logs
+logs/
+*.log
+
+# Temp
+tmp/
+temp/
+
+# Excluded Folders (User Request)
+BACKUP/
+TF_Aco_Inox_MasterTheme/
+TF_Master_Theme/
