@@ -1,0 +1,13 @@
+{
+  "label": "TFA - Depoimentos",
+  "css_assets": [
+    {
+      "path": "../modules/tfa-testimonials.module/module.css"
+    }
+  ],
+  "external_js": [],
+  "global": false,
+  "help_text": "Carousel de depoimentos de clientes com foto, quote, nome e empresa",
+  "host_template_types": ["PAGE"],
+  "is_available_for_new_content": true
+}

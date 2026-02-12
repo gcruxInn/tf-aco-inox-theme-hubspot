@@ -1,0 +1,9 @@
+{
+  "label": "TFA - Client Logos (Social Proof)",
+  "css_assets": [],
+  "external_js": [],
+  "global": false,
+  "help_text": "Grid or marquee of client logos to display authority.",
+  "host_template_types": [ "PAGE" ],
+  "is_available_for_new_content": true
+}

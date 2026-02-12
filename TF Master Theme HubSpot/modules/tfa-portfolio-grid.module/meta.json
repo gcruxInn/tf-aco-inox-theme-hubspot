@@ -1,0 +1,13 @@
+{
+  "label": "TFA - Portfolio Grid",
+  "css_assets": [
+    {
+      "path": "../modules/tfa-portfolio-grid.module/module.css"
+    }
+  ],
+  "external_js": [],
+  "global": false,
+  "help_text": "Grid de projetos em destaque com imagens e overlay de informações ao hover",
+  "host_template_types": ["PAGE"],
+  "is_available_for_new_content": true
+}

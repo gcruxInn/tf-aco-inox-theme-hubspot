@@ -1,0 +1,27 @@
+BACKUP
+.git
+.gitignore
+node_modules
+README.md
+CLAUDE.md
+package.json
+package-lock.json
+*.log
+.DS_Store
+task.md
+implementation_plan.md
+walkthrough.md
+sprint-2.md
+TFAHUB251.code-workspace
+vibe-blueprint.json
+
+# Root level artifacts that should be ignored in favor of 'TF Master Theme HubSpot'
+/css
+/js
+/modules
+/templates
+/sections
+/images
+/layouts
+theme.json
+fields.json

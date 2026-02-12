@@ -1,0 +1,131 @@
+{# --- MODULE: TFA Process Timeline --- #}
+<section class="tfa-section" style="padding: 5rem 0; background-color: #f8f9fa;">
+    <div class="container">
+        {# Section Heading #}
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold mb-3">{{ module.section_heading.title }}</h2>
+            <p class="lead text-muted" style="max-width: 700px; margin: 0 auto;">
+                {{ module.section_heading.subtitle }}
+            </p>
+        </div>
+
+        {# Timeline - Vertical on Mobile, Horizontal on Desktop #}
+        <div class="process-timeline">
+            {% for step in module.steps %}
+            <div class="timeline-item">
+                {# Step Number Badge #}
+                <div class="step-badge" style="
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    color: white;
+                    width: 60px;
+                    height: 60px;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 1.5rem;
+                    font-weight: 700;
+                    margin: 0 auto 1rem;
+                    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+                ">
+                    {{ step.step_number }}
+                </div>
+
+                {# Step Content Card #}
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4 text-center">
+                        <h5 class="card-title mb-3" style="color: #1a1a1a; font-weight: 600;">
+                            {{ step.title }}
+                        </h5>
+
+                        <p class="card-text text-muted mb-3" style="font-size: 0.9rem; line-height: 1.6;">
+                            {{ step.description }}
+                        </p>
+
+                        <div style="
+                            display: inline-block;
+                            padding: 0.4rem 1rem;
+                            background-color: #f0f0f0;
+                            border-radius: 20px;
+                            font-size: 0.8rem;
+                            color: #666;
+                            font-weight: 500;
+                        ">
+                            ⏱️ {{ step.duration }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Desktop: Horizontal Timeline */
+    @media (min-width: 768px) {
+        .process-timeline {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .timeline-item {
+            position: relative;
+        }
+
+        /* Connector Line Between Steps (Desktop) */
+        .timeline-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: calc(100% + 1rem);
+            width: 2rem;
+            height: 2px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            z-index: -1;
+        }
+    }
+
+    /* Mobile: Vertical Timeline */
+    @media (max-width: 767px) {
+        .process-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        /* Vertical Line */
+        .process-timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 30px;
+            bottom: 30px;
+            width: 2px;
+            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .timeline-item .step-badge {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 3rem;
+        }
+    }
+
+    .timeline-item .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .timeline-item:hover .card {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12) !important;
+    }
+</style>

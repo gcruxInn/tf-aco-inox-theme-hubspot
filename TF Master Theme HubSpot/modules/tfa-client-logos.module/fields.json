@@ -1,0 +1,30 @@
+[
+  { "name": "title", "label": "Section Title", "type": "text", "default": "Empresas que confiam na TF Aço Inox" },
+  {
+    "name": "logos",
+    "label": "Client Logos",
+    "type": "group",
+    "occurrence": { "min": 1, "max": 20, "sorting_label_field": "alt_text" },
+    "default": [
+        { "alt_text": "Petrobras", "image": { "src": "https://placehold.co/120x40?text=Petrobras" } }
+    ],
+    "children": [
+      {
+        "name": "image",
+        "label": "Logo Image",
+        "type": "image"
+      },
+      {
+        "name": "alt_text",
+        "label": "Alt Text",
+        "type": "text",
+        "default": "Client Logo"
+      },
+      {
+         "name": "link",
+         "label": "Link (Optional)",
+         "type": "text"
+      }
+    ]
+  }
+]

@@ -1,0 +1,13 @@
+{
+  "label": "TFA - Diferenciadores",
+  "css_assets": [
+    {
+      "path": "../modules/tfa-differentiators.module/module.css"
+    }
+  ],
+  "external_js": [],
+  "global": false,
+  "help_text": "Seção de diferenciais com 4 cards destacando os value props da empresa",
+  "host_template_types": ["PAGE"],
+  "is_available_for_new_content": true
+}

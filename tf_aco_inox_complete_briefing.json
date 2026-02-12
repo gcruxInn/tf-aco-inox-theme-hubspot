@@ -1,0 +1,2130 @@
+{
+  "project_metadata": {
+    "client": "TF Aço e Inox / Fênix Elevações",
+    "project_name": "Website Corporativo B2B - HubSpot CMS",
+    "industry": "Metalurgia / Estruturas Metálicas",
+    "project_type": "Greenfield (primeiro site)",
+    "base_theme": "ProX Premium by SmartHubl",
+    "platform": "HubSpot CMS Hub",
+    "launch_target": "Q2 2026",
+    "primary_goal": "Lead Generation B2B",
+    "secondary_goals": ["Brand Authority", "SEO Positioning", "Sales Enablement"],
+    "project_score": "7/10 - Strong foundation, needs content development",
+    "idx_environment": "Google IDX Antigravity + MCPs (HubSpot, Claude, OpenAI, Web-scraper)"
+  },
+
+  "brand_identity": {
+    "company_names": {
+      "primary": "TF Aço e Inox",
+      "alternate": "Fênix Elevações",
+      "tagline": "Transformando aço em soluções com qualidade e precisão"
+    },
+    
+    "elevator_pitch": "Produzimos estruturas e peças em aço e aço inox com precisão, qualidade e responsabilidade, garantindo excelência em cada etapa do seu projeto.",
+    
+    "value_proposition": {
+      "primary": "Soluções inovadoras em metalurgia com alto padrão de qualidade, agilidade e compromisso total",
+      "differentiators": [
+        "Inovação contínua em processos",
+        "Agilidade na execução",
+        "Eficiência operacional comprovada",
+        "Segurança em todas as etapas",
+        "Fabricação sob medida com precisão técnica",
+        "Materiais de alta qualidade certificados",
+        "Acabamento de excelência",
+        "Responsabilidade do projeto à entrega"
+      ]
+    },
+
+    "visual_identity": {
+      "color_palette": {
+        "primary": "#FFFFFF",
+        "secondary": "#A0A0A0",
+        "accent": "#C0C0C0",
+        "dark": "#000000",
+        "industrial": "#2C3E50",
+        "trust": "#34495E",
+        "semantic_colors": {
+          "success": "#27AE60",
+          "warning": "#F39C12",
+          "info": "#3498DB",
+          "danger": "#E74C3C"
+        }
+      },
+      
+      "typography": {
+        "primary_font": "Roboto",
+        "secondary_font": "Inter",
+        "display_font": "Montserrat",
+        "fallbacks": "Arial, Helvetica, sans-serif",
+        "heading_weights": [700, 600],
+        "body_weights": [400, 500],
+        "technical_font": "Roboto Mono"
+      },
+
+      "tone_and_voice": {
+        "personality": ["Profissional", "Técnico", "Confiável", "Inovador"],
+        "tone": "Corporativo e sério",
+        "communication_style": "Direto, técnico quando necessário, acessível sem perder profissionalismo",
+        "avoid": ["Linguagem muito casual", "Jargões excessivos sem explicação", "Promessas vazias"]
+      },
+
+      "logo": {
+        "status": "Needs confirmation",
+        "required_formats": [".svg", ".png (transparent)", ".jpg (white bg)"],
+        "sizes_needed": ["Original", "Horizontal", "Icon only", "Monochrome"],
+        "usage_contexts": ["Header", "Footer", "Favicon", "Social media", "Print"]
+      },
+
+      "visual_references": {
+        "inspiration_sites": [
+          {
+            "name": "Gerdau",
+            "url": "https://www.gerdau.com",
+            "what_to_learn": "Seriedade corporativa, apresentação técnica"
+          },
+          {
+            "name": "Moura Dubeux",
+            "url": "https://www.mouradubeux.com.br/",
+            "what_to_learn": "Portfolio de projetos, mapa interativo regional, storytelling por estado"
+          },
+          {
+            "name": "Kingspan Isoeste",
+            "url": "https://kingspan-isoeste.com.br/",
+            "what_to_learn": "Listagem de empreendimentos com status e fotos, processo documentado"
+          },
+          {
+            "name": "Rio Ave",
+            "url": "https://rioave.com.br/",
+            "what_to_learn": "História da empresa, evolução temporal, empreendimentos entregues"
+          }
+        ],
+        "design_direction": "Moderno, clean, industrial, com elementos que remetem a precisão e qualidade metalúrgica"
+      }
+    },
+
+    "mission_vision_values": {
+      "vision": "Ser uma das maiores empresas metalúrgicas do Nordeste, alcançando a marca de 20 mil toneladas de aço processadas por ano até dezembro de 2026, com crescimento sustentável, inovação contínua e reconhecimento pela qualidade dos nossos serviços.",
+      
+      "mission": "Oferecer soluções inovadoras em metalurgia, com alto padrão de qualidade, agilidade nos processos e compromisso total com as necessidades dos nossos clientes.",
+      
+      "values": [
+        "Qualidade sem concessões",
+        "Inovação constante",
+        "Compromisso com prazos",
+        "Transparência no processo",
+        "Sustentabilidade",
+        "Segurança operacional",
+        "Excelência no atendimento",
+        "Responsabilidade técnica"
+      ],
+
+      "company_essence": "Somos uma empresa do setor metalúrgico especializada em máquinas e equipamentos, reconhecida como uma das que mais crescem em Pernambuco. Estamos sempre prontos para atender às necessidades de cada obra, oferecendo soluções inovadoras, com alta qualidade e agilidade exatamente como o cliente precisa.",
+      
+      "experience": "A Fênix Elevações atua há mais de 10 anos no mercado de soluções em aço e inox, entregando serviços sob medida, que unem qualidade, resistência e design moderno."
+    }
+  },
+
+  "target_audience": {
+    "primary_segments": [
+      {
+        "segment_id": "B2B_industrial",
+        "name": "Empresas B2B - Setor Industrial",
+        "description": "Indústrias que necessitam de estruturas metálicas, equipamentos e peças técnicas",
+        "pain_points": [
+          "Necessidade de precisão técnica",
+          "Prazos apertados de obra",
+          "Certificação e qualidade de materiais",
+          "Fornecedores não confiáveis"
+        ],
+        "decision_makers": ["Gerente de Compras", "Engenheiro de Projetos", "Diretor Industrial"],
+        "sales_cycle": "45-90 dias",
+        "average_ticket": "Alto",
+        "communication_preferences": ["Email", "WhatsApp Business", "Telefone"]
+      },
+      {
+        "segment_id": "B2B_construction",
+        "name": "Construtoras, Incorporadoras e Engenharias",
+        "description": "Empresas do setor de construção civil que demandam estruturas metálicas, corrimãos, grades, steel frame",
+        "pain_points": [
+          "Cumprimento de cronograma de obra",
+          "Conformidade com normas (NR-18, ABNT)",
+          "Qualidade de acabamento",
+          "Projeto técnico detalhado"
+        ],
+        "decision_makers": ["Engenheiro Residente", "Gerente de Obras", "Diretor Técnico"],
+        "sales_cycle": "30-60 dias",
+        "average_ticket": "Médio-Alto",
+        "communication_preferences": ["Email profissional", "Reuniões presenciais", "WhatsApp"]
+      },
+      {
+        "segment_id": "B2B_architecture",
+        "name": "Arquitetos, Designers e Projetistas",
+        "description": "Profissionais que especificam soluções em aço e inox para projetos de clientes",
+        "pain_points": [
+          "Encontrar fornecedor que entenda projeto",
+          "Qualidade estética e funcional",
+          "Customização e flexibilidade",
+          "Cumprimento de especificações técnicas"
+        ],
+        "decision_makers": ["Arquiteto titular", "Designer de interiores", "Coordenador de projetos"],
+        "sales_cycle": "60-120 dias (depende do projeto do cliente final)",
+        "average_ticket": "Médio",
+        "communication_preferences": ["Email", "Instagram", "Portfólio visual"]
+      },
+      {
+        "segment_id": "B2B_metalwork",
+        "name": "Serralherias e Parceiros do Setor Metalúrgico",
+        "description": "Empresas que terceirizam produção ou buscam parceria para grandes volumes",
+        "pain_points": [
+          "Capacidade produtiva limitada",
+          "Necessidade de parceiro confiável",
+          "Prazo de entrega",
+          "Preço competitivo para revenda"
+        ],
+        "decision_makers": ["Proprietário", "Gerente de Produção"],
+        "sales_cycle": "15-30 dias",
+        "average_ticket": "Alto volume",
+        "communication_preferences": ["WhatsApp", "Telefone", "Visita técnica"]
+      },
+      {
+        "segment_id": "B2B_commercial",
+        "name": "Comércios, Indústrias e Condomínios",
+        "description": "Estabelecimentos comerciais e condomínios que necessitam de manutenção, reformas ou novos projetos",
+        "pain_points": [
+          "Urgência em manutenções",
+          "Orçamento definido",
+          "Pouca interrupção de operações",
+          "Garantia de serviço"
+        ],
+        "decision_makers": ["Síndico", "Gerente de Facilities", "Administrador"],
+        "sales_cycle": "15-45 dias",
+        "average_ticket": "Baixo-Médio",
+        "communication_preferences": ["WhatsApp", "Email", "Telefone"]
+      },
+      {
+        "segment_id": "B2C_custom",
+        "name": "Consumidores Finais - Projetos Sob Medida",
+        "description": "Pessoas físicas que necessitam de projetos personalizados (residências de alto padrão)",
+        "pain_points": [
+          "Encontrar empresa confiável",
+          "Qualidade do acabamento",
+          "Atendimento personalizado",
+          "Prazo de execução"
+        ],
+        "decision_makers": ["Proprietário", "Cônjuge"],
+        "sales_cycle": "30-90 dias",
+        "average_ticket": "Médio",
+        "communication_preferences": ["WhatsApp", "Instagram", "Indicação"]
+      }
+    ],
+
+    "persona_primary": {
+      "name": "Carlos - Engenheiro de Obras",
+      "age": 38,
+      "role": "Engenheiro Residente em construtora de médio porte",
+      "goals": [
+        "Entregar obra no prazo",
+        "Garantir qualidade e segurança",
+        "Fornecedores confiáveis",
+        "Otimizar custos sem perder qualidade"
+      ],
+      "challenges": [
+        "Coordenar múltiplos fornecedores",
+        "Lidar com imprevistos de obra",
+        "Cumprir normas técnicas rigorosas",
+        "Pressão por resultados"
+      ],
+      "information_sources": [
+        "Google (busca por fornecedores locais)",
+        "Indicação de colegas",
+        "LinkedIn",
+        "Feiras do setor"
+      ],
+      "decision_criteria": [
+        "Prazo de entrega",
+        "Qualidade comprovada",
+        "Preço competitivo",
+        "Atendimento técnico",
+        "Flexibilidade"
+      ]
+    }
+  },
+
+  "products_and_services": {
+    "service_categories": [
+      {
+        "category_id": "metal_structures",
+        "name": "Estruturas Metálicas Personalizadas",
+        "icon": "building-structure",
+        "description": "Fabricação de estruturas metálicas sob medida para construção civil, indústria e comercial",
+        "applications": [
+          "Estruturas para galpões industriais",
+          "Mezaninos metálicos",
+          "Coberturas metálicas",
+          "Passarelas e pontes",
+          "Estruturas para fachadas",
+          "Reforços estruturais"
+        ],
+        "materials": ["Aço carbono", "Aço galvanizado", "Perfis estruturais"],
+        "technical_specs": ["Projeto estrutural", "Cálculo estrutural", "ART de responsabilidade técnica"],
+        "delivery_time": "20-60 dias (conforme complexidade)",
+        "warranty": "12 meses contra defeitos de fabricação",
+        "certifications": ["ABNT NBR 8800", "NR-18"],
+        "seo_keywords": ["estruturas metálicas Recife", "fabricação estrutura metálica Pernambuco", "galpão metálico"],
+        "cta_primary": "Solicitar Orçamento",
+        "cta_secondary": "Ver Projetos Realizados"
+      },
+      {
+        "category_id": "railings_guards",
+        "name": "Corrimãos e Guarda-Corpos",
+        "icon": "railing",
+        "description": "Corrimãos e guarda-corpos em aço inox e aço carbono com design moderno e segurança certificada",
+        "applications": [
+          "Escadas residenciais e comerciais",
+          "Sacadas e varandas",
+          "Mezaninos",
+          "Áreas industriais",
+          "Condomínios",
+          "Áreas públicas"
+        ],
+        "materials": ["Aço inox 304", "Aço inox 316", "Aço carbono pintado", "Vidro laminado"],
+        "styles": ["Minimalista", "Industrial", "Clássico", "Moderno"],
+        "technical_specs": ["Altura conforme NBR 14718", "Carga de 80kgf/m", "Espaçamento máximo"],
+        "delivery_time": "10-25 dias",
+        "warranty": "24 meses",
+        "certifications": ["ABNT NBR 14718"],
+        "seo_keywords": ["corrimão inox Recife", "guarda corpo aço", "guarda corpo vidro Pernambuco"],
+        "cta_primary": "Solicitar Orçamento",
+        "cta_secondary": "Ver Galeria"
+      },
+      {
+        "category_id": "gates_grids",
+        "name": "Portões, Grades e Fechamentos",
+        "icon": "gate",
+        "description": "Soluções em serralheria para segurança e estética: portões, grades, gradis e fechamentos",
+        "applications": [
+          "Portões residenciais",
+          "Portões industriais",
+          "Grades de proteção",
+          "Gradis perimetrais",
+          "Portões de garagem",
+          "Fechamentos de áreas"
+        ],
+        "materials": ["Aço carbono", "Aço galvanizado", "Alumínio"],
+        "features": ["Automação disponível", "Pintura eletrostática", "Tratamento anticorrosivo"],
+        "technical_specs": ["Espessura de chapas", "Sistema de travamento", "Opções de abertura"],
+        "delivery_time": "15-30 dias",
+        "warranty": "12 meses",
+        "seo_keywords": ["portão de aço Recife", "grades de proteção", "gradil metálico Pernambuco"],
+        "cta_primary": "Solicitar Orçamento",
+        "cta_secondary": "Ver Modelos"
+      },
+      {
+        "category_id": "gradil",
+        "name": "Gradil",
+        "icon": "fence",
+        "description": "Gradis metálicos para delimitação de perímetros, segurança e estética",
+        "applications": [
+          "Residências",
+          "Condomínios",
+          "Indústrias",
+          "Escolas",
+          "Áreas públicas",
+          "Terrenos"
+        ],
+        "materials": ["Aço galvanizado", "Aço pintado", "Alumínio"],
+        "heights": ["1,20m", "1,50m", "1,80m", "2,00m", "Sob medida"],
+        "delivery_time": "10-20 dias (por m²)",
+        "warranty": "12 meses",
+        "seo_keywords": ["gradil metálico", "cerca de aço", "gradil para condomínio"],
+        "cta_primary": "Solicitar Orçamento"
+      },
+      {
+        "category_id": "steel_frame",
+        "name": "Sistema para Laje Steel Frame",
+        "icon": "layers",
+        "description": "Sistema estrutural em aço para lajes, rápido, econômico e de alta resistência",
+        "applications": [
+          "Construções residenciais",
+          "Ampliações",
+          "Sobrados",
+          "Projetos comerciais leves"
+        ],
+        "benefits": [
+          "Redução de até 40% no tempo de obra",
+          "Estrutura mais leve",
+          "Menor fundação necessária",
+          "Sustentabilidade",
+          "Precisão dimensional"
+        ],
+        "materials": ["Perfis de aço galvanizado", "Chapas OSB/Steel deck"],
+        "technical_specs": ["Projeto estrutural incluído", "Cálculo de cargas", "Memorial descritivo"],
+        "delivery_time": "15-30 dias",
+        "warranty": "12 meses + garantia do fabricante dos perfis",
+        "seo_keywords": ["steel frame Recife", "laje steel frame", "estrutura metálica laje"],
+        "cta_primary": "Solicitar Orçamento Técnico"
+      },
+      {
+        "category_id": "industrial_projects",
+        "name": "Projetos Industriais",
+        "icon": "industry",
+        "description": "Soluções completas em metalurgia para o setor industrial: máquinas, equipamentos e estruturas",
+        "applications": [
+          "Plataformas de trabalho",
+          "Suportes para equipamentos",
+          "Transportadores",
+          "Estruturas especiais",
+          "Tanques e reservatórios",
+          "Tubulações industriais"
+        ],
+        "materials": ["Aço carbono", "Aço inox", "Aços especiais"],
+        "technical_specs": ["Projeto completo", "Cálculos estruturais", "Laudos técnicos", "ART"],
+        "delivery_time": "30-90 dias (conforme projeto)",
+        "warranty": "12 meses",
+        "certifications": ["NR-12", "NR-13 (quando aplicável)"],
+        "seo_keywords": ["metalurgia industrial Recife", "projetos industriais aço", "fabricação industrial"],
+        "cta_primary": "Agendar Consultoria Técnica"
+      },
+      {
+        "category_id": "metal_props",
+        "name": "Escoras Metálicas",
+        "icon": "support",
+        "description": "Escoras metálicas ajustáveis para escoramento de lajes e estruturas em construção",
+        "applications": [
+          "Escoramento de lajes",
+          "Suporte temporário de vigas",
+          "Escoramentos especiais"
+        ],
+        "features": [
+          "Ajuste de altura",
+          "Alta capacidade de carga",
+          "Reaproveitável",
+          "Fácil montagem"
+        ],
+        "materials": ["Aço carbono"],
+        "heights": ["1,70m a 3,00m", "2,00m a 3,50m", "2,50m a 4,00m", "Sob medida"],
+        "delivery_time": "5-10 dias",
+        "rental_option": "Disponível locação",
+        "seo_keywords": ["escora metálica", "escoramento laje", "aluguel escora metálica"],
+        "cta_primary": "Solicitar Orçamento / Locação"
+      },
+      {
+        "category_id": "metal_stairs",
+        "name": "Escadas Metálicas",
+        "icon": "stairs",
+        "description": "Escadas metálicas sob medida: caracol, retas, industriais e especiais",
+        "applications": [
+          "Residências",
+          "Comércio",
+          "Indústrias",
+          "Condomínios",
+          "Área externa"
+        ],
+        "types": [
+          "Escada caracol",
+          "Escada reta",
+          "Escada em L",
+          "Escada industrial",
+          "Escada marinheiro"
+        ],
+        "materials": ["Aço carbono", "Aço inox", "Estrutura mista"],
+        "finishes": ["Pintura eletrostática", "Galvanização", "Polimento"],
+        "technical_specs": ["Projeto conforme NBR 9050 (acessibilidade quando aplicável)", "Piso antiderrapante"],
+        "delivery_time": "15-35 dias",
+        "warranty": "12 meses",
+        "seo_keywords": ["escada metálica Recife", "escada caracol aço", "escada industrial"],
+        "cta_primary": "Solicitar Orçamento"
+      },
+      {
+        "category_id": "custom_parts",
+        "name": "Peças Técnicas Sob Medida",
+        "icon": "precision",
+        "description": "Fabricação de peças técnicas em aço e inox com precisão e acabamento profissional",
+        "applications": [
+          "Componentes para máquinas",
+          "Peças de reposição",
+          "Protótipos",
+          "Suportes especiais",
+          "Conexões técnicas"
+        ],
+        "processes": [
+          "Corte a laser",
+          "Dobra CNC",
+          "Soldagem TIG/MIG",
+          "Usinagem",
+          "Polimento"
+        ],
+        "materials": ["Aço carbono", "Aço inox 304/316", "Alumínio", "Aços especiais"],
+        "tolerances": "Conforme desenho técnico fornecido",
+        "delivery_time": "7-30 dias (conforme complexidade)",
+        "minimum_order": "Aceita pedidos unitários",
+        "seo_keywords": ["fabricação peças aço sob medida", "peças técnicas inox", "usinagem aço"],
+        "cta_primary": "Enviar Projeto/Desenho"
+      },
+      {
+        "category_id": "stainless_finishes",
+        "name": "Revestimentos e Acabamentos em Inox",
+        "icon": "shine",
+        "description": "Revestimentos decorativos e funcionais em aço inoxidável para ambientes sofisticados",
+        "applications": [
+          "Cozinhas industriais",
+          "Fachadas",
+          "Elevadores",
+          "Banheiros",
+          "Áreas gourmet",
+          "Hospitais e clínicas"
+        ],
+        "materials": ["Inox 304", "Inox 316 (áreas marítimas)"],
+        "finishes": [
+          "Escovado",
+          "Polido (espelhado)",
+          "Bead blasted (jateado)",
+          "Lixado"
+        ],
+        "delivery_time": "15-25 dias",
+        "warranty": "24 meses",
+        "seo_keywords": ["revestimento inox", "acabamento aço inox", "fachada inox"],
+        "cta_primary": "Solicitar Orçamento"
+      },
+      {
+        "category_id": "special_projects",
+        "name": "Projetos Especiais Conforme Necessidade",
+        "icon": "custom",
+        "description": "Desenvolvimento de soluções customizadas para necessidades específicas de cada cliente",
+        "approach": [
+          "Reunião técnica para entendimento da necessidade",
+          "Desenvolvimento de projeto conceitual",
+          "Orçamento detalhado",
+          "Prototipagem (quando necessário)",
+          "Produção e instalação"
+        ],
+        "examples": [
+          "Estruturas artísticas",
+          "Mobiliário urbano",
+          "Soluções industriais únicas",
+          "Projetos arquitetônicos diferenciados"
+        ],
+        "delivery_time": "Variável conforme projeto",
+        "seo_keywords": ["projetos especiais metalúrgica", "fabricação customizada aço"],
+        "cta_primary": "Agendar Reunião Técnica"
+      }
+    ],
+
+    "service_process": {
+      "name": "Nossa Metodologia: Da Consulta à Entrega",
+      "steps": [
+        {
+          "step": 1,
+          "title": "Consulta Inicial",
+          "description": "Entendemos sua necessidade através de consulta técnica gratuita",
+          "duration": "1-2 dias",
+          "deliverables": ["Análise preliminar", "Viabilidade técnica"],
+          "customer_actions": ["Fornecer briefing", "Compartilhar desenhos/fotos se disponível"]
+        },
+        {
+          "step": 2,
+          "title": "Visita Técnica",
+          "description": "Visita ao local para medições precisas e análise in loco (quando aplicável)",
+          "duration": "1-3 dias",
+          "deliverables": ["Levantamento dimensional", "Relatório fotográfico", "Avaliação de condições"],
+          "customer_actions": ["Disponibilizar acesso ao local"]
+        },
+        {
+          "step": 3,
+          "title": "Desenvolvimento do Projeto",
+          "description": "Elaboração de projeto técnico detalhado com especificações completas",
+          "duration": "3-7 dias",
+          "deliverables": ["Desenhos técnicos", "Memorial descritivo", "Especificação de materiais"],
+          "customer_actions": ["Aprovar projeto conceitual"]
+        },
+        {
+          "step": 4,
+          "title": "Orçamento Detalhado",
+          "description": "Apresentação de orçamento completo com prazos e condições",
+          "duration": "2-3 dias",
+          "deliverables": ["Orçamento itemizado", "Cronograma proposto", "Condições comerciais"],
+          "customer_actions": ["Análise e aprovação"]
+        },
+        {
+          "step": 5,
+          "title": "Produção",
+          "description": "Fabricação com controle de qualidade rigoroso em todas as etapas",
+          "duration": "Conforme cronograma",
+          "deliverables": ["Peças/estruturas conforme projeto", "Relatório fotográfico de produção"],
+          "quality_checkpoints": ["Inspeção de materiais", "Controle dimensional", "Teste de soldas", "Acabamento final"],
+          "customer_actions": ["Acompanhamento de status via portal (se aplicável)"]
+        },
+        {
+          "step": 6,
+          "title": "Instalação",
+          "description": "Instalação profissional com equipe técnica especializada",
+          "duration": "1-5 dias (conforme projeto)",
+          "deliverables": ["Instalação completa", "Limpeza do local", "Teste de funcionamento"],
+          "safety_measures": ["Equipe com EPIs", "Sinalização de área", "Conformidade NR-18"],
+          "customer_actions": ["Liberar acesso", "Fornecer recursos básicos (energia, água)"]
+        },
+        {
+          "step": 7,
+          "title": "Entrega e Garantia",
+          "description": "Entrega final com documentação técnica e termo de garantia",
+          "duration": "1 dia",
+          "deliverables": [
+            "ART ou RRT",
+            "Manual de manutenção",
+            "Termo de garantia",
+            "Certificado de materiais",
+            "As-built (quando aplicável)"
+          ],
+          "customer_actions": ["Vistoria final", "Assinatura de aceite"]
+        },
+        {
+          "step": 8,
+          "title": "Pós-Venda",
+          "description": "Suporte técnico e acompanhamento durante período de garantia",
+          "duration": "12-24 meses",
+          "services": ["Atendimento para dúvidas", "Manutenção corretiva (se necessário)", "Visitas de acompanhamento"],
+          "customer_actions": ["Reportar qualquer problema"]
+        }
+      ]
+    }
+  },
+
+  "competitive_analysis": {
+    "competitors": [
+      {
+        "name": "Aço Forte",
+        "website": "https://acofortebrasil.com.br/",
+        "linkedin": "https://www.linkedin.com/in/max-laurindo-engenharia-375a8b23b/",
+        "strengths": [
+          "Destaque claro para serviços",
+          "Presença em LinkedIn"
+        ],
+        "weaknesses": [
+          "Site lento e performance ruim",
+          "Design datado (não moderno)",
+          "UX confusa",
+          "Falta de portfolio visual forte"
+        ],
+        "opportunities_to_beat_them": [
+          "Site com performance superior (Core Web Vitals perfeitos)",
+          "Design moderno e profissional",
+          "UX intuitiva e mobile-first",
+          "Portfolio visual impactante",
+          "Conteúdo técnico educativo (blog)"
+        ]
+      },
+      {
+        "name": "WE Serralheria",
+        "website": "https://weserralheria.com.br/",
+        "strengths": [
+          "Portfolio visual muito forte",
+          "Boas fotos de projetos",
+          "Instagram ativo"
+        ],
+        "weaknesses": [
+          "Falta de informação técnica detalhada",
+          "Ausência de conteúdo educativo",
+          "Pouco foco em SEO",
+          "Não demonstra processo"
+        ],
+        "opportunities_to_beat_them": [
+          "Equilibrar visual + conteúdo técnico robusto",
+          "Criar blog com artigos técnicos para SEO",
+          "Demonstrar metodologia e processo",
+          "Adicionar calculadora de orçamento",
+          "Casos de sucesso com dados concretos"
+        ]
+      },
+      {
+        "name": "Serralharia Goiaba",
+        "website": "http://www.serralhariagoiaba.com.br/",
+        "strengths": [
+          "Boa organização de serviços",
+          "Estrutura clara de informações"
+        ],
+        "weaknesses": [
+          "Design muito básico e amador",
+          "Não transmite profissionalismo",
+          "Falta visual appeal",
+          "Tecnologia ultrapassada"
+        ],
+        "opportunities_to_beat_them": [
+          "Design profissional nível corporativo",
+          "Transmitir confiabilidade e seriedade",
+          "Tecnologia moderna (HubSpot CMS)",
+          "Ser referência em profissionalismo digital do setor",
+          "Automação e experiência superior"
+        ]
+      }
+    ],
+
+    "competitive_advantages_tf": [
+      "Único com presença digital profissional (HubSpot CMS)",
+      "Automação e tecnologia superior (MCPs + IA)",
+      "Conteúdo técnico educativo (autoridade)",
+      "Transparência no processo (tracking de projetos)",
+      "Portfolio visual + técnico equilibrado",
+      "Múltiplos canais de contato integrados",
+      "Experiência de usuário superior",
+      "Performance e velocidade de site",
+      "SEO otimizado para captura orgânica",
+      "Social proof estruturado (depoimentos, cases)"
+    ],
+
+    "market_positioning": {
+      "current_state": "Setor com presença digital fraca, concorrentes com sites básicos ou desatualizados",
+      "opportunity": "TF pode se posicionar como líder digital do setor em Pernambuco",
+      "strategy": "Ser a referência em profissionalismo, tecnologia e transparência",
+      "differentiation": "Não competir por preço, mas por valor, qualidade e experiência"
+    }
+  },
+
+  "seo_strategy": {
+    "primary_keywords": [
+      {
+        "keyword": "estruturas metálicas Recife",
+        "monthly_searches": "~500",
+        "difficulty": "Medium",
+        "intent": "Commercial",
+        "target_pages": ["Homepage", "Estruturas Metálicas Service Page"]
+      },
+      {
+        "keyword": "corrimão inox Pernambuco",
+        "monthly_searches": "~300",
+        "difficulty": "Low",
+        "intent": "Commercial",
+        "target_pages": ["Corrimãos Service Page"]
+      },
+      {
+        "keyword": "serralheria industrial Recife",
+        "monthly_searches": "~200",
+        "difficulty": "Medium",
+        "intent": "Commercial",
+        "target_pages": ["Homepage", "Projetos Industriais"]
+      },
+      {
+        "keyword": "fabricação aço sob medida",
+        "monthly_searches": "~150",
+        "difficulty": "Medium",
+        "intent": "Commercial",
+        "target_pages": ["Peças Técnicas", "Projetos Especiais"]
+      },
+      {
+        "keyword": "steel frame Recife",
+        "monthly_searches": "~250",
+        "difficulty": "Low-Medium",
+        "intent": "Commercial/Informational",
+        "target_pages": ["Steel Frame Service Page", "Blog"]
+      },
+      {
+        "keyword": "guarda corpo inox",
+        "monthly_searches": "~400",
+        "difficulty": "Low",
+        "intent": "Commercial",
+        "target_pages": ["Guarda-Corpos Page"]
+      }
+    ],
+
+    "long_tail_keywords": [
+      "quanto custa estrutura metálica para galpão",
+      "empresa de serralheria em Pernambuco",
+      "corrimão inox preço metro linear",
+      "escada metálica sob medida Recife",
+      "portão de aço galvanizado preço",
+      "steel frame vale a pena",
+      "diferença entre aço e aço inox",
+      "manutenção corrimão inox",
+      "normas técnicas guarda corpo"
+    ],
+
+    "local_seo": {
+      "google_my_business": {
+        "status": "To be created",
+        "priority": "Critical",
+        "categories": [
+          "Serralheria",
+          "Metalúrgica",
+          "Fabricante de estruturas metálicas",
+          "Empresa de construção"
+        ],
+        "service_areas": [
+          "Recife",
+          "Região Metropolitana do Recife",
+          "Pernambuco",
+          "Interior de PE"
+        ],
+        "posts_strategy": "Publicar 2-3x por semana: projetos, dicas, novidades",
+        "review_strategy": "Solicitar avaliações após entrega de cada projeto"
+      },
+
+      "citations": {
+        "directories": [
+          "Catalogo.pe",
+          "Guia de Empresas PE",
+          "Achei Recife",
+          "Telelistas",
+          "Paginas Amarelas"
+        ]
+      },
+
+      "local_content": [
+        "Blog posts sobre projetos em Recife",
+        "Casos de sucesso em PE",
+        "Guias para arquitetos de Recife",
+        "Normas específicas de PE"
+      ]
+    },
+
+    "content_strategy": {
+      "blog_pillars": [
+        {
+          "pillar": "Educação Técnica",
+          "topics": [
+            "Aço vs Aço Inox: Quando usar cada um?",
+            "Guia Completo de Estruturas Metálicas",
+            "Steel Frame: Vantagens e Desvantagens",
+            "Normas ABNT para Estruturas Metálicas",
+            "NR-18: Segurança em Serralheria",
+            "Tipos de Acabamento em Aço Inox",
+            "Manutenção de Corrimãos e Guarda-Corpos"
+          ]
+        },
+        {
+          "pillar": "Guias de Compra",
+          "topics": [
+            "5 Erros ao Contratar uma Serralheria",
+            "Como Escolher o Melhor Corrimão para Sua Escada",
+            "Checklist: Contratar Estruturas Metálicas",
+            "Quanto Custa uma Estrutura Metálica? Guia de Preços",
+            "Portão Manual vs Automático: O Que Escolher?"
+          ]
+        },
+        {
+          "pillar": "Tendências e Inovação",
+          "topics": [
+            "Tendências em Arquitetura Metálica 2026",
+            "Sustentabilidade no Aço: Reciclagem e Impacto",
+            "Tecnologia na Metalurgia: CNC e Automação",
+            "Design Minimalista com Aço e Inox"
+          ]
+        },
+        {
+          "pillar": "Cases e Projetos",
+          "topics": [
+            "Case: Estrutura Metálica para Galpão Industrial",
+            "Projeto: Corrimão Moderno em Edifício Comercial",
+            "Como Executamos: Steel Frame em 30 Dias",
+            "Antes e Depois: Reforma de Portão Industrial"
+          ]
+        }
+      ],
+
+      "content_calendar": "2 artigos/mês + 1 case study/mês",
+      "content_format": ["Blog posts (800-1500 palavras)", "Infográficos", "Vídeos curtos", "Guias downloadáveis (PDFs)"]
+    },
+
+    "technical_seo": {
+      "schema_markup": [
+        "Organization",
+        "LocalBusiness",
+        "Service",
+        "Product",
+        "BreadcrumbList",
+        "FAQPage",
+        "Article (blog posts)",
+        "VideoObject"
+      ],
+      "page_speed_targets": {
+        "mobile_score": ">90",
+        "desktop_score": ">95",
+        "LCP": "<2.5s",
+        "FID": "<100ms",
+        "CLS": "<0.1"
+      },
+      "mobile_optimization": "Mobile-first design, responsive images, touch-friendly UI",
+      "internal_linking": "Hierarchical structure, contextual links, pillar-cluster model"
+    }
+  },
+
+  "website_structure": {
+    "sitemap": {
+      "level_1_pages": [
+        {
+          "page_id": "home",
+          "title": "Home - TF Aço e Inox",
+          "url": "/",
+          "template": "ProX Home - Split Layout",
+          "priority": "Critical",
+          "meta_description": "TF Aço e Inox: Especialistas em estruturas metálicas, corrimãos, portões e soluções sob medida em aço e aço inox. Qualidade, precisão e agilidade em Pernambuco.",
+          "h1": "Transformando Aço em Soluções com Qualidade e Precisão",
+          "primary_cta": "Solicitar Orçamento",
+          "secondary_cta": "Conheça Nossos Serviços",
+          "key_sections": [
+            "Hero com vídeo de produção",
+            "Diferenciais (4 cards)",
+            "Serviços principais",
+            "Processo de trabalho (timeline)",
+            "Números que impressionam",
+            "Depoimentos de clientes",
+            "Portfolio destaque (6 projetos)",
+            "CTA final"
+          ]
+        },
+        {
+          "page_id": "about",
+          "title": "Sobre Nós - TF Aço e Inox",
+          "url": "/sobre",
+          "template": "ProX About 1",
+          "priority": "High",
+          "meta_description": "Conheça a TF Aço e Inox / Fênix Elevações: 10+ anos de experiência em metalurgia, crescimento reconhecido em PE, compromisso com qualidade e inovação.",
+          "h1": "Quem Somos: Qualidade e Inovação em Metalurgia",
+          "sections": [
+            "Nossa história",
+            "Missão, Visão e Valores",
+            "Timeline de evolução",
+            "Números da empresa",
+            "Certificações e qualificações",
+            "Equipe (fotos genéricas ou depoimentos)",
+            "Diferenciais competitivos",
+            "CTA para contato"
+          ]
+        },
+        {
+          "page_id": "services_hub",
+          "title": "Serviços - TF Aço e Inox",
+          "url": "/servicos",
+          "template": "ProX Services Listing",
+          "priority": "Critical",
+          "meta_description": "Serviços especializados em metalurgia: estruturas metálicas, corrimãos em inox, portões, steel frame, projetos industriais e muito mais. Confira!",
+          "h1": "Nossos Serviços em Aço e Aço Inox",
+          "layout": "Grid de cards (3 colunas) com imagem, título, descrição curta e CTA",
+          "services_listed": [
+            "Estruturas Metálicas",
+            "Corrimãos e Guarda-Corpos",
+            "Portões e Grades",
+            "Steel Frame",
+            "Projetos Industriais",
+            "Escoras Metálicas",
+            "Escadas Metálicas",
+            "Peças Sob Medida",
+            "Revestimentos Inox",
+            "Projetos Especiais"
+          ]
+        },
+        {
+          "page_id": "portfolio",
+          "title": "Portfolio - Projetos Realizados",
+          "url": "/portfolio",
+          "template": "ProX Portfolio 1 (Grid with filters)",
+          "priority": "High",
+          "meta_description": "Veja nosso portfolio de projetos em aço e inox: estruturas metálicas, corrimãos, portões e muito mais. Qualidade comprovada em cada obra.",
+          "h1": "Projetos Que Transformamos em Realidade",
+          "filters": ["Todos", "Estruturas", "Corrimãos", "Portões", "Industrial", "Residencial", "Comercial"],
+          "items": "Galeria de 20-30 projetos com foto, categoria, título, breve descrição",
+          "cta": "Cada projeto leva para página de detalhes"
+        },
+        {
+          "page_id": "contact",
+          "title": "Contato - TF Aço e Inox",
+          "url": "/contato",
+          "template": "ProX Contact 1 (Form + Map)",
+          "priority": "Critical",
+          "meta_description": "Entre em contato com a TF Aço e Inox. WhatsApp, telefone, email e formulário. Estamos prontos para seu projeto!",
+          "h1": "Fale Conosco: Vamos Iniciar Seu Projeto",
+          "sections": [
+            "Formulário de contato (nome, email, telefone, serviço de interesse, mensagem)",
+            "Informações de contato (WhatsApp, email, telefone)",
+            "Endereço + mapa (Google Maps embed)",
+            "Horário de atendimento",
+            "Links para redes sociais"
+          ]
+        },
+        {
+          "page_id": "blog",
+          "title": "Blog - TF Aço e Inox",
+          "url": "/blog",
+          "template": "ProX Blog with Sidebar",
+          "priority": "Medium-High",
+          "meta_description": "Blog TF Aço e Inox: artigos técnicos sobre metalurgia, estruturas metálicas, dicas, tendências e guias práticos para seu projeto.",
+          "h1": "Blog: Conhecimento em Metalurgia",
+          "layout": "Listing com sidebar (categorias, posts recentes, CTA)",
+          "pagination": "12 posts por página"
+        }
+      ],
+
+      "level_2_pages": [
+        {
+          "page_type": "Service Detail Pages",
+          "quantity": 11,
+          "template": "ProX Service Details",
+          "url_pattern": "/servicos/{service-slug}",
+          "pages": [
+            {
+              "slug": "estruturas-metalicas",
+              "title": "Estruturas Metálicas Personalizadas",
+              "h1": "Estruturas Metálicas: Soluções Sob Medida com Qualidade",
+              "sections": ["Descrição detalhada", "Aplicações", "Materiais", "Processo", "Galeria de fotos", "FAQs", "CTA orçamento"]
+            },
+            {
+              "slug": "corrimaos-guarda-corpos",
+              "title": "Corrimãos e Guarda-Corpos em Aço Inox",
+              "h1": "Corrimãos e Guarda-Corpos: Segurança e Design",
+              "sections": ["Descrição detalhada", "Tipos e estilos", "Normas técnicas", "Galeria", "FAQs", "CTA"]
+            },
+            {
+              "slug": "portoes-grades",
+              "title": "Portões e Grades Personalizados",
+              "h1": "Portões e Grades: Segurança com Estilo"
+            },
+            {
+              "slug": "gradil",
+              "title": "Gradil Metálico",
+              "h1": "Gradil: Delimitação e Segurança"
+            },
+            {
+              "slug": "steel-frame",
+              "title": "Sistema Steel Frame para Lajes",
+              "h1": "Steel Frame: Rapidez e Eficiência na Construção"
+            },
+            {
+              "slug": "projetos-industriais",
+              "title": "Projetos Industriais em Aço",
+              "h1": "Soluções Industriais Completas em Metalurgia"
+            },
+            {
+              "slug": "escoras-metalicas",
+              "title": "Escoras Metálicas",
+              "h1": "Escoras Metálicas: Suporte Seguro para Sua Obra"
+            },
+            {
+              "slug": "escadas-metalicas",
+              "title": "Escadas Metálicas Sob Medida",
+              "h1": "Escadas Metálicas: Design e Funcionalidade"
+            },
+            {
+              "slug": "pecas-tecnicas",
+              "title": "Peças Técnicas Sob Medida",
+              "h1": "Fabricação de Peças em Aço com Precisão"
+            },
+            {
+              "slug": "revestimentos-inox",
+              "title": "Revestimentos em Aço Inox",
+              "h1": "Revestimentos Inox: Elegância e Durabilidade"
+            },
+            {
+              "slug": "projetos-especiais",
+              "title": "Projetos Especiais Customizados",
+              "h1": "Soluções Customizadas Para Suas Necessidades"
+            }
+          ]
+        },
+        {
+          "page_type": "Portfolio Detail Pages",
+          "quantity": "20-30 (dynamic)",
+          "template": "ProX Portfolio Details",
+          "url_pattern": "/portfolio/{project-slug}",
+          "structure": {
+            "sections": [
+              "Hero image principal",
+              "Informações do projeto (cliente, localização, categoria, data)",
+              "Descrição e desafios",
+              "Solução implementada",
+              "Galeria de fotos (antes/durante/depois)",
+              "Depoimento do cliente (se disponível)",
+              "Especificações técnicas",
+              "Projetos relacionados",
+              "CTA para orçamento"
+            ]
+          }
+        },
+        {
+          "page_type": "Blog Post Pages",
+          "quantity": "Dynamic (starts with 10-15)",
+          "template": "ProX Blog Post",
+          "url_pattern": "/blog/{post-slug}",
+          "structure": {
+            "sections": [
+              "Hero com featured image",
+              "Breadcrumbs",
+              "Título H1",
+              "Meta info (autor, data, categoria, tempo de leitura)",
+              "Conteúdo (rich text com H2, H3, imagens, listas)",
+              "Sidebar (posts relacionados, categorias, CTA)",
+              "Autor bio",
+              "Comentários (HubSpot native ou Disqus)",
+              "Posts relacionados",
+              "CTA final"
+            ]
+          }
+        }
+      ],
+
+      "utility_pages": [
+        {
+          "page": "Orçamento / Request a Quote",
+          "url": "/orcamento",
+          "template": "ProX Landing Page Option 2 (Big Form)",
+          "description": "Formulário detalhado para solicitação de orçamento",
+          "form_fields": [
+            "Nome completo",
+            "Email",
+            "Telefone / WhatsApp",
+            "Empresa (opcional)",
+            "Tipo de projeto (dropdown: serviços)",
+            "Descrição do projeto",
+            "Prazo desejado",
+            "Orçamento disponível (opcional)",
+            "Upload de arquivos (desenhos, fotos, referências)",
+            "Como conheceu a TF?"
+          ]
+        },
+        {
+          "page": "Thank You Page",
+          "url": "/obrigado",
+          "template": "ProX Thank You",
+          "content": "Mensagem de agradecimento, próximos passos, tempo de resposta, sugestão de seguir redes sociais"
+        },
+        {
+          "page": "Política de Privacidade",
+          "url": "/privacidade",
+          "template": "Basic page",
+          "required": "LGPD compliance"
+        },
+        {
+          "page": "Termos de Uso",
+          "url": "/termos",
+          "template": "Basic page"
+        },
+        {
+          "page": "404 Error",
+          "url": "/404",
+          "template": "ProX Error 404",
+          "custom": true
+        }
+      ]
+    },
+
+    "navigation_structure": {
+      "primary_header_menu": {
+        "items": [
+          {"label": "Home", "url": "/"},
+          {
+            "label": "Sobre",
+            "url": "/sobre"
+          },
+          {
+            "label": "Serviços",
+            "url": "/servicos",
+            "submenu": [
+              {"label": "Todos os Serviços", "url": "/servicos"},
+              {"label": "Estruturas Metálicas", "url": "/servicos/estruturas-metalicas"},
+              {"label": "Corrimãos e Guarda-Corpos", "url": "/servicos/corrimaos-guarda-corpos"},
+              {"label": "Portões e Grades", "url": "/servicos/portoes-grades"},
+              {"label": "Steel Frame", "url": "/servicos/steel-frame"},
+              {"label": "Projetos Industriais", "url": "/servicos/projetos-industriais"},
+              {"label": "Projetos Especiais", "url": "/servicos/projetos-especiais"}
+            ]
+          },
+          {
+            "label": "Portfolio",
+            "url": "/portfolio"
+          },
+          {
+            "label": "Blog",
+            "url": "/blog"
+          },
+          {
+            "label": "Contato",
+            "url": "/contato"
+          }
+        ],
+        "cta_button": {
+          "label": "Solicitar Orçamento",
+          "url": "/orcamento",
+          "style": "primary"
+        }
+      },
+
+      "footer_menu": {
+        "columns": [
+          {
+            "title": "Empresa",
+            "links": [
+              {"label": "Sobre Nós", "url": "/sobre"},
+              {"label": "Missão e Valores", "url": "/sobre#missao"},
+              {"label": "Contato", "url": "/contato"}
+            ]
+          },
+          {
+            "title": "Serviços",
+            "links": [
+              {"label": "Estruturas Metálicas", "url": "/servicos/estruturas-metalicas"},
+              {"label": "Corrimãos em Inox", "url": "/servicos/corrimaos-guarda-corpos"},
+              {"label": "Steel Frame", "url": "/servicos/steel-frame"},
+              {"label": "Projetos Industriais", "url": "/servicos/projetos-industriais"},
+              {"label": "Ver Todos", "url": "/servicos"}
+            ]
+          },
+          {
+            "title": "Recursos",
+            "links": [
+              {"label": "Portfolio", "url": "/portfolio"},
+              {"label": "Blog", "url": "/blog"},
+              {"label": "Solicitar Orçamento", "url": "/orcamento"}
+            ]
+          },
+          {
+            "title": "Legal",
+            "links": [
+              {"label": "Política de Privacidade", "url": "/privacidade"},
+              {"label": "Termos de Uso", "url": "/termos"}
+            ]
+          }
+        ],
+        "social_media": {
+          "instagram": "TBD",
+          "facebook": "TBD",
+          "linkedin": "TBD",
+          "whatsapp": "https://wa.me/5581999699449"
+        },
+        "contact_info": {
+          "email": ["comercial2@fenixelevacoes.com.br", "Arthurpontes@tfacoinox.com.br"],
+          "phone": "+55 81 99969-9449",
+          "whatsapp": "+55 81 99969-9449"
+        }
+      }
+    }
+  },
+
+  "conversion_optimization": {
+    "ctas_strategy": {
+      "primary_ctas": [
+        {
+          "type": "WhatsApp",
+          "text": "Fale no WhatsApp",
+          "url": "https://wa.me/5581999699449?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento",
+          "placement": ["Floating button (mobile)", "Header", "Footer", "Service pages", "Homepage"],
+          "color": "#25D366",
+          "priority": 1
+        },
+        {
+          "type": "Form",
+          "text": "Solicitar Orçamento",
+          "url": "/orcamento",
+          "placement": ["Header CTA button", "Homepage sections", "Service pages", "Blog sidebar"],
+          "color": "Primary brand color",
+          "priority": 2
+        },
+        {
+          "type": "Phone",
+          "text": "Ligar Agora",
+          "url": "tel:+5581999699449",
+          "placement": ["Mobile header", "Contact page"],
+          "color": "Secondary color",
+          "priority": 3
+        }
+      ],
+
+      "secondary_ctas": [
+        "Ver Portfolio",
+        "Conheça Nossos Serviços",
+        "Ler Mais (blog)",
+        "Baixar Guia (lead magnets)",
+        "Ver Projetos Relacionados"
+      ]
+    },
+
+    "forms_strategy": {
+      "form_types": [
+        {
+          "name": "Orçamento Rápido",
+          "location": "Homepage, Service pages (popup ou inline)",
+          "fields": ["Nome", "Telefone", "Tipo de serviço (dropdown)", "Mensagem curta"],
+          "goal": "Low friction, high conversion",
+          "hubspot_integration": "Lead form → Create contact → Assign to sales"
+        },
+        {
+          "name": "Orçamento Detalhado",
+          "location": "/orcamento page",
+          "fields": [
+            "Nome completo",
+            "Email",
+            "Telefone/WhatsApp",
+            "Empresa (opcional)",
+            "Tipo de projeto",
+            "Descrição detalhada",
+            "Prazo",
+            "Orçamento disponível",
+            "Upload de arquivos",
+            "Como conheceu?"
+          ],
+          "goal": "Qualify leads with more information",
+          "hubspot_integration": "Lead → Contact → Deal creation → Task for sales rep"
+        },
+        {
+          "name": "Newsletter / Blog Subscription",
+          "location": "Blog sidebar, Blog posts, Footer",
+          "fields": ["Email"],
+          "goal": "Build audience for content marketing",
+          "hubspot_integration": "Subscribe to blog list"
+        },
+        {
+          "name": "Download de Conteúdo (Lead Magnet)",
+          "location": "Landing pages específicas",
+          "fields": ["Nome", "Email", "Empresa (opcional)"],
+          "goal": "Exchange value for contact info",
+          "hubspot_integration": "Add to segmented list → Email automation sequence"
+        }
+      ],
+
+      "smart_forms": {
+        "enabled": true,
+        "progressive_profiling": "After first submission, ask additional questions (company size, role, specific needs)",
+        "known_visitor_shortening": "HubSpot recognizes returning visitors, shows shortened form"
+      }
+    },
+
+    "lead_magnets": {
+      "content_offers": [
+        {
+          "title": "Guia Completo: Como Escolher Estruturas Metálicas",
+          "format": "PDF downloadable (15-20 pages)",
+          "target_audience": "Construtoras, engenheiros",
+          "content": [
+            "Tipos de estruturas",
+            "Materiais e especificações",
+            "Normas técnicas",
+            "Checklist de compra",
+            "Cálculo de custos estimados"
+          ]
+        },
+        {
+          "title": "E-book: Aço vs Aço Inox - Guia de Aplicações",
+          "format": "PDF (10 pages)",
+          "target_audience": "Arquitetos, designers",
+          "content": "Diferenças, aplicações, manutenção, custos comparativos"
+        },
+        {
+          "title": "Checklist: Contratar uma Serralheria Confiável",
+          "format": "PDF checklist (2 pages)",
+          "target_audience": "Todos",
+          "content": "Pontos de atenção, perguntas para fazer, red flags"
+        },
+        {
+          "title": "Calculadora de Orçamento Rápido",
+          "format": "Interactive web tool",
+          "target_audience": "Leads em pesquisa inicial",
+          "functionality": "Seleção de tipo de projeto → Dimensões → Material → Orçamento estimado + captura de lead"
+        }
+      ]
+    },
+
+    "chatbot_strategy": {
+      "platform": "HubSpot Chat + Claude MCP integration",
+      "availability": "24/7 automated, business hours live (future)",
+      "use_cases": [
+        "Responder dúvidas frequentes",
+        "Qualificar leads (perguntas iniciais)",
+        "Agendar reuniões técnicas",
+        "Direcionar para páginas relevantes",
+        "Capturar informações de contato"
+      ],
+      "conversation_flows": [
+        {
+          "trigger": "Visitor lands on homepage",
+          "message": "Olá! 👋 Estou aqui para ajudar. Você está buscando orçamento para algum serviço específico?",
+          "options": ["Estruturas Metálicas", "Corrimãos/Guarda-Corpos", "Portões/Grades", "Outro Serviço", "Só estou navegando"]
+        },
+        {
+          "trigger": "Visitor on service page >30 seconds",
+          "message": "Vi que você está interessado em [SERVIÇO]. Gostaria de receber um orçamento rápido?",
+          "action": "If yes → Open quick quote form; If no → Continue browsing"
+        },
+        {
+          "trigger": "Visitor returns (cookie detected)",
+          "message": "Bem-vindo de volta! Como posso ajudar hoje?",
+          "personalization": "Reference previous interaction if available"
+        }
+      ],
+      "ai_enhancement": {
+        "claude_integration": "Handle complex technical questions using Claude MCP knowledge",
+        "learning": "Train on common customer questions, technical specs, pricing guidelines",
+        "handoff": "Seamless transfer to human for complex cases"
+      }
+    }
+  },
+
+  "hubspot_configuration": {
+    "cms_hub_setup": {
+      "theme": "ProX Premium (customized for TF)",
+      "modules_to_activate": [
+        "All ProX Premium modules",
+        "Custom modules for TF (calculator, project filter, etc.)"
+      ],
+      "domain": "TBD (needs to be acquired)",
+      "ssl": "Auto-provisioned by HubSpot",
+      "cdn": "HubSpot CDN"
+    },
+
+    "marketing_hub_features": {
+      "forms": {
+        "quantity": "4-5 forms (quick quote, detailed quote, newsletter, content download, contact)",
+        "smart_forms": true,
+        "progressive_profiling": true,
+        "captcha": "Enable for spam prevention"
+      },
+
+      "workflows": [
+        {
+          "name": "New Lead Nurturing",
+          "trigger": "Form submission (any)",
+          "actions": [
+            "Send thank you email",
+            "Add to general leads list",
+            "Create task for sales rep",
+            "Enroll in email nurture sequence (if opted in)"
+          ]
+        },
+        {
+          "name": "Quote Request Follow-up",
+          "trigger": "Quote form submission",
+          "actions": [
+            "Immediate auto-reply with estimated response time",
+            "Create deal in CRM",
+            "Assign to sales rep (round-robin)",
+            "If no response in 2 days → Send reminder email",
+            "If no response in 5 days → Send final follow-up"
+          ]
+        },
+        {
+          "name": "Blog Subscriber Welcome",
+          "trigger": "Newsletter subscription",
+          "actions": [
+            "Welcome email with best content",
+            "Send weekly digest of new posts",
+            "After 1 month → Offer lead magnet"
+          ]
+        },
+        {
+          "name": "Abandoned Quote Form",
+          "trigger": "Started form but didn't submit",
+          "actions": [
+            "Wait 1 hour",
+            "Send recovery email: 'Need help with your quote?'",
+            "Offer WhatsApp alternative"
+          ]
+        }
+      ],
+
+      "email_marketing": {
+        "templates": [
+          "Welcome email",
+          "Quote confirmation",
+          "Blog digest",
+          "Lead magnet delivery",
+          "Re-engagement campaign"
+        ],
+        "frequency": "Weekly blog digest (optional opt-in), Transactional emails as needed",
+        "personalization": "Use contact properties (name, company, service interest)"
+      },
+
+      "lead_scoring": {
+        "enabled": true,
+        "criteria": [
+          "Page views (+1 per page)",
+          "Service page visit (+5)",
+          "Pricing/Quote page visit (+10)",
+          "Form submission (+20)",
+          "Email open (+2)",
+          "Email click (+5)",
+          "Return visitor (+3)",
+          "Company size (Medium/Large: +10)"
+        ],
+        "hot_lead_threshold": "50 points → Notify sales immediately"
+      }
+    },
+
+    "sales_hub_features": {
+      "deals_pipeline": {
+        "stages": [
+          "Novo Lead",
+          "Contato Inicial Feito",
+          "Visita Técnica Agendada",
+          "Orçamento Enviado",
+          "Negociação",
+          "Contrato Assinado",
+          "Em Produção",
+          "Instalação",
+          "Concluído"
+        ],
+        "lost_reasons": ["Preço", "Prazo", "Escolheu Concorrente", "Projeto Cancelado", "Não Respondeu"]
+      },
+
+      "tasks_automation": [
+        "New lead → Task: 'Call within 2 hours'",
+        "Quote sent → Task: 'Follow up in 3 days'",
+        "Deal in Negotiation → Task: 'Check-in weekly'"
+      ],
+
+      "email_templates": [
+        "Initial contact email",
+        "Quote follow-up",
+        "Technical visit scheduling",
+        "Post-delivery satisfaction survey"
+      ]
+    },
+
+    "service_hub_features": {
+      "tickets": "For post-sale support, warranty issues, maintenance requests",
+      "knowledge_base": "Internal: FAQs for sales team; External (future): Customer self-service",
+      "customer_feedback": "NPS survey after project completion"
+    },
+
+    "analytics_and_reporting": {
+      "dashboards": [
+        {
+          "name": "Marketing Performance",
+          "widgets": [
+            "Website traffic (sessions, page views)",
+            "Traffic sources (organic, direct, social, referral)",
+            "Top pages",
+            "Form submissions by type",
+            "Blog post performance",
+            "Conversion rate (visitor → lead)"
+          ]
+        },
+        {
+          "name": "Sales Performance",
+          "widgets": [
+            "Deals by stage",
+            "Closed deals this month",
+            "Average deal size",
+            "Sales cycle length",
+            "Win rate",
+            "Lost deals reasons"
+          ]
+        },
+        {
+          "name": "Lead Generation",
+          "widgets": [
+            "New leads this month",
+            "Lead sources",
+            "Lead score distribution",
+            "Hot leads (score >50)",
+            "Quote requests"
+          ]
+        }
+      ],
+
+      "goals": {
+        "month_1-3": {
+          "traffic": "500 sessions/month",
+          "leads": "20 leads/month",
+          "quotes": "10 quote requests/month"
+        },
+        "month_4-6": {
+          "traffic": "1,000 sessions/month",
+          "leads": "40 leads/month",
+          "quotes": "20 quote requests/month"
+        },
+        "month_7-12": {
+          "traffic": "2,000 sessions/month",
+          "leads": "50+ leads/month",
+          "quotes": "30 quote requests/month"
+        }
+      }
+    }
+  },
+
+  "mcp_ai_integration": {
+    "hubspot_mcp": {
+      "use_cases": [
+        "Automatic content syncing between site and CRM",
+        "Form submission handling and lead routing",
+        "Contact management and enrichment",
+        "Deal pipeline automation",
+        "Smart list creation based on behavior",
+        "Email campaign triggers",
+        "Analytics data pulling for reports"
+      ],
+      "endpoints_used": [
+        "/contacts/v1/contact",
+        "/deals/v1/deal",
+        "/forms/v2/forms",
+        "/content/api/v2/pages",
+        "/content/api/v2/blog-posts"
+      ],
+      "automation_examples": [
+        "New blog post published → Auto-create email campaign",
+        "High-value lead identified → Create deal + assign sales rep",
+        "Portfolio project added → Update related contact records"
+      ]
+    },
+
+    "claude_server_mcp": {
+      "use_cases": [
+        "AI-powered chatbot for 24/7 customer support",
+        "Technical question answering (materials, specs, normas)",
+        "Blog content generation and optimization",
+        "SEO meta descriptions auto-generation",
+        "Dynamic FAQ responses",
+        "Content personalization based on visitor data",
+        "Email response suggestions for sales team",
+        "Sentiment analysis on customer feedback"
+      ],
+      "implementation": {
+        "chatbot": {
+          "knowledge_base": [
+            "All service pages content",
+            "Technical specifications database",
+            "Common customer questions",
+            "Pricing guidelines",
+            "Company info"
+          ],
+          "capabilities": [
+            "Answer technical questions in real-time",
+            "Provide product recommendations",
+            "Explain differences (aço vs inox, etc.)",
+            "Help with service selection",
+            "Schedule technical visits",
+            "Capture leads intelligently"
+          ],
+          "handoff_to_human": "Complex pricing, custom projects, complaints"
+        },
+        "content_creation": {
+          "blog_posts": "Claude generates draft based on keyword/topic → Human editor reviews and publishes",
+          "meta_descriptions": "Auto-generate SEO-optimized meta descriptions for all pages",
+          "product_descriptions": "Generate detailed, SEO-friendly descriptions for services"
+        }
+      }
+    },
+
+    "openai_mcp": {
+      "use_cases": [
+        "AI image generation for blog featured images",
+        "Conceptual design visualization for customers",
+        "Project mockups and previews",
+        "Infographic creation",
+        "Voice-to-text for quote requests (future: call transcription)",
+        "Advanced content creation (whitepapers, guides)",
+        "Recommendation engine for services"
+      ],
+      "implementation": {
+        "dall_e_integration": {
+          "use": "Generate custom hero images for blog posts when no photo available",
+          "prompt_template": "Industrial, modern, metallic structure, [specific topic], professional photography style",
+          "post_processing": "Add TF branding overlay"
+        },
+        "gpt_4_integration": {
+          "use": "Long-form content creation (guides, ebooks, technical documents)",
+          "quality": "Human-reviewed and edited before publication"
+        },
+        "whisper_integration": {
+          "use": "Transcribe phone calls for CRM notes (future implementation)",
+          "privacy": "Comply with LGPD, customer consent required"
+        }
+      }
+    },
+
+    "web_scraper_mcp": {
+      "use_cases": [
+        "Competitive intelligence (monitor competitor websites)",
+        "Market research (industry trends, news)",
+        "Price benchmarking (where publicly available)",
+        "Industry news aggregation for blog inspiration",
+        "Certification and regulation updates (ABNT, NR)",
+        "Supplier material pricing trends"
+      ],
+      "implementation": {
+        "competitive_monitoring": {
+          "targets": ["acofortebrasil.com.br", "weserralheria.com.br", "serralhariagoiaba.com.br"],
+          "frequency": "Weekly",
+          "track": ["New services", "Pricing changes (if visible)", "Blog content", "Portfolio updates"],
+          "alert": "Notify team of significant changes"
+        },
+        "industry_news": {
+          "sources": [
+            "Metalurgia blogs",
+            "Construção civil news sites",
+            "ABNT updates",
+            "Governo regulations"
+          ],
+          "frequency": "Daily",
+          "action": "Curate relevant news for blog content inspiration or social media sharing"
+        },
+        "seo_opportunities": {
+          "track": "Competitor keyword rankings, backlink opportunities, content gaps",
+          "tool": "Scrape Google SERP for target keywords, identify ranking pages",
+          "action": "Inform content strategy to outrank competitors"
+        }
+      }
+    },
+
+    "orchestration_workflows": {
+      "example_1": {
+        "name": "Intelligent Lead Qualification",
+        "flow": [
+          "Visitor fills quote form → HubSpot MCP creates contact",
+          "Claude MCP analyzes form content → Extracts project complexity",
+          "Claude assigns lead score modifier based on language used",
+          "Web Scraper checks if company domain exists → Enriches contact data",
+          "HubSpot MCP creates deal with enriched data + AI insights",
+          "Sales rep receives task with AI-generated summary and talking points"
+        ]
+      },
+      "example_2": {
+        "name": "Content Marketing Automation",
+        "flow": [
+          "Web Scraper finds trending industry topic",
+          "Claude MCP generates blog post outline + draft",
+          "Human editor reviews and edits",
+          "Post published to HubSpot CMS",
+          "HubSpot MCP auto-creates email campaign for subscribers",
+          "OpenAI generates featured image (DALL-E)",
+          "Social media posts auto-scheduled"
+        ]
+      },
+      "example_3": {
+        "name": "Customer Support Enhancement",
+        "flow": [
+          "Customer asks complex technical question via chat",
+          "Claude MCP searches knowledge base + web for answer",
+          "If not confident → Creates HubSpot ticket + notifies human",
+          "If confident → Provides answer + asks for satisfaction rating",
+          "Interaction saved to HubSpot contact timeline",
+          "Recurring questions → Added to FAQ, trigger content creation"
+        ]
+      }
+    }
+  },
+
+  "content_production": {
+    "priority_content_list": {
+      "pre_launch": [
+        {
+          "item": "Logotipo vetorizado",
+          "status": "Needs confirmation",
+          "owner": "Client",
+          "deadline": "Week 1"
+        },
+        {
+          "item": "Fotos profissionais (5-10 inicial)",
+          "types": ["Produtos finalizados", "Processo de produção", "Equipe (opcional)", "Instalações"],
+          "status": "Client will produce",
+          "deadline": "Week 2"
+        },
+        {
+          "item": "Vídeo institucional curto (1-2 min)",
+          "content": "Overview da empresa, processo, diferenciais",
+          "status": "Client will produce",
+          "deadline": "Week 3"
+        },
+        {
+          "item": "Textos de todas as páginas",
+          "pages": ["Home", "Sobre", "Serviços (11)", "Contato"],
+          "status": "Draft provided, needs review and expansion",
+          "owner": "Copywriter + Client review",
+          "deadline": "Week 2"
+        },
+        {
+          "item": "5 Depoimentos de clientes",
+          "format": "Nome, empresa, cargo, foto, quote",
+          "status": "To be collected",
+          "owner": "Client",
+          "deadline": "Week 3"
+        }
+      ],
+
+      "post_launch_30_days": [
+        {
+          "item": "20 Fotos adicionais de projetos",
+          "purpose": "Completar portfolio",
+          "deadline": "Month 1"
+        },
+        {
+          "item": "8-10 Blog posts SEO",
+          "topics": "From content calendar",
+          "deadline": "Months 1-2"
+        },
+        {
+          "item": "3 Case studies detalhados",
+          "projects": "Best projects with full story",
+          "deadline": "Month 2"
+        },
+        {
+          "item": "Lead magnet #1: Guia de Estruturas Metálicas",
+          "format": "PDF, 15-20 pages",
+          "deadline": "Month 2"
+        }
+      ],
+
+      "ongoing": [
+        "2 blog posts/month",
+        "1 case study/month",
+        "1 lead magnet/quarter",
+        "Portfolio updates as projects complete",
+        "Video content (process, testimonials) quarterly"
+      ]
+    },
+
+    "photography_guidelines": {
+      "style": "Professional, industrial, clean, well-lit",
+      "subjects": [
+        "Finished products (structures, railings, gates)",
+        "Work in progress (welding, cutting, installation)",
+        "Materials (steel sheets, inox, profiles)",
+        "Workshop/facilities (organized, professional)",
+        "Team at work (with PPE, safety focus)",
+        "Before/after of installations"
+      ],
+      "technical_specs": "High resolution (min 2000px width), good lighting, multiple angles",
+      "dont": "Low quality smartphone photos, messy backgrounds, unprofessional appearance"
+    },
+
+    "video_content_strategy": {
+      "hero_video": {
+        "length": "30-60 seconds",
+        "content": "Fast-paced montage of production process, team, finished projects",
+        "music": "Upbeat, industrial, professional",
+        "text_overlays": "Key stats, services, tagline"
+      },
+      "service_videos": {
+        "quantity": "1 per major service (5-6 total)",
+        "length": "1-2 minutes each",
+        "content": "Show process, benefits, finished examples"
+      },
+      "testimonial_videos": {
+        "quantity": "3-5",
+        "length": "30-45 seconds each",
+        "format": "Customer on-site with finished project, talking about experience"
+      },
+      "time_lapse": {
+        "content": "Installation time-lapse (structure going up, railing being installed)",
+        "purpose": "Show efficiency, professionalism, scale"
+      }
+    }
+  },
+
+  "project_roadmap": {
+    "phase_1_discovery_planning": {
+      "duration": "Week 1-2",
+      "tasks": [
+        "Finalize briefing and content requirements",
+        "Collect logo and initial brand assets",
+        "Set up HubSpot CMS Hub account",
+        "Install ProX Premium theme",
+        "Configure domain and DNS",
+        "Set up Google Analytics, Search Console",
+        "Create sitemap and wireframes",
+        "Content audit and gap analysis",
+        "Keyword research and SEO strategy finalization"
+      ],
+      "deliverables": [
+        "Project plan and timeline",
+        "Content production checklist",
+        "Wireframes for key pages",
+        "SEO strategy document"
+      ]
+    },
+
+    "phase_2_design_development": {
+      "duration": "Week 3-5",
+      "tasks": [
+        "Customize ProX theme with TF branding",
+        "Design homepage",
+        "Design service pages templates",
+        "Design portfolio page and detail template",
+        "Design blog listing and post template",
+        "Develop custom modules (calculator, filters)",
+        "Implement responsive design (mobile-first)",
+        "Set up all forms in HubSpot",
+        "Configure navigation and menus"
+      ],
+      "deliverables": [
+        "Homepage design (approved)",
+        "Template designs for all page types",
+        "Responsive mockups (mobile/tablet/desktop)",
+        "Custom module demos"
+      ]
+    },
+
+    "phase_3_content_integration": {
+      "duration": "Week 6-7",
+      "tasks": [
+        "Write/edit all page copy",
+        "Populate homepage",
+        "Create 11 service detail pages",
+        "Add initial 10-15 portfolio projects",
+        "Write and publish 5 initial blog posts",
+        "Upload photos and videos",
+        "Implement SEO (meta tags, schema, alt text)",
+        "Set up HubSpot workflows",
+        "Configure chatbot (Claude MCP)",
+        "Integrate WhatsApp",
+        "Create email templates"
+      ],
+      "deliverables": [
+        "Fully populated website (all pages live)",
+        "SEO implementation complete",
+        "HubSpot workflows active",
+        "Marketing automation ready"
+      ]
+    },
+
+    "phase_4_testing_qa": {
+      "duration": "Week 8",
+      "tasks": [
+        "Cross-browser testing (Chrome, Firefox, Safari, Edge)",
+        "Mobile/tablet testing (iOS, Android)",
+        "Form submission testing",
+        "Email automation testing",
+        "Chatbot testing",
+        "Performance testing (PageSpeed, GTmetrix)",
+        "Accessibility audit (WCAG AA)",
+        "SEO audit (Screaming Frog, Ahrefs)",
+        "Fix bugs and issues",
+        "Final client review and approvals"
+      ],
+      "deliverables": [
+        "QA report",
+        "Bug fixes completed",
+        "Performance optimization completed",
+        "Client sign-off"
+      ]
+    },
+
+    "phase_5_launch": {
+      "duration": "Week 9",
+      "tasks": [
+        "Final backup of site",
+        "DNS cutover (go live)",
+        "SSL certificate verification",
+        "Submit sitemap to Google",
+        "Set up Google My Business",
+        "Launch social media announcements",
+        "Internal team training (how to use HubSpot)",
+        "Monitor site performance and uptime"
+      ],
+      "deliverables": [
+        "Live website ✅",
+        "Training documentation",
+        "Launch announcement"
+      ]
+    },
+
+    "phase_6_post_launch_optimization": {
+      "duration": "Month 2-3",
+      "tasks": [
+        "Monitor analytics and adjust",
+        "A/B test CTAs and forms",
+        "Publish additional blog content",
+        "Add more portfolio projects",
+        "Collect and add customer testimonials",
+        "Optimize underperforming pages",
+        "Start Google Ads campaigns (optional)",
+        "Refine chatbot responses based on data",
+        "Create and publish lead magnets"
+      ],
+      "deliverables": [
+        "Optimization report",
+        "Content calendar for ongoing production",
+        "Marketing performance dashboard"
+      ]
+    }
+  },
+
+  "success_metrics": {
+    "kpis_by_phase": {
+      "month_1-3_awareness": {
+        "traffic": {
+          "target": "500-1,000 sessions/month",
+          "sources": "60% organic, 30% direct, 10% social/referral"
+        },
+        "engagement": {
+          "bounce_rate": "<60%",
+          "time_on_page": ">1:30 min",
+          "pages_per_session": ">2"
+        },
+        "seo": {
+          "indexed_pages": "20+ pages indexed by Google",
+          "keywords_ranking": "5+ keywords in top 50"
+        }
+      },
+
+      "month_4-6_consideration": {
+        "traffic": {
+          "target": "1,000-2,000 sessions/month",
+          "organic_growth": "+50% from month 3"
+        },
+        "leads": {
+          "total_leads": "30-40/month",
+          "quote_requests": "15-20/month",
+          "conversion_rate": "3-4%"
+        },
+        "engagement": {
+          "returning_visitors": "20-30%",
+          "blog_readers": "200+ sessions/month to blog"
+        },
+        "seo": {
+          "keywords_ranking": "10+ keywords in top 20",
+          "featured_snippet": "1+ featured snippet"
+        }
+      },
+
+      "month_7-12_conversion": {
+        "traffic": {
+          "target": "2,000+ sessions/month"
+        },
+        "leads": {
+          "total_leads": "50+ leads/month",
+          "quote_requests": "30+ quote requests/month",
+          "conversion_rate": "4-5%",
+          "qualified_leads": "15-20 sales-qualified leads/month"
+        },
+        "revenue": {
+          "deals_closed": "5-10 deals/month from website leads",
+          "roi": "Positive ROI on marketing spend"
+        },
+        "seo": {
+          "keywords_top_10": "15+ keywords in top 10",
+          "domain_authority": "DA 20+"
+        }
+      }
+    },
+
+    "tracking_tools": {
+      "analytics": [
+        "Google Analytics 4 (primary)",
+        "HubSpot Analytics",
+        "Google Search Console",
+        "Hotjar (heatmaps, recordings)"
+      ],
+      "seo": [
+        "Ahrefs / SEMrush (keyword tracking)",
+        "Screaming Frog (technical SEO)",
+        "Google PageSpeed Insights"
+      ],
+      "conversion": [
+        "HubSpot forms analytics",
+        "A/B testing (HubSpot native)",
+        "Call tracking (future: WhatsApp Business API analytics)"
+      ]
+    }
+  },
+
+  "budget_and_resources": {
+    "estimated_costs": {
+      "hubspot_cms_hub": "$300-500/month (Professional tier recommended)",
+      "domain": "$15-30/year",
+      "additional_tools": {
+        "hotjar": "$0-39/month (basic plan)",
+        "ahrefs_semrush": "$99-199/month (for SEO tracking)",
+        "stock_photos": "$0-200 (if needed, supplement client photos)"
+      },
+      "content_production": {
+        "professional_photography": "$500-1,500 (one-time)",
+        "video_production": "$1,000-3,000 (one-time)",
+        "copywriting": "$1,000-2,000 (initial content)",
+        "ongoing_content": "$500-1,000/month (blog posts, updates)"
+      },
+      "development_consulting": {
+        "website_build": "$5,000-15,000 (one-time, depending on complexity)",
+        "mcp_integration": "$2,000-5,000 (one-time setup)",
+        "ongoing_maintenance": "$300-800/month"
+      }
+    },
+
+    "team_roles": {
+      "client_side": [
+        "Project owner / Decision maker",
+        "Content provider (photos, videos, technical info)",
+        "Subject matter expert (for technical content review)"
+      ],
+      "agency_consultant_side": [
+        "Project manager",
+        "Web designer (UX/UI)",
+        "Front-end developer (HubL, CSS, JS)",
+        "Copywriter / Content strategist",
+        "SEO specialist",
+        "HubSpot admin / Marketing automation specialist",
+        "MCP integration developer (for AI features)"
+      ]
+    }
+  },
+
+  "risks_and_mitigation": {
+    "identified_risks": [
+      {
+        "risk": "Content delays (photos, videos not ready)",
+        "impact": "High - blocks development",
+        "mitigation": "Use stock photos as placeholders, set clear deadlines with client, have backup content plan"
+      },
+      {
+        "risk": "Scope creep (client requesting additional features)",
+        "impact": "Medium - timeline and budget",
+        "mitigation": "Clear SOW, change request process, phase additional features for post-launch"
+      },
+      {
+        "risk": "Low traffic/leads post-launch",
+        "impact": "High - ROI concerns",
+        "mitigation": "Have paid ads plan ready, aggressive SEO from start, content marketing strategy, social media promotion"
+      },
+      {
+        "risk": "HubSpot learning curve for client team",
+        "impact": "Medium - adoption",
+        "mitigation": "Comprehensive training, documentation, ongoing support, simple workflows initially"
+      },
+      {
+        "risk": "MCP integration complexity",
+        "impact": "Medium - technical implementation",
+        "mitigation": "Start with simpler integrations (HubSpot MCP), add Claude/OpenAI gradually, have fallback plans"
+      }
+    ]
+  },
+
+  "next_steps_immediate": {
+    "week_1_actions": [
+      {
+        "task": "Client validates briefing and provides missing info",
+        "owner": "Client",
+        "deadline": "Day 3"
+      },
+      {
+        "task": "Confirm logo availability in vector format",
+        "owner": "Client",
+        "deadline": "Day 3"
+      },
+      {
+        "task": "Purchase domain (if not done)",
+        "owner": "Client or Agency",
+        "deadline": "Day 5"
+      },
+      {
+        "task": "Set up HubSpot account",
+        "owner": "Agency",
+        "deadline": "Day 5"
+      },
+      {
+        "task": "Install ProX Premium theme",
+        "owner": "Agency",
+        "deadline": "Week 1"
+      },
+      {
+        "task": "Schedule photo/video production",
+        "owner": "Client",
+        "deadline": "Week 1"
+      },
+      {
+        "task": "Start collecting customer testimonials",
+        "owner": "Client",
+        "deadline": "Ongoing"
+      },
+      {
+        "task": "Finalize sitemap and page list",
+        "owner": "Agency + Client approval",
+        "deadline": "Week 1"
+      }
+    ]
+  }
+}

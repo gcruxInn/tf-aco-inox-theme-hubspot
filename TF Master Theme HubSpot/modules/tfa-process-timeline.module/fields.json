@@ -1,0 +1,33 @@
+[
+  {
+    "name": "section_heading",
+    "label": "Section Heading",
+    "type": "group",
+    "children": [
+      { "name": "title", "label": "Title", "type": "text", "default": "Nossa Metodologia: Da Consulta à Entrega" },
+      { "name": "subtitle", "label": "Subtitle", "type": "text", "default": "Um processo transparente e eficiente em 8 etapas" }
+    ]
+  },
+  {
+    "name": "steps",
+    "label": "Process Steps",
+    "type": "group",
+    "occurrence": { "min": 1, "max": 8, "sorting_label_field": "title" },
+    "default": [
+      { "step_number": "1", "title": "Consulta Inicial", "description": "Entendemos sua necessidade através de consulta técnica gratuita", "duration": "1-2 dias" },
+      { "step_number": "2", "title": "Visita Técnica", "description": "Visita ao local para medições precisas e análise in loco", "duration": "1-3 dias" },
+      { "step_number": "3", "title": "Desenvolvimento do Projeto", "description": "Elaboração de projeto técnico detalhado com especificações completas", "duration": "3-7 dias" },
+      { "step_number": "4", "title": "Orçamento Detalhado", "description": "Apresentação de orçamento completo com prazos e condições", "duration": "2-3 dias" },
+      { "step_number": "5", "title": "Produção", "description": "Fabricação com controle de qualidade rigoroso em todas as etapas", "duration": "Conforme cronograma" },
+      { "step_number": "6", "title": "Instalação", "description": "Instalação profissional com equipe técnica especializada", "duration": "1-5 dias" },
+      { "step_number": "7", "title": "Entrega e Garantia", "description": "Entrega final com documentação técnica e termo de garantia", "duration": "1 dia" },
+      { "step_number": "8", "title": "Pós-Venda", "description": "Suporte técnico e acompanhamento durante período de garantia", "duration": "12-24 meses" }
+    ],
+    "children": [
+      { "name": "step_number", "label": "Step Number", "type": "text", "default": "1" },
+      { "name": "title", "label": "Title", "type": "text", "default": "Título da Etapa" },
+      { "name": "description", "label": "Description", "type": "text", "default": "Descrição da etapa" },
+      { "name": "duration", "label": "Duration", "type": "text", "default": "X dias" }
+    ]
+  }
+]

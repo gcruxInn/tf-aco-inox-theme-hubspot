@@ -1,0 +1,27 @@
+[
+  {
+    "name": "stats_content",
+    "label": "Section Contents",
+    "type": "group",
+    "children": [
+        { "name": "title", "label": "Title", "type": "text", "default": "Números que Impressionam" },
+        { "name": "description", "label": "Description", "type": "text", "default": "Excelência comprovada em cada projeto entregue" }
+    ]
+  },
+  {
+    "name": "stats",
+    "label": "Statistics",
+    "type": "group",
+    "occurrence": { "min": 1, "max": 4, "sorting_label_field": "stat_label" },
+    "default": [
+        { "stat_number": "10+", "stat_label": "Anos de Experiência" },
+        { "stat_number": "20k", "stat_label": "Toneladas Meta 2026" },
+        { "stat_number": "500+", "stat_label": "Projetos Entregues" },
+        { "stat_number": "24", "stat_label": "Meses de Garantia" }
+    ],
+    "children": [
+        { "name": "stat_number", "label": "Number", "type": "text", "default": "0" },
+        { "name": "stat_label", "label": "Label", "type": "text", "default": "Label" }
+    ]
+  }
+]

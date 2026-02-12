@@ -1,0 +1,65 @@
+/* TFA Differentiators Module Styles */
+
+.tfa-differentiators {
+    padding: 4rem 0;
+}
+
+.differentiators-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.diff-card {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.diff-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+.diff-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+.diff-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: #1a1a1a;
+}
+
+.diff-card p {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .differentiators-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .differentiators-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .tfa-differentiators {
+        padding: 3rem 0;
+    }
+}

@@ -1,0 +1,44 @@
+[
+  {
+    "name": "section_heading",
+    "label": "Section Heading",
+    "type": "group",
+    "children": [
+      { "name": "title", "label": "Title", "type": "text", "default": "Por Que Escolher a TF Aço e Inox?" },
+      { "name": "subtitle", "label": "Subtitle", "type": "text", "default": "Diferenciais que nos tornam a escolha certa para seu projeto" }
+    ]
+  },
+  {
+    "name": "differentiators",
+    "label": "Diferenciadores",
+    "type": "group",
+    "occurrence": { "min": 4, "max": 4, "sorting_label_field": "title" },
+    "default": [
+      { 
+        "icon": "⚙️", 
+        "title": "Inovação Contínua", 
+        "description": "Processos modernos e tecnologia de ponta para resultados superiores"
+      },
+      { 
+        "icon": "⚡", 
+        "title": "Agilidade na Execução", 
+        "description": "Prazos cumpridos com eficiência operacional comprovada"
+      },
+      { 
+        "icon": "✓", 
+        "title": "Qualidade Certificada", 
+        "description": "Materiais premium e acabamento de excelência em cada entrega"
+      },
+      { 
+        "icon": "🛡️", 
+        "title": "Responsabilidade Total", 
+        "description": "Do projeto à entrega, com você em cada etapa do processo"
+      }
+    ],
+    "children": [
+      { "name": "icon", "label": "Icon (emoji or SVG)", "type": "text", "default": "⚙️" },
+      { "name": "title", "label": "Title", "type": "text", "default": "Título" },
+      { "name": "description", "label": "Description", "type": "text", "default": "Descrição do diferencial" }
+    ]
+  }
+]

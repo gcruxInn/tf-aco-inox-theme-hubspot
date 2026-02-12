@@ -1,0 +1,83 @@
+/* TFA Process Timeline Module Styles */
+
+.tfa-process {
+    padding: 5rem 0;
+}
+
+.process-timeline {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 3rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+}
+
+.timeline-step {
+    flex: 1;
+    min-width: 200px;
+    position: relative;
+    background: #ffffff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+}
+
+.timeline-step:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.step-number {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #ffffff;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 36px;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.step-duration {
+    display: inline-block;
+    background: #f0f0f0;
+    color: #666;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.timeline-step h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #1a1a1a;
+}
+
+.timeline-step p {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Mobile: Vertical Timeline */
+@media (max-width: 768px) {
+    .process-timeline {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .timeline-step {
+        min-width: auto;
+    }
+
+    .tfa-process {
+        padding: 3rem 0;
+    }
+}

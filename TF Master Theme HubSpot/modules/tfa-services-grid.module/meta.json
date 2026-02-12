@@ -1,0 +1,13 @@
+{
+  "label": "TFA - Serviços Grid",
+  "css_assets": [
+    {
+      "path": "../modules/tfa-services-grid.module/module.css"
+    }
+  ],
+  "external_js": [],
+  "global": false,
+  "help_text": "Grid de serviços em 3 colunas com imagens, descrições e links para páginas de serviço",
+  "host_template_types": ["PAGE"],
+  "is_available_for_new_content": true
+}

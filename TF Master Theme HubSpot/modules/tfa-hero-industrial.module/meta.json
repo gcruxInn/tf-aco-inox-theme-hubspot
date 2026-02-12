@@ -1,0 +1,13 @@
+{
+  "label": "TFA - Hero Industrial",
+  "css_assets": [
+    {
+      "path": "../modules/tfa-hero-industrial.module/module.css"
+    }
+  ],
+  "external_js": [],
+  "global": false,
+  "help_text": "Hero section with industrial styling, video/image background support, and trust badges.",
+  "host_template_types": [ "PAGE", "BLOG_POST", "BLOG_LISTING" ],
+  "is_available_for_new_content": true
+}

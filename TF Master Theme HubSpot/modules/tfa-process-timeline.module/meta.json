@@ -1,0 +1,13 @@
+{
+  "label": "TFA - Processo Timeline",
+  "css_assets": [
+    {
+      "path": "../modules/tfa-process-timeline.module/module.css"
+    }
+  ],
+  "external_js": [],
+  "global": false,
+  "help_text": "Timeline do processo de trabalho em 8 etapas, responsivo horizontal (desktop) e vertical (mobile)",
+  "host_template_types": ["PAGE"],
+  "is_available_for_new_content": true
+}

@@ -1,0 +1,29 @@
+{# --- MODULE: TFA Client Logos --- #}
+<section style="border-bottom: 1px solid #eee; padding: 2rem 0;">
+    <div class="container">
+        {% if module.title %}
+        <p class="text-center"
+            style="font-size: 0.875rem; text-transform: uppercase; color: #999; letter-spacing: 1px; margin-bottom: 1.5rem;">
+            {{ module.title }}
+        </p>
+        {% endif %}
+
+        <div
+            style="display: flex; justify-content: center; align-items: center; gap: 3rem; flex-wrap: wrap; opacity: 0.5; filter: grayscale(100%);">
+            {% for item in module.logos %}
+            {% if item.link.href %}
+            <a href="{{ item.link.href }}" target="_blank" rel="noopener">
+                {% endif %}
+
+                {% if item.image.src %}
+                <img src="{{ item.image.src }}" alt="{{ item.alt_text }}"
+                    style="max-height: 40px; width: auto; transition: 0.3s; filter: grayscale(100%); opacity: 0.7;">
+                {% endif %}
+
+                {% if item.link.href %}
+            </a>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</section>

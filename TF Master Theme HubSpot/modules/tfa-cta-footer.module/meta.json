@@ -1,0 +1,9 @@
+{
+  "label": "TFA - CTA Footer",
+  "css_assets": [],
+  "external_js": [],
+  "global": false,
+  "help_text": "High-conversion CTA section, typically for the bottom of the page.",
+  "host_template_types": [ "PAGE", "BLOG_POST" ],
+  "is_available_for_new_content": true
+}

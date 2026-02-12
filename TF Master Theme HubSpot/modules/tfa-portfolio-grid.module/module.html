@@ -1,0 +1,107 @@
+{# --- MODULE: TFA Portfolio Grid --- #}
+<section class="tfa-section" style="padding: 5rem 0;">
+    <div class="container">
+        {# Section Heading #}
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold mb-3">{{ module.section_heading.title }}</h2>
+            <p class="lead text-muted" style="max-width: 700px; margin: 0 auto;">
+                {{ module.section_heading.subtitle }}
+            </p>
+        </div>
+
+        {# Portfolio Grid #}
+        <div class="row g-4">
+            {% for project in module.projects %}
+            <div class="col-md-6 col-lg-4">
+                <div class="portfolio-item"
+                    style="position: relative; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: all 0.3s ease;">
+                    {# Project Image or Placeholder #}
+                    {% if project.image.src %}
+                    <img src="{{ project.image.src }}" alt="{{ project.image.alt or project.title }}"
+                        style="width: 100%; height: 300px; object-fit: cover; display: block;">
+                    {% else %}
+                    <div
+                        style="width: 100%; height: 300px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center;">
+                        <div style="text-align: center; color: white;">
+                            <div style="font-size: 3rem; margin-bottom: 1rem;">📸</div>
+                            <div style="font-size: 0.9rem; opacity: 0.8;">Imagem do Projeto</div>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    {# Overlay Information #}
+                    <div class="portfolio-overlay" style="
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 70%, transparent 100%);
+                        padding: 2rem 1.5rem 1.5rem;
+                        transform: translateY(60%);
+                        transition: transform 0.3s ease;
+                    ">
+                        {# Category Badge #}
+                        <div style="
+                            display: inline-block;
+                            padding: 0.3rem 0.8rem;
+                            background: rgba(102, 126, 234, 0.9);
+                            color: white;
+                            font-size: 0.75rem;
+                            font-weight: 600;
+                            text-transform: uppercase;
+                            letter-spacing: 0.5px;
+                            border-radius: 20px;
+                            margin-bottom: 0.8rem;
+                        ">
+                            {{ project.category }}
+                        </div>
+
+                        {# Project Title #}
+                        <h5 style="color: white; margin-bottom: 0.5rem; font-weight: 600;">
+                            {{ project.title }}
+                        </h5>
+
+                        {# Description (visible on hover) #}
+                        <p class="project-description"
+                            style="color: rgba(255,255,255,0.9); font-size: 0.9rem; margin-bottom: 1rem; opacity: 0; transition: opacity 0.3s ease;">
+                            {{ project.description }}
+                        </p>
+
+                        {# View Project Link #}
+                        {% if project.link %}
+                        <a href="{{ project.link }}" class="project-link" style="
+                               display: inline-flex;
+                               align-items: center;
+                               color: white;
+                               text-decoration: none;
+                               font-size: 0.9rem;
+                               font-weight: 600;
+                               opacity: 0;
+                               transition: opacity 0.3s ease;
+                           ">
+                            Ver Projeto →
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<style>
+    .portfolio-item:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2) !important;
+    }
+
+    .portfolio-item:hover .portfolio-overlay {
+        transform: translateY(0);
+    }
+
+    .portfolio-item:hover .project-description,
+    .portfolio-item:hover .project-link {
+        opacity: 1;
+    }
+</style>

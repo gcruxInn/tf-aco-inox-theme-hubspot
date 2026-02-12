@@ -1,0 +1,98 @@
+{# --- MODULE: TFA Testimonials Carousel --- #}
+<section class="tfa-section" style="padding: 5rem 0; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
+    <div class="container">
+        {# Section Heading #}
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold mb-3">{{ module.section_heading.title }}</h2>
+            <p class="lead text-muted" style="max-width: 700px; margin: 0 auto;">
+                {{ module.section_heading.subtitle }}
+            </p>
+        </div>
+
+        {# Testimonials Carousel #}
+        <div class="testimonials-carousel" style="max-width: 900px; margin: 0 auto; position: relative;">
+            <div class="carousel-container" style="overflow: hidden; position: relative;">
+                <div class="carousel-track" style="display: flex; transition: transform 0.5s ease;">
+                    {% for testimonial in module.testimonials %}
+                    <div class="testimonial-slide" style="min-width: 100%; padding: 0 1rem;">
+                        <div class="card border-0 shadow-lg" style="background: white; border-radius: 20px;">
+                            <div class="card-body p-5 text-center">
+                                {# Stars Rating #}
+                                <div class="mb-4" style="color: #ffc107; font-size: 1.5rem;">
+                                    {% for i in range(testimonial.rating or 5) %}
+                                    ★
+                                    {% endfor %}
+                                </div>
+
+                                {# Quote #}
+                                <blockquote class="mb-4"
+                                    style="font-size: 1.1rem; font-style: italic; color: #333; line-height: 1.8;">
+                                    "{{ testimonial.quote }}"
+                                </blockquote>
+
+                                {# Client Info #}
+                                <div class="d-flex align-items-center justify-content-center gap-3 mt-4">
+                                    {# Photo or Avatar Placeholder #}
+                                    {% if testimonial.client_photo.src %}
+                                    <img src="{{ testimonial.client_photo.src }}"
+                                        alt="{{ testimonial.client_photo.alt or testimonial.client_name }}"
+                                        class="rounded-circle" style="width: 60px; height: 60px; object-fit: cover;">
+                                    {% else %}
+                                    <div class="rounded-circle"
+                                        style="width: 60px; height: 60px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.5rem;">
+                                        {{ testimonial.client_name[0] }}
+                                    </div>
+                                    {% endif %}
+
+                                    <div class="text-start">
+                                        <div style="font-weight: 600; color: #1a1a1a;">{{ testimonial.client_name }}
+                                        </div>
+                                        <div style="font-size: 0.9rem; color: #666;">
+                                            {{ testimonial.client_role }}
+                                            {% if testimonial.client_company %}
+                                            <br><span style="color: #999;">{{ testimonial.client_company }}</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            {# Navigation Dots #}
+            <div class="carousel-dots text-center mt-4" style="display: flex; gap: 10px; justify-content: center;">
+                {% for testimonial in module.testimonials %}
+                <button class="dot" onclick="goToSlide({{ loop.index0 }})"
+                    style="width: 12px; height: 12px; border-radius: 50%; border: 2px solid #667eea; background: {% if loop.first %}#667eea{% else %}transparent{% endif %}; cursor: pointer; transition: all 0.3s ease;">
+                </button>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    let currentSlide = 0;
+    const totalSlides = {{ module.testimonials| length }};
+
+    function goToSlide(index) {
+        currentSlide = index;
+        const track = document.querySelector('.carousel-track');
+        const dots = document.querySelectorAll('.dot');
+
+        track.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+        dots.forEach((dot, i) => {
+            dot.style.background = i === currentSlide ? '#667eea' : 'transparent';
+        });
+    }
+
+    // Auto-advance every 5 seconds
+    setInterval(() => {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        goToSlide(currentSlide);
+    }, 5000);
+</script>

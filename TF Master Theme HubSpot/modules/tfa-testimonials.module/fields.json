@@ -1,0 +1,45 @@
+[
+  {
+    "name": "section_heading",
+    "label": "Section Heading",
+    "type": "group",
+    "children": [
+      { "name": "title", "label": "Title", "type": "text", "default": "O Que Nossos Clientes Dizem" },
+      { "name": "subtitle", "label": "Subtitle", "type": "text", "default": "Depoimentos de quem confia na qualidade TF Aço e Inox" }
+    ]
+  },
+  {
+    "name": "testimonials",
+    "label": "Depoimentos",
+    "type": "group",
+    "occurrence": { "min": 1, "max": 6, "sorting_label_field": "client_name" },
+    "default": [
+      { 
+        "quote": "A TF Aço e Inox superou nossas expectativas. A estrutura metálica foi entregue no prazo e com acabamento impecável. Profissionalismo nota 10!",
+        "client_name": "João Silva",
+        "client_role": "Engenheiro Civil",
+        "client_company": "Construtora ABC"
+      },
+      { 
+        "quote": "Trabalho excepcional! Os corrimãos em aço inox ficaram perfeitos, com design moderno e instalação sem problemas. Recomendo fortemente.",
+        "client_name": "Maria Santos",
+        "client_role": "Arquiteta",
+        "client_company": "MS Arquitetura"
+      },
+      { 
+        "quote": "Precisávamos de uma solução urgente para nosso projeto industrial. A TF entregou com agilidade e qualidade, cumprindo todos os prazos prometidos.",
+        "client_name": "Carlos Mendes",
+        "client_role": "Gerente de Projetos",
+        "client_company": "Indústria XYZ"
+      }
+    ],
+    "children": [
+      { "name": "quote", "label": "Quote/Depoimento", "type": "text", "default": "Depoimento do cliente aqui..." },
+      { "name": "client_name", "label": "Nome do Cliente", "type": "text", "default": "Nome Completo" },
+      { "name": "client_role", "label": "Cargo", "type": "text", "default": "Cargo" },
+      { "name": "client_company", "label": "Empresa", "type": "text", "default": "Nome da Empresa" },
+      { "name": "client_photo", "label": "Foto do Cliente", "type": "image" },
+      { "name": "rating", "label": "Rating (1-5)", "type": "number", "default": 5 }
+    ]
+  }
+]

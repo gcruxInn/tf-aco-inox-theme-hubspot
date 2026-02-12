@@ -1,0 +1,62 @@
+[
+  {
+    "name": "section_heading",
+    "label": "Section Heading",
+    "type": "group",
+    "children": [
+      { "name": "title", "label": "Title", "type": "text", "default": "Nossos Serviços em Aço e Aço Inox" },
+      { "name": "subtitle", "label": "Subtitle", "type": "text", "default": "Soluções completas para indústria, construção e projetos sob medida" }
+    ]
+  },
+  {
+    "name": "services",
+    "label": "Serviços",
+    "type": "group",
+    "occurrence": { "min": 1, "max": 6, "sorting_label_field": "title" },
+    "default": [
+      { 
+        "icon": "🏗️", 
+        "title": "Estruturas Metálicas Personalizadas", 
+        "description": "Fabricação sob medida para construção civil, indústria e comercial",
+        "link": "/servicos/estruturas-metalicas"
+      },
+      { 
+        "icon": "🛡️", 
+        "title": "Corrimãos e Guarda-Corpos", 
+        "description": "Design moderno e segurança certificada em aço inox e carbono",
+        "link": "/servicos/corrimaos-guarda-corpos"
+      },
+      { 
+        "icon": "🚪", 
+        "title": "Portões, Grades e Fechamentos", 
+        "description": "Soluções em serralheria para segurança e estética",
+        "link": "/servicos/portoes-grades"
+      },
+      { 
+        "icon": "📐", 
+        "title": "Sistema Steel Frame", 
+        "description": "Estrutural em aço rápido, econômico e de alta resistência",
+        "link": "/servicos/steel-frame"
+      },
+      { 
+        "icon": "⚙️", 
+        "title": "Projetos Industriais", 
+        "description": "Soluções completas em metalurgia para o setor industrial",
+        "link": "/servicos/projetos-industriais"
+      },
+      { 
+        "icon": "🔧", 
+        "title": "Peças Técnicas Sob Medida", 
+        "description": "Fabricação com precisão e acabamento profissional",
+        "link": "/servicos/pecas-tecnicas"
+      }
+    ],
+    "children": [
+      { "name": "icon", "label": "Icon (emoji or SVG)", "type": "text", "default": "⚙️" },
+      { "name": "title", "label": "Title", "type": "text", "default": "Título do Serviço" },
+      { "name": "description", "label": "Description", "type": "text", "default": "Descrição breve do serviço" },
+      { "name": "link", "label": "Link URL", "type": "text", "default": "/servicos" },
+      { "name": "image", "label": "Service Image", "type": "image" }
+    ]
+  }
+]

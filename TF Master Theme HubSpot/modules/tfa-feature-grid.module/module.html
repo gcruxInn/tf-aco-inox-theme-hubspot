@@ -1,0 +1,42 @@
+{# --- MODULE: TFA Feature Grid --- #}
+<section class="tfa-section" id="produtos">
+    <div class="container">
+        <div class="text-center mb-5 animate-fade-up">
+            {% if module.section_settings.badge %}
+            <span style="color: var(--color-accent); font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">
+                {{ module.section_settings.badge }}
+            </span>
+            {% endif %}
+
+            {% if module.section_settings.title %}
+            <h2 style="font-size: 2.5rem; margin-top: 0.5rem;">{{ module.section_settings.title }}</h2>
+            {% endif %}
+
+            {% if module.section_settings.description %}
+            <p style="max-width: 600px; margin: 0 auto; color: #666;">
+                {{ module.section_settings.description }}
+            </p>
+            {% endif %}
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+            {% for card in module.cards %}
+            <div class="tfa-card animate-fade-up delay-100" style="position: relative; overflow: hidden;">
+                <div
+                    style="width: 50px; height: 50px; background: var(--color-light); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; color: var(--color-primary);">
+                    {{ card.icon }}
+                </div>
+                <h3>{{ card.title }}</h3>
+                <p style="color: #666; margin-bottom: 1.5rem;">{{ card.description }}</p>
+
+                {% if card.link.href %}
+                <a href="{{ card.link.href }}"
+                    style="color: var(--color-primary); font-weight: 600; text-decoration: none;">
+                    {{ card.link_text }}
+                </a>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

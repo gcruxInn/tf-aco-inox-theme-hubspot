@@ -1,0 +1,39 @@
+[
+  {
+    "name": "section_settings",
+    "label": "Section Header",
+    "type": "group",
+    "children": [
+      { "name": "badge", "label": "Badge Text", "type": "text", "default": "Nosso Catalogo" },
+      { "name": "title", "label": "Main Title", "type": "text", "default": "Solucoes Completas em Inox" },
+      { "name": "description", "label": "Description", "type": "text", "default": "Do projeto estrutural a conducao de fluidos." }
+    ]
+  },
+  {
+    "name": "cards",
+    "label": "Feature Cards",
+    "type": "group",
+    "occurrence": { "min": 1, "max": 12, "sorting_label_field": "title" },
+    "default": [
+      {
+        "title": "Tubos Inox",
+        "description": "Tubos redondos, quadrados e retangulares.",
+        "link_text": "Ver Especificacoes",
+        "icon": "<svg width='24' height='24' viewBox='0 0 24 24' fill='currentColor'></svg>"
+      }
+    ],
+    "children": [
+       {
+         "name": "icon",
+         "label": "Icon (SVG Code)",
+         "type": "text",
+         "default": "<svg width='24' height='24' viewBox='0 0 24 24'></svg>",
+         "help_text": "Paste SVG code here."
+       },
+       { "name": "title", "label": "Title", "type": "text", "default": "Feature Title" },
+       { "name": "description", "label": "Description", "type": "text", "default": "Feature description goes here." },
+       { "name": "link", "label": "Link", "type": "text" },
+       { "name": "link_text", "label": "Link Text", "type": "text", "default": "Saiba Mais" }
+    ]
+  }
+]
