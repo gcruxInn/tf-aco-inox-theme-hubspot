@@ -1,0 +1,51 @@
+{# --- MODULE: TFA Services Grid (Autonomic) --- #}
+
+{# Lucide "Box" Icon SVG (Default Fallback) #}
+{% set default_icon_svg %}
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="service-icon">
+    <path
+        d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+    <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+    <line x1="12" y1="22.08" x2="12" y2="12" />
+</svg>
+{% endset %}
+
+<section class="tfa-services-section">
+    <div class="container">
+
+        {# Section Header #}
+        <div class="services-section-header">
+            <h2 class="services-section-title">{{ module.section_heading.title }}</h2>
+            <p class="services-section-subtitle">{{ module.section_heading.subtitle }}</p>
+        </div>
+
+        {# Services Grid (Autonomic CSS Grid) #}
+        <div class="services-grid">
+            {% for service in module.services %}
+            <a href="{{ service.link }}" class="service-card" aria-label="Saiba mais sobre {{ service.title }}">
+
+                {# Icon Container (Self-Healing: Fallback to Lucide Box) #}
+                <div class="service-icon-wrapper">
+                    {% if service.icon_svg %}
+                    {{ service.icon_svg }}
+                    {% else %}
+                    {{ default_icon_svg }}
+                    {% endif %}
+                </div>
+
+                {# Card Content #}
+                <div class="service-content">
+                    <h3 class="service-title">{{ service.title }}</h3>
+                    <div class="service-description">{{ service.description }}</div>
+                    <span class="service-link">
+                        Saiba Mais →
+                    </span>
+                </div>
+
+            </a>
+            {% endfor %}
+        </div>
+
+    </div>
+</section>

@@ -16,7 +16,7 @@
                 {% endif %}
 
                 {% if item.image.src %}
-                <img src="{{ item.image.src }}" alt="{{ item.alt_text }}"
+                <img src="{{ item.image.src }}" alt="{{ item.alt_text }}" loading="lazy"
                     style="max-height: 40px; width: auto; transition: 0.3s; filter: grayscale(100%); opacity: 0.7;">
                 {% endif %}
 

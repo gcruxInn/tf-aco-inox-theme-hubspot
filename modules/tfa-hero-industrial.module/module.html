@@ -1,0 +1,88 @@
+{# --- MODULE: TFA Hero Industrial WITH VIDEO SUPPORT (Autonomic) --- #}
+
+{% set has_bg_image = module.style.bg_image.src %}
+{% set has_bg_video = module.style.bg_video %}
+{# Logic: Use video if selected AND video file exists. #}
+{% set use_video = module.style.background_type == "video" and has_bg_video %}
+
+<section class="tfa-hero-section">
+
+    {# BACKGROUND LAYER - Autonomic Video/Image Fallback #}
+    <div class="hero-background">
+
+        {% if use_video %}
+        {# VIDEO BACKGROUND (Self-Healing: 'poster' attribute ensures image shows if video fails) #}
+        <div class="hero-video-wrapper">
+            <video autoplay loop muted playsinline preload="auto" class="hero-bg-video"
+                poster="{{ module.style.bg_image.src }}">
+                <source src="{{ module.style.bg_video }}" type="video/mp4">
+            </video>
+        </div>
+        {% elif has_bg_image %}
+        {# STATIC IMAGE BACKGROUND #}
+        <div class="hero-bg-image" style="background-image: url('{{ module.style.bg_image.src }}');"></div>
+        {% else %}
+        {# FALLBACK GRADIENT (Safe Default) #}
+        <div class="hero-bg-gradient"></div>
+        {% endif %}
+
+        {# Dark Overlay (Dynamic Opacity) #}
+        <div class="hero-overlay" style="background-color: rgba(0, 0, 0, {{ module.style.bg_overlay_opacity }});"></div>
+    </div>
+
+    {# CONTENT LAYER #}
+    <div class="container hero-container">
+        <div class="row align-items-center hero-row">
+            <div class="col-12 col-lg-8 mx-auto text-center animate-fade-up">
+
+                {# Headline #}
+                <h1 class="display-3 fw-bold mb-4 hero-headline">
+                    {{ module.hero_content.headline }}
+                </h1>
+
+                {# Subheadline #}
+                <p class="lead mb-5 hero-subheadline">
+                    {{ module.hero_content.subheadline }}
+                </p>
+
+                {# CTAs #}
+                <div class="d-flex flex-column flex-sm-row justify-content-center hero-cta-wrapper mb-5">
+                    {% if module.hero_content.cta_primary_text %}
+                    <a href="{{ module.hero_content.cta_primary_link }}"
+                        class="btn btn-primary btn-lg btn-hero-primary">
+                        {{ module.hero_content.cta_primary_text }}
+                    </a>
+                    {% endif %}
+
+                    {% if module.hero_content.cta_secondary_text %}
+                    <a href="{{ module.hero_content.cta_secondary_link }}"
+                        class="btn btn-outline-light btn-lg btn-hero-secondary">
+                        {{ module.hero_content.cta_secondary_text }}
+                    </a>
+                    {% endif %}
+                </div>
+
+                {# Trust Badges (Optional) #}
+                {% if module.badges %}
+                <div class="d-flex flex-wrap justify-content-center gap-4 mt-5 hero-trust-badges">
+                    {% for badge in module.badges %}
+                    <div class="d-flex align-items-center gap-2 hero-badge-item">
+                        <span style="font-size: 1.25rem;">{{ badge.icon }}</span>
+                        <span style="font-size: 0.9rem; font-weight: 500;">{{ badge.text }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+
+    {# Scroll Indicator #}
+    <div class="hero-scroll-indicator">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 5v14M19 12l-7 7-7-7" />
+        </svg>
+    </div>
+
+</section>

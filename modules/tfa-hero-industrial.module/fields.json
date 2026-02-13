@@ -27,7 +27,7 @@
         ],
         "default": "image"
       },
-      { "name": "bg_image", "label": "Background Image", "type": "image" },
+      { "name": "bg_image", "label": "Background Image / Video Poster", "type": "image", "help_text": "Used as background if 'Image' is selected, OR as a fallback poster if 'Video' is selected but fails to load." },
       { 
         "name": "bg_video", 
         "label": "Background Video (MP4)", 

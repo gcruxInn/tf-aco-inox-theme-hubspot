@@ -1,0 +1,105 @@
+<!--
+  templateType: global_partial
+  label: Global Header
+-->
+<!--
+  templateType: global_partial
+  label: Global Header
+-->
+<header class="header" role="banner" itemscope itemtype="http://schema.org/WPHeader">
+
+    {# SEO: Organization Schema #}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "TF Aço e Inox",
+      "url": "{{ request.origin }}",
+      "logo": "https://f.hubspotusercontent00.net/hubfs/50649402/logo-tf-aco.png"
+    }
+    </script>
+
+    {# Top Bar for Announcements (Flexible DnD) #}
+    <div class="header__top-bar">
+        {% dnd_area "header_top_bar" label="Header Top Bar (Announcements)" %}
+        {% end_dnd_area %}
+    </div>
+
+    <div class="header__container content-wrapper">
+
+        {# Skip Link for Accessibility #}
+        <a href="#main-content" class="header__skip">Pular para o conteúdo</a>
+
+        {# Logo Section #}
+        <div class="header__logo">
+            {% module "site_logo" path="@hubspot/logo" default={
+            "override_inherit_base_logo": false,
+            "img": {
+            "src": "https://f.hubspotusercontent00.net/hubfs/50649402/logo-tf-aco.png",
+            "width": 200,
+            "alt": "TF Aço e Inox Logo",
+            "loading": "eager"
+            }
+            } %}
+        </div>
+
+        {# Mobile Toggle Buttons #}
+        <div class="header__mobile-controls">
+            <button class="header__navigation--toggle" aria-label="Abrir Menu" aria-expanded="false"
+                aria-controls="header-nav"></button>
+        </div>
+
+        {# Main Header Columns #}
+        <div class="header__column">
+
+            {# Top Row: Search & Language #}
+            <div class="header__row-1">
+                <div class="header__search">
+                    {% module "site_search" path="@hubspot/search_input" label="Busca" %}
+                </div>
+                <div class="header__language-switcher">
+                    {% module "language_switcher" path="@hubspot/language_switcher" %}
+                </div>
+            </div>
+
+            {# Bottom Row: Navigation #}
+            <div class="header__row-2">
+                <nav class="header__navigation" id="header-nav" aria-label="Menu Principal" role="navigation" itemscope
+                    itemtype="http://schema.org/SiteNavigationElement">
+                    {% module "site_menu" path="@hubspot/menu" default={
+                    "flow": "horizontal",
+                    "flyouts": "true",
+                    "max_levels": 2
+                    } %}
+                </nav>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+{# Simple Mobile Menu Script - Inline to ensure immediate functionality #}
+<script>
+    (function () {
+        var toggle = document.querySelector('.header__navigation--toggle');
+        var nav = document.querySelector('.header__navigation');
+
+        if (toggle && nav) {
+            toggle.addEventListener('click', function () {
+                var isOpen = nav.classList.contains('open');
+
+                if (isOpen) {
+                    nav.classList.remove('open');
+                    toggle.classList.remove('open');
+                    toggle.setAttribute('aria-expanded', 'false');
+                    toggle.setAttribute('aria-label', 'Abrir Menu');
+                } else {
+                    nav.classList.add('open');
+                    toggle.classList.add('open');
+                    toggle.setAttribute('aria-expanded', 'true');
+                    toggle.setAttribute('aria-label', 'Fechar Menu');
+                }
+            });
+        }
+    })();
+</script>

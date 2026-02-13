@@ -1,0 +1,43 @@
+[
+  {
+    "name": "section_heading",
+    "label": "Section Heading",
+    "type": "group",
+    "children": [
+      { "name": "title", "label": "Title", "type": "text", "default": "Nossos Servicos em Aco e Aco Inox" },
+      { "name": "subtitle", "label": "Subtitle", "type": "text", "default": "Solucoes completas para industria, construcao e projetos sob medida" }
+    ]
+  },
+  {
+    "name": "services",
+    "label": "Servicos",
+    "type": "group",
+    "occurrence": { "min": 1, "max": 6, "sorting_label_field": "title" },
+    "default": [
+      { 
+        "icon_svg": "",
+        "title": "Estruturas Metalicas Personalizadas",
+        "description": "Fabricacao sob medida para construcao civil, industria e comercial",
+        "link": "/servicos/estruturas-metalicas"
+      },
+      { 
+        "icon_svg": "",
+        "title": "Corrimaos e Guarda-Corpos",
+        "description": "Design moderno e seguranca certificada em aco inox e carbono",
+        "link": "/servicos/corrimaos-guarda-corpos"
+      },
+      { 
+        "icon_svg": "",
+        "title": "Portoes, Grades e Fechamentos",
+        "description": "Solucoes em serralheria para seguranca e estetica",
+        "link": "/servicos/portoes-grades"
+      }
+    ],
+    "children": [
+      { "name": "icon_svg", "label": "Icon SVG Code", "type": "text", "default": "" },
+      { "name": "title", "label": "Title", "type": "text", "default": "Titulo do Servico" },
+      { "name": "description", "label": "Description", "type": "text", "default": "Descricao do servico" },
+      { "name": "link", "label": "Link URL", "type": "text", "default": "/servicos" }
+    ]
+  }
+]

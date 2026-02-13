@@ -1,0 +1,20 @@
+<!--
+  templateType: global_partial
+  label: Global Footer
+-->
+<!--
+  templateType: global_partial
+  label: Global Footer
+-->
+<footer class="footer" role="contentinfo" itemscope itemtype="http://schema.org/WPFooter">
+    <div class="footer__dnd-area">
+        {% dnd_area "footer_content" label="Footer Content" %}
+        {% dnd_section %}
+        {% dnd_column width=12 %}
+        {% module "copyright" path="@hubspot/rich_text" default_html="<p>&copy; 2026 TF Aço e Inox. Todos os direitos
+            reservados.</p>" %}
+        {% end_dnd_column %}
+        {% end_dnd_section %}
+        {% end_dnd_area %}
+    </div>
+</footer>

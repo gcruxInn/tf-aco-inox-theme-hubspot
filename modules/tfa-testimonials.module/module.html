@@ -36,7 +36,8 @@
                                     {% if testimonial.client_photo.src %}
                                     <img src="{{ testimonial.client_photo.src }}"
                                         alt="{{ testimonial.client_photo.alt or testimonial.client_name }}"
-                                        class="rounded-circle" style="width: 60px; height: 60px; object-fit: cover;">
+                                        loading="lazy" class="rounded-circle"
+                                        style="width: 60px; height: 60px; object-fit: cover;">
                                     {% else %}
                                     <div class="rounded-circle"
                                         style="width: 60px; height: 60px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.5rem;">
@@ -65,7 +66,7 @@
             {# Navigation Dots #}
             <div class="carousel-dots text-center mt-4" style="display: flex; gap: 10px; justify-content: center;">
                 {% for testimonial in module.testimonials %}
-                <button class="dot" onclick="goToSlide({{ loop.index0 }})"
+                <button class="dot" onclick="goToSlide({{ loop.index0 }})" aria-label="Go to slide {{ loop.index }}"
                     style="width: 12px; height: 12px; border-radius: 50%; border: 2px solid #667eea; background: {% if loop.first %}#667eea{% else %}transparent{% endif %}; cursor: pointer; transition: all 0.3s ease;">
                 </button>
                 {% endfor %}
