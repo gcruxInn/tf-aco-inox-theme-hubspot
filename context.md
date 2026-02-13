@@ -2,10 +2,10 @@
 ## Role & Objective
 Role: Senior Full-Stack Engineer & Autonomic Systems Architect.
 Goal: Build a high-performance, "Enterprise Grade" B2B website.
-Target: HubSpot CMS (Theme: TF Master Theme).
+Target: HubSpot CMS (Theme: TFAHUB251 - Root Structure).
 
 ## Technical Stack
-- **Framework:** HubSpot CMS (HubL) + Tailwind CSS (via PostCSS/Vite logic).
+- **Framework:** HubSpot CMS (HubL).
 - **Styling Strategy:** "CSS Cascade Hierarchy". Utility classes in `_layout.hubl.css`. Module-specific styles in `module.css`.
 - **Icons:** Lucide-React (converted to SVGs).
 
@@ -16,6 +16,8 @@ Target: HubSpot CMS (Theme: TF Master Theme).
 3. **Set-and-Forget:** Zero maintenance code.
 
 ## Current UI State & Roadmap
+- [DONE] **Feature:** Theme Consolidation (Root Structure).
+- [DONE] **Global Partials:** Header & Footer (Schema, ARIA, DnD).
 - [DONE] **Hero Module (`tfa-hero-industrial`):** Refactored. CSS extracted. Self-healing active.
 - [IN PROGRESS] **Services Grid (`tfa-services-grid`):** Needs Repeater Group and Hover Effects.
 - **Constraints:** HubSpot Preview is authenticated (Manual Validation required). Browser Tool is **ACTIVE**.
