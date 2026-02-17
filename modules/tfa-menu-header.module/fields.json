@@ -62,6 +62,20 @@
         "name": "cta_link",
         "label": "CTA Link",
         "type": "url"
+      },
+      {
+        "name": "cta_padding",
+        "label": "Padding",
+        "type": "text",
+        "default": "12px 24px",
+        "help_text": "CSS Padding (ex: '12px 24px' or '10px')"
+      },
+      {
+        "name": "cta_margin",
+        "label": "Margin",
+        "type": "text",
+        "default": "0px",
+        "help_text": "CSS Margin (ex: '0px' or '10px 0')"
       }
     ]
   }

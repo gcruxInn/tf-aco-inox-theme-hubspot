@@ -27,10 +27,20 @@ Description: Renders the primary navigation + Optional CTA with advanced style m
 
         {% if module.cta_settings.show_cta %}
         <div class="tfa-header-cta-wrapper">
-            {# Added href fallback to '#' if link is not set #}
-            {% set cta_href = module.cta_settings.cta_link.url.href || "#" %}
+            {# 
+                Retrieve custom link URL from the CTA settings.
+                Prioritizes cta_link.url.href.
+                Also adds fallback to '#' if empty to maintain button structure.
+            #}
+            {% set cta_href = module.cta_settings.cta_link.url.href %}
+            {% if !cta_href %}
+                {% set cta_href = "#" %}
+            {% endif %}
+            
             <a href="{{ cta_href }}"
-               class="tfa-button tfa-button--whatsapp tfa-button--small">
+               class="tfa-button tfa-button--whatsapp tfa-button--small"
+               {# Apply padding and margin directly via inline style from user input #}
+               style="padding: {{ module.cta_settings.cta_padding }}; margin: {{ module.cta_settings.cta_margin }};">
                 <span class="tfa-cta-text">{{ module.cta_settings.cta_text }}</span>
                 <span class="tfa-cta-icon-whatsapp">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -157,8 +167,7 @@ Description: Renders the primary navigation + Optional CTA with advanced style m
       transition: all 0.3s ease;
       white-space: nowrap;
       
-      /* New Padding for "Enterprise" feel */
-      padding: 12px 24px; 
+      /* Base Style defaults - padding/margin overridden by inline style */
       border-radius: 6px; /* Slightly rounded */
       
       /* Ensure text renders well */
@@ -208,9 +217,13 @@ Description: Renders the primary navigation + Optional CTA with advanced style m
       width: 60px;
       height: 60px;
       border-radius: 50%;
-      padding: 0; /* Reset padding for circle */
+      /* Reset specific padding for circle mode to standard center */
+      padding: 0 !important; 
       box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
       animation: popIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      
+      /* Reset Margin in FAB mode so it sticks correctly */
+      margin: 0 !important;
   }
 
   /* Hide Text in FAB mode */
