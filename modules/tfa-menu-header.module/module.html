@@ -8,9 +8,13 @@ Description: Renders the primary navigation + Optional CTA with advanced style m
   {% set style_mode = theme.set_header.header_style %}
 {% endif %}
 
+{% set sticky_mode = module.menu_settings.header_sticky_override %}
+{# If default, JS will ignore #}
+
 {# Output data attribute for JS to pick up #}
 <div class="tfa-header-module tfa-menu-header-wrapper"
-     data-header-style="{{ style_mode }}">
+     data-header-style="{{ style_mode }}"
+     data-header-sticky="{{ sticky_mode }}">
 
     <div class="tfa-header-menu-container">
         <div class="tfa-navigation">
@@ -41,35 +45,49 @@ Description: Renders the primary navigation + Optional CTA with advanced style m
             var moduleWrapper = document.querySelector('.tfa-menu-header-wrapper');
             if (moduleWrapper) {
                 var styleMode = moduleWrapper.getAttribute('data-header-style');
+                var stickyMode = moduleWrapper.getAttribute('data-header-sticky');
+
                 // We look for the main header container.
                 var mainHeader = moduleWrapper.closest('.header') || document.querySelector('.header');
 
-                if (mainHeader && styleMode && styleMode !== 'default') {
-                    // Remove existing style classes first to avoid conflicts
-                    var allStyles = [
-                        'header--glassmorphism',
-                        'header--glassmorphism_dark',
-                        'header--solid_white',
-                        'header--solid_black',
-                        'header--transparent_light',
-                        'header--transparent_dark',
-                        'header--minimal',
-                        'header--gradient_industrial'
-                    ];
-                    // Remove current styles
-                    allStyles.forEach(function(cls) {
-                         mainHeader.classList.remove(cls);
-                    });
+                if (mainHeader) {
+                    
+                    // 1. APPLY STYLE OVERRIDE
+                    if (styleMode && styleMode !== 'default') {
+                        // Remove existing style classes first
+                        var allStyles = [
+                            'header--glassmorphism',
+                            'header--glassmorphism_dark',
+                            'header--solid_white',
+                            'header--solid_black',
+                            'header--transparent_light',
+                            'header--transparent_dark',
+                            'header--minimal',
+                            'header--gradient_industrial'
+                        ];
+                        // Remove current styles
+                        allStyles.forEach(function(cls) {
+                            mainHeader.classList.remove(cls);
+                        });
 
+                        // Add the specific override class
+                        if (styleMode.indexOf('header--') === -1) {
+                             mainHeader.classList.add('header--' + styleMode);
+                        } else {
+                            mainHeader.classList.add(styleMode);
+                        }
+                    }
 
-                    // Add the specific override class
-                    // The CSS uses BEM-like modifier: .header--style_name
-                    // e.g. .header--solid_white
-                    // Double check if prefix is needed
-                    if (styleMode.indexOf('header--') === -1) {
-                         mainHeader.classList.add('header--' + styleMode);
-                    } else {
-                        mainHeader.classList.add(styleMode);
+                    // 2. APPLY STICKY OVERRIDE
+                    if (stickyMode && stickyMode !== 'default') {
+                        // We use .header--sticky or .header--static
+                        mainHeader.classList.remove('header--sticky', 'header--static');
+                        
+                        if (stickyMode === 'sticky') {
+                            mainHeader.classList.add('header--sticky');
+                        } else if (stickyMode === 'static') {
+                            mainHeader.classList.add('header--static');
+                        }
                     }
                 }
             }

@@ -26,6 +26,18 @@
         ],
         "default": "default",
         "help_text": "Force a specific header style for this page."
+      },
+      {
+          "name": "header_sticky_override",
+          "label": "Sticky Header Override",
+          "type": "choice",
+          "choices": [
+              ["default", "Use Theme Default"],
+              ["sticky", "Enable (Sticky)"],
+              ["static", "Disable (Static)"]
+          ],
+          "default": "default",
+          "help_text": "Force the header to be sticky or static on scroll."
       }
     ]
   },

@@ -18,6 +18,7 @@
     z-index: 9999;
 }
 
+/* Default behavior from theme settings */
 {% if theme.header_settings.header_sticky %}
 .header {
     position: sticky !important;
@@ -125,4 +126,16 @@ body.hs-edit-mode .header {
     top: auto !important;
     z-index: 10 !important;
     width: 100% !important;
+}
+
+/* 5. STICKY OVERRIDES (Must be last to override default) */
+.header.header--sticky {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 9999 !important;
+}
+
+.header.header--static {
+    position: relative !important;
+    top: auto !important;
 }
