@@ -27,7 +27,9 @@ Description: Renders the primary navigation + Optional CTA with advanced style m
 
         {% if module.cta_settings.show_cta %}
         <div class="tfa-header-cta-wrapper">
-            <a href="{{ module.cta_settings.cta_link.url.href }}"
+            {# Added href fallback to '#' if link is not set #}
+            {% set cta_href = module.cta_settings.cta_link.url.href || "#" %}
+            <a href="{{ cta_href }}"
                class="tfa-button tfa-button--whatsapp tfa-button--small">
                 <span class="tfa-cta-text">{{ module.cta_settings.cta_text }}</span>
                 <span class="tfa-cta-icon-whatsapp">
@@ -151,9 +153,18 @@ Description: Renders the primary navigation + Optional CTA with advanced style m
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 10px; /* Increased gap */
       transition: all 0.3s ease;
       white-space: nowrap;
+      
+      /* New Padding for "Enterprise" feel */
+      padding: 12px 24px; 
+      border-radius: 6px; /* Slightly rounded */
+      
+      /* Ensure text renders well */
+      font-weight: 600;
+      text-decoration: none;
+      line-height: 1.2;
   }
   
   /* WhatsApp Style Button (Initial Header State) */
@@ -161,17 +172,17 @@ Description: Renders the primary navigation + Optional CTA with advanced style m
       background-color: #25D366 !important;
       border-color: #25D366 !important;
       color: white !important;
-      font-weight: 600;
   }
   .tfa-button--whatsapp:hover {
       background-color: #128C7E !important;
       border-color: #128C7E !important;
+      color: white !important;
   }
 
-  /* Icon Setup - Always visible now */
+  /* Icon Setup */
   .tfa-cta-icon-whatsapp {
-      display: block; /* Changed from none to block */
-      width: 20px; /* Slightly smaller in button context */
+      display: block; 
+      width: 20px; 
       height: 20px;
       color: white; 
       line-height: 0;
@@ -197,8 +208,7 @@ Description: Renders the primary navigation + Optional CTA with advanced style m
       width: 60px;
       height: 60px;
       border-radius: 50%;
-      padding: 0;
-      /* Background is already green from .tfa-button--whatsapp class */
+      padding: 0; /* Reset padding for circle */
       box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
       animation: popIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
