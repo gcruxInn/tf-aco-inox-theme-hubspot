@@ -8,8 +8,9 @@ Target: HubSpot CMS (Theme: TFAHUB251 - Root Structure).
 ## Technical Stack
 - **Framework:** HubSpot CMS (HubL).
 - **Styling Strategy:** "CSS Cascade Hierarchy". Module-first CSS targeting HubSpot wrappers `.hs_cos_wrapper_type_*`. Design System in `theme.css` (40+ CSS variables).
+- **Editor Experience:** Custom `editor_css` configured in `theme.json` to ensure WYSIWYG accuracy.
 - **Icons:** Lucide-React (converted to SVGs).
-- **Grid System:** HubSpot 12-column responsive grid with automatic positioning.
+- **Grid System:** HubSpot 12-column responsive grid with automatic positioning (Fixed macros for Editor).
 
 ## Current Architecture
 
@@ -23,12 +24,12 @@ Target: HubSpot CMS (Theme: TFAHUB251 - Root Structure).
 **CSS Approach:**
 - Global design tokens in `css/theme.css`
 - Component styles in `css/components/_header.hubl.css`, `_footer.hubl.css`
-- Module-specific CSS loaded via `css_assets` in `meta.json`
+- **Correction (Feb 2026):** Restored correct HubL syntax in `main.hubl.css` and `_layout.hubl.css` to fix grid compilation.
 
 ### HubSpot Grid Rules (Learned)
 1. `dnd_column` tags **MUST** be inside `dnd_row`, not directly in `dnd_section`
 2. HubSpot auto-calculates column positions when siblings in a row - **do not use manual `offset`**
-3. HubL conditionals (`{% if %}`) in CSS are valid - linter errors are false positives
+3. HubL syntax inside CSS files (`{% ... %}`) must be meticulously formatted; spaces inside tags (`{ %`) break the compiler.
 
 ## Autonomic Principles (ESTABLISHED)
 1. **Self-Configuration:** Config via `fields.json`.
@@ -41,16 +42,16 @@ Target: HubSpot CMS (Theme: TFAHUB251 - Root Structure).
 - [DONE] **Feature:** Theme Consolidation (Root Structure - Phase 5).
 - [DONE] **Global Partials:** Header & Footer (Schema, ARIA, DnD - Phase 7).
 - [DONE] **Flexible Header:** Full DnD architecture with Top Bar + Main Header (Phase 10).
-  - ✅ Module-first CSS refactoring
-  - ✅ HubSpot grid compliance (`dnd_row` wrapper, no manual offsets)
-  - ✅ Full-width Top Bar + 1200px Main Header layout
 - [DONE] **Hero Module (`tfa-hero-industrial`):** Refactored. CSS extracted. Self-healing active.
 - [DONE] **Phase 12: Brand Research & Project Audit:**
   - ✅ Instagram deep scraping (@tfacoeinox - 127 posts, 12.8K followers)
   - ✅ Brand guide creation (colors: Navy Blue #1A2B4A, Vibrant Orange #FF6B00, Gold #FFB800)
-  - ✅ Caption extraction (25+ authentic brand messages)
-  - ✅ Implementation plan (CSS overlay + CTA styling)
-  - ✅ Full project health audit (architecture, code quality, deployment readiness)
+- [DONE] **Phase 13: Layout Stabilization (Feb 2026):**
+  - ✅ **Home V2 Template (`home_v2.hubl.html`):** Created with optimized section structure.
+  - ✅ **Grid System Repair:** Fixed `_layout.hubl.css` to resolve vertical stacking in Editor.
+  - ✅ **Editor Styles:** Configured `theme.json` to load CSS in the editor.
+  - ✅ **Syntax Audit:** Fixed broken HubL tags in all CSS files.
+
 - [PENDING] **Next Steps** (User decision required):
   - **Option A:** Hero overlay implementation with navy blue gradient + "spark wire" CTA borders
   - **Option B:** Content page creation (Sobre Nós, Serviços, Portfólio, Contato) using Instagram captions
@@ -78,4 +79,3 @@ Target: HubSpot CMS (Theme: TFAHUB251 - Root Structure).
    - **Path A:** Hero overlay (measure header height, update CSS, apply Instagram brand colors)
    - **Path B:** Content pages (Sobre/Serviços/Portfólio/Contato with Instagram messaging)
 3. **Post-Implementation:** Visual validation, accessibility testing, mobile responsiveness
-4. **Future:** Services grid repeater groups, footer DnD pattern, image optimization

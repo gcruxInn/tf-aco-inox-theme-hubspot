@@ -44,6 +44,8 @@ Para extrair a máxima potência do stack MCP, utilize as ferramentas conforme s
 - **Ferramentas:** Sempre priorize `HubSpotDev` (via Bash/MCP) para interações de CLI.
 - **Design System:** Seguir estritamente o `vibe-blueprint.json` para tokens de design.
 - **Serverless:** Funções devem residir na pasta `functions/`, usar Node.js 18+ e serem implantadas via `hs upload`.
+- **(NEW) HubL Syntax:** AI must **NOT** fragment `{%` or `{{` tags with spaces or newlines. **ALWAYS** verify single line syntax for `include`, `macro` and `set`.
+
 
 ## Protocolo de Memória & Arquivos (Anti-Loop)
 - **Source of Truth:** NUNCA tente ler arquivos de logs internos (`.system_generated`, `.gemini/brain`) para "lembrar" o estado.

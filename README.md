@@ -10,6 +10,7 @@ This theme follows a **flat, root-level structure** to avoid nesting issues and 
 TFAHUB251/
 ├── css/                # Global CSS (Variables, Typography, Mixins)
 │   ├── components/     # Component-specific styles (header, footer)
+│   ├── objects/        # Layout & Grid System (_layout.hubl.css)
 │   ├── main.hubl.css   # Main CSS entry point
 │   └── theme.css       # Design System (CSS Variables)
 ├── layouts/            # Base templates (base.hubl.html)
@@ -28,8 +29,9 @@ TFAHUB251/
 │   ├── header.hubl.html (DnD-enabled)
 │   └── footer.hubl.html (DnD-enabled)
 ├── templates/          # Page Templates (Home, About, etc.)
-│   └── home.hubl.html
-├── theme.json          # Theme Configuration
+│   ├── home.hubl.html     # Original Home Template
+│   └── home_v2.hubl.html  # V2 Home Template (Optimized Layout)
+├── theme.json          # Theme Configuration (includes editor_css)
 └── fields.json         # Global Theme Settings (55KB, sanitized)
 ```
 
@@ -56,8 +58,9 @@ Refactored for maximum flexibility, SEO, and Accessibility.
 
 ### 2. Intelligent CSS Architecture
 *   **Design System**: 40+ CSS variables in `theme.css` (colors, typography, spacing, shadows)
-*   **Module-First Styling**: Targets HubSpot module wrappers (`.hs_cos_wrapper_type_logo`) instead of fixed containers
-*   **Responsive Grid**: HubSpot's 12-column system with automatic column positioning
+*   **HubSpot Editor Support**: Configured via `editor_css` in `theme.json` to ensure WYSIWYG accuracy in page editor.
+*   **Module-First Styling**: Targets HubSpot wrapper classes instead of fixed containers.
+*   **Responsive Grid**: HubSpot's 12-column system with automatic column positioning (`_layout.hubl.css` macros fixed for editor).
 *   **Accessibility**: `prefers-reduced-motion` and high-contrast support.
 
 ### 3. Module Field Type Standards
@@ -102,31 +105,30 @@ All 10 production modules have been validated:
 - ✅ `tfa-stats-row.module` (clean rebuild)
 - ✅ `tfa-testimonials.module` (carousel - new)
 
-### Cleanup Actions Completed
-- ✅ Removed `fields.json.BAK` backup file
-- ✅ Validated all module `meta.json` files
-- ✅ Consolidated theme structure (removed nested folders)
-- ✅ Created `theme.json` with TF Aço e Inox branding
+### Cleanup & Fixes (Feb 2026)
+- ✅ **Home V2**: Created `home_v2.hubl.html` with optimized layout structure.
+- ✅ **Grid System**: Fixed CSS macros in `_layout.hubl.css` to correctly render horizontal columns in the Page Editor.
+- ✅ **Editor Styles**: Added `editor_css` to `theme.json` to load `main.hubl.css` inside the HubSpot editor.
+- ✅ **HubL Syntax**: Corrected malformed HubL tags in CSS files that were preventing compilation.
+- ✅ **Structure**: Consolidated theme structure (removed nested folders).
 
 ## 📊 Theme Configuration
 
 ```json
 {
-  "label": "TF Aço e Inox - Theme",
-  "author": {
-    "name": "TF Aço e Inox",
-    "email": "comercial2@fenixelevacoes.com.br",
-    "url": "https://tfacoinox.com.br"
-  },
+  "label": "TF Aço e Inox Theme",
   "version": "1.0.0",
-  "description": "Tema corporativo para TF Aço e Inox"
+  "editor_css": [
+    "css/main.hubl.css"
+  ],
+  "settings": [ ... ]
 }
 ```
 
 ## 🎯 Next Steps
 
 ### Verification Checklist
-- [ ] Test theme in page editor
+- [x] Test theme in page editor (**Fixed vertical stacking issue**)
 - [ ] Verify all module fields appear correctly
 - [ ] Test Top Bar full-width background
 - [ ] Verify Main Header 1200px container
@@ -141,8 +143,14 @@ All 10 production modules have been validated:
 3. Keep only: **`TFAHUB251`** (production theme)
 
 ---
-**Theme Status:** Production-ready ✅  
+**Theme Status:** Production-ready (V2) ✅  
 **Upload Status:** Successfully deployed to portal  
 **Field Validation:** All modules use 2026-compliant types  
+
+> **⚠️ CRITICAL NOTE (Feb 17, 2026):**  
+> A critical issue was detected where AI agents (via MCP) corrupted HubL syntax in CSS files.
+> *   **Problem:** Tags were fragmented (e.g., `{%` became `{ %` with newlines within tags), causing HubSpot to serve raw HubL code instead of compiled CSS.
+> *   **Discovery:** Diagnosed via `inspect_editor_styles_v2` playback and browser network tab (status `200` but content-type text/plain).
+> *   **Fix:** All HubL tags must be strictly formatted as `{% include "path" %}` or `{% macro ... %}` and **MUST NOT** contain extra spaces or line breaks inside the `{%` delimiters.
 
 *Built by InnLeaders Engineering*
