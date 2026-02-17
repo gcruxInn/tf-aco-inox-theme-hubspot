@@ -5,16 +5,15 @@ Description: Renders the primary navigation + Optional CTA with advanced style m
 
 {% set style_mode = module.menu_settings.header_style_override %}
 {% if style_mode == "default" or !style_mode %}
-  {% set style_mode = theme.set_header.header_style %}
+{% set style_mode = theme.set_header.header_style %}
 {% endif %}
 
 {% set sticky_mode = module.menu_settings.header_sticky_override %}
 {# If default, JS will ignore #}
 
 {# Output data attribute for JS to pick up #}
-<div class="tfa-header-module tfa-menu-header-wrapper"
-     data-header-style="{{ style_mode }}"
-     data-header-sticky="{{ sticky_mode }}">
+<div class="tfa-header-module tfa-menu-header-wrapper" data-header-style="{{ style_mode }}"
+    data-header-sticky="{{ sticky_mode }}">
 
     <div class="tfa-header-menu-container">
         <div class="tfa-navigation">
@@ -27,24 +26,24 @@ Description: Renders the primary navigation + Optional CTA with advanced style m
 
         {% if module.cta_settings.show_cta %}
         <div class="tfa-header-cta-wrapper">
-            {# 
-                Retrieve custom link URL from the CTA settings.
-                Prioritizes cta_link.url.href.
-                Also adds fallback to '#' if empty to maintain button structure.
+            {#
+            Retrieve custom link URL from the CTA settings.
+            The field type is 'url', so we access .href directly on the field object.
             #}
-            {% set cta_href = module.cta_settings.cta_link.url.href %}
+            {% set cta_href = module.cta_settings.cta_link.href %}
             {% if !cta_href %}
-                {% set cta_href = "#" %}
+            {% set cta_href = "#" %}
             {% endif %}
-            
-            <a href="{{ cta_href }}"
-               class="tfa-button tfa-button--whatsapp tfa-button--small"
-               {# Apply padding and margin directly via inline style from user input #}
-               style="padding: {{ module.cta_settings.cta_padding }}; margin: {{ module.cta_settings.cta_margin }};">
+
+            <a href="{{ cta_href }}" class="tfa-button tfa-button--whatsapp tfa-button--small" {# Apply padding and
+                margin directly via inline style from user input #}
+                style="padding: {{ module.cta_settings.cta_padding }}; margin: {{ module.cta_settings.cta_margin }};">
                 <span class="tfa-cta-text">{{ module.cta_settings.cta_text }}</span>
                 <span class="tfa-cta-icon-whatsapp">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <path
+                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
                     </svg>
                 </span>
             </a>
@@ -55,198 +54,218 @@ Description: Renders the primary navigation + Optional CTA with advanced style m
 
 {# Script to toggle header style classes based on module selection #}
 <div class="hs-code-embed">
-<script>
-    (function () {
-        function applyHeaderOverride() {
-            var moduleWrapper = document.querySelector('.tfa-menu-header-wrapper');
-            if (moduleWrapper) {
-                var styleMode = moduleWrapper.getAttribute('data-header-style');
-                var stickyMode = moduleWrapper.getAttribute('data-header-sticky');
-                var mainHeader = moduleWrapper.closest('.header') || document.querySelector('.header');
+    <script>
+        (function () {
+            function applyHeaderOverride() {
+                var moduleWrapper = document.querySelector('.tfa-menu-header-wrapper');
+                if (moduleWrapper) {
+                    var styleMode = moduleWrapper.getAttribute('data-header-style');
+                    var stickyMode = moduleWrapper.getAttribute('data-header-sticky');
+                    var mainHeader = moduleWrapper.closest('.header') || document.querySelector('.header');
 
-                if (mainHeader) {
-                    
-                    // 1. STYLE OVERRIDE
-                    if (styleMode && styleMode !== 'default') {
-                        var allStyles = [
-                            'header--glassmorphism', 'header--glassmorphism_dark',
-                            'header--solid_white', 'header--solid_black',
-                            'header--transparent_light', 'header--transparent_dark',
-                            'header--minimal', 'header--gradient_industrial'
-                        ];
-                        allStyles.forEach(function(cls) { mainHeader.classList.remove(cls); });
+                    if (mainHeader) {
 
-                        if (styleMode.indexOf('header--') === -1) {
-                             mainHeader.classList.add('header--' + styleMode);
-                        } else {
-                            mainHeader.classList.add(styleMode);
-                        }
-                    }
+                        // 1. STYLE OVERRIDE
+                        if (styleMode && styleMode !== 'default') {
+                            var allStyles = [
+                                'header--glassmorphism', 'header--glassmorphism_dark',
+                                'header--solid_white', 'header--solid_black',
+                                'header--transparent_light', 'header--transparent_dark',
+                                'header--minimal', 'header--gradient_industrial'
+                            ];
+                            allStyles.forEach(function (cls) { mainHeader.classList.remove(cls); });
 
-                    // 2. STICKY OVERRIDE
-                    if (stickyMode && stickyMode !== 'default') {
-                        mainHeader.classList.remove('header--sticky', 'header--static');
-                        
-                        // We check stickyMode directly in scroll handler too
-                        if (stickyMode === 'sticky') mainHeader.classList.add('header--sticky');
-                        else if (stickyMode === 'static') mainHeader.classList.add('header--static');
-                    }
-
-                    // 3. SCROLL HANDLING
-                    if (!window.__tfaHeaderScrollInitialized) {
-                        window.__tfaHeaderScrollInitialized = true;
-
-                        function onScroll() {
-                            var scrollY = window.scrollY;
-                            
-                            // Visual Cue for "Scrolled" state
-                            if (scrollY > 50) { 
-                                document.body.classList.add('is-scrolled');
-                                mainHeader.classList.add('scrolled');
+                            if (styleMode.indexOf('header--') === -1) {
+                                mainHeader.classList.add('header--' + styleMode);
                             } else {
-                                document.body.classList.remove('is-scrolled');
-                                mainHeader.classList.remove('scrolled');
+                                mainHeader.classList.add(styleMode);
                             }
-                            
-                            // Button FAB Logic
-                            var isSticky = mainHeader.classList.contains('header--sticky');
-                            var ctaWrapper = moduleWrapper.querySelector('.tfa-header-cta-wrapper');
-                            
-                            if (ctaWrapper && isSticky) {
-                                if (scrollY > 100) {
-                                    ctaWrapper.classList.add('is-fab-active');
+                        }
+
+                        // 2. STICKY OVERRIDE
+                        if (stickyMode && stickyMode !== 'default') {
+                            mainHeader.classList.remove('header--sticky', 'header--static');
+
+                            // We check stickyMode directly in scroll handler too
+                            if (stickyMode === 'sticky') mainHeader.classList.add('header--sticky');
+                            else if (stickyMode === 'static') mainHeader.classList.add('header--static');
+                        }
+
+                        // 3. SCROLL HANDLING
+                        if (!window.__tfaHeaderScrollInitialized) {
+                            window.__tfaHeaderScrollInitialized = true;
+
+                            function onScroll() {
+                                var scrollY = window.scrollY;
+
+                                // Visual Cue for "Scrolled" state
+                                if (scrollY > 50) {
+                                    document.body.classList.add('is-scrolled');
+                                    mainHeader.classList.add('scrolled');
                                 } else {
-                                    ctaWrapper.classList.remove('is-fab-active');
+                                    document.body.classList.remove('is-scrolled');
+                                    mainHeader.classList.remove('scrolled');
+                                }
+
+                                // Button FAB Logic
+                                var isSticky = mainHeader.classList.contains('header--sticky');
+                                var ctaWrapper = moduleWrapper.querySelector('.tfa-header-cta-wrapper');
+
+                                if (ctaWrapper && isSticky) {
+                                    if (scrollY > 100) {
+                                        ctaWrapper.classList.add('is-fab-active');
+                                    } else {
+                                        ctaWrapper.classList.remove('is-fab-active');
+                                    }
                                 }
                             }
+
+                            window.addEventListener('scroll', onScroll, { passive: true });
+                            onScroll();
                         }
-                        
-                        window.addEventListener('scroll', onScroll, { passive: true });
-                        onScroll();
                     }
                 }
             }
-        }
 
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', applyHeaderOverride);
-        } else {
-            applyHeaderOverride();
-        }
-        
-        window.addEventListener('message', function(event) {
-            if (event.data.type === 'hs-refresh') {
-                setTimeout(applyHeaderOverride, 500);
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', applyHeaderOverride);
+            } else {
+                applyHeaderOverride();
             }
-        });
-    })();
-</script>
+
+            window.addEventListener('message', function (event) {
+                if (event.data.type === 'hs-refresh') {
+                    setTimeout(applyHeaderOverride, 500);
+                }
+            });
+        })();
+    </script>
 </div>
 
 <style>
-  .tfa-header-menu-container {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 20px;
-  }
-  
-  /* --- CTA BASE --- */
-  .tfa-header-cta-wrapper {
-      position: relative;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Springy transition */
-      z-index: 1001; /* Above header content */
-  }
+    .tfa-header-menu-container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 20px;
+    }
 
-  /* Make sure link is flex */
-  .tfa-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px; /* Increased gap */
-      transition: all 0.3s ease;
-      white-space: nowrap;
-      
-      /* Base Style defaults - padding/margin overridden by inline style */
-      border-radius: 6px; /* Slightly rounded */
-      
-      /* Ensure text renders well */
-      font-weight: 600;
-      text-decoration: none;
-      line-height: 1.2;
-  }
-  
-  /* WhatsApp Style Button (Initial Header State) */
-  .tfa-button--whatsapp {
-      background-color: #25D366 !important;
-      border-color: #25D366 !important;
-      color: white !important;
-  }
-  .tfa-button--whatsapp:hover {
-      background-color: #128C7E !important;
-      border-color: #128C7E !important;
-      color: white !important;
-  }
+    /* --- CTA BASE --- */
+    .tfa-header-cta-wrapper {
+        position: relative;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        /* Springy transition */
+        z-index: 1001;
+        /* Above header content */
+    }
 
-  /* Icon Setup */
-  .tfa-cta-icon-whatsapp {
-      display: block; 
-      width: 20px; 
-      height: 20px;
-      color: white; 
-      line-height: 0;
-  }
-  .tfa-cta-icon-whatsapp svg {
-      width: 100%;
-      height: 100%;
-      fill: currentColor;
-  }
+    /* Make sure link is flex */
+    .tfa-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        /* Increased gap */
+        transition: all 0.3s ease;
+        white-space: nowrap;
 
-  /* --- FAB TRANSFORMATION STATE --- */
-  
-  .tfa-header-cta-wrapper.is-fab-active {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      transform: translateY(0);
-      width: 60px;
-      height: 60px;
-  }
+        /* Base Style defaults - padding/margin overridden by inline style */
+        border-radius: 6px;
+        /* Slightly rounded */
 
-  .tfa-header-cta-wrapper.is-fab-active .tfa-button {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      /* Reset specific padding for circle mode to standard center */
-      padding: 0 !important; 
-      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-      animation: popIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-      
-      /* Reset Margin in FAB mode so it sticks correctly */
-      margin: 0 !important;
-  }
+        /* Ensure text renders well */
+        font-weight: 600;
+        text-decoration: none;
+        line-height: 1.2;
+    }
 
-  /* Hide Text in FAB mode */
-  .tfa-header-cta-wrapper.is-fab-active .tfa-cta-text {
-      display: none;
-  }
+    /* WhatsApp Style Button (Initial Header State) */
+    .tfa-button--whatsapp {
+        background-color: #25D366 !important;
+        border-color: #25D366 !important;
+        color: white !important;
+    }
 
-  /* Adjust Icon for FAB mode */
-  .tfa-header-cta-wrapper.is-fab-active .tfa-cta-icon-whatsapp {
-      width: 32px; /* Original larger size for FAB */
-      height: 32px;
-      animation: rotateIn 0.4s ease;
-  }
-  
-  /* Keyframes */
-  @keyframes popIn {
-      0% { transform: scale(0.8); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
-  }
-  
-  @keyframes rotateIn {
-      from { transform: rotate(-45deg); opacity: 0; }
-      to { transform: rotate(0); opacity: 1; }
-  }
+    .tfa-button--whatsapp:hover {
+        background-color: #128C7E !important;
+        border-color: #128C7E !important;
+        color: white !important;
+    }
 
+    /* Icon Setup */
+    .tfa-cta-icon-whatsapp {
+        display: block;
+        width: 20px;
+        height: 20px;
+        color: white;
+        line-height: 0;
+    }
+
+    .tfa-cta-icon-whatsapp svg {
+        width: 100%;
+        height: 100%;
+        fill: currentColor;
+    }
+
+    /* --- FAB TRANSFORMATION STATE --- */
+
+    .tfa-header-cta-wrapper.is-fab-active {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        transform: translateY(0);
+        width: 60px;
+        height: 60px;
+    }
+
+    .tfa-header-cta-wrapper.is-fab-active .tfa-button {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        /* Reset specific padding for circle mode to standard center */
+        padding: 0 !important;
+        box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+        animation: popIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+        /* Reset Margin in FAB mode so it sticks correctly */
+        margin: 0 !important;
+    }
+
+    /* Hide Text in FAB mode */
+    .tfa-header-cta-wrapper.is-fab-active .tfa-cta-text {
+        display: none;
+    }
+
+    /* Adjust Icon for FAB mode */
+    .tfa-header-cta-wrapper.is-fab-active .tfa-cta-icon-whatsapp {
+        width: 32px;
+        /* Original larger size for FAB */
+        height: 32px;
+        animation: rotateIn 0.4s ease;
+    }
+
+    /* Keyframes */
+    @keyframes popIn {
+        0% {
+            transform: scale(0.8);
+            opacity: 0;
+        }
+
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+    @keyframes rotateIn {
+        from {
+            transform: rotate(-45deg);
+            opacity: 0;
+        }
+
+        to {
+            transform: rotate(0);
+            opacity: 1;
+        }
+    }
 </style>
