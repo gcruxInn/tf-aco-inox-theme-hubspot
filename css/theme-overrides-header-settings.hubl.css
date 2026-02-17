@@ -7,11 +7,12 @@
 :root {
     --brand-primary: {{ theme.brand_settings.primary_color || '#F2542D' }};
     --brand-secondary: {{ theme.brand_settings.secondary_color || '#1A1A1B' }};
+    --header-height: 80px; /* Default used for padding compensation */
 }
 
 /* 1. WRAPPER BEHAVIOR */
 .header {
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); /* Modern Ease */
     display: block !important;
     width: 100%;
     left: 0;
@@ -21,7 +22,7 @@
 /* Default behavior from theme settings */
 {% if theme.header_settings.header_sticky %}
 .header {
-    position: sticky !important;
+    position: fixed !important; /* Changed from sticky to fixed per request */
     top: 0 !important;
 }
 {% else %}
@@ -30,29 +31,40 @@
 }
 {% endif %}
 
+
 /* 2. VISUAL STYLES MAPPED BY CLASS
    We use BEM modifiers for strong specificity and isolation.
 */
 
 /* --- 1. GLASSMORPHISM LIGHT --- */
 .header--glassmorphism {
-    background: rgba(255, 255, 255, 0.75) !important;
-    backdrop-filter: blur(16px) saturate(180%) !important;
-    -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
+    background: rgba(255, 255, 255, 0.6) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05) !important;
+}
+.header--glassmorphism.scrolled {
+    background: rgba(255, 255, 255, 0.85) !important;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1) !important;
 }
 .header--glassmorphism a { color: #1A1A1B !important; }
 
+
 /* --- 2. GLASSMORPHISM DARK --- */
 .header--glassmorphism_dark {
-    background: rgba(20, 20, 22, 0.75) !important;
-    backdrop-filter: blur(20px) saturate(180%) !important;
-    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+    background: rgba(20, 20, 22, 0.6) !important;
+    backdrop-filter: blur(24px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4) !important;
 }
+.header--glassmorphism_dark.scrolled {
+    background: rgba(20, 20, 22, 0.9) !important;
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.6) !important;
+}
 .header--glassmorphism_dark a { color: #FFFFFF !important; }
+
 
 /* --- 3. SOLID WHITE --- */
 .header--solid_white {
@@ -60,40 +72,57 @@
     border-bottom: 1px solid #E5E7EB !important;
     box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important;
 }
+.header--solid_white.scrolled {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+}
 .header--solid_white a { color: #1A1A1B !important; }
+
 
 /* --- 4. SOLID BLACK --- */
 .header--solid_black {
     background: #000000 !important;
     border-bottom: 1px solid #333333 !important;
 }
+.header--solid_black.scrolled {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5) !important;
+    border-bottom-color: #444 !important;
+}
 .header--solid_black a { color: #FFFFFF !important; }
+
 
 /* --- 5. TRANSPARENT LIGHT (For Light Backgrounds - Dark Text) --- */
 .header--transparent_light {
     background: transparent !important;
-    border-bottom: none !important;
+    border-bottom: 1px solid transparent !important;
     box-shadow: none !important;
 }
 .header--transparent_light a { color: #1A1A1B !important; }
-/* When sticky/scrolled, it must become solid */
+
+/* Scrolled State -> White Solid */
 .header--transparent_light.scrolled {
     background: rgba(255, 255, 255, 0.95) !important;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+    border-bottom: 1px solid #E5E7EB !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+    backdrop-filter: blur(10px);
 }
+
 
 /* --- 6. TRANSPARENT DARK (For Dark Backgrounds - Light Text) --- */
 .header--transparent_dark {
     background: transparent !important;
-    border-bottom: none !important;
+    border-bottom: 1px solid transparent !important;
     box-shadow: none !important;
 }
 .header--transparent_dark a { color: #FFFFFF !important; }
-/* When sticky/scrolled, becomes solid dark */
+
+/* Scrolled State -> Dark Solid */
 .header--transparent_dark.scrolled {
-    background: rgba(10, 10, 10, 0.95) !important;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5) !important;
+    background: rgba(10, 10, 10, 0.9) !important;
+    border-bottom: 1px solid #333 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+    backdrop-filter: blur(10px);
 }
+
 
 /* --- 7. MINIMAL --- */
 .header--minimal {
@@ -101,7 +130,11 @@
     border-bottom: 1px solid #F3F4F6 !important;
     box-shadow: none !important;
 }
+.header--minimal.scrolled {
+    border-bottom-color: #E5E7EB !important;
+}
 .header--minimal a { color: #374151 !important; }
+
 
 /* --- 8. GRADIENT INDUSTRIAL (NEW!) --- */
 .header--gradient_industrial {
@@ -109,16 +142,28 @@
     border-bottom: 1px solid #374151 !important;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
 }
+.header--gradient_industrial.scrolled {
+    background: linear-gradient(90deg, #111827 0%, #000000 100%) !important;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1) !important;
+}
 .header--gradient_industrial a {
     color: #F9FAFB !important;
     text-shadow: 0 1px 2px rgba(0,0,0,0.5);
 }
 
+
 /* 3. LOGO CONSTRAINTS */
 .hs_cos_wrapper_type_logo img {
     max-height: {{ theme.header_settings.header_logo_height || 60 }}px !important;
     width: auto !important;
+    transition: max-height 0.4s ease;
 }
+
+/* Scrolled Logo Effect - Slightly Smaller */
+.header.scrolled .hs_cos_wrapper_type_logo img {
+     max-height: {{ (theme.header_settings.header_logo_height || 60) * 0.85 }}px !important;
+}
+
 
 /* 4. EDITOR FIX */
 body.hs-edit-mode .header {
@@ -129,13 +174,22 @@ body.hs-edit-mode .header {
 }
 
 /* 5. STICKY OVERRIDES (Must be last to override default) */
+/* Modern Fixed Header Implementation */
 .header.header--sticky {
-    position: sticky !important;
+    position: fixed !important;
     top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
     z-index: 9999 !important;
+    /* If scrolled, we could add transform logic here if we wanted hide/show behavior */
 }
 
+/* Static Override */
 .header.header--static {
     position: relative !important;
     top: auto !important;
+    /* Reset fixed props */
+    left: auto !important;
+    right: auto !important;
 }

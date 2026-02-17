@@ -80,7 +80,6 @@ Description: Renders the primary navigation + Optional CTA with advanced style m
 
                     // 2. APPLY STICKY OVERRIDE
                     if (stickyMode && stickyMode !== 'default') {
-                        // We use .header--sticky or .header--static
                         mainHeader.classList.remove('header--sticky', 'header--static');
                         
                         if (stickyMode === 'sticky') {
@@ -88,6 +87,26 @@ Description: Renders the primary navigation + Optional CTA with advanced style m
                         } else if (stickyMode === 'static') {
                             mainHeader.classList.add('header--static');
                         }
+                    }
+
+                    // 3. SCROLL HANDLING (For Modern/Sophisticated Interactions)
+                    // We attach this to window, but ensure we don't duplicate logic.
+                    if (!window.__tfaHeaderScrollInitialized) {
+                        window.__tfaHeaderScrollInitialized = true;
+
+                        function onScroll() {
+                            if (window.scrollY > 20) {
+                                document.body.classList.add('is-scrolled');
+                                mainHeader.classList.add('scrolled');
+                            } else {
+                                document.body.classList.remove('is-scrolled');
+                                mainHeader.classList.remove('scrolled');
+                            }
+                        }
+                        
+                        window.addEventListener('scroll', onScroll, { passive: true });
+                        // Init immediately
+                        onScroll();
                     }
                 }
             }
@@ -110,11 +129,6 @@ Description: Renders the primary navigation + Optional CTA with advanced style m
 </script>
 </div>
 
-{#
-   CRITICAL CSS FIX:
-   Ensure the .header element (parent of this module) can receive styling.
-   This style block ensures the module doesn't break layout.
-#}
 <style>
   .tfa-header-menu-container {
       display: flex;
