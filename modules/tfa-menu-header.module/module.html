@@ -1,16 +1,18 @@
-{#
+﻿{#
 Module: TFA Menu Header - ULTRA COMPLETO
 Description: Renders the primary navigation + Optional CTA with advanced style mapping.
 #}
 
 {% set style_mode = module.menu_settings.header_style_override %}
 {% if style_mode == "default" or !style_mode %}
-{% set style_mode = theme.header_settings.header_style %}
+  {% set style_mode = theme.set_header.header_style %}
 {% endif %}
 
-<div class="tfa-header-module tfa-menu-header-wrapper" data-header-style="{{ style_mode }}">
-    <div class="tfa-header-menu-container">
+{# Output data attribute for JS to pick up #}
+<div class="tfa-header-module tfa-menu-header-wrapper"
+     data-header-style="{{ style_mode }}">
 
+    <div class="tfa-header-menu-container">
         <div class="tfa-navigation">
             {# Standard HubSpot menu #}
             {% menu
@@ -22,81 +24,80 @@ Description: Renders the primary navigation + Optional CTA with advanced style m
         {% if module.cta_settings.show_cta %}
         <div class="tfa-header-cta-wrapper">
             <a href="{{ module.cta_settings.cta_link.url.href }}"
-                class="tfa-button tfa-button--primary tfa-button--small">
+               class="tfa-button tfa-button--primary tfa-button--small">
                 {{ module.cta_settings.cta_text }}
             </a>
         </div>
         {% endif %}
-
     </div>
 </div>
 
-{# Script to toggle header style classes #}
+{# Script to toggle header style classes based on module selection #}
 <script>
     (function () {
-        const ALL_STYLES = [
-            'header--glassmorphism',
-            'header--glassmorphism_dark',
-            'header--solid_white',
-            'header--solid_black',
-            'header--transparent_light',
-            'header--transparent_dark',
-            'header--minimal'
-        ];
+        // Safe execution when DOM is ready
+        function applyHeaderOverride() {
+            var moduleWrapper = document.querySelector('.tfa-menu-header-wrapper');
+            if (moduleWrapper) {
+                var styleMode = moduleWrapper.getAttribute('data-header-style');
+                // We look for the main header container. In our partial, it is <header class="header ...">
+                // This script runs inside the module which is INSIDE the header, so we can find closest or query globally.
+                var mainHeader = moduleWrapper.closest('.header') || document.querySelector('.header');
 
-        function updateHeaderStyle() {
-            const dataElement = document.querySelector('.tfa-header-module');
-            let headerElement = document.querySelector('.header');
-
-            if (!headerElement && window.parent) {
-                try {
-                    headerElement = window.parent.document.querySelector('.header');
-                } catch (e) { }
-            }
-
-            if (dataElement) {
-                const style = dataElement.getAttribute('data-header-style');
-
-                const applyTo = (el) => {
-                    if (!el) return;
-                    requestAnimationFrame(() => {
-                        el.classList.remove(...ALL_STYLES);
-                        if (style && style !== 'default') {
-                            el.classList.add('header--' + style);
-                        }
+                if (mainHeader && styleMode && styleMode !== 'default') {
+                    // Remove existing style classes first to avoid conflicts
+                    var allStyles = [
+                        'header--glassmorphism',
+                        'header--glassmorphism_dark',
+                        'header--solid_white',
+                        'header--solid_black',
+                        'header--transparent_light',
+                        'header--transparent_dark',
+                        'header--minimal'
+                    ];
+                    // Remove current styles
+                    allStyles.forEach(function(cls) {
+                         mainHeader.classList.remove(cls);
                     });
-                };
 
-                applyTo(headerElement);
-                applyTo(dataElement);
-            }
-        }
 
-        function init() {
-            updateHeaderStyle();
-            const dataElement = document.querySelector('.tfa-header-module');
-            if (dataElement) {
-                const observer = new MutationObserver((mutations) => {
-                    mutations.forEach((mutation) => {
-                        if (mutation.type === 'attributes' && mutation.attributeName === 'data-header-style') {
-                            updateHeaderStyle();
-                        }
-                    });
-                });
-                observer.observe(dataElement, { attributes: true, attributeFilter: ['data-header-style'] });
+                    // Add the specific override class
+                    // The CSS uses BEM-like modifier: .header--style_name
+                    // e.g. .header--solid_white
+                    // Double check if prefix is needed
+                    if (styleMode.indexOf('header--') === -1) {
+                         mainHeader.classList.add('header--' + styleMode);
+                    } else {
+                        mainHeader.classList.add(styleMode);
+                    }
+                }
             }
         }
 
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', init);
+            document.addEventListener('DOMContentLoaded', applyHeaderOverride);
         } else {
-            init();
+            applyHeaderOverride();
         }
-
-        window.addEventListener('message', (event) => {
-            if (event.data && (event.data.type === 'hubspot:editor:refresh' || event.data.action === 'inline-edit-finish')) {
-                setTimeout(updateHeaderStyle, 100);
-            }
+        
+        // Listen for editor changes (HubSpot specific)
+        window.addEventListener('message', function(event) {
+             // In editor, DOM might refresh, so re-apply
+            setTimeout(applyHeaderOverride, 500);
         });
     })();
 </script>
+
+{#
+   CRITICAL CSS FIX:
+   Ensure the .header element (parent of this module) can receive styling.
+   This style block ensures the module doesn't break layout.
+#}
+<style>
+  .tfa-header-menu-container {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 20px;
+  }
+</style>
