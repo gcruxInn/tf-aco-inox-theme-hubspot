@@ -1,42 +1,26 @@
-/* Theme base styles */
-
-/* Tools
-Any animations, or functions used throughout the project.
-Note: _macros.hubl.css needs to be imported into each stylesheet where macros are used and not included here
+﻿/*
+  Theme: TF Master Theme HubSpot
+  Author: Tradipar
 */
 
-/* Generic
-This is where reset, normalize & box-sizing styles go.
-*/
+/* 1. TOKENS & DESIGN SYSTEM */
+{% include '../vibe-blueprint.json' %}
 
+/* 2. GENERIC & RESET */
 {% include './generic/_reset.hubl.css' %}
-{% include './generic/_normalize.hubl.css' %}
 
-/* Objects
-Non-cosmetic design patterns including grid and layout classes)
-*/
-
+/* 3. OBJECTS (Layout, Containers) */
 {% include './objects/_layout.hubl.css' %}
+{% include './objects/_containers.hubl.css' %}
 {% include './objects/_containers-dnd.hubl.css' %}
 
-/* Elements
-Base HTML elements are styled in this section (<body>, <h1>, <a>, <p>, <button> etc.)
-*/
-
-{% include './elements/_typography.hubl.css' %}
-{% include './elements/_buttons.hubl.css' %}
-{% include './elements/_forms.hubl.css' %}
-{% include './elements/_tables.hubl.css' %}
-
-/* Components
-Specific pieces of UI that are stylized. Typically used for global partial styling
-*/
-
+/* 4. COMPONENTS */
 {% include './components/_header.hubl.css' %}
 {% include './components/_default-modules.hubl.css' %}
 
-/* Utilities
-Helper classes with ability to override anything that comes before it
-*/
-
+/* 5. UTILITIES */
 {% include './utilities/_helper.hubl.css' %}
+
+/* 6. THEME OVERRIDES (Design Manager Customizations) */
+{% include './theme-overrides.hubl.css' %}
+{% include './theme-overrides-header-settings.hubl.css' %}

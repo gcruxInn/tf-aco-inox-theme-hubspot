@@ -1,0 +1,12 @@
+{# --- MODULE: TFA CTA Geral (Standalone) --- #}
+
+{% set alignment_class = "align-" ~ module.alignment %}
+{% set size_class = "size-" ~ module.button_size %}
+
+<div class="tfa-cta-wrapper {{ alignment_class }}">
+    {% if module.text %}
+    <a href="{{ module.link }}" class="btn-tfa-cta {{ size_class }}" data-border-style="{{ module.border_style }}">
+        {{ module.text }}
+    </a>
+    {% endif %}
+</div>

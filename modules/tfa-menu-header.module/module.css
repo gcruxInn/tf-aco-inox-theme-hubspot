@@ -1,0 +1,99 @@
+/* TFA Menu + Header Styles Module - ULTRA COMPLETO */
+
+.tfa-header-module {
+    width: 100%;
+}
+
+.tfa-header-menu-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    width: 100%;
+}
+
+/* Force Flex Row on Desktop */
+@media (min-width: 992px) {
+    .tfa-header-module .hs-menu-wrapper>ul {
+        list-style: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 32px;
+    }
+
+    .tfa-header-module .hs-menu-wrapper>ul>li {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+}
+
+/* Links */
+.tfa-header-module a {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    text-decoration: none;
+    padding: 8px 0;
+    position: relative;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+/* Hover Effect Line */
+.tfa-header-module .hs-menu-wrapper>ul>li>a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(90deg, #F2542D, #FFD700);
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tfa-header-module .hs-menu-wrapper>ul>li>a:hover::after {
+    width: 100%;
+}
+
+/* CTA BUTTON STYLES */
+.tfa-header-cta-wrapper {
+    flex-shrink: 0;
+}
+
+.tfa-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    border: none;
+}
+
+.tfa-button--primary {
+    background: #C0C0C0;
+    /* Industrial Silver */
+    color: #000000 !important;
+}
+
+.tfa-button--primary:hover {
+    background: #A0A0A0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 991px) {
+    .tfa-header-cta-wrapper {
+        display: none;
+        /* Hide in simple menu, usually handled by mobile partial */
+    }
+}

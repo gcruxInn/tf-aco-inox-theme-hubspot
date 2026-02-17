@@ -1,0 +1,181 @@
+/* TFA CTA General Module - Standalone CTA with Spark Border Styles */
+
+.tfa-cta-wrapper {
+    padding: 2rem 0;
+}
+
+.tfa-cta-wrapper.align-left {
+    text-align: left;
+}
+
+.tfa-cta-wrapper.align-center {
+    text-align: center;
+}
+
+.tfa-cta-wrapper.align-right {
+    text-align: right;
+}
+
+/* CTA Button - Base Styles */
+.btn-tfa-cta {
+    background: #1A2B4A;
+    /* Navy Blue */
+    color: #FFFFFF;
+    font-weight: 600;
+    border-radius: 0.375rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    display: inline-block;
+}
+
+/* Button Sizes */
+.btn-tfa-cta.size-sm {
+    padding: 0.5rem 1.5rem;
+    font-size: 0.875rem;
+}
+
+.btn-tfa-cta.size-md {
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+}
+
+.btn-tfa-cta.size-lg {
+    padding: 0.875rem 2.5rem;
+    font-size: 1.125rem;
+}
+
+/* === GLOW BORDER ANIMADO === */
+/* Gradiente suave + sombra brilhante pulsante */
+.btn-tfa-cta[data-border-style="glow-border"] {
+    border: 2px solid transparent;
+    background-image:
+        linear-gradient(#1A2B4A, #1A2B4A),
+        /* Inner bg */
+        linear-gradient(90deg, #FF6B00, #FFB800, #FF6B00);
+    /* Border gradient */
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    box-shadow:
+        0 0 20px rgba(255, 107, 0, 0.4),
+        0 0 40px rgba(255, 107, 0, 0.2),
+        0 4px 15px rgba(0, 0, 0, 0.3);
+    animation: glow-pulse 2s ease-in-out infinite;
+}
+
+.btn-tfa-cta[data-border-style="glow-border"]:hover {
+    box-shadow:
+        0 0 30px rgba(255, 107, 0, 0.6),
+        0 0 50px rgba(255, 107, 0, 0.3),
+        0 6px 20px rgba(0, 0, 0, 0.4);
+    transform: translateY(-2px);
+}
+
+@keyframes glow-pulse {
+
+    0%,
+    100% {
+        box-shadow:
+            0 0 20px rgba(255, 107, 0, 0.4),
+            0 0 40px rgba(255, 107, 0, 0.2),
+            0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    50% {
+        box-shadow:
+            0 0 30px rgba(255, 107, 0, 0.6),
+            0 0 50px rgba(255, 107, 0, 0.3),
+            0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+}
+
+/* === WIREFRAME MULTI-LAYER === */
+/* Borda fina + múltiplas sombras em camadas */
+.btn-tfa-cta[data-border-style="wireframe"] {
+    border: 1px solid #FF6B00;
+    box-shadow:
+        0 0 5px rgba(255, 107, 0, 0.6),
+        /* Inner glow */
+        0 0 10px rgba(255, 107, 0, 0.4),
+        /* Mid glow */
+        0 0 20px rgba(255, 107, 0, 0.2),
+        /* Outer glow */
+        inset 0 0 10px rgba(255, 184, 0, 0.15),
+        /* Inner orange tint */
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    /* Top highlight */
+}
+
+.btn-tfa-cta[data-border-style="wireframe"]:hover {
+    border-color: #FFB800;
+    box-shadow:
+        0 0 8px rgba(255, 107, 0, 0.8),
+        0 0 15px rgba(255, 107, 0, 0.5),
+        0 0 25px rgba(255, 107, 0, 0.3),
+        inset 0 0 15px rgba(255, 184, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+/* === DASH COM MOVIMENTO === */
+/* Linhas tracejadas animadas simulando energia */
+.btn-tfa-cta[data-border-style="dash-animated"] {
+    border: 2px dashed transparent;
+    background-image:
+        linear-gradient(#1A2B4A, #1A2B4A),
+        repeating-linear-gradient(90deg,
+            #FF6B00 0px,
+            #FF6B00 10px,
+            #FFB800 10px,
+            #FFB800 20px,
+            #FF6B00 20px,
+            #FF6B00 30px);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    background-size: 100% 100%, 200% 100%;
+    animation: spark-dash 3s linear infinite;
+    box-shadow:
+        0 0 15px rgba(255, 107, 0, 0.4),
+        0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.btn-tfa-cta[data-border-style="dash-animated"]:hover {
+    animation: spark-dash 1.5s linear infinite;
+    /* Speed up on hover */
+    box-shadow:
+        0 0 20px rgba(255, 107, 0, 0.6),
+        0 6px 15px rgba(0, 0, 0, 0.4);
+    transform: translateY(-2px);
+}
+
+@keyframes spark-dash {
+    0% {
+        background-position: 0% 0%, 0% 0%;
+    }
+
+    100% {
+        background-position: 0% 0%, 100% 0%;
+    }
+}
+
+/* Fallback for buttons without data-border-style attribute */
+.btn-tfa-cta:not([data-border-style]) {
+    border: 2px solid #FF6B00;
+    box-shadow: 0 4px 12px rgba(255, 107, 0, 0.3);
+}
+
+.btn-tfa-cta:not([data-border-style]):hover {
+    background: #243A5E;
+    /* Slightly lighter navy */
+    box-shadow: 0 6px 16px rgba(255, 107, 0, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .btn-tfa-cta.size-lg {
+        padding: 0.75rem 2rem;
+        font-size: 1rem;
+    }
+}

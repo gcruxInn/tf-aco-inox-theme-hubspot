@@ -2,7 +2,7 @@
   "label": "TFA - Hero Industrial",
   "css_assets": [
     {
-      "path": "../modules/tfa-hero-industrial.module/module.css"
+      "path": "module.css"
     }
   ],
   "external_js": [],

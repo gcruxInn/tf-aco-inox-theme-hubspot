@@ -35,7 +35,19 @@
         "picker": "file",
         "help_text": "Upload an MP4 video for background. Recommended: 1920x1080, max 10MB, compress for web"
       },
-      { "name": "bg_overlay_opacity", "label": "Overlay Opacity", "type": "number", "default": 0.6, "min": 0, "max": 1, "step": 0.1 }
+      { "name": "bg_overlay_opacity", "label": "Overlay Opacity", "type": "number", "default": 0.6, "min": 0, "max": 1, "step": 0.1 },
+      {
+        "name": "cta_border_style",
+        "label": "CTA Border Style",
+        "type": "choice",
+        "choices": [
+          ["glow-border", "Glow Border Animado - Gradiente suave + sombra brilhante pulsante"],
+          ["wireframe", "Wireframe Multi-Layer - Borda fina + múltiplas sombras em camadas"],
+          ["dash-animated", "Dash com Movimento - Linhas tracejadas animadas simulando energia"]
+        ],
+        "default": "glow-border",
+        "help_text": "Escolha o estilo de borda 'faíscas' para o botão primário. Cada opção usa Navy Blue + Vibrant Orange."
+      }
     ]
   },
   {

@@ -1,0 +1,270 @@
+/* -----------------------------------------------------------------------------
+   THEME SETTINGS: HEADER STYLES (MAPPED) - LEGO EDITION
+   ----------------------------------------------------------------------------- */
+
+    {
+    % import './tools/_macros.hubl.css' %
+}
+
+/* Industrial Design Tokens */
+:root {
+    --brand-primary: {
+            {
+            theme.brand_settings.primary_color || '#C0C0C0'
+        }
+    }
+
+    ;
+
+    --brand-secondary: {
+            {
+            theme.brand_settings.secondary_color || '#1A1A1B'
+        }
+    }
+
+    ;
+}
+
+/* 1. WRAPPER BEHAVIOR */
+.header {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: block !important;
+    width: 100%;
+    left: 0;
+    z-index: 9999;
+}
+
+    {
+    % if theme.header_settings.header_sticky %
+}
+
+.header {
+    position: sticky !important;
+    top: 0 !important;
+}
+
+    {
+    % else %
+}
+
+.header {
+    position: relative !important;
+}
+
+    {
+    % endif %
+}
+
+/* 2. VISUAL STYLES MAPPING */
+
+    {
+    % macro apply_header_styles(style_name) %
+}
+
+    {
+    % if style_name=='glassmorphism' %
+}
+
+background: rgba(255, 255, 255, 0.9) !important;
+backdrop-filter: blur(10px) saturate(110%) !important;
+-webkit-backdrop-filter: blur(10px) saturate(110%) !important;
+border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+
+    {
+    % endif %
+}
+
+    {
+    % if style_name=='glassmorphism_dark' %
+}
+
+background: rgba(26, 26, 27, 0.85) !important;
+backdrop-filter: blur(12px) saturate(150%) !important;
+-webkit-backdrop-filter: blur(12px) saturate(150%) !important;
+border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+
+    {
+    % endif %
+}
+
+    {
+    % if style_name=='solid_white' %
+}
+
+background: #FFFFFF !important;
+border-bottom: 1px solid #E0E0E0 !important;
+box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05) !important;
+
+    {
+    % endif %
+}
+
+    {
+    % if style_name=='solid_black' %
+}
+
+background: #1A1A1B !important;
+border-bottom: 1px solid #333333 !important;
+
+    {
+    % endif %
+}
+
+    {
+    % if style_name=='transparent_light' %
+}
+
+background: transparent !important;
+border-bottom: none !important;
+
+    {
+    % endif %
+}
+
+    {
+    % if style_name=='transparent_dark' %
+}
+
+background: transparent !important;
+border-bottom: none !important;
+
+    {
+    % endif %
+}
+
+    {
+    % if style_name=='minimal' %
+}
+
+background: #FFFFFF !important;
+border-bottom: 1px solid #EEEEEE !important;
+
+    {
+    % endif %
+}
+
+    {
+    % endmacro %
+}
+
+/* Apply Global Style */
+.header {
+        {
+            {
+            apply_header_styles(theme.header_settings.header_style)
+        }
+    }
+}
+
+/* Scrolled State */
+.header.scrolled {
+        {
+        % if 'transparent' in theme.header_settings.header_style %
+    }
+
+    background: #FFFFFF !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+    border-bottom: 1px solid #E0E0E0 !important;
+
+        {
+        % else %
+    }
+
+    background: rgba(255, 255, 255, 0.98) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+
+        {
+        % endif %
+    }
+}
+
+/* 3. LOGO CONSTRAINTS */
+.hs_cos_wrapper_type_logo img {
+    max-height: {
+            {
+            theme.header_settings.header_logo_height || 60
+        }
+    }
+
+    px !important;
+    width: auto !important;
+}
+
+/* 4. UTILITY OVERRIDES */
+.header--glassmorphism {
+        {
+            {
+            apply_header_styles('glassmorphism')
+        }
+    }
+}
+
+.header--glassmorphism_dark {
+        {
+            {
+            apply_header_styles('glassmorphism_dark')
+        }
+    }
+}
+
+.header--solid_white {
+        {
+            {
+            apply_header_styles('solid_white')
+        }
+    }
+}
+
+.header--solid_black {
+        {
+            {
+            apply_header_styles('solid_black')
+        }
+    }
+}
+
+.header--transparent_light {
+        {
+            {
+            apply_header_styles('transparent_light')
+        }
+    }
+}
+
+.header--transparent_dark {
+        {
+            {
+            apply_header_styles('transparent_dark')
+        }
+    }
+}
+
+.header--minimal {
+        {
+            {
+            apply_header_styles('minimal')
+        }
+    }
+}
+
+/* Text Color Mapping */
+.header--glassmorphism_dark a,
+.header--solid_black a,
+.header--transparent_light a {
+    color: #FFFFFF !important;
+}
+
+.header--glassmorphism a,
+.header--solid_white a,
+.header--transparent_dark a,
+.header--minimal a {
+    color: #1A1A1B !important;
+}
+
+/* 5. EDITOR FIX */
+body.hs-edit-mode .header {
+    position: relative !important;
+    top: auto !important;
+    z-index: 10 !important;
+    width: 100% !important;
+}

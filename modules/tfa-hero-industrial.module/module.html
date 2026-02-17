@@ -48,8 +48,8 @@
                 {# CTAs #}
                 <div class="d-flex flex-column flex-sm-row justify-content-center hero-cta-wrapper mb-5">
                     {% if module.hero_content.cta_primary_text %}
-                    <a href="{{ module.hero_content.cta_primary_link }}"
-                        class="btn btn-primary btn-lg btn-hero-primary">
+                    <a href="{{ module.hero_content.cta_primary_link }}" class="btn btn-primary btn-lg btn-hero-primary"
+                        data-border-style="{{ module.style.cta_border_style }}">
                         {{ module.hero_content.cta_primary_text }}
                     </a>
                     {% endif %}

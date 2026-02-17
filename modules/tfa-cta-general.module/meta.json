@@ -1,0 +1,13 @@
+{
+  "label": "TFA - CTA Geral",
+  "css_assets": [
+    {
+      "path": "module.css"
+    }
+  ],
+  "external_js": [],
+  "global": false,
+  "help_text": "Botão CTA standalone com 3 estilos de borda 'faíscas' (Glow, Wireframe, Dash) para usar em qualquer seção.",
+  "host_template_types": [ "PAGE", "BLOG_POST", "BLOG_LISTING" ],
+  "is_available_for_new_content": true
+}

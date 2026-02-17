@@ -10,23 +10,42 @@ Escalabilidade, Segurança e Autonomia são inegociáveis.
 - `hs validate`: Validates the project structure and syntax (Lint).
 - `hs fetch`: Baixa as alterações do portal para local (Sync).
 
+## Golden Architecture Rules
+1. **HubSpot Native First:** Toda lógica de produção deve ser nativa HubSpot (Serverless Functions/Workflows).
+2. **n8n Middleware:** Use n8n APENAS como orquestrador, ingestão de dados ou integrador de sistemas externos complexos. NUNCA utilize n8n para regras de negócio que o HubSpot suporta nativamente.
+3. **Single Source of Truth:** O HubSpot é a fonte da verdade para dados e regras de negócio.
 
-## Golden Rule (Arquitetura)
-**Toda lógica de produção deve ser nativa HubSpot (Serverless/Workflows).**
-- **HubSpot:** É a "Source of Truth" para dados e regras de negócio.
-- **n8n:** Deve ser usado APENAS como orquestrador temporário, middleware de ingestão ou para integração de sistemas externos complexos (ex: FFmpeg, Bancos Legados). Nunca para lógica core que o HubSpot suporta.
-- **terminals:** Sempre usar os caminhos C:\Users\gabri\... quando for execultar no powershell. Converter esses caminhos quando for usar em terminal wsl -d Ubuntu-22.04. Exemplo: C:\Users\gabri\Documents\dev\InnLeaders\TFAHUB251\modules\tfa-cta-footer.module\templates\tfa-cta-footer.module.html -> /mnt/c/Users/gabri/Documents/dev/InnLeaders/TFAHUB251/modules/tfa-cta-footer.module/templates/tfa-cta-footer.module.html.
-- **hs project upload . "TF Master Theme HubSpot"**: Sempre usar o comando hs project upload . "TF Master Theme HubSpot" para fazer upload do projeto.
-- **hs fetch**: Sempre usar o comando hs fetch para baixar as alterações do portal para local (Sync).
-- **hs validate**: Sempre usar o comando hs validate para validar o projeto. Se der erro, corrigir e rodar novamente.
-- **MCP Claude:** Sempre usar o MCP Claude para criar códigos mas se ele tiver algum problema volta para o Gemini 3 pro (High) nativo do chat pensar sobre o problema e se for problema de código voltar pro claude para resolver.
+## Workspace Structure & Reference
+- **Main Project (Active):** `C:\Users\gabri\Documents\dev\InnLeaders\TFAHUB251`
+- **Reference Project (Adaptable):** `C:\Users\gabri\Documents\dev\InnLeaders\ThemClean`
+- **Usage:** Always use `ThemClean` as the "Gold Standard" for native HubSpot CSS/Grid behavior when auditing or refactoring `TFAHUB251`.
+
+## Protocolo de Caminhos e Ambiente (WSL vs Windows) - [CRÍTICO]
+O ambiente de desenvolvimento é híbrido e focado em WSL.
+- **Terminal Mandatário:** Sempre use `wsl -d Ubuntu-22.04` para operações de CLI e manipulação de arquivos.
+- **Root Path Linux:** `/mnt/c/Users/gabri/Documents/dev/InnLeaders/`
+- **Caminhos em Ferramentas MCP:** Use **SEMPRE** o caminho Linux absoluto começando com `/mnt/c/...`.
+- **Conversão de Contexto:** Se o usuário fornecer um caminho Windows, converta imediatamente:
+    - `C:\Users\gabri\...` -> `/mnt/c/Users/gabri/...`
+
+## Power Protocol (Databricks Concept)
+Para extrair a máxima potência do stack MCP, utilize as ferramentas conforme suas especialidades:
+
+1. **Investigação & Documentação (O "Consultor"):**
+    - Use `HubSpotDev` e `web-scraper` para buscar a verdade absoluta na documentação oficial.
+    - Antes de codar algo complexo, verifique a documentação para garantir que a abordagem é suportada.
+    - Exemplo: "Como funciona `dnd_area` em parciais globais?" -> `search-docs` / `fetch-doc`.
+
+2. **Engenharia de Código (O "Construtor"):**
+    - Use `ClaudeCode` (via MCP) para escrever, refatorar e analisar código complexo. Ele roda no WSL, então **lembre-se da regra de caminhos**.
+    - Use `openai-coder` como um par programador alternativo ou para gerar snippets isolados.
 
 ## Padrões de Desenvolvimento
-- **Ferramentas:** Utilizar `HubSpotDev` (via Bash/MCP) para todas as interações de CLI.
+- **Ferramentas:** Sempre priorize `HubSpotDev` (via Bash/MCP) para interações de CLI.
 - **Design System:** Seguir estritamente o `vibe-blueprint.json` para tokens de design.
 - **Serverless:** Funções devem residir na pasta `functions/`, usar Node.js 18+ e serem implantadas via `hs upload`.
 
 ## Protocolo de Memória & Arquivos (Anti-Loop)
-- **Source of Truth:** NUNCA tente ler arquivos de logs internos, pastas ocultas (`.system_generated`, `.gemini/brain`) ou passos anteriores para "lembrar" o estado.
-- **Ação:** Sempre leia o arquivo **real e vivo** no diretório atual (ex: `app-hsmeta.json`, `theme.json`) para obter o estado mais recente.
-- **Recuperação:** Se um arquivo parecer ausente, execute `ls -R` para confirmar a estrutura antes de alucinar um caminho.
+- **Source of Truth:** NUNCA tente ler arquivos de logs internos (`.system_generated`, `.gemini/brain`) para "lembrar" o estado.
+- **Ação:** Sempre leia o arquivo **real e vivo** no diretório atual (ex: `theme.json`, css files) para obter o estado mais recente.
+- **Recuperação:** Se um arquivo parecer ausente, execute `ls -R` (no terminal apropriado) para confirmar a estrutura antes de alucinar um caminho.

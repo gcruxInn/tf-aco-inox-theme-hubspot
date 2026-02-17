@@ -1,0 +1,53 @@
+[
+  {
+    "name": "text",
+    "label": "Button Text",
+    "type": "text",
+    "default": "Solicitar Orçamento",
+    "tab": "CONTENT"
+  },
+  {
+    "name": "link",
+    "label": "Button Link",
+    "type": "text",
+    "default": "/orcamento",
+    "tab": "CONTENT"
+  },
+  {
+    "name": "alignment",
+    "label": "Alignment",
+    "type": "choice",
+    "choices": [
+      ["left", "Esquerda"],
+      ["center", "Centro"],
+      ["right", "Direita"]
+    ],
+    "default": "center",
+    "tab": "CONTENT"
+  },
+  {
+    "name": "border_style",
+    "label": "Estilo da Borda",
+    "type": "choice",
+    "choices": [
+      ["glow-border", "Glow Border Animado - Gradiente suave + sombra brilhante pulsante"],
+      ["wireframe", "Wireframe Multi-Layer - Borda fina + múltiplas sombras em camadas"],
+      ["dash-animated", "Dash com Movimento - Linhas tracejadas animadas simulando energia"]
+    ],
+    "default": "glow-border",
+    "help_text": "Escolha o estilo de borda 'faíscas' para o botão. Cada opção usa Navy Blue + Vibrant Orange.",
+    "tab": "STYLE"
+  },
+  {
+    "name": "button_size",
+    "label": "Tamanho do Botão",
+    "type": "choice",
+    "choices": [
+      ["sm", "Pequeno"],
+      ["md", "Médio"],
+      ["lg", "Grande"]
+    ],
+    "default": "lg",
+    "tab": "STYLE"
+  }
+]

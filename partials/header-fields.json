@@ -1,0 +1,46 @@
+[
+  {
+    "id": "header_style_settings",
+    "name": "header_style_settings",
+    "label": "Header Style Settings",
+    "type": "group",
+    "tab": "STYLE",
+    "expanded": true,
+    "children": [
+      {
+        "id": "header_visual_style",
+        "name": "header_visual_style",
+        "label": "Header Visual Style",
+        "type": "choice",
+        "display": "select",
+        "default": "glassmorphism",
+        "choices": [
+          ["glassmorphism", "Glassmorphism Light (Blur)"],
+          ["glassmorphism_dark", "Glassmorphism Dark (Industrial)"],
+          ["solid_white", "Solid White"],
+          ["solid_black", "Solid Black (Industrial)"],
+          ["transparent_light", "Transparent (Light Text)"],
+          ["transparent_dark", "Transparent (Dark Text)"],
+          ["minimal", "Minimal (Thin)"]
+        ],
+        "help_text": "Choose the visual appearance for this header instance."
+      },
+      {
+        "id": "enable_sticky",
+        "name": "enable_sticky",
+        "label": "Enable Sticky Header",
+        "type": "boolean",
+        "default": true,
+        "help_text": "Header stays fixed at top when scrolling"
+      },
+      {
+        "id": "hero_below_header",
+        "name": "hero_below_header",
+        "label": "Hero Slides Below Header",
+        "type": "boolean",
+        "default": true,
+        "help_text": "Hero section slides under header on scroll"
+      }
+    ]
+  }
+]

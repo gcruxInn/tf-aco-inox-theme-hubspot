@@ -1,69 +1,74 @@
 <!--
   templateType: global_partial
-  label: Global Header
+  label: Global Header Lego
 -->
+{# Essential Stylesheets #}
+{{ require_css(get_asset_url("../css/theme-overrides-header-settings.hubl.css")) }}
+{{ require_css(get_asset_url("../css/main.hubl.css")) }}
+
 <header class="header" role="banner" itemscope itemtype="http://schema.org/WPHeader">
 
-  {# SEO: Organization Schema #}
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "TF Aço e Inox",
-      "url": "{{ request.origin }}",
-      "logo": "https://f.hubspotusercontent00.net/hubfs/50649402/logo-tf-aco.png"
-    }
-    </script>
+  {% dnd_area "header_dnd_area" label="Global Header Area" %}
 
-  {# Top Bar for Announcements (FULL-WIDTH - No max_width constraint) #}
-  <div class="header__top-bar">
-    {% dnd_area "header_top_bar" label="Header Top Bar (Announcements)" %}
-    {# Sections added here will span the entire viewport width #}
-    {% end_dnd_area %}
-  </div>
+  {# Section: Announcement / Top Bar (Optional Lego Section) #}
+  {% dnd_section
+  max_width=1200,
+  padding={ "top": 5, "bottom": 5 }
+  %}
+  {% dnd_row %}
+  {% dnd_column width=12 %}
+  {# Empty by default, user can add modules #}
+  {% end_dnd_column %}
+  {% end_dnd_row %}
+  {% end_dnd_section %}
 
-  <div class="header__main-area">
-    {% dnd_area "main_header" label="Main Header" %}
-    {% dnd_section
-    vertical_alignment="MIDDLE"
-    max_width=1200
-    %}
-    {% dnd_row %}
+  {# Section: Main Header (The Lego Core) #}
+  {% dnd_section
+  max_width=1200,
+  padding={ "top": 20, "bottom": 20 }
+  %}
+  {% dnd_row %}
 
-    {# Column 1: Logo (25% width) #}
-    {% dnd_column width=3 %}
-    {% module "site_logo" path="@hubspot/logo" default={
-    "override_inherit_base_logo": false,
-    "img": {
-    "src": "https://f.hubspotusercontent00.net/hubfs/50649402/logo-tf-aco.png",
-    "width": 200,
-    "alt": "TF Aço e Inox Logo",
-    "loading": "eager"
-    }
-    } %}
-    {% end_dnd_column %}
+  {# Column 1: Logo #}
+  {% dnd_column width=3 %}
+  {% module "header_logo" path="@hubspot/logo",
+  override_inherit_base_logo=false,
+  img={
+  "src": theme.brand_settings.logo_src || "https://f.hubspotusercontent00.net/hubfs/50649402/logo-tf-aco.png",
+  "width": 200,
+  "alt": "TF Aço e Inox Logo",
+  "loading": "eager"
+  }
+  %}
+  {% end_dnd_column %}
 
-    {# Column 2: Navigation (50% width) #}
-    {% dnd_column width=6 %}
-    {% module "site_menu" path="@hubspot/menu" default={
-    "flow": "horizontal",
-    "flyouts": "true",
-    "max_levels": 2
-    } %}
-    {% end_dnd_column %}
+  {# Column 2: Navigation #}
+  {% dnd_column width=9 %}
+  {% module "header_menu"
+  path="../modules/tfa-menu-header.module",
+  label="Menu + Estilos"
+  %}
+  {% end_dnd_column %}
 
-    {# Column 3: Search (16.66% width) #}
-    {% dnd_column width=2 %}
-    {% module "site_search" path="@hubspot/search_input" label="Busca" %}
-    {% end_dnd_column %}
+  {% end_dnd_row %}
+  {% end_dnd_section %}
 
-    {# Column 4: Language Switcher (8.33% width) #}
-    {% dnd_column width=1 %}
-    {% module "language_switcher" path="@hubspot/language_switcher" %}
-    {% end_dnd_column %}
+  {% end_dnd_area %}
 
-    {% end_dnd_row %}
-    {% end_dnd_section %}
-    {% end_dnd_area %}
-  </div>
 </header>
+
+{# Scroll Detection JS #}
+<script>
+  (function () {
+    const header = document.querySelector('.header');
+    if (header) {
+      window.addEventListener('scroll', function () {
+        if (window.scrollY > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
+    }
+  })();
+</script>

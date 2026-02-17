@@ -34,17 +34,18 @@ function initScrollAnimations() {
 }
 
 /**
- * Toggles a class on the body when scrolled past threshold.
- * Used for Sticky Header transitions.
+ * Adds 'scrolled' class to header for enhanced glassmorphism effect.
+ * Triggers at scroll threshold for smooth visual transition.
  */
 function initStickyHeader() {
-  const scrollThreshold = 50;
+  const header = document.querySelector('.header');
+  const scrollThreshold = 80;
 
   window.addEventListener('scroll', () => {
     if (window.scrollY > scrollThreshold) {
-      document.body.classList.add('header-scrolled');
+      header.classList.add('scrolled');
     } else {
-      document.body.classList.remove('header-scrolled');
+      header.classList.remove('scrolled');
     }
   }, { passive: true });
 }
