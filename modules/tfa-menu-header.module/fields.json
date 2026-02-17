@@ -1,4 +1,4 @@
-[
+﻿[
   {
     "name": "menu_settings",
     "label": "Menu Settings",
@@ -21,7 +21,8 @@
           ["solid_black", "Solid Black (Industrial)"],
           ["transparent_light", "Transparent (Light Text)"],
           ["transparent_dark", "Transparent (Dark Text)"],
-          ["minimal", "Minimal (Thin)"]
+          ["minimal", "Minimal (Thin)"],
+          ["gradient_industrial", "Gradient (Industrial)"]
         ],
         "default": "default",
         "help_text": "Force a specific header style for this page."

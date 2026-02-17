@@ -33,6 +33,7 @@ Description: Renders the primary navigation + Optional CTA with advanced style m
 </div>
 
 {# Script to toggle header style classes based on module selection #}
+<div class="hs-code-embed">
 <script>
     (function () {
         // Safe execution when DOM is ready
@@ -40,8 +41,7 @@ Description: Renders the primary navigation + Optional CTA with advanced style m
             var moduleWrapper = document.querySelector('.tfa-menu-header-wrapper');
             if (moduleWrapper) {
                 var styleMode = moduleWrapper.getAttribute('data-header-style');
-                // We look for the main header container. In our partial, it is <header class="header ...">
-                // This script runs inside the module which is INSIDE the header, so we can find closest or query globally.
+                // We look for the main header container.
                 var mainHeader = moduleWrapper.closest('.header') || document.querySelector('.header');
 
                 if (mainHeader && styleMode && styleMode !== 'default') {
@@ -53,7 +53,8 @@ Description: Renders the primary navigation + Optional CTA with advanced style m
                         'header--solid_black',
                         'header--transparent_light',
                         'header--transparent_dark',
-                        'header--minimal'
+                        'header--minimal',
+                        'header--gradient_industrial'
                     ];
                     // Remove current styles
                     allStyles.forEach(function(cls) {
@@ -83,10 +84,13 @@ Description: Renders the primary navigation + Optional CTA with advanced style m
         // Listen for editor changes (HubSpot specific)
         window.addEventListener('message', function(event) {
              // In editor, DOM might refresh, so re-apply
-            setTimeout(applyHeaderOverride, 500);
+            if (event.data.type === 'hs-refresh') {
+                setTimeout(applyHeaderOverride, 500);
+            }
         });
     })();
 </script>
+</div>
 
 {#
    CRITICAL CSS FIX:
