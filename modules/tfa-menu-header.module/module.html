@@ -28,7 +28,7 @@ Description: Renders the primary navigation + Optional CTA with advanced style m
         {% if module.cta_settings.show_cta %}
         <div class="tfa-header-cta-wrapper">
             <a href="{{ module.cta_settings.cta_link.url.href }}"
-               class="tfa-button tfa-button--primary tfa-button--small">
+               class="tfa-button tfa-button--whatsapp tfa-button--small">
                 <span class="tfa-cta-text">{{ module.cta_settings.cta_text }}</span>
                 <span class="tfa-cta-icon-whatsapp">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -97,7 +97,6 @@ Description: Renders the primary navigation + Optional CTA with advanced style m
                             }
                             
                             // Button FAB Logic
-                            // We only activate this if sticky is enabled
                             var isSticky = mainHeader.classList.contains('header--sticky');
                             var ctaWrapper = moduleWrapper.querySelector('.tfa-header-cta-wrapper');
                             
@@ -157,13 +156,25 @@ Description: Renders the primary navigation + Optional CTA with advanced style m
       white-space: nowrap;
   }
   
-  /* Icon Setup */
+  /* WhatsApp Style Button (Initial Header State) */
+  .tfa-button--whatsapp {
+      background-color: #25D366 !important;
+      border-color: #25D366 !important;
+      color: white !important;
+      font-weight: 600;
+  }
+  .tfa-button--whatsapp:hover {
+      background-color: #128C7E !important;
+      border-color: #128C7E !important;
+  }
+
+  /* Icon Setup - Always visible now */
   .tfa-cta-icon-whatsapp {
-      display: none;
-      width: 24px;
-      height: 24px;
-      /* Ensure SVG is white */
+      display: block; /* Changed from none to block */
+      width: 20px; /* Slightly smaller in button context */
+      height: 20px;
       color: white; 
+      line-height: 0;
   }
   .tfa-cta-icon-whatsapp svg {
       width: 100%;
@@ -172,14 +183,12 @@ Description: Renders the primary navigation + Optional CTA with advanced style m
   }
 
   /* --- FAB TRANSFORMATION STATE --- */
-  /* Using .is-fab-active class added by JS for cleaner control than just CSS selection */
   
   .tfa-header-cta-wrapper.is-fab-active {
       position: fixed;
       bottom: 30px;
       right: 30px;
       transform: translateY(0);
-      /* Ensure it breaks out of header flow visually */
       width: 60px;
       height: 60px;
   }
@@ -189,20 +198,20 @@ Description: Renders the primary navigation + Optional CTA with advanced style m
       height: 60px;
       border-radius: 50%;
       padding: 0;
-      background-color: #25D366 !important; /* WhatsApp Brand Color */
-      border-color: #25D366 !important;
-      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); /* Glow effect */
+      /* Background is already green from .tfa-button--whatsapp class */
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
       animation: popIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
 
-  /* Hide Text */
+  /* Hide Text in FAB mode */
   .tfa-header-cta-wrapper.is-fab-active .tfa-cta-text {
       display: none;
   }
 
-  /* Show Icon */
+  /* Adjust Icon for FAB mode */
   .tfa-header-cta-wrapper.is-fab-active .tfa-cta-icon-whatsapp {
-      display: block;
+      width: 32px; /* Original larger size for FAB */
+      height: 32px;
       animation: rotateIn 0.4s ease;
   }
   
