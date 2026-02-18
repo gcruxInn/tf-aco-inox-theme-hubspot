@@ -143,6 +143,13 @@ Description: Renders the primary navigation + Optional CTA with advanced style m
 </div>
 
 <style>
+    /* Ensure the module fills the parent HubSpot wrapper (section) */
+    .tfa-menu-header-wrapper {
+        height: 100%;
+        width: 100%;
+    }
+
+    /* Container fills the wrapper to allow vertical alignment */
     .tfa-header-menu-container {
         display: flex;
 
@@ -155,6 +162,8 @@ Description: Renders the primary navigation + Optional CTA with advanced style m
         ;
         justify-content: center;
         gap: 20px;
+        height: 100%;
+        width: 100%;
     }
 
     /* --- CTA BASE --- */
