@@ -145,7 +145,14 @@ Description: Renders the primary navigation + Optional CTA with advanced style m
 <style>
     .tfa-header-menu-container {
         display: flex;
-        align-items: center;
+
+        align-items: {
+                {
+                module.menu_settings.menu_vertical_align
+            }
+        }
+
+        ;
         justify-content: center;
         gap: 20px;
     }

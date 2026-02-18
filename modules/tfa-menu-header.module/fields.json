@@ -10,6 +10,18 @@
         "type": "menu"
       },
       {
+        "name": "menu_vertical_align",
+        "label": "Vertical Alignment",
+        "type": "choice",
+        "choices": [
+          ["flex-start", "Top"],
+          ["center", "Middle"],
+          ["flex-end", "Bottom"]
+        ],
+        "default": "center",
+        "help_text": "Vertically align the menu items."
+      },
+      {
         "name": "header_style_override",
         "label": "Header Style Override",
         "type": "choice",
