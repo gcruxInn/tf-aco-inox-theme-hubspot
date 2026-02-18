@@ -1,94 +1,152 @@
-﻿[
-  {
-    "name": "menu_settings",
-    "label": "Menu Settings",
-    "type": "group",
-    "children": [
-      {
-        "name": "navigation_menu",
-        "label": "Select Menu",
-        "type": "menu"
-      },
-      {
-        "name": "menu_vertical_align",
-        "label": "Vertical Alignment",
-        "type": "choice",
-        "choices": [
-          ["flex-start", "Top"],
-          ["center", "Middle"],
-          ["flex-end", "Bottom"]
-        ],
-        "default": "center",
-        "help_text": "Vertically align the menu items."
-      },
-      {
-        "name": "header_style_override",
-        "label": "Header Style Override",
-        "type": "choice",
-        "choices": [
-          ["default", "Use Theme Default"],
-          ["glassmorphism", "Glassmorphism Light (Blur)"],
-          ["glassmorphism_dark", "Glassmorphism Dark (Industrial)"],
-          ["solid_white", "Solid White"],
-          ["solid_black", "Solid Black (Industrial)"],
-          ["transparent_light", "Transparent (Light Text)"],
-          ["transparent_dark", "Transparent (Dark Text)"],
-          ["minimal", "Minimal (Thin)"],
-          ["gradient_industrial", "Gradient (Industrial)"]
-        ],
-        "default": "default",
-        "help_text": "Force a specific header style for this page."
-      },
-      {
-          "name": "header_sticky_override",
-          "label": "Sticky Header Override",
-          "type": "choice",
-          "choices": [
-              ["default", "Use Theme Default"],
-              ["sticky", "Enable (Sticky)"],
-              ["static", "Disable (Static)"]
-          ],
-          "default": "default",
-          "help_text": "Force the header to be sticky or static on scroll."
-      }
-    ]
-  },
-  {
-    "name": "cta_settings",
-    "label": "CTA Button",
-    "type": "group",
-    "children": [
-      {
-        "name": "show_cta",
-        "label": "Show CTA Button",
-        "type": "boolean",
-        "default": false
-      },
-      {
-        "name": "cta_text",
-        "label": "CTA Text",
-        "type": "text",
-        "default": "Request Quote"
-      },
-      {
-        "name": "cta_link",
-        "label": "CTA Link",
-        "type": "url"
-      },
-      {
-        "name": "cta_padding",
-        "label": "Padding",
-        "type": "text",
-        "default": "12px 24px",
-        "help_text": "CSS Padding (ex: '12px 24px' or '10px')"
-      },
-      {
-        "name": "cta_margin",
-        "label": "Margin",
-        "type": "text",
-        "default": "0px",
-        "help_text": "CSS Margin (ex: '0px' or '10px 0')"
-      }
-    ]
-  }
+[
+    {
+        "name":  "menu_settings",
+        "label":  "Menu Settings",
+        "type":  "group",
+        "children":  [
+                         {
+                             "name":  "navigation_menu",
+                             "label":  "Select Menu",
+                             "type":  "menu"
+                         },
+                         {
+                             "name":  "menu_vertical_align",
+                             "label":  "Vertical Alignment",
+                             "type":  "choice",
+                             "choices":  [
+                                             [
+                                                 "flex-start",
+                                                 "Top"
+                                             ],
+                                             [
+                                                 "center",
+                                                 "Middle"
+                                             ],
+                                             [
+                                                 "flex-end",
+                                                 "Bottom"
+                                             ]
+                                         ],
+                             "default":  "center",
+                             "help_text":  "Vertically align the menu items."
+                         },
+                        {
+                            "name": "menu_horizontal_align",
+                            "label": "Horizontal Alignment",
+                            "type": "choice",
+                            "choices": [
+                                ["left", "Left"],
+                                ["center", "Center"],
+                                ["right", "Right"],
+                                ["justify", "Space Between"]
+                            ],
+                            "default": "center",
+                            "help_text": "Horizontally align the menu items."
+                        },
+                         {
+                             "name":  "header_style_override",
+                             "label":  "Header Style Override",
+                             "type":  "choice",
+                             "choices":  [
+                                             [
+                                                 "default",
+                                                 "Use Theme Default"
+                                             ],
+                                             [
+                                                 "glassmorphism",
+                                                 "Glassmorphism Light (Blur)"
+                                             ],
+                                             [
+                                                 "glassmorphism_dark",
+                                                 "Glassmorphism Dark (Industrial)"
+                                             ],
+                                             [
+                                                 "solid_white",
+                                                 "Solid White"
+                                             ],
+                                             [
+                                                 "solid_black",
+                                                 "Solid Black (Industrial)"
+                                             ],
+                                             [
+                                                 "transparent_light",
+                                                 "Transparent (Light Text)"
+                                             ],
+                                             [
+                                                 "transparent_dark",
+                                                 "Transparent (Dark Text)"
+                                             ],
+                                             [
+                                                 "minimal",
+                                                 "Minimal (Thin)"
+                                             ],
+                                             [
+                                                 "gradient_industrial",
+                                                 "Gradient (Industrial)"
+                                             ]
+                                         ],
+                             "default":  "default",
+                             "help_text":  "Force a specific header style for this page."
+                         },
+                         {
+                             "name":  "header_sticky_override",
+                             "label":  "Sticky Header Override",
+                             "type":  "choice",
+                             "choices":  [
+                                             [
+                                                 "default",
+                                                 "Use Theme Default"
+                                             ],
+                                             [
+                                                 "sticky",
+                                                 "Enable (Sticky)"
+                                             ],
+                                             [
+                                                 "static",
+                                                 "Disable (Static)"
+                                             ]
+                                         ],
+                             "default":  "default",
+                             "help_text":  "Force the header to be sticky or static on scroll."
+                         }
+                     ]
+    },
+    {
+        "name":  "cta_settings",
+        "label":  "CTA Button",
+        "type":  "group",
+        "children":  [
+                         {
+                             "name":  "show_cta",
+                             "label":  "Show CTA Button",
+                             "type":  "boolean",
+                             "default":  false
+                         },
+                         {
+                             "name":  "cta_text",
+                             "label":  "CTA Text",
+                             "type":  "text",
+                             "default":  "Request Quote"
+                         },
+                         {
+                             "name":  "cta_link",
+                             "label":  "CTA Link",
+                             "type":  "url"
+                         },
+                         {
+                             "name":  "cta_padding",
+                             "label":  "Padding",
+                             "type":  "text",
+                             "default":  "12px 24px",
+                             "help_text":  "CSS Padding (ex: \u002712px 24px\u0027 or \u002710px\u0027)"
+                         },
+                         {
+                             "name":  "cta_margin",
+                             "label":  "Margin",
+                             "type":  "text",
+                             "default":  "0px",
+                             "help_text":  "CSS Margin (ex: \u00270px\u0027 or \u002710px 0\u0027)"
+                         }
+                     ]
+    }
 ]

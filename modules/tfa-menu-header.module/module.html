@@ -150,6 +150,7 @@ Description: Renders the primary navigation + Optional CTA with advanced style m
     }
 
     /* Container fills the wrapper to allow vertical alignment */
+    /* Container fills the wrapper to allow vertical alignment */
     .tfa-header-menu-container {
         display: flex;
 
@@ -160,7 +161,39 @@ Description: Renders the primary navigation + Optional CTA with advanced style m
         }
 
         ;
+
+            {
+            # Horizontal Alignment Logic #
+        }
+
+            {
+            % if module.menu_settings.menu_horizontal_align=="left" %
+        }
+
+        justify-content: flex-start;
+
+            {
+            % elif module.menu_settings.menu_horizontal_align=="right" %
+        }
+
+        justify-content: flex-end;
+
+            {
+            % elif module.menu_settings.menu_horizontal_align=="justify" %
+        }
+
+        justify-content: space-between;
+
+            {
+            % else %
+        }
+
         justify-content: center;
+
+            {
+            % endif %
+        }
+
         gap: 20px;
         height: 100%;
         width: 100%;
