@@ -1,4 +1,4 @@
-{#
+﻿{#
 Module: TFA Menu Header - ULTRA COMPLETO
 Description: Renders the primary navigation + Optional CTA with advanced style mapping.
 #}
@@ -152,46 +152,18 @@ Description: Renders the primary navigation + Optional CTA with advanced style m
     /* Container fills the wrapper to allow vertical alignment */
     .tfa-header-menu-container {
         display: flex;
+        align-items: {{ module.menu_settings.menu_vertical_align }};
 
-        align-items: {
-                {
-                module.menu_settings.menu_vertical_align
-            }
-        }
-
-        ;
-
-            {
-            # Horizontal Alignment Logic #
-        }
-
-            {
-            % if module.menu_settings.menu_horizontal_align=="left" %
-        }
-
-        justify-content: flex-start;
-
-            {
-            % elif module.menu_settings.menu_horizontal_align=="right" %
-        }
-
-        justify-content: flex-end;
-
-            {
-            % elif module.menu_settings.menu_horizontal_align=="justify" %
-        }
-
-        justify-content: space-between;
-
-            {
-            % else %
-        }
-
-        justify-content: center;
-
-            {
-            % endif %
-        }
+        {# Horizontal Alignment Logic #}
+        {% if module.menu_settings.menu_horizontal_align == "left" %}
+            justify-content: flex-start;
+        {% elif module.menu_settings.menu_horizontal_align == "right" %}
+            justify-content: flex-end;
+        {% elif module.menu_settings.menu_horizontal_align == "justify" %}
+            justify-content: space-between;
+        {% else %}
+            justify-content: center;
+        {% endif %}
 
         gap: 20px;
         height: 100%;
