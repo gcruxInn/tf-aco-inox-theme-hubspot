@@ -166,6 +166,13 @@ Description: Renders the primary navigation + Optional CTA with advanced style m
         width: 100%;
     }
 
+    /* Force HubSpot default wrappers to full height within header */
+    header .hs_cos_wrapper_widget,
+    header .row-fluid-wrapper,
+    header .row-fluid {
+        height: 100% !important;
+    }
+
     /* --- CTA BASE --- */
     .tfa-header-cta-wrapper {
         position: relative;
