@@ -1,54 +1,133 @@
 /* TFA Differentiators Module Styles */
 
+/* Outer GSAP anchor */
+.diff-super-gsap-wrapper {
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    padding: 6rem 0;
+    /* Space for the shadow to render visually completely unclipped */
+}
+
+/* The premium Island */
 .tfa-differentiators {
-    padding: 5rem 0;
-    background-color: #f8f9fa;
+    width: 96%;
+    max-width: 1024px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    border-radius: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.05);
+    position: relative;
+    z-index: 1;
+    padding: 5rem 0 0 0;
+}
+
+/* Glowing Orbs to simulate Apple/OpenAI dynamic backdrops */
+.tfa-differentiators::before {
+    content: '';
+    position: absolute;
+    top: -15%;
+    left: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 60%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.tfa-differentiators::after {
+    content: '';
+    position: absolute;
+    bottom: -15%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.12) 0%, transparent 60%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
 }
 
 .tfa-container {
-    max-width: 1200px;
+    max-width: 1024px;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 1;
+    /* Keep above orbs */
 }
 
 .diff-header {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 5rem;
+    /* Increased space between title and cards */
 }
 
 .diff-section-title {
     font-size: 2.2rem;
     font-weight: 800;
     margin-bottom: 0.75rem;
-    color: #1a1a1b;
+    color: #ffffff;
     line-height: 1.2;
 }
 
 .diff-section-subtitle {
     font-size: 1.1rem;
-    color: #6c757d;
+    color: #d1d5db;
     max-width: 700px;
     margin: 0 auto;
     line-height: 1.6;
 }
 
-.differentiators-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-    margin-top: 2rem;
+.diff-scroll-container {
+    width: calc(100% + 100px);
+    /* Expand 50px on each side */
+    margin-left: -50px;
+    /* Pull left by 50px */
+    position: relative;
+    padding: 5rem 0;
+    /* Space for card hover shadow internally */
+    padding-left: 50px;
+    /* Counter-pad inner content so the first card still aligns perfectly with text */
+    overflow: hidden;
+    /* This ONLY clips the scrolling cards EXACTLY at the 50px bleed boundary! Leaves the island shadow pure. */
+
+    /* Apple/VisionOS mask gradient to fade out edges instead of a hard cut */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black +50px, black calc(100% - 50px), transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black +50px, black calc(100% - 50px), transparent 100%);
+}
+
+.differentiators-track {
+    display: flex;
+    flex-wrap: nowrap;
+    width: max-content;
+    gap: 2.5rem;
+    padding: 0 4rem;
+    /* Initial text alignment offset for the first card */
 }
 
 .diff-card {
-    background: #ffffff;
-    padding: 2rem 1.5rem;
-    border-radius: 16px;
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Advanced Apple/macOS frosted glass */
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    /* Light catch */
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+
+    padding: 3rem 2rem;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     text-align: center;
     position: relative;
     overflow: hidden;
+
+    /* Fixed width for horizontal scrolling */
+    width: 360px;
+    flex-shrink: 0;
 }
 
 /* Top accent line on hover */
@@ -71,59 +150,87 @@
 
 .diff-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
-    border-color: rgba(192, 192, 192, 0.3);
+    /* Soft blue neon glow on hover for interactions */
+    box-shadow: 0 20px 40px rgba(56, 189, 248, 0.15), inset 0 2px 4px rgba(255, 255, 255, 0.08);
+    border-color: rgba(56, 189, 248, 0.3);
 }
 
 .diff-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1.25rem;
+    font-size: 2.75rem;
+    margin-bottom: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 72px;
-    height: 72px;
+    width: 80px;
+    height: 80px;
     margin-left: auto;
     margin-right: auto;
-    border-radius: 16px;
-    background: linear-gradient(135deg, rgba(192, 192, 192, 0.1), rgba(26, 26, 27, 0.05));
+    border-radius: 20px;
+    /* Soft glowing icon plate */
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.02));
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2), 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .diff-title {
     font-size: 1.1rem;
     font-weight: 700;
     margin-bottom: 0.75rem;
-    color: #1a1a1b;
+    color: #ffffff;
     letter-spacing: -0.01em;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    /* Apple readability logic */
 }
 
 .diff-description {
     font-size: 0.92rem;
-    color: #6c757d;
+    color: #d1d5db;
     line-height: 1.65;
     margin: 0;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    /* Subtle backdrop */
 }
 
 /* Tablet */
 @media (max-width: 1024px) {
-    .differentiators-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .diff-card {
+        width: 300px;
+    }
+
+    .differentiators-track {
+        gap: 1.5rem;
+        padding: 0 2rem;
     }
 }
 
 /* Mobile */
 @media (max-width: 768px) {
-    .tfa-differentiators {
-        padding: 3.5rem 0;
+    .diff-super-gsap-wrapper {
+        padding: 4rem 0;
     }
 
-    .differentiators-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
+    .tfa-differentiators {
+        padding: 4rem 0 0 0;
+        border-radius: 20px;
+    }
+
+    .diff-scroll-container {
+        padding: 2rem 0;
+        width: calc(100% + 40px);
+        margin-left: -20px;
+        padding-left: 20px;
+        overflow: hidden;
+    }
+
+    .differentiators-track {
+        gap: 1.25rem;
+        padding: 0 1rem;
     }
 
     .diff-card {
-        padding: 1.5rem 1rem;
+        width: 85vw;
+        /* Use percentage of viewport on mobile */
+        padding: 2rem 1.5rem;
     }
 
     .diff-section-title {

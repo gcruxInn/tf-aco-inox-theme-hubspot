@@ -196,6 +196,15 @@ p {
     line-height: var(--line-height-relaxed);
 }
 
+a {
+    text-decoration: none;
+    transition: color var(--transition-base);
+}
+
+a:hover {
+    text-decoration: none;
+}
+
 .lead {
     font-size: var(--font-size-lg);
     font-weight: var(--font-weight-normal);

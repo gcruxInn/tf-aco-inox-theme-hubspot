@@ -1,30 +1,161 @@
 /**
- * TF Aço Inox - Main Interaction Script
- * Enterprise-grade scroll animations with GSAP ScrollTrigger,
- * CountUp numbers, sticky header, and smooth reveal effects.
+ * TF Aço Inox - Ultra-Premium Cinematic Engine
+ * Powered by GSAP ScrollTrigger, Lenis (Smooth Scroll), and SplitType
  */
 
-document.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
   initStickyHeader();
-  initGSAPAnimations();
+
+  // Initialize the Cinematic Engine if libraries are loaded
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined' && typeof Lenis !== 'undefined') {
+    initLenis();
+    initCinematicText();
+    initGSAPAnimations();
+  } else {
+    // Fallback for browsers blocking CDN scripts
+    initFallbackAnimations();
+  }
+
   initCountUp();
-  console.log('TF Master Theme: Enterprise Ready');
+  console.log('TF Master Theme: Cinematic Engine Loaded. Smooth Scroll & Split Typography Active.');
 });
 
 /* ============================================
-   GSAP ScrollTrigger — Scroll-Telling Engine
+   Lenis — Smooth Scrolling
+   ============================================ */
+let lenis;
+function initLenis() {
+  lenis = new Lenis({
+    lerp: 0.1, // controls the fluidity/smoothness
+    smoothWheel: true,
+  });
+
+  // Sync GSAP ScrollTrigger with Lenis
+  lenis.on('scroll', ScrollTrigger.update);
+
+  gsap.ticker.add((time) => {
+    lenis.raf(time * 1000);
+  });
+
+  gsap.ticker.lagSmoothing(0);
+}
+
+/* ============================================
+   SplitType — Cinematic Text Reveals
+   ============================================ */
+function initCinematicText() {
+  if (typeof SplitType === 'undefined') return;
+
+  // Select major headings that deserve the "Steel & Inox" precision reveal
+  const splitElements = document.querySelectorAll('.hero-headline, h2.display-5');
+
+  splitElements.forEach(el => {
+    // Split the text into lines, words, and characters
+    const text = new SplitType(el, { types: 'lines, words, chars' });
+
+    // We animate each character rising up slightly tilted, like mechanical assembly
+    gsap.from(text.chars, {
+      y: '100%',
+      opacity: 0,
+      rotationZ: 2,
+      duration: 0.8,
+      stagger: 0.015,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 85%',
+        toggleActions: 'play none none none'
+      }
+    });
+  });
+}
+
+/* ============================================
+   GSAP ScrollTrigger — Core Animations & Parallax
    ============================================ */
 function initGSAPAnimations() {
-  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
-    // Fallback: use IntersectionObserver if GSAP not loaded
-    initFallbackAnimations();
-    return;
-  }
-
   gsap.registerPlugin(ScrollTrigger);
 
-  // [data-animate="fade-up"] — Cards, sections, generic elements
-  gsap.utils.toArray('[data-animate="fade-up"]').forEach((el, i) => {
+  // Parallax Images (Backgrounds and Portfolio cards)
+  // Image moves slightly inside its container as user scrolls
+  gsap.utils.toArray('.hero-bg-overlay, .portfolio-card img').forEach(img => {
+    // Ensure parent has overflow hidden for parallax to work correctly
+    if (img.parentElement) {
+      img.parentElement.style.overflow = 'hidden';
+    }
+    gsap.fromTo(img,
+      { yPercent: -10 },
+      {
+        yPercent: 10,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: img.parentElement,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true
+        }
+      });
+  });
+
+  // Process Timeline - Draw the connecting line dynamically on scroll
+  const timelineLine = document.querySelector('.timeline-line');
+  const tfaProcess = document.querySelector('.tfa-process-timeline');
+  if (timelineLine && tfaProcess) {
+    gsap.from(timelineLine, {
+      scaleY: 0,
+      transformOrigin: "top center",
+      ease: "none",
+      scrollTrigger: {
+        trigger: tfaProcess,
+        start: "top center",
+        end: "bottom center",
+        scrub: 1 // 1 second smoothing on the scrub
+      }
+    });
+  }
+
+  // Extreme Mechanics: Horizontal Scroll Pinning for Differentiators
+  const diffOuterWrapper = document.querySelector('.diff-super-gsap-wrapper');
+  const diffWrapper = document.querySelector('.tfa-differentiators');
+  const diffTrack = document.querySelector('.differentiators-track');
+
+  if (diffOuterWrapper && diffWrapper && diffTrack) {
+    // Force opacity to 1 bypassing any fallback scripts
+    const cards = document.querySelectorAll('.tfa-differentiators .diff-card');
+    cards.forEach(card => card.style.opacity = 1);
+
+    function getScrollAmount() {
+      let trackWidth = diffTrack.scrollWidth;
+      // Calculate how much track is hidden outside the 1024px container (or current wrapper width)
+      return -(trackWidth - diffWrapper.offsetWidth);
+    }
+
+    // Ensure it only pins if the track is actually wider than the screen
+    if (getScrollAmount() < 0) {
+      const tween = gsap.to(diffTrack, {
+        x: getScrollAmount,
+        ease: "none"
+      });
+
+      ScrollTrigger.create({
+        trigger: diffOuterWrapper, // Pin the full-width outer wrapper to prevent GSAP margin-auto bugs
+        start: "center center",
+        end: () => `+=${getScrollAmount() * -1}`,
+        pin: true,
+        animation: tween,
+        scrub: 1,
+        invalidateOnRefresh: true
+      });
+    }
+  }
+
+  // [data-animate="fade-up"] 
+  gsap.utils.toArray('[data-animate="fade-up"]').forEach((el) => {
+    // Skip if it's already animated by SplitType (h2)
+    if (el.tagName === 'H2' && document.querySelector('h2.display-5')) {
+      if (el.classList.contains('display-5')) return;
+    }
+
     const delay = parseFloat(el.dataset.delay || 0) / 1000;
     gsap.from(el, {
       y: 40,
@@ -40,7 +171,7 @@ function initGSAPAnimations() {
     });
   });
 
-  // [data-animate="fade-left"] — Slide in from left
+  // [data-animate="fade-left"]
   gsap.utils.toArray('[data-animate="fade-left"]').forEach(el => {
     gsap.from(el, {
       x: -60,
@@ -55,7 +186,7 @@ function initGSAPAnimations() {
     });
   });
 
-  // [data-animate="fade-right"] — Slide in from right
+  // [data-animate="fade-right"]
   gsap.utils.toArray('[data-animate="fade-right"]').forEach(el => {
     gsap.from(el, {
       x: 60,
@@ -70,7 +201,7 @@ function initGSAPAnimations() {
     });
   });
 
-  // [data-animate="scale-in"] — Portfolio items, images
+  // [data-animate="scale-in"]
   gsap.utils.toArray('[data-animate="scale-in"]').forEach(el => {
     gsap.from(el, {
       scale: 0.9,
@@ -85,7 +216,7 @@ function initGSAPAnimations() {
     });
   });
 
-  // [data-animate="stagger-children"] — Parent that staggers children
+  // [data-animate="stagger-children"]
   gsap.utils.toArray('[data-animate="stagger-children"]').forEach(parent => {
     const children = parent.children;
     gsap.from(children, {
@@ -101,40 +232,6 @@ function initGSAPAnimations() {
       }
     });
   });
-
-  // Hero headline reveal
-  const heroHeadline = document.querySelector('.hero-headline');
-  if (heroHeadline) {
-    gsap.from(heroHeadline, {
-      y: 60,
-      opacity: 0,
-      duration: 1.2,
-      ease: 'power4.out',
-      delay: 0.3
-    });
-  }
-
-  const heroSub = document.querySelector('.hero-subheadline');
-  if (heroSub) {
-    gsap.from(heroSub, {
-      y: 40,
-      opacity: 0,
-      duration: 1,
-      ease: 'power3.out',
-      delay: 0.6
-    });
-  }
-
-  const heroCTA = document.querySelector('.hero-cta-wrapper');
-  if (heroCTA) {
-    gsap.from(heroCTA, {
-      y: 30,
-      opacity: 0,
-      duration: 0.8,
-      ease: 'power3.out',
-      delay: 0.9
-    });
-  }
 }
 
 /* ============================================
@@ -154,7 +251,6 @@ function initCountUp() {
         const suffix = el.dataset.suffix || '';
         const prefix = el.dataset.prefix || '';
 
-        // Parse the target number (handle "500+", "10K", etc.)
         const target = parseFloat(raw.replace(/[^0-9.]/g, ''));
         const hasPlus = raw.includes('+');
         const duration = 2000;

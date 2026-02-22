@@ -1,28 +1,29 @@
 {# --- MODULE: TFA Differentiators --- #}
-<section class="tfa-differentiators">
-    <div class="tfa-container">
-        {# Section Heading #}
-        <div class="diff-header" data-animate="fade-up">
+<div class="diff-super-gsap-wrapper">
+    <section class="tfa-differentiators pin-section">
+        <div class="tfa-container diff-header">
             <h2 class="diff-section-title">{{ module.section_heading.title }}</h2>
             <p class="diff-section-subtitle">{{ module.section_heading.subtitle }}</p>
         </div>
 
-        {# Differentiators Grid #}
-        <div class="differentiators-grid" data-animate="stagger-children">
-            {% for item in module.differentiators %}
-            <div class="diff-card">
-                {# Icon #}
-                <div class="diff-icon">
-                    {{ item.icon }}
+        {# Horizontal Scroll Track Container #}
+        <div class="diff-scroll-container">
+            <div class="differentiators-track">
+                {% for item in module.differentiators %}
+                <div class="diff-card">
+                    {# Icon #}
+                    <div class="diff-icon">
+                        {{ item.icon }}
+                    </div>
+
+                    {# Title #}
+                    <h3 class="diff-title">{{ item.title }}</h3>
+
+                    {# Description #}
+                    <p class="diff-description">{{ item.description }}</p>
                 </div>
-
-                {# Title #}
-                <h3 class="diff-title">{{ item.title }}</h3>
-
-                {# Description #}
-                <p class="diff-description">{{ item.description }}</p>
+                {% endfor %}
             </div>
-            {% endfor %}
         </div>
-    </div>
-</section>
+    </section>
+</div>

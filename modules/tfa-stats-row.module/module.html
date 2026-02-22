@@ -20,8 +20,8 @@
             <div class="stats-grid" data-animate="stagger-children">
                 {% for stat in module.stats %}
                 <div class="stat-card">
-                    <span class="stat-number" data-countup="{{ stat.number }}">0</span>
-                    <p class="stat-label">{{ stat.label }}</p>
+                    <span class="stat-number" data-countup="{{ stat.stat_number }}">0</span>
+                    <p class="stat-label">{{ stat.stat_label }}</p>
                 </div>
                 {% endfor %}
             </div>
