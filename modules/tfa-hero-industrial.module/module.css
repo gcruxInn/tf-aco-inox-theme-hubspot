@@ -69,12 +69,20 @@
 .hero-container {
   position: relative;
   z-index: 2;
-  padding-top: 6rem;
-  padding-bottom: 6rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 6rem 1rem;
 }
 
-.hero-row {
-  min-height: 60vh;
+.hero-content-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .hero-headline {
@@ -93,8 +101,11 @@
 }
 
 .hero-cta-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1rem;
-  /* Replaces bootstrap gap-3 which is 1rem */
+  margin-bottom: 2rem;
 }
 
 /* CTA Primary Button - Base Styles */
@@ -250,10 +261,18 @@
 }
 
 .hero-trust-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
   opacity: 0.9;
 }
 
 .hero-badge-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   color: rgba(255, 255, 255, 0.85);
 }
 

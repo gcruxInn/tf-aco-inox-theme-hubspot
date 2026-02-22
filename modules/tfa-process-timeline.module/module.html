@@ -1,58 +1,27 @@
 {# --- MODULE: TFA Process Timeline --- #}
-<section class="tfa-section" style="padding: 5rem 0; background-color: #f8f9fa;">
-    <div class="container">
+<section class="tfa-timeline-section">
+    <div class="tfa-container">
         {# Section Heading #}
-        <div class="text-center mb-5">
-            <h2 class="display-5 fw-bold mb-3">{{ module.section_heading.title }}</h2>
-            <p class="lead text-muted" style="max-width: 700px; margin: 0 auto;">
-                {{ module.section_heading.subtitle }}
-            </p>
+        <div class="timeline-header" data-animate="fade-up">
+            <h2 class="timeline-section-title">{{ module.section_heading.title }}</h2>
+            <p class="timeline-section-subtitle">{{ module.section_heading.subtitle }}</p>
         </div>
 
-        {# Timeline - Vertical on Mobile, Horizontal on Desktop #}
-        <div class="process-timeline">
+        {# Timeline Grid #}
+        <div class="process-timeline" data-animate="stagger-children">
             {% for step in module.steps %}
             <div class="timeline-item">
                 {# Step Number Badge #}
-                <div class="step-badge" style="
-                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                    color: white;
-                    width: 60px;
-                    height: 60px;
-                    border-radius: 50%;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    font-size: 1.5rem;
-                    font-weight: 700;
-                    margin: 0 auto 1rem;
-                    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-                ">
+                <div class="step-badge">
                     {{ step.step_number }}
                 </div>
 
                 {# Step Content Card #}
-                <div class="card border-0 shadow-sm h-100">
-                    <div class="card-body p-4 text-center">
-                        <h5 class="card-title mb-3" style="color: #1a1a1a; font-weight: 600;">
-                            {{ step.title }}
-                        </h5>
-
-                        <p class="card-text text-muted mb-3" style="font-size: 0.9rem; line-height: 1.6;">
-                            {{ step.description }}
-                        </p>
-
-                        <div style="
-                            display: inline-block;
-                            padding: 0.4rem 1rem;
-                            background-color: #f0f0f0;
-                            border-radius: 20px;
-                            font-size: 0.8rem;
-                            color: #666;
-                            font-weight: 500;
-                        ">
-                            ⏱️ {{ step.duration }}
-                        </div>
+                <div class="step-card">
+                    <h5 class="step-title">{{ step.title }}</h5>
+                    <p class="step-description">{{ step.description }}</p>
+                    <div class="step-duration">
+                        ⏱️ {{ step.duration }}
                     </div>
                 </div>
             </div>
@@ -62,50 +31,141 @@
 </section>
 
 <style>
+    .tfa-timeline-section {
+        padding: 5rem 0;
+        background-color: #f8f9fa;
+    }
+
+    .tfa-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+
+    .timeline-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .timeline-section-title {
+        font-size: 2.2rem;
+        font-weight: 800;
+        margin-bottom: 0.75rem;
+        color: #1a1a1b;
+    }
+
+    .timeline-section-subtitle {
+        font-size: 1.1rem;
+        color: #6c757d;
+        max-width: 700px;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+
+    .step-badge {
+        background: linear-gradient(135deg, #1a1a1b 0%, #333 100%);
+        color: #C0C0C0;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin: 0 auto 1rem;
+        box-shadow: 0 4px 15px rgba(26, 26, 27, 0.3);
+        border: 2px solid rgba(192, 192, 192, 0.3);
+        flex-shrink: 0;
+    }
+
+    .step-card {
+        background: #ffffff;
+        padding: 1.75rem 1.5rem;
+        border-radius: 16px;
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+        text-align: center;
+        transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        height: 100%;
+    }
+
+    .step-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .step-title {
+        color: #1a1a1b;
+        font-weight: 700;
+        font-size: 1.05rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .step-description {
+        color: #6c757d;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+    }
+
+    .step-duration {
+        display: inline-block;
+        padding: 0.35rem 1rem;
+        background-color: rgba(192, 192, 192, 0.15);
+        border-radius: 20px;
+        font-size: 0.8rem;
+        color: #555;
+        font-weight: 500;
+    }
+
     /* Desktop: Horizontal Timeline */
     @media (min-width: 768px) {
         .process-timeline {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
+            gap: 1.5rem;
         }
 
         .timeline-item {
             position: relative;
         }
 
-        /* Connector Line Between Steps (Desktop) */
+        /* Connector Line Between Steps */
         .timeline-item:not(:last-child)::after {
             content: '';
             position: absolute;
-            top: 30px;
-            left: calc(100% + 1rem);
-            width: 2rem;
+            top: 28px;
+            left: calc(100% + 0.5rem);
+            width: calc(1.5rem - 1rem);
             height: 2px;
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-            z-index: -1;
+            background: linear-gradient(90deg, #C0C0C0, #1a1a1b);
+            z-index: 0;
         }
     }
 
     /* Mobile: Vertical Timeline */
     @media (max-width: 767px) {
+        .tfa-timeline-section {
+            padding: 3.5rem 0;
+        }
+
         .process-timeline {
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            gap: 1.5rem;
             position: relative;
             padding-left: 2rem;
         }
 
-        /* Vertical Line */
         .process-timeline::before {
             content: '';
             position: absolute;
-            left: 30px;
-            top: 30px;
-            bottom: 30px;
+            left: 28px;
+            top: 28px;
+            bottom: 28px;
             width: 2px;
-            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(180deg, #C0C0C0, #1a1a1b);
         }
 
         .timeline-item .step-badge {
@@ -118,14 +178,9 @@
             position: relative;
             padding-left: 3rem;
         }
-    }
 
-    .timeline-item .card {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .timeline-item:hover .card {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12) !important;
+        .timeline-section-title {
+            font-size: 1.75rem;
+        }
     }
 </style>

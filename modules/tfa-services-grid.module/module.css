@@ -4,6 +4,21 @@
     padding: 5rem 0;
 }
 
+.tfa-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.service-arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover .service-arrow {
+    transform: translateX(5px);
+}
+
 .services-section-header {
     text-align: center;
     margin-bottom: 3rem;

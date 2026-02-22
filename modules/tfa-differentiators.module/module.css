@@ -1,47 +1,106 @@
 /* TFA Differentiators Module Styles */
 
 .tfa-differentiators {
-    padding: 4rem 0;
+    padding: 5rem 0;
+    background-color: #f8f9fa;
+}
+
+.tfa-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.diff-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.diff-section-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+    color: #1a1a1b;
+    line-height: 1.2;
+}
+
+.diff-section-subtitle {
+    font-size: 1.1rem;
+    color: #6c757d;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
 }
 
 .differentiators-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-    margin-top: 3rem;
+    gap: 1.5rem;
+    margin-top: 2rem;
 }
 
 .diff-card {
     background: #ffffff;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
-    transition: all 0.3s ease;
+    padding: 2rem 1.5rem;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Top accent line on hover */
+.diff-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #C0C0C0, #1a1a1b);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.diff-card:hover::before {
+    transform: scaleX(1);
 }
 
 .diff-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+    border-color: rgba(192, 192, 192, 0.3);
 }
 
 .diff-icon {
-    font-size: 3rem;
-    margin-bottom: 1.5rem;
-    display: block;
+    font-size: 2.5rem;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 72px;
+    height: 72px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(192, 192, 192, 0.1), rgba(26, 26, 27, 0.05));
 }
 
-.diff-card h3 {
-    font-size: 1.25rem;
+.diff-title {
+    font-size: 1.1rem;
     font-weight: 700;
     margin-bottom: 0.75rem;
-    color: #1a1a1a;
+    color: #1a1a1b;
+    letter-spacing: -0.01em;
 }
 
-.diff-card p {
-    font-size: 0.95rem;
-    color: #666;
-    line-height: 1.6;
+.diff-description {
+    font-size: 0.92rem;
+    color: #6c757d;
+    line-height: 1.65;
     margin: 0;
 }
 
@@ -54,12 +113,26 @@
 
 /* Mobile */
 @media (max-width: 768px) {
-    .differentiators-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
+    .tfa-differentiators {
+        padding: 3.5rem 0;
     }
 
-    .tfa-differentiators {
-        padding: 3rem 0;
+    .differentiators-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .diff-card {
+        padding: 1.5rem 1rem;
+    }
+
+    .diff-section-title {
+        font-size: 1.75rem;
+    }
+
+    .diff-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 2rem;
     }
 }

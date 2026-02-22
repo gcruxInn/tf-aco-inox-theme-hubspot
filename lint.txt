@@ -1,0 +1,20 @@
+﻿
+[DEPRECATED] This command has been deprecated. Please use `hs cms lint` instead.
+
+Linting /mnt/c/Users/gabri/Documents/dev/InnLeaders/TFAHUB251
+  /mnt/c/Users/gabri/Documents/dev/InnLeaders/TFAHUB251/css/main.hubl.css
+  /mnt/c/Users/gabri/Documents/dev/InnLeaders/TFAHUB251/css/theme-overrides-header-settings.hubl.css
+  /mnt/c/Users/gabri/Documents/dev/InnLeaders/TFAHUB251/layouts/base.hubl.html
+  /mnt/c/Users/gabri/Documents/dev/InnLeaders/TFAHUB251/partials/header.backup.hubl.html
+  /mnt/c/Users/gabri/Documents/dev/InnLeaders/TFAHUB251/sections/cards.hubl.html
+  /mnt/c/Users/gabri/Documents/dev/InnLeaders/TFAHUB251/sections/call-to-action.hubl.html
+  /mnt/c/Users/gabri/Documents/dev/InnLeaders/TFAHUB251/partials/header.hubl.html
+  /mnt/c/Users/gabri/Documents/dev/InnLeaders/TFAHUB251/sections/hero-banner.hubl.html
+  /mnt/c/Users/gabri/Documents/dev/InnLeaders/TFAHUB251/sections/multi-column-content.hubl.html
+  /mnt/c/Users/gabri/Documents/dev/InnLeaders/TFAHUB251/sections/multi-row-content.hubl.html
+  /mnt/c/Users/gabri/Documents/dev/InnLeaders/TFAHUB251/templates/contact.hubl.html
+  /mnt/c/Users/gabri/Documents/dev/InnLeaders/TFAHUB251/sections/pricing.hubl.html
+  /mnt/c/Users/gabri/Documents/dev/InnLeaders/TFAHUB251/templates/about.hubl.html
+  /mnt/c/Users/gabri/Documents/dev/InnLeaders/TFAHUB251/templates/hero-banner.html
+  /mnt/c/Users/gabri/Documents/dev/InnLeaders/TFAHUB251/templates/home.hubl.html
+2 issues found.

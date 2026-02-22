@@ -1,34 +1,125 @@
 {# --- MODULE: TFA CTA Footer --- #}
-<section class="tfa-section"
-    style="background: var(--color-dark); color: white; text-align: center; position: relative; overflow: hidden;">
-    <div
-        style="position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: linear-gradient(90deg, var(--color-accent), var(--color-primary));">
-    </div>
-    <div class="container animate-fade-up">
-        <h2 style="color: white; margin-bottom: 1rem;">{{ module.text.headline }}</h2>
-        <p
-            style="color: rgba(255,255,255,0.7); margin-bottom: 2.5rem; font-size: 1.25rem; max-width: 700px; margin-left: auto; margin-right: auto;">
-            {{ module.text.subhead }}
-        </p>
-        <div class="d-flex justify-content-center gap-3">
+<section class="tfa-cta-section">
+    <div class="cta-accent-line"></div>
+    <div class="tfa-container" data-animate="fade-up">
+        <h2 class="cta-headline">{{ module.text.headline }}</h2>
+        <p class="cta-subhead">{{ module.text.subhead }}</p>
+        <div class="cta-buttons">
             {% if module.actions.primary.url.href %}
             {% set href = module.actions.primary.url.href %}
             {% if module.actions.primary.url.type is equalto "EMAIL_ADDRESS" %}
             {% set href = "mailto:" + href %}
             {% endif %}
-            <a href="{{ href }}" class="btn-primary"
-                style="background: var(--color-primary); color: white; border-color: var(--color-primary);">
+            <a href="{{ href }}" class="cta-btn-primary">
                 {{ module.actions.primary.button_text }}
             </a>
             {% endif %}
 
             {% if module.actions.secondary.url.href %}
             {% set href2 = module.actions.secondary.url.href %}
-            <a href="{{ href2 }}"
-                style="padding: 1rem 2rem; border: 1px solid rgba(255,255,255,0.3); color: white; border-radius: 8px; text-decoration: none; transition: 0.2s;">
+            <a href="{{ href2 }}" class="cta-btn-secondary">
                 {{ module.actions.secondary.button_text }}
             </a>
             {% endif %}
         </div>
     </div>
 </section>
+
+<style>
+    .tfa-cta-section {
+        background: linear-gradient(135deg, #1a1a1b 0%, #111 100%);
+        color: white;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        padding: 5rem 0;
+    }
+
+    .cta-accent-line {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(90deg, #C0C0C0, #1a1a1b, #C0C0C0);
+    }
+
+    .tfa-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+
+    .cta-headline {
+        color: white;
+        font-size: 2.2rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+    }
+
+    .cta-subhead {
+        color: rgba(255, 255, 255, 0.65);
+        margin-bottom: 2.5rem;
+        font-size: 1.15rem;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.7;
+    }
+
+    .cta-buttons {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .cta-btn-primary {
+        display: inline-block;
+        padding: 1rem 2.5rem;
+        background: linear-gradient(135deg, #C0C0C0 0%, #a8a8a8 100%);
+        color: #1a1a1b;
+        font-weight: 700;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+    }
+
+    .cta-btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(192, 192, 192, 0.3);
+    }
+
+    .cta-btn-secondary {
+        display: inline-block;
+        padding: 1rem 2.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+    }
+
+    .cta-btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.5);
+        transform: translateY(-3px);
+    }
+
+    @media (max-width: 768px) {
+        .tfa-cta-section {
+            padding: 3.5rem 0;
+        }
+
+        .cta-headline {
+            font-size: 1.75rem;
+        }
+
+        .cta-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+</style>

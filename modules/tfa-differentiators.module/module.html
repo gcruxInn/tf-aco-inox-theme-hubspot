@@ -1,46 +1,28 @@
 {# --- MODULE: TFA Differentiators --- #}
-<section class="tfa-section" style="padding: 5rem 0; background-color: #f8f9fa;">
-    <div class="container">
+<section class="tfa-differentiators">
+    <div class="tfa-container">
         {# Section Heading #}
-        <div class="text-center mb-5">
-            <h2 class="display-5 fw-bold mb-3">{{ module.section_heading.title }}</h2>
-            <p class="lead text-muted" style="max-width: 700px; margin: 0 auto;">
-                {{ module.section_heading.subtitle }}
-            </p>
+        <div class="diff-header" data-animate="fade-up">
+            <h2 class="diff-section-title">{{ module.section_heading.title }}</h2>
+            <p class="diff-section-subtitle">{{ module.section_heading.subtitle }}</p>
         </div>
 
         {# Differentiators Grid #}
-        <div class="row g-4">
+        <div class="differentiators-grid" data-animate="stagger-children">
             {% for item in module.differentiators %}
-            <div class="col-md-6 col-lg-3">
-                <div class="card h-100 border-0 shadow-sm"
-                    style="transition: transform 0.3s ease, box-shadow 0.3s ease;">
-                    <div class="card-body text-center p-4">
-                        {# Icon #}
-                        <div class="mb-3" style="font-size: 3rem; color: var(--color-primary, #2C3E50);">
-                            {{ item.icon }}
-                        </div>
-
-                        {# Title #}
-                        <h4 class="card-title h5 mb-3" style="color: #1a1a1a; font-weight: 600;">
-                            {{ item.title }}
-                        </h4>
-
-                        {# Description #}
-                        <p class="card-text text-muted" style="font-size: 0.95rem; line-height: 1.6;">
-                            {{ item.description }}
-                        </p>
-                    </div>
+            <div class="diff-card">
+                {# Icon #}
+                <div class="diff-icon">
+                    {{ item.icon }}
                 </div>
+
+                {# Title #}
+                <h3 class="diff-title">{{ item.title }}</h3>
+
+                {# Description #}
+                <p class="diff-description">{{ item.description }}</p>
             </div>
             {% endfor %}
         </div>
     </div>
 </section>
-
-<style>
-    .tfa-section .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
-    }
-</style>

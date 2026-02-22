@@ -31,50 +31,47 @@
     </div>
 
     {# CONTENT LAYER #}
-    <div class="container hero-container">
-        <div class="row align-items-center hero-row">
-            <div class="col-12 col-lg-8 mx-auto text-center animate-fade-up">
+    <div class="hero-container">
+        <div class="hero-content-wrapper">
 
-                {# Headline #}
-                <h1 class="display-3 fw-bold mb-4 hero-headline">
-                    {{ module.hero_content.headline }}
-                </h1>
+            {# Headline #}
+            <h1 class="hero-headline">
+                {{ module.hero_content.headline }}
+            </h1>
 
-                {# Subheadline #}
-                <p class="lead mb-5 hero-subheadline">
-                    {{ module.hero_content.subheadline }}
-                </p>
+            {# Subheadline #}
+            <p class="hero-subheadline">
+                {{ module.hero_content.subheadline }}
+            </p>
 
-                {# CTAs #}
-                <div class="d-flex flex-column flex-sm-row justify-content-center hero-cta-wrapper mb-5">
-                    {% if module.hero_content.cta_primary_text %}
-                    <a href="{{ module.hero_content.cta_primary_link }}" class="btn btn-primary btn-lg btn-hero-primary"
-                        data-border-style="{{ module.style.cta_border_style }}">
-                        {{ module.hero_content.cta_primary_text }}
-                    </a>
-                    {% endif %}
-
-                    {% if module.hero_content.cta_secondary_text %}
-                    <a href="{{ module.hero_content.cta_secondary_link }}"
-                        class="btn btn-outline-light btn-lg btn-hero-secondary">
-                        {{ module.hero_content.cta_secondary_text }}
-                    </a>
-                    {% endif %}
-                </div>
-
-                {# Trust Badges (Optional) #}
-                {% if module.badges %}
-                <div class="d-flex flex-wrap justify-content-center gap-4 mt-5 hero-trust-badges">
-                    {% for badge in module.badges %}
-                    <div class="d-flex align-items-center gap-2 hero-badge-item">
-                        <span style="font-size: 1.25rem;">{{ badge.icon }}</span>
-                        <span style="font-size: 0.9rem; font-weight: 500;">{{ badge.text }}</span>
-                    </div>
-                    {% endfor %}
-                </div>
+            {# CTAs #}
+            <div class="hero-cta-wrapper">
+                {% if module.hero_content.cta_primary_text %}
+                <a href="{{ module.hero_content.cta_primary_link }}" class="btn-hero-primary"
+                    data-border-style="{{ module.style.cta_border_style }}">
+                    {{ module.hero_content.cta_primary_text }}
+                </a>
                 {% endif %}
 
+                {% if module.hero_content.cta_secondary_text %}
+                <a href="{{ module.hero_content.cta_secondary_link }}" class="btn-hero-secondary">
+                    {{ module.hero_content.cta_secondary_text }}
+                </a>
+                {% endif %}
             </div>
+
+            {# Trust Badges (Optional) #}
+            {% if module.badges %}
+            <div class="hero-trust-badges">
+                {% for badge in module.badges %}
+                <div class="hero-badge-item">
+                    <span style="font-size: 1.25rem;">{{ badge.icon }}</span>
+                    <span style="font-size: 0.9rem; font-weight: 500;">{{ badge.text }}</span>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
         </div>
     </div>
 

@@ -20,6 +20,11 @@
   {{ require_css(get_asset_url("../css/theme-overrides.hubl.css")) }}
   {# Header Styles #}
   {{ require_css(get_asset_url("../css/theme-overrides-header-settings.hubl.css")) }}
+
+  {# GSAP + ScrollTrigger CDN (Lightweight animation engine) #}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
   {# To see a full list of what is included via standard_header_includes please reference this article:
   https://developers.hubspot.com/docs/cms/hubl/variables#required-page-template-variables #}
   {{ standard_header_includes }}

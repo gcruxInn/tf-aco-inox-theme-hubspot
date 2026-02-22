@@ -1,33 +1,159 @@
 {# --- MODULE: TFA Stats Row --- #}
-<section class="tfa-section stainless-gradient">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-5 animate-fade-up">
-                <h2>{{ module.stats_content.title }}</h2>
-                <div class="mb-4">{{ module.stats_content.description }}</div>
+<section class="tfa-stats-section">
+    <div class="tfa-container">
+        <div class="stats-layout">
+            {# Left Column: Text Content #}
+            <div class="stats-text" data-animate="fade-left">
+                <h2 class="stats-title">{{ module.stats_content.title }}</h2>
+                <div class="stats-description">{{ module.stats_content.description }}</div>
 
-                <ul style="list-style: none; padding: 0; margin-bottom: 2rem;">
+                <ul class="stats-bullets">
                     {% for bullet in module.stats_content.bullets %}
-                    <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 10px;">
-                        <span style="color: var(--color-accent);">✓</span> {{ bullet }}
+                    <li class="stats-bullet-item">
+                        <span class="bullet-check">✓</span> {{ bullet }}
                     </li>
                     {% endfor %}
                 </ul>
             </div>
 
-            <div class="col-md-6 offset-md-1 animate-fade-up delay-200">
-                <div class="row text-center">
-                    {% for stat in module.stats %}
-                    <div class="col-6 mb-4">
-                        <div class="tfa-card">
-                            <span style="font-size: 2.5rem; font-weight: 700; color: var(--color-primary);">{{
-                                stat.number }}</span>
-                            <p style="font-size: 0.875rem; color: #666; margin: 0;">{{ stat.label }}</p>
-                        </div>
-                    </div>
-                    {% endfor %}
+            {# Right Column: Stats Grid #}
+            <div class="stats-grid" data-animate="stagger-children">
+                {% for stat in module.stats %}
+                <div class="stat-card">
+                    <span class="stat-number" data-countup="{{ stat.number }}">0</span>
+                    <p class="stat-label">{{ stat.label }}</p>
                 </div>
+                {% endfor %}
             </div>
         </div>
     </div>
 </section>
+
+<style>
+    .tfa-stats-section {
+        padding: 5rem 0;
+        background: linear-gradient(135deg, #1a1a1b 0%, #111 100%);
+        color: white;
+    }
+
+    .tfa-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+
+    .stats-layout {
+        display: grid;
+        grid-template-columns: 5fr 6fr;
+        gap: 4rem;
+        align-items: center;
+    }
+
+    .stats-title {
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: white;
+        margin-bottom: 1rem;
+        line-height: 1.2;
+    }
+
+    .stats-description {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 1rem;
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+    }
+
+    .stats-bullets {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .stats-bullet-item {
+        margin-bottom: 0.75rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 0.95rem;
+    }
+
+    .bullet-check {
+        color: #C0C0C0;
+        font-weight: 700;
+        font-size: 1.1rem;
+        flex-shrink: 0;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .stat-card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(192, 192, 192, 0.15);
+        border-radius: 16px;
+        padding: 2rem 1.5rem;
+        text-align: center;
+        transition: all 0.35s ease;
+    }
+
+    .stat-card:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(192, 192, 192, 0.3);
+        transform: translateY(-4px);
+    }
+
+    .stat-number {
+        font-size: 2.8rem;
+        font-weight: 800;
+        color: #C0C0C0;
+        display: block;
+        line-height: 1;
+        margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.6);
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 500;
+    }
+
+    /* Tablet */
+    @media (max-width: 992px) {
+        .stats-layout {
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+        }
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+        .tfa-stats-section {
+            padding: 3.5rem 0;
+        }
+
+        .stats-title {
+            font-size: 1.75rem;
+        }
+
+        .stats-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .stat-card {
+            padding: 1.5rem 1rem;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+        }
+    }
+</style>

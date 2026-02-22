@@ -12,16 +12,16 @@
 {% endset %}
 
 <section class="tfa-services-section">
-    <div class="container">
+    <div class="tfa-container">
 
         {# Section Header #}
-        <div class="services-section-header">
+        <div class="services-section-header" data-animate="fade-up">
             <h2 class="services-section-title">{{ module.section_heading.title }}</h2>
             <p class="services-section-subtitle">{{ module.section_heading.subtitle }}</p>
         </div>
 
         {# Services Grid (Autonomic CSS Grid) #}
-        <div class="services-grid">
+        <div class="services-grid" data-animate="stagger-children">
             {% for service in module.services %}
             <a href="{{ service.link }}" class="service-card" aria-label="Saiba mais sobre {{ service.title }}">
 
@@ -39,7 +39,7 @@
                     <h3 class="service-title">{{ service.title }}</h3>
                     <div class="service-description">{{ service.description }}</div>
                     <span class="service-link">
-                        Saiba Mais →
+                        Saiba Mais <span class="service-arrow">→</span>
                     </span>
                 </div>
 

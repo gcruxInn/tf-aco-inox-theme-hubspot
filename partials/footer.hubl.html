@@ -1,20 +1,182 @@
 <!--
   templateType: global_partial
-  label: Global Footer
+  label: Global Footer TF Aço Inox
 -->
-<!--
-  templateType: global_partial
-  label: Global Footer
--->
-<footer class="footer" role="contentinfo" itemscope itemtype="http://schema.org/WPFooter">
-    <div class="footer__dnd-area">
-        {% dnd_area "footer_content" label="Footer Content" %}
-        {% dnd_section %}
-        {% dnd_column width=12 %}
-        {% module "copyright" path="@hubspot/rich_text" default_html="<p>&copy; 2026 TF Aço e Inox. Todos os direitos
-            reservados.</p>" %}
-        {% end_dnd_column %}
-        {% end_dnd_section %}
-        {% end_dnd_area %}
+<footer class="footer tfa-footer" role="contentinfo" itemscope itemtype="http://schema.org/WPFooter"
+  style="background: #0d0d0d; color: rgba(255,255,255,0.75); padding: 5rem 0 0;">
+
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
+
+    {# TOP FOOTER: Logo + Columns #}
+    <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; margin-bottom: 4rem;">
+
+      {# Column 1: Brand #}
+      <div>
+        <a href="/" aria-label="TF Aço e Inox - Início">
+          {% module "footer_logo" path="@hubspot/logo"
+          override_inherit_base_logo=false,
+          img={
+          "src": theme.brand_settings.logo_src || "https://f.hubspotusercontent00.net/hubfs/50649402/logo-tf-aco.png",
+          "width": 160,
+          "alt": "TF Aço e Inox Logo",
+          "loading": "lazy"
+          }
+          %}
+        </a>
+        <p style="color: rgba(255,255,255,0.55); font-size: 0.95rem; line-height: 1.8; margin: 1.5rem 0 2rem;">
+          Transformando aço em soluções com qualidade e precisão. Especialistas em estruturas metálicas, corrimãos,
+          portões e projetos industriais em Pernambuco.
+        </p>
+        {# Social Links #}
+        <div style="display: flex; gap: 0.75rem;">
+          <a href="https://wa.me/5581999699449" target="_blank" rel="noopener" aria-label="WhatsApp TF Aço e Inox"
+            style="width: 44px; height: 44px; border-radius: 10px; background: #25D366; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; font-size: 1.1rem; transition: opacity 0.2s;">
+            💬
+          </a>
+          <a href="#" target="_blank" rel="noopener" aria-label="Instagram TF Aço e Inox"
+            style="width: 44px; height: 44px; border-radius: 10px; background: linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045); display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; font-size: 1.1rem;">
+            📸
+          </a>
+          <a href="#" target="_blank" rel="noopener" aria-label="LinkedIn TF Aço e Inox"
+            style="width: 44px; height: 44px; border-radius: 10px; background: #0077B5; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; font-size: 1.1rem;">
+            💼
+          </a>
+        </div>
+      </div>
+
+      {# Column 2: Empresa #}
+      <div>
+        <h4
+          style="color: #C0C0C0; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 1.5rem;">
+          Empresa</h4>
+        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem;">
+          <li><a href="/sobre"
+              style="color: rgba(255,255,255,0.65); text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">Sobre
+              Nós</a></li>
+          <li><a href="/sobre#missao"
+              style="color: rgba(255,255,255,0.65); text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">Missão
+              e Valores</a></li>
+          <li><a href="/blog"
+              style="color: rgba(255,255,255,0.65); text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">Blog</a>
+          </li>
+          <li><a href="/contato"
+              style="color: rgba(255,255,255,0.65); text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">Contato</a>
+          </li>
+        </ul>
+      </div>
+
+      {# Column 3: Serviços #}
+      <div>
+        <h4
+          style="color: #C0C0C0; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 1.5rem;">
+          Serviços</h4>
+        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem;">
+          <li><a href="/servicos/estruturas-metalicas"
+              style="color: rgba(255,255,255,0.65); text-decoration: none; font-size: 0.95rem;">Estruturas Metálicas</a>
+          </li>
+          <li><a href="/servicos/corrimaos-guarda-corpos"
+              style="color: rgba(255,255,255,0.65); text-decoration: none; font-size: 0.95rem;">Corrimãos em Inox</a>
+          </li>
+          <li><a href="/servicos/portoes-grades"
+              style="color: rgba(255,255,255,0.65); text-decoration: none; font-size: 0.95rem;">Portões e Grades</a>
+          </li>
+          <li><a href="/servicos/steel-frame"
+              style="color: rgba(255,255,255,0.65); text-decoration: none; font-size: 0.95rem;">Steel Frame</a></li>
+          <li><a href="/servicos/projetos-industriais"
+              style="color: rgba(255,255,255,0.65); text-decoration: none; font-size: 0.95rem;">Projetos Industriais</a>
+          </li>
+          <li><a href="/servicos" style="color: #C0C0C0; text-decoration: none; font-size: 0.9rem; font-weight: 600;">→
+              Ver Todos</a></li>
+        </ul>
+      </div>
+
+      {# Column 4: Recursos + Legal #}
+      <div>
+        <h4
+          style="color: #C0C0C0; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 1.5rem;">
+          Recursos</h4>
+        <ul
+          style="list-style: none; padding: 0; margin: 0 0 2rem; display: flex; flex-direction: column; gap: 0.75rem;">
+          <li><a href="/portfolio"
+              style="color: rgba(255,255,255,0.65); text-decoration: none; font-size: 0.95rem;">Portfolio</a></li>
+          <li><a href="/orcamento"
+              style="color: rgba(255,255,255,0.65); text-decoration: none; font-size: 0.95rem;">Solicitar Orçamento</a>
+          </li>
+        </ul>
+        <h4
+          style="color: #C0C0C0; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 1.5rem;">
+          Legal</h4>
+        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem;">
+          <li><a href="/privacidade"
+              style="color: rgba(255,255,255,0.65); text-decoration: none; font-size: 0.95rem;">Política de
+              Privacidade</a></li>
+          <li><a href="/termos" style="color: rgba(255,255,255,0.65); text-decoration: none; font-size: 0.95rem;">Termos
+              de Uso</a></li>
+        </ul>
+      </div>
+
     </div>
+
+    {# CONTACT STRIP #}
+    <div
+      style="border-top: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08); padding: 2rem 0; margin-bottom: 2rem; display: flex; gap: 3rem; flex-wrap: wrap; align-items: center;">
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <span style="color: #C0C0C0; font-size: 1.2rem;">📞</span>
+        <div>
+          <div
+            style="font-size: 0.75rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px;">
+            Telefone</div>
+          <a href="tel:+5581999699449" style="color: white; text-decoration: none; font-weight: 600;">+55 81
+            99969-9449</a>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <span style="color: #C0C0C0; font-size: 1.2rem;">✉️</span>
+        <div>
+          <div
+            style="font-size: 0.75rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px;">
+            E-mail</div>
+          <a href="mailto:comercial2@fenixelevacoes.com.br"
+            style="color: white; text-decoration: none; font-weight: 600;">comercial2@fenixelevacoes.com.br</a>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <span style="color: #C0C0C0; font-size: 1.2rem;">📍</span>
+        <div>
+          <div
+            style="font-size: 0.75rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px;">
+            Localização</div>
+          <span style="color: white; font-weight: 600;">Recife, Pernambuco – Brasil</span>
+        </div>
+      </div>
+      <div style="margin-left: auto;">
+        <a href="/orcamento"
+          style="background: linear-gradient(135deg, #C0C0C0, #a0a0a0); color: #0d0d0d; padding: 0.85rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase;">
+          Solicitar Orçamento →
+        </a>
+      </div>
+    </div>
+
+    {# BOTTOM: Copyright #}
+    <div
+      style="padding: 1.5rem 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+      <p style="color: rgba(255,255,255,0.35); font-size: 0.85rem; margin: 0;">
+        &copy; 2026 <strong style="color: rgba(255,255,255,0.5);">TF Aço e Inox / Fênix Elevações</strong>. Todos os
+        direitos reservados.
+      </p>
+      <p style="color: rgba(255,255,255,0.25); font-size: 0.8rem; margin: 0;">
+        Desenvolvido com ♦ e tecnologia HubSpot CMS · CNPJ: A confirmar
+      </p>
+    </div>
+
+  </div>
 </footer>
+
+{# WhatsApp Floating Button (Mobile-first) #}
+<a href="https://wa.me/5581999699449?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento" target="_blank"
+  rel="noopener" aria-label="Fale conosco pelo WhatsApp"
+  style="position: fixed; bottom: 2rem; right: 2rem; width: 60px; height: 60px; border-radius: 50%; background: #25D366; color: white; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; box-shadow: 0 8px 24px rgba(37,211,102,0.4); z-index: 9999; text-decoration: none; transition: transform 0.3s, box-shadow 0.3s;"
+  onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 12px 30px rgba(37,211,102,0.5)';"
+  onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 8px 24px rgba(37,211,102,0.4)';">
+  💬
+</a>

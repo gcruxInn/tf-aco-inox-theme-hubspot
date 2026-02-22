@@ -23,5 +23,8 @@ vibe-blueprint.json
 /sections
 /images
 /layouts
-theme.json
+ theme.json
 fields.json
+
+# AI Brain History
+.ai_brain/
