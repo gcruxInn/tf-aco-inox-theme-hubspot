@@ -1,22 +1,15 @@
-/* TFA Services Grid Module Styles */
+/* TFA Services Grid Module Styles — Inox Chrome Edition */
 
 .tfa-services-section {
-    padding: 5rem 0;
+    padding: 6rem 0;
+    position: relative;
+    z-index: 1;
 }
 
 .tfa-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 1rem;
-}
-
-.service-arrow {
-    display: inline-block;
-    transition: transform 0.3s ease;
-}
-
-.service-card:hover .service-arrow {
-    transform: translateX(5px);
 }
 
 .services-section-header {
@@ -28,14 +21,16 @@
     font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 1rem;
-    color: #1a1a1a;
+    color: #0f172a;
+    letter-spacing: -0.02em;
 }
 
 .services-section-subtitle {
     font-size: 1.125rem;
-    color: #6c757d;
+    color: #64748b;
     max-width: 700px;
     margin: 0 auto;
+    line-height: 1.6;
 }
 
 /* Corporate Grid Layout */
@@ -44,71 +39,138 @@
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     margin-top: 3rem;
+    perspective: 1200px;
+    /* Enables 3D space for child card tilts */
 }
 
-/* Service Card */
+/* ================================================
+   Service Card — Inox Chrome Glassmorphism
+   ================================================ */
 .service-card {
-    background: #ffffff;
-    border: 2px solid #e9ecef;
-    border-radius: 12px;
+    position: relative;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
     overflow: hidden;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     height: 100%;
     display: flex;
     flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    transform-style: preserve-3d;
+    /* Critical for 3D tilt */
+    will-change: transform;
+    transition: box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Chrome steel shadow */
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.06),
+        0 1px 3px rgba(0, 0, 0, 0.04),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
-/* Corporate Hover Effect: Lift + Silver Border */
+/* Hover State */
 .service-card:hover {
-    transform: translateY(-8px);
-    border-color: #c0c0c0;
-    /* Silver */
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    border-color: rgba(192, 192, 192, 0.6);
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.12),
+        0 8px 16px rgba(0, 0, 0, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 1);
 }
 
-/* Icon Container */
+/* ================================================
+   Icon Container — Steel Plate Gradient
+   ================================================ */
 .service-icon-wrapper {
-    height: 120px;
+    height: 140px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #1e293b 100%);
     padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Metallic sheen across the icon plate */
+.service-icon-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.15),
+            transparent);
+    transform: skewX(-20deg);
+    animation: steel-sheen 4s ease-in-out infinite;
+}
+
+@keyframes steel-sheen {
+    0% {
+        left: -100%;
+    }
+
+    50%,
+    100% {
+        left: 150%;
+    }
 }
 
 .service-icon {
-    width: 64px;
-    height: 64px;
-    color: #ffffff;
+    width: 56px;
+    height: 56px;
+    color: rgba(255, 255, 255, 0.9);
     fill: none;
     stroke: currentColor;
-    stroke-width: 2;
+    stroke-width: 1.5;
     stroke-linecap: round;
     stroke-linejoin: round;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
 
-/* Card Content */
+.service-arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover .service-arrow {
+    transform: translateX(6px);
+}
+
+/* ================================================
+   Card Content
+   ================================================ */
 .service-content {
-    padding: 2rem;
+    padding: 1.75rem;
     flex: 1;
     display: flex;
     flex-direction: column;
+    position: relative;
+    z-index: 1;
 }
 
 .service-title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    color: #1a1a1a;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: #0f172a;
     line-height: 1.4;
+    letter-spacing: -0.01em;
 }
 
 .service-description {
-    font-size: 0.95rem;
-    color: #6c757d;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
+    font-size: 0.92rem;
+    color: #64748b;
+    line-height: 1.65;
+    margin-bottom: 1.25rem;
     flex: 1;
 }
 
@@ -116,19 +178,23 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    color: #667eea;
+    color: #334155;
     font-weight: 600;
     text-decoration: none;
-    font-size: 0.95rem;
-    transition: color 0.2s ease;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
     margin-top: auto;
+    letter-spacing: 0.01em;
 }
 
 .service-link:hover {
-    color: #764ba2;
+    color: #0f172a;
+    gap: 0.75rem;
 }
 
-/* Responsive Breakpoints */
+/* ================================================
+   Responsive
+   ================================================ */
 @media (max-width: 992px) {
     .services-grid {
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -138,7 +204,7 @@
 
 @media (max-width: 768px) {
     .tfa-services-section {
-        padding: 3rem 0;
+        padding: 4rem 0;
     }
 
     .services-section-title {
@@ -148,10 +214,12 @@
     .services-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
+        perspective: none;
+        /* Disable 3D tilt on mobile */
     }
 
     .service-icon-wrapper {
-        height: 100px;
+        height: 110px;
     }
 
     .service-content {

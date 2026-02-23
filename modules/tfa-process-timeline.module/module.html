@@ -1,4 +1,3 @@
-{# --- MODULE: TFA Process Timeline --- #}
 <section class="tfa-timeline-section">
     <div class="tfa-container">
         {# Section Heading #}
@@ -7,23 +6,27 @@
             <p class="timeline-section-subtitle">{{ module.section_heading.subtitle }}</p>
         </div>
 
-        {# Timeline Grid #}
-        <div class="process-timeline" data-animate="stagger-children">
+        {# Timeline Stack #}
+        <div class="process-timeline-stack">
             {% for step in module.steps %}
-            <div class="timeline-item">
-                {# Step Number Badge #}
-                <div class="step-badge">
-                    {{ step.step_number }}
-                </div>
+            <div class="timeline-stack-card" style="z-index: {{ 100 - loop.index }};">
 
-                {# Step Content Card #}
-                <div class="step-card">
-                    <h5 class="step-title">{{ step.title }}</h5>
-                    <p class="step-description">{{ step.description }}</p>
-                    <div class="step-duration">
-                        ⏱️ {{ step.duration }}
+                <div class="timeline-glass-panel">
+                    {# Chrome Edge Glow & Reflection Handled in CSS #}
+
+                    <div class="step-badge">
+                        {{ step.step_number }}
+                    </div>
+
+                    <div class="step-content">
+                        <h3 class="step-title">{{ step.title }}</h3>
+                        <p class="step-description">{{ step.description }}</p>
+                        <div class="step-duration">
+                            ⏱️ {{ step.duration }}
+                        </div>
                     </div>
                 </div>
+
             </div>
             {% endfor %}
         </div>
@@ -31,40 +34,146 @@
 </section>
 
 <style>
+    /* Inox Chrome Dark Background for the whole section to contrast the glass */
     .tfa-timeline-section {
-        padding: 5rem 0;
+        min-height: 100vh;
+        padding: 4rem 0 2rem;
+        box-sizing: border-box;
+        background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
         background-color: #f8f9fa;
+        position: relative;
+        z-index: 20;
     }
 
-    .tfa-container {
+    .tfa-timeline-section>.tfa-container {
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 1rem;
+        position: relative;
     }
 
     .timeline-header {
         text-align: center;
         margin-bottom: 3rem;
+        position: relative;
+        z-index: 200;
+        flex-shrink: 0;
     }
 
     .timeline-section-title {
-        font-size: 2.2rem;
+        font-size: 2.8rem;
         font-weight: 800;
-        margin-bottom: 0.75rem;
-        color: #1a1a1b;
+        margin-bottom: 1rem;
+        color: #0f172a;
+        letter-spacing: -0.02em;
     }
 
     .timeline-section-subtitle {
-        font-size: 1.1rem;
-        color: #6c757d;
+        font-size: 1.125rem;
+        color: #64748b;
         max-width: 700px;
         margin: 0 auto;
         line-height: 1.6;
     }
 
+    /* Stack Container */
+    .process-timeline-stack {
+        position: relative;
+        width: 100%;
+        max-width: 520px;
+        height: 320px;
+        margin: 0 auto;
+        perspective: 1500px;
+    }
+
+    /* Absolute Cards */
+    .timeline-stack-card {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform-origin: bottom center;
+        /* Pivot from the bottom during animations */
+        will-change: transform, opacity;
+    }
+
+    /* Glassmorphism Panel (Inox Chrome Style) */
+    .timeline-glass-panel {
+        width: 100%;
+        height: 100%;
+
+        /* Metallic Chrome Gradient Background 
+        background: linear-gradient(135deg,
+                rgba(255, 255, 255, 0.95) 0%,
+                rgba(240, 242, 245, 0.75) 40%,
+                rgba(225, 228, 232, 0.85) 60%,
+                rgba(255, 255, 255, 0.98) 100%);
+        */
+        background: linear-gradient(135deg, rgb(81 81 81) 0%, rgb(171 171 171) 40%, rgb(141 141 141) 60%, rgb(41 41 41 / 98%) 100%);
+        backdrop-filter: blur(25px) saturate(180%);
+        -webkit-backdrop-filter: blur(25px) saturate(180%);
+        border-radius: 24px;
+        padding: 2rem 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        position: relative;
+        z-index: 1;
+
+        /* Premium Chrome Shadow */
+        box-shadow:
+            0 24px 48px rgba(0, 0, 0, 0.08),
+            0 12px 24px rgba(0, 0, 0, 0.04);
+    }
+
+    /* Silver Thread Gradient Border (Fio Prateado) */
+    .timeline-glass-panel::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 24px;
+        padding: 1px;
+        /* Espessura do fio prateado */
+        background: linear-gradient(135deg,
+                rgba(255, 255, 255, 1) 0%,
+                rgba(180, 180, 180, 0.4) 20%,
+                rgba(255, 255, 255, 0.9) 50%,
+                rgba(160, 160, 160, 0.3) 80%,
+                rgba(255, 255, 255, 1) 100%);
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        z-index: -1;
+        pointer-events: none;
+    }
+
+    /* Fake depth offset to make them look obviously stacked initially 
+       This will be handled by GSAP, but a fallback is good */
+    .timeline-stack-card:nth-child(2) {
+        transform: translateY(10px) scale(0.98);
+    }
+
+    .timeline-stack-card:nth-child(3) {
+        transform: translateY(20px) scale(0.96);
+    }
+
+    .timeline-stack-card:nth-child(4) {
+        transform: translateY(30px) scale(0.94);
+    }
+
+    .timeline-stack-card:nth-child(5) {
+        transform: translateY(40px) scale(0.92);
+    }
+
     .step-badge {
-        background: linear-gradient(135deg, #1a1a1b 0%, #333 100%);
-        color: #C0C0C0;
+        background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #1e293b 100%);
+        color: #fff;
         width: 56px;
         height: 56px;
         border-radius: 50%;
@@ -72,115 +181,132 @@
         align-items: center;
         justify-content: center;
         font-size: 1.4rem;
-        font-weight: 700;
-        margin: 0 auto 1rem;
-        box-shadow: 0 4px 15px rgba(26, 26, 27, 0.3);
-        border: 2px solid rgba(192, 192, 192, 0.3);
-        flex-shrink: 0;
+        font-weight: 800;
+        margin-bottom: 1rem;
+
+        /* Metallic border and shadow */
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        box-shadow:
+            0 10px 20px rgba(0, 0, 0, 0.15),
+            inset 0 2px 4px rgba(255, 255, 255, 0.3);
+
+        position: relative;
+        overflow: hidden;
     }
 
-    .step-card {
-        background: #ffffff;
-        padding: 1.75rem 1.5rem;
-        border-radius: 16px;
-        border: 1px solid rgba(0, 0, 0, 0.06);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-        text-align: center;
-        transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Steel Sheen on Badge */
+    .step-badge::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 50%;
         height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        transform: skewX(-20deg);
+        animation: timeline-sheen 4s infinite;
     }
 
-    .step-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+    @keyframes timeline-sheen {
+
+        0%,
+        50% {
+            left: -100%;
+        }
+
+        100% {
+            left: 200%;
+        }
     }
 
     .step-title {
-        color: #1a1a1b;
-        font-weight: 700;
-        font-size: 1.05rem;
-        margin-bottom: 0.75rem;
+        color: #0f172a;
+        font-weight: 800;
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+        letter-spacing: -0.01em;
     }
 
     .step-description {
-        color: #6c757d;
-        font-size: 0.9rem;
+        color: #303030;
+        font-size: 1.33rem;
         line-height: 1.6;
         margin-bottom: 1rem;
     }
 
     .step-duration {
-        display: inline-block;
-        padding: 0.35rem 1rem;
-        background-color: rgba(192, 192, 192, 0.15);
-        border-radius: 20px;
+        display: inline-flex;
+        align-items: center;
+        padding: 0.5rem 1.25rem;
+        border-radius: 30px;
         font-size: 0.8rem;
-        color: #555;
-        font-weight: 500;
+        font-weight: 600;
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+
+        /* Inox Chrome Glass — same as .btn-hero-secondary */
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* Desktop: Horizontal Timeline */
-    @media (min-width: 768px) {
-        .process-timeline {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-        }
-
-        .timeline-item {
-            position: relative;
-        }
-
-        /* Connector Line Between Steps */
-        .timeline-item:not(:last-child)::after {
-            content: '';
-            position: absolute;
-            top: 28px;
-            left: calc(100% + 0.5rem);
-            width: calc(1.5rem - 1rem);
-            height: 2px;
-            background: linear-gradient(90deg, #C0C0C0, #1a1a1b);
-            z-index: 0;
-        }
+    /* Metallic Spotlight underlay */
+    .step-duration::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at 50% 50%,
+                rgba(255, 255, 255, 0.35) 0%,
+                rgba(255, 255, 255, 0.0) 70%);
+        z-index: -1;
+        opacity: 0.6;
+        border-radius: 30px;
     }
 
-    /* Mobile: Vertical Timeline */
-    @media (max-width: 767px) {
+    .step-duration:hover {
+        transform: translateY(-2px);
+        border-color: rgba(255, 255, 255, 0.6);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4), inset 0 2px 3px rgba(255, 255, 255, 0.8);
+    }
+
+    @media (max-width: 768px) {
         .tfa-timeline-section {
-            padding: 3.5rem 0;
-        }
-
-        .process-timeline {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            position: relative;
-            padding-left: 2rem;
-        }
-
-        .process-timeline::before {
-            content: '';
-            position: absolute;
-            left: 28px;
-            top: 28px;
-            bottom: 28px;
-            width: 2px;
-            background: linear-gradient(180deg, #C0C0C0, #1a1a1b);
-        }
-
-        .timeline-item .step-badge {
-            position: absolute;
-            left: 0;
-            top: 0;
-        }
-
-        .timeline-item {
-            position: relative;
-            padding-left: 3rem;
+            padding: 4rem 0;
         }
 
         .timeline-section-title {
-            font-size: 1.75rem;
+            font-size: 2.2rem;
+        }
+
+        .process-timeline-stack {
+            height: 420px;
+        }
+
+        .timeline-glass-panel {
+            padding: 2rem 1.5rem;
+        }
+
+        .step-badge {
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .step-title {
+            font-size: 1.5rem;
+        }
+
+        .step-description {
+            font-size: 1rem;
         }
     }
 </style>

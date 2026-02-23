@@ -17,8 +17,163 @@ window.addEventListener('load', () => {
   }
 
   initCountUp();
+  initInoxMouseReflection();
+  initServiceCards3DTilt();
   console.log('TF Master Theme: Cinematic Engine Loaded. Smooth Scroll & Split Typography Active.');
 });
+
+/* ============================================
+   Inox Chrome — Dynamic Mouse Reflection
+   Feeds CSS custom properties (--mouse-x, --mouse-y, --mouse-angle)
+   to the .btn-hero-secondary so its metallic shine
+   reacts in real-time to the cursor like polished steel.
+   ============================================ */
+function initInoxMouseReflection() {
+  var btns = document.querySelectorAll('.btn-hero-secondary');
+  if (!btns.length) return;
+
+  var DAMPING = 0.08; // Lower = smoother/slower catch-up (0.05–0.15 sweet spot)
+
+  btns.forEach(function (btn) {
+    // Target values (where the mouse IS right now)
+    var targetX = 50, targetY = 50, targetAngle = 0;
+    // Current interpolated values (what CSS sees — glides toward target)
+    var currentX = 50, currentY = 50, currentAngle = 0;
+    var isHovering = false;
+    var rafId = null;
+
+    function lerp(current, target, factor) {
+      return current + (target - current) * factor;
+    }
+
+    // Shortest-path angle interpolation (avoids 359° → 1° jump)
+    function lerpAngle(current, target, factor) {
+      var diff = target - current;
+      // Normalize to [-180, 180]
+      while (diff > 180) diff -= 360;
+      while (diff < -180) diff += 360;
+      return current + diff * factor;
+    }
+
+    function tick() {
+      currentX = lerp(currentX, targetX, DAMPING);
+      currentY = lerp(currentY, targetY, DAMPING);
+      currentAngle = lerpAngle(currentAngle, targetAngle, DAMPING);
+
+      btn.style.setProperty('--mouse-x', currentX.toFixed(1));
+      btn.style.setProperty('--mouse-y', currentY.toFixed(1));
+      btn.style.setProperty('--mouse-angle', currentAngle.toFixed(1));
+
+      // Keep the loop alive while hovering OR while still catching up after leave
+      var settled = Math.abs(currentX - targetX) < 0.1 &&
+        Math.abs(currentY - targetY) < 0.1 &&
+        Math.abs(currentAngle - targetAngle) < 0.5;
+
+      if (isHovering || !settled) {
+        rafId = requestAnimationFrame(tick);
+      } else {
+        rafId = null;
+      }
+    }
+
+    btn.addEventListener('mousemove', function (e) {
+      var rect = btn.getBoundingClientRect();
+
+      // Raw percentage position of cursor within the button (0–100)
+      targetX = ((e.clientX - rect.left) / rect.width) * 100;
+      targetY = ((e.clientY - rect.top) / rect.height) * 100;
+
+      // Angle from center of button (degrees, 0–360)
+      var cx = e.clientX - rect.left - rect.width / 2;
+      var cy = e.clientY - rect.top - rect.height / 2;
+      targetAngle = Math.atan2(cy, cx) * (180 / Math.PI) + 180;
+
+      if (!isHovering) {
+        isHovering = true;
+        if (!rafId) rafId = requestAnimationFrame(tick);
+      }
+    });
+
+    btn.addEventListener('mouseleave', function () {
+      isHovering = false;
+      // Glide back to center instead of snapping
+      targetX = 50;
+      targetY = 50;
+      targetAngle = 0;
+      if (!rafId) rafId = requestAnimationFrame(tick);
+    });
+  });
+}
+
+/* ============================================
+   Service Cards — 3D Perspective Tilt
+   Interactive card tilt that follows cursor with
+   smooth damped interpolation. Pure 3D, no glow.
+   ============================================ */
+function initServiceCards3DTilt() {
+  var cards = document.querySelectorAll('.service-card, .timeline-glass-panel');
+  if (!cards.length) return;
+
+  var DAMPING = 0.08;
+  var MAX_TILT = 8;
+  var SCALE_HOVER = 1.03;
+
+  cards.forEach(function (card) {
+    var targetTiltX = 0, targetTiltY = 0, targetScale = 1;
+    var currentTiltX = 0, currentTiltY = 0, currentScale = 1;
+    var isHovering = false;
+    var rafId = null;
+
+    function lerp(a, b, f) { return a + (b - a) * f; }
+
+    function tick() {
+      currentTiltX = lerp(currentTiltX, targetTiltX, DAMPING);
+      currentTiltY = lerp(currentTiltY, targetTiltY, DAMPING);
+      currentScale = lerp(currentScale, targetScale, DAMPING);
+
+      card.style.transform =
+        'perspective(1200px)' +
+        ' rotateX(' + currentTiltX.toFixed(2) + 'deg)' +
+        ' rotateY(' + currentTiltY.toFixed(2) + 'deg)' +
+        ' scale3d(' + currentScale.toFixed(3) + ',' + currentScale.toFixed(3) + ',1)';
+
+      var settled = Math.abs(currentTiltX - targetTiltX) < 0.05 &&
+        Math.abs(currentTiltY - targetTiltY) < 0.05 &&
+        Math.abs(currentScale - targetScale) < 0.001;
+
+      if (isHovering || !settled) {
+        rafId = requestAnimationFrame(tick);
+      } else {
+        rafId = null;
+      }
+    }
+
+    card.addEventListener('mousemove', function (e) {
+      var rect = card.getBoundingClientRect();
+      var px = ((e.clientX - rect.left) / rect.width) * 100;
+      var py = ((e.clientY - rect.top) / rect.height) * 100;
+
+      var normX = (px / 100) * 2 - 1;
+      var normY = (py / 100) * 2 - 1;
+      targetTiltX = -normY * MAX_TILT;
+      targetTiltY = normX * MAX_TILT;
+      targetScale = SCALE_HOVER;
+
+      if (!isHovering) {
+        isHovering = true;
+        if (!rafId) rafId = requestAnimationFrame(tick);
+      }
+    });
+
+    card.addEventListener('mouseleave', function () {
+      isHovering = false;
+      targetTiltX = 0;
+      targetTiltY = 0;
+      targetScale = 1;
+      if (!rafId) rafId = requestAnimationFrame(tick);
+    });
+  });
+}
 
 /* ============================================
    Lenis — Smooth Scrolling
@@ -97,19 +252,63 @@ function initGSAPAnimations() {
       });
   });
 
-  // Process Timeline - Draw the connecting line dynamically on scroll
-  const timelineLine = document.querySelector('.timeline-line');
-  const tfaProcess = document.querySelector('.tfa-process-timeline');
-  if (timelineLine && tfaProcess) {
-    gsap.from(timelineLine, {
-      scaleY: 0,
-      transformOrigin: "top center",
-      ease: "none",
+  // Process Timeline - Tinder Swipe Stack Cards
+  // We query the stack container for correct position detection,
+  // but pin the actual section parent so the entire module stays fixed.
+  const timelineStack = document.querySelector('.process-timeline-stack');
+  const timelineSection = timelineStack ? timelineStack.closest('.tfa-timeline-section') : null;
+  const stackCards = gsap.utils.toArray('.timeline-stack-card');
+
+  if (timelineSection && timelineStack && stackCards.length > 0) {
+    // Initial state: cascade setup to override CSS fallbacks
+    gsap.set(stackCards, {
+      y: (i) => i * 15,
+      scale: (i) => 1 - (i * 0.04),
+      transformOrigin: "bottom center"
+    });
+
+    // Recalculate all ScrollTrigger positions after full layout is settled
+    setTimeout(() => ScrollTrigger.refresh(), 500);
+
+    const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: tfaProcess,
-        start: "top center",
-        end: "bottom center",
-        scrub: 1 // 1 second smoothing on the scrub
+        trigger: timelineSection,
+        start: "top top",
+        end: `+=${stackCards.length * 100}%`,
+        pin: true,
+        pinSpacing: true,
+        scrub: 1.2,
+        invalidateOnRefresh: true,
+        markers: true // DEBUG: remove after confirming position
+      }
+    });
+
+    // Scroll buffer: dead zone after pin so section settles before cards move
+    const scrollBuffer = 0.5;
+
+    // Animate each card except the last
+    stackCards.forEach((card, i) => {
+      if (i < stackCards.length - 1) {
+        const direction = i % 2 === 0 ? -1 : 1;
+
+        tl.to(card, {
+          yPercent: -200,
+          xPercent: direction * 60,
+          rotationZ: direction * -15,
+          opacity: 0,
+          duration: 1,
+          ease: "power2.inOut"
+        }, (i * 1) + scrollBuffer);
+
+        for (let j = i + 1; j < stackCards.length; j++) {
+          const newIndex = j - (i + 1);
+          tl.to(stackCards[j], {
+            y: newIndex * 15,
+            scale: 1 - (newIndex * 0.04),
+            duration: 1,
+            ease: "power2.inOut"
+          }, (i * 1) + scrollBuffer);
+        }
       }
     });
   }
@@ -157,81 +356,97 @@ function initGSAPAnimations() {
     }
 
     const delay = parseFloat(el.dataset.delay || 0) / 1000;
-    gsap.from(el, {
-      y: 40,
-      opacity: 0,
-      duration: 0.8,
-      delay: delay,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 88%',
-        toggleActions: 'play none none none'
-      }
-    });
+    gsap.fromTo(el,
+      { y: 40, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        delay: delay,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 88%',
+          toggleActions: 'play none none reverse'
+        }
+      });
   });
 
   // [data-animate="fade-left"]
   gsap.utils.toArray('[data-animate="fade-left"]').forEach(el => {
-    gsap.from(el, {
-      x: -60,
-      opacity: 0,
-      duration: 0.8,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 85%',
-        toggleActions: 'play none none none'
-      }
-    });
+    gsap.fromTo(el,
+      { x: -60, opacity: 0 },
+      {
+        x: 0,
+        opacity: 1,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 85%',
+          toggleActions: 'play none none reverse'
+        }
+      });
   });
 
   // [data-animate="fade-right"]
   gsap.utils.toArray('[data-animate="fade-right"]').forEach(el => {
-    gsap.from(el, {
-      x: 60,
-      opacity: 0,
-      duration: 0.8,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 85%',
-        toggleActions: 'play none none none'
-      }
-    });
+    gsap.fromTo(el,
+      { x: 60, opacity: 0 },
+      {
+        x: 0,
+        opacity: 1,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 85%',
+          toggleActions: 'play none none reverse'
+        }
+      });
   });
 
   // [data-animate="scale-in"]
   gsap.utils.toArray('[data-animate="scale-in"]').forEach(el => {
-    gsap.from(el, {
-      scale: 0.9,
-      opacity: 0,
-      duration: 0.7,
-      ease: 'back.out(1.2)',
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 88%',
-        toggleActions: 'play none none none'
-      }
-    });
+    gsap.fromTo(el,
+      { scale: 0.9, opacity: 0 },
+      {
+        scale: 1,
+        opacity: 1,
+        duration: 0.7,
+        ease: 'back.out(1.2)',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 88%',
+          toggleActions: 'play none none reverse'
+        }
+      });
   });
 
   // [data-animate="stagger-children"]
   gsap.utils.toArray('[data-animate="stagger-children"]').forEach(parent => {
     const children = parent.children;
-    gsap.from(children, {
-      y: 30,
-      opacity: 0,
-      duration: 0.6,
-      stagger: 0.12,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: parent,
-        start: 'top 85%',
-        toggleActions: 'play none none none'
-      }
-    });
+    gsap.fromTo(children,
+      { y: 30, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.6,
+        stagger: 0.12,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: parent,
+          start: 'top 85%',
+          toggleActions: 'play none none reverse'
+        }
+      });
   });
+
+  // Safety net: Refresh ScrollTrigger after a short delay to catch
+  // elements already in viewport on initial page load
+  setTimeout(() => {
+    ScrollTrigger.refresh();
+  }, 300);
 }
 
 /* ============================================
