@@ -6,14 +6,14 @@
 Escalabilidade, Segurança e Autonomia são inegociáveis.
 
 ## Build Commands
-- `hs upload`: Uploads the project to HubSpot Design Manager (Deploy).
-- `hs validate`: Validates the project structure and syntax (Lint).
+- `hs upload <src> <dest>`: Uploads the project (Deploy). NUNCA utilize `hs project upload` com espaços soltos no terminal; use estritamente `hs upload . TFAHUB251`.
+- `hs validate`: Validates the project structure and syntax.
 - `hs fetch`: Baixa as alterações do portal para local (Sync).
 
 ## Golden Architecture Rules
-1. **HubSpot Native First:** Toda lógica de produção deve ser nativa HubSpot (Serverless Functions/Workflows).
-2. **n8n Middleware:** Use n8n APENAS como orquestrador, ingestão de dados ou integrador de sistemas externos complexos. NUNCA utilize n8n para regras de negócio que o HubSpot suporta nativamente.
-3. **Single Source of Truth:** O HubSpot é a fonte da verdade para dados e regras de negócio.
+1. **HubSpot Native First:** Toda lógica de produção deve ser nativa HubSpot (Serverless Functions/Workflows/HubDB).
+2. **Set-and-Forget (Autonomic Computing):** O desenvolvimento deve focar em arquiteturas 100% nativas, garantindo que o sistema seja robusto, escalável e autogerenciável. Proibido o uso de sistemas de integração externos para lógicas core.
+3. **Single Source of Truth:** O HubSpot é a única fonte da verdade para dados, layout e regras de negócio.
 
 ## Workspace Structure & Reference
 - **Main Project (Active):** `C:\Users\gabri\Documents\dev\InnLeaders\TFAHUB251`

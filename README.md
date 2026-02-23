@@ -143,9 +143,11 @@ All 10 production modules have been validated:
 3. Keep only: **`TFAHUB251`** (production theme)
 
 ---
-**Theme Status:** Production-ready (V2) ✅  
-**Upload Status:** Successfully deployed to portal  
+**Theme Status:** Production-ready (V2) / Cinematic "Steel & Inox" Engine Installed ✅  
+**Upload Status:** Successfully deployed to portal (`hs upload . TFAHUB251`)  
 **Field Validation:** All modules use 2026-compliant types  
+**Architecture:** 100% Set-and-Forget (Autonomic Computing). Nenhuma dependência externa/middleware foi ou será utilizada para lidar com as regras do negócio do CMS.
+**Recent Upgrade:** Layout "Vibe Cloning Dark/Silver" refatorado com GSAP + Lenis Smooth Scroll, links resetados e eliminação dos empilhamentos anormais de UI.
 
 > **⚠️ CRITICAL NOTE (Feb 17, 2026):**  
 > A critical issue was detected where AI agents (via MCP) corrupted HubL syntax in CSS files.

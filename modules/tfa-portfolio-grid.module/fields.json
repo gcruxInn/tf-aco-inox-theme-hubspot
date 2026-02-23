@@ -1,56 +1,83 @@
 [
   {
     "name": "section_heading",
-    "label": "Section Heading",
+    "label": "Cabeçalho da Seção",
     "type": "group",
     "children": [
-      { "name": "title", "label": "Title", "type": "text", "default": "Projetos em Destaque" },
-      { "name": "subtitle", "label": "Subtitle", "type": "text", "default": "Conheça alguns dos nossos trabalhos realizados com excelência" }
+      {
+        "name": "title",
+        "label": "Título Principal",
+        "type": "text",
+        "default": "Projetos em Destaque"
+      },
+      {
+        "name": "subtitle",
+        "label": "Subtítulo",
+        "type": "text",
+        "default": "Nosso portfólio de execuções com a precisão do Aço e a elegância do Inox."
+      }
     ]
   },
   {
     "name": "projects",
-    "label": "Projetos",
+    "label": "Grid de Obras (Portfólio)",
     "type": "group",
-    "occurrence": { "min": 1, "max": 12, "sorting_label_field": "title" },
-    "default": [
-      { 
-        "title": "Estrutura Metálica Industrial",
-        "category": "Indústria",
-        "description": "Estrutura completa para galpão industrial de 800m²"
+    "help_text": "Adicione as obras recentes aqui. Eles aparecerão no formato de grid na tela.",
+    "occurrence": {
+      "min": 1,
+      "max": 18,
+      "sorting_label_field": "title"
+    },
+    "children": [
+      {
+        "name": "image",
+        "label": "Imagem da Obra",
+        "type": "image",
+        "responsive": true,
+        "show_loading": false
       },
-      { 
-        "title": "Corrimãos em Aço Inox",
-        "category": "Comercial",
-        "description": "Sistema de corrimãos e guarda-corpos para edifício comercial"
+      {
+        "name": "category",
+        "label": "Categoria (Tag)",
+        "type": "text",
+        "default": "Industrial",
+        "help_text": "Ex: Industrial, Residencial, Estrutura Metálica"
       },
-      { 
-        "title": "Portão Automatizado",
-        "category": "Residencial",
-        "description": "Portão em aço com sistema de automação integrado"
+      {
+        "name": "title",
+        "label": "Título da Obra",
+        "type": "text",
+        "default": "Nome Fantasma da Obra"
       },
-      { 
-        "title": "Sistema Steel Frame",
-        "category": "Construção",
-        "description": "Estrutura em steel frame para casa de 120m²"
+      {
+        "name": "scope",
+        "label": "Breve Escopo / Resumo",
+        "type": "text",
+        "default": "Descreva em uma ou duas linhas o escopo técnico do que foi feito."
       },
-      { 
-        "title": "Peças Técnicas Inox",
-        "category": "Indústria",
-        "description": "Fabricação de peças técnicas sob medida para linha de produção"
-      },
-      { 
-        "title": "Fechamento em Aço",
-        "category": "Comercial",
-        "description": "Grades e fechamentos de segurança para loja"
+      {
+        "name": "link",
+        "label": "Link da Obra (Opcional)",
+        "type": "text",
+        "help_text": "Se houver uma página dedicada, insira a URL aqui."
       }
     ],
-    "children": [
-      { "name": "title", "label": "Título do Projeto", "type": "text", "default": "Nome do Projeto" },
-      { "name": "category", "label": "Categoria", "type": "text", "default": "Categoria" },
-      { "name": "description", "label": "Descrição Breve", "type": "text", "default": "Descrição do projeto" },
-      { "name": "image", "label": "Imagem do Projeto", "type": "image" },
-      { "name": "link", "label": "Link (Opcional)", "type": "text" }
+    "default": [
+      {
+        "title": "Galpão Logístico Premium",
+        "category": "Estruturas Metálicas",
+        "scope": "120 toneladas de aço estrutural para centro de distribuição."
+      },
+      {
+        "title": "Corrimãos em Inox 304",
+        "category": "Comercial / Corporativo",
+        "scope": "300 metros lineares de guarda-corpo espelhado."
+      },
+      {
+        "title": "Passarela Industrial",
+        "category": "Projetos Especiais",
+        "scope": "Adequação térmica e segurança viária interna NR-12."
+      }
     ]
   }
 ]

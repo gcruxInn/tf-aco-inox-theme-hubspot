@@ -2,9 +2,10 @@
 
 Este documento estabelece o caminho **Enterprise Grade** para finalizar o desenvolvimento das páginas do site TF Aço Inox, seguindo a diretriz do briefing e as melhores práticas técnicas e de performance ("Set-and-Forget") do HubSpot CMS.
 
-## 1. Abordagem Arquitetural (O "Como")
+## 1. Abordagem Arquitetural ("Set-and-Forget")
 
-Após consulta rigorosa à documentação oficial de desenvolvedores do HubSpot CMS, dividimos o restante do site em 3 trilhas estruturais baseadas em **como** os dados serão consumidos e editados pelo cliente no futuro. O princípio aqui é garantir **Escalabilidade, Segurança e Autonomia**.
+Após consulta rigorosa à documentação oficial do HubSpot CMS e baseados na premissa inegociável de **Autonomic Computing**, dividimos o site em 3 trilhas 100% NATIVAS.
+Nenhum sistema de middleware atuará nas regras do negócio CMS - os dados serão renderizados na mesma velocidade e resiliência da borda global do HubSpot. O princípio aqui é garantir uma escalabilidade "Set-and-Forget", **onde a lógica vive e respira apenas no ecossistema HubSpot**.
 
 ### Trilha A: Páginas Estáticas (Páginas de Alta Customização)
 Páginas que possuem layouts únicos que fogem de um padrão serializado. Serão construídas como **Site Pages** normais utilizando Drag & Drop (DND) Templates.
@@ -14,22 +15,20 @@ Páginas que possuem layouts únicos que fogem de um padrão serializado. Serão
 - **Contato (`/contato`)**: Template com grid de duas colunas, integrando o Native Forms do HubSpot e Google Maps Embed.
 - **Páginas Utilitárias (Orçamento, Obrigado, 404, Privacidade)**: Landing e Site pages diretas com foco total em conversão (LP de Orçamento com Formulário Longo).
 
-### Trilha B: Data-Driven Pages (HubDB Dynamic Pages)
-Aplicado onde existe repetição sistemática de layouts para diferentes registros de dados. **Evitaremos a criação de dezenas de Site Pages individuais**, o que arruína a manutenção no longo prazo. O uso do HubDB automatizará a geração do SEO, categorias e URLs com a arquitetura `.../{slug}`.
+### Trilha B: Data-Driven Pages (Static-First & CRM Objects Pivot)
+**[ATUALIZAÇÃO CRÍTICA]: O cliente não possui licenciamento HubDB no momento.**
+A diretriz de desenvolvimento para a Trilha B passa a ser **Static-First**. A dinamicidade futura será ancorada nativamente via **CRM Objects** (Produtos/Line Items). Por enquanto, toda a exibição de serviços e portfólio será resolvida via **Custom Modules estáticos autossuficientes com campos repetidores (Repeater Groups)** controlados pela equipe de marketing.
 
-#### B.1. Páginas de Serviços (`/servicos` e `/servicos/[slug]`)
-- **Justificativa**: Embora sejam apenas 11 serviços, colocá-los no HubDB garante que novos serviços possam ser adicionados futuramente preenchendo apenas uma tabela.
+#### B.1. Páginas de Serviços (`/servicos`)
 - **Implementação**: 
-  - Cria-se uma `HubDB Table` chamada "TF_Services" (Colunas: Nome, Slug, Descrição_Curta, Icone_SVG, Hero_Image, RichText_Body, Galeria_Fotos, FAQs_Array).
-  - Cria-se um "Dynamic Page Template" onde:
-    - Se a URL acessada flor `/servicos`, renderiza o Master/Listing View (Grid de serviços).
-    - Se a URL for `/servicos/[slug]`, renderiza o Detail View chamando a variável nativa do HubDB para preencher o Hero, o Corpo e conditionally exibe módulos (ex: se tiver galeria, exibe, se não, esconde).
+  - Utilização de módulos drag-and-drop (`tfa-services-grid.module`) baseados em Repeaters.
+  - O marketing cadastrará manualmente: Ícone, Nome, Descrição Curta e Link.
 
-#### B.2. Portfólio de Projetos (`/portfolio` e `/portfolio/[slug]`)
-- **Justificativa**: Portfólios crescem com o tempo. A equipe da TF Aço Inox precisa poder adicionar obras sem acionar desenvolvimento. O HubDB é o "state of the art" para isso no CMS Hub Professional.
+#### B.2. Portfólio de Projetos (`/portfolio`)
 - **Implementação**:
-  - `HubDB Table`: "TF_Portfolio" (Colunas: Nome, Cliente, Categoria [Select], Data_Entrega, Featured_Image, Desafio [Rich Text], Solucao [Rich Text]).
-  - Implementaremos **filtros via Query Parameters** (ex: `?categoria=industrial`) na página de listagem (`/portfolio`), processados via HubL no servidor, em vez de JavaScript de cliente pesado, preservando performance de vitrine e Core Web Vitals.
+  - Utilização do módulo de Vitrine de Obras (`tfa-portfolio-grid.module`) inteligente.
+  - Campos repetidores (Repeater) para a equipe de marketing cadastrar manualmente: Imagem, Título da Obra, Categoria e Breve Escopo.
+  - Totalmente adaptado ao Vibe Blueprint (Dark/Silver, tipografia clara, estética Industrial Premium).
 
 ### Trilha C: Componentes Nativos
 #### C.1. Blog (`/blog`)
