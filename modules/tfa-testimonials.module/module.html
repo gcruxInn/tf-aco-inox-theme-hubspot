@@ -1,255 +1,48 @@
-{# --- MODULE: TFA Testimonials Carousel --- #}
+{# --- MODULE: TFA Testimonials Grid — Dark/Silver Industrial Theme --- #}
 <section class="tfa-testimonials-section">
     <div class="tfa-container">
+
         {# Section Heading #}
-        <div class="testimonials-header" data-animate="fade-up">
+        <div class="testimonials-header">
             <h2 class="testimonials-title">{{ module.section_heading.title }}</h2>
             <p class="testimonials-subtitle">{{ module.section_heading.subtitle }}</p>
         </div>
 
-        {# Testimonials Carousel #}
-        <div class="testimonials-carousel" data-animate="fade-up" data-delay="200">
-            <div class="carousel-container">
-                <div class="carousel-track">
-                    {% for testimonial in module.testimonials %}
-                    <div class="testimonial-slide">
-                        <div class="testimonial-card">
-                            {# Stars Rating #}
-                            <div class="testimonial-stars">
-                                {% for i in range(testimonial.rating or 5) %}
-                                ★
-                                {% endfor %}
-                            </div>
+        {# Testimonials Grid — 2 cols desktop / 1 col mobile #}
+        <div class="testimonials-grid">
+            {% for testimonial in module.testimonials %}
+            <div class="testimonial-card">
 
-                            {# Quote #}
-                            <blockquote class="testimonial-quote">
-                                "{{ testimonial.quote }}"
-                            </blockquote>
+                {# Decorative Opening Quote #}
+                <span class="quote-mark" aria-hidden="true">&ldquo;</span>
 
-                            {# Client Info #}
-                            <div class="testimonial-client">
-                                {# Photo or Avatar Placeholder #}
-                                {% if testimonial.client_photo.src %}
-                                <img src="{{ testimonial.client_photo.src }}"
-                                    alt="{{ testimonial.client_photo.alt or testimonial.client_name }}" loading="lazy"
-                                    class="client-avatar">
-                                {% else %}
-                                <div class="client-avatar-placeholder">
-                                    {{ testimonial.client_name[0] }}
-                                </div>
-                                {% endif %}
+                {# Star Rating #}
+                <div class="testimonial-stars" aria-label="{{ testimonial.rating or 5 }} estrelas">
+                    {% for i in range(testimonial.rating or 5) %}&#9733;{% endfor %}
+                </div>
 
-                                <div class="client-info">
-                                    <div class="client-name">{{ testimonial.client_name }}</div>
-                                    <div class="client-role">
-                                        {{ testimonial.client_role }}
-                                        {% if testimonial.client_company %}
-                                        <br><span class="client-company">{{ testimonial.client_company }}</span>
-                                        {% endif %}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                {# Quote Body #}
+                <blockquote class="testimonial-quote">{{ testimonial.quote }}</blockquote>
+
+                {# Client Row: avatar + info + logo #}
+                <div class="testimonial-client">
+
+                    {# Avatar: photo or initial placeholder #}
+                    {% if testimonial.client_photo.src %}<img src="{{ testimonial.client_photo.src }}" alt="{{ testimonial.client_photo.alt or testimonial.client_name }}" loading="lazy" class="client-avatar">{% else %}<div class="client-avatar-placeholder" aria-hidden="true">{{ testimonial.client_name[0] }}</div>{% endif %}
+
+                    {# Name + Role #}
+                    <div class="client-info">
+                        <div class="client-name">{{ testimonial.client_name }}</div>
+                        <div class="client-meta">{{ testimonial.client_role }}{% if testimonial.client_company %}, <span class="client-company">{{ testimonial.client_company }}</span>{% endif %}</div>
                     </div>
-                    {% endfor %}
+
+                    {# Company Logo (B2B authority seal) #}
+                    {% if testimonial.company_logo.src %}<img src="{{ testimonial.company_logo.src }}" alt="{{ testimonial.company_logo.alt or testimonial.client_company }}" loading="lazy" class="company-logo">{% endif %}
+
                 </div>
             </div>
-
-            {# Navigation Dots #}
-            <div class="carousel-dots">
-                {% for testimonial in module.testimonials %}
-                <button class="dot {% if loop.first %}active{% endif %}" onclick="goToSlide({{ loop.index0 }})"
-                    aria-label="Go to slide {{ loop.index }}">
-                </button>
-                {% endfor %}
-            </div>
+            {% endfor %}
         </div>
+
     </div>
 </section>
-
-<style>
-    .tfa-testimonials-section {
-        padding: 5rem 0;
-    }
-
-    .tfa-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 1rem;
-    }
-
-    .testimonials-header {
-        text-align: center;
-        margin-bottom: 3rem;
-    }
-
-    .testimonials-title {
-        font-size: 2.2rem;
-        font-weight: 800;
-        margin-bottom: 0.75rem;
-        color: #1a1a1b;
-    }
-
-    .testimonials-subtitle {
-        font-size: 1.1rem;
-        color: #6c757d;
-        max-width: 700px;
-        margin: 0 auto;
-        line-height: 1.6;
-    }
-
-    .testimonials-carousel {
-        max-width: 900px;
-        margin: 0 auto;
-        position: relative;
-    }
-
-    .carousel-container {
-        overflow: hidden;
-        position: relative;
-    }
-
-    .carousel-track {
-        display: flex;
-        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .testimonial-slide {
-        min-width: 100%;
-        padding: 0 0.5rem;
-    }
-
-    .testimonial-card {
-        background: white;
-        border-radius: 20px;
-        padding: 3rem 2.5rem;
-        text-align: center;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-        border: 1px solid rgba(0, 0, 0, 0.04);
-    }
-
-    .testimonial-stars {
-        color: #ffc107;
-        font-size: 1.5rem;
-        margin-bottom: 1.5rem;
-        letter-spacing: 4px;
-    }
-
-    .testimonial-quote {
-        font-size: 1.1rem;
-        font-style: italic;
-        color: #333;
-        line-height: 1.8;
-        margin: 0 0 2rem 0;
-        border: none;
-        padding: 0;
-    }
-
-    .testimonial-client {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 1rem;
-    }
-
-    .client-avatar {
-        width: 56px;
-        height: 56px;
-        border-radius: 50%;
-        object-fit: cover;
-    }
-
-    .client-avatar-placeholder {
-        width: 56px;
-        height: 56px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #1a1a1b 0%, #333 100%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #C0C0C0;
-        font-weight: 700;
-        font-size: 1.4rem;
-        flex-shrink: 0;
-    }
-
-    .client-info {
-        text-align: left;
-    }
-
-    .client-name {
-        font-weight: 700;
-        color: #1a1a1b;
-        font-size: 1rem;
-    }
-
-    .client-role {
-        font-size: 0.9rem;
-        color: #666;
-    }
-
-    .client-company {
-        color: #999;
-    }
-
-    .carousel-dots {
-        display: flex;
-        gap: 10px;
-        justify-content: center;
-        margin-top: 2rem;
-    }
-
-    .dot {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        border: 2px solid #1a1a1b;
-        background: transparent;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        padding: 0;
-    }
-
-    .dot.active,
-    .dot:hover {
-        background: #1a1a1b;
-    }
-
-    /* Mobile */
-    @media (max-width: 768px) {
-        .tfa-testimonials-section {
-            padding: 3.5rem 0;
-        }
-
-        .testimonial-card {
-            padding: 2rem 1.5rem;
-        }
-
-        .testimonials-title {
-            font-size: 1.75rem;
-        }
-    }
-</style>
-
-<script>
-    let currentSlide = 0;
-    const totalSlides = {{ module.testimonials| length }};
-
-    function goToSlide(index) {
-        currentSlide = index;
-        const track = document.querySelector('.carousel-track');
-        const dots = document.querySelectorAll('.dot');
-
-        track.style.transform = `translateX(-${currentSlide * 100}%)`;
-
-        dots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === currentSlide);
-        });
-    }
-
-    // Auto-advance every 5 seconds
-    setInterval(() => {
-        currentSlide = (currentSlide + 1) % totalSlides;
-        goToSlide(currentSlide);
-    }, 5000);
-</script>

@@ -39,6 +39,7 @@
       { "name": "client_role", "label": "Cargo", "type": "text", "default": "Cargo" },
       { "name": "client_company", "label": "Empresa", "type": "text", "default": "Nome da Empresa" },
       { "name": "client_photo", "label": "Foto do Cliente", "type": "image" },
+      { "name": "company_logo", "label": "Logo da Empresa", "type": "image" },
       { "name": "rating", "label": "Rating (1-5)", "type": "number", "default": 5 }
     ]
   }
