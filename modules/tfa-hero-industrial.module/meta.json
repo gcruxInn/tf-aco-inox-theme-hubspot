@@ -5,9 +5,14 @@
       "path": "module.css"
     }
   ],
+  "javascript_assets": [
+    {
+      "path": "module.js"
+    }
+  ],
   "external_js": [],
   "global": false,
-  "help_text": "Hero section with industrial styling, video/image background support, and trust badges.",
+  "help_text": "Hero section with industrial styling, video/image background support, and trust badges. Features GSAP cinematic animations and ScrollTrigger video scaling.",
   "host_template_types": [ "PAGE", "BLOG_POST", "BLOG_LISTING" ],
   "is_available_for_new_content": true
 }
