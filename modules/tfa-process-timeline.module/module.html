@@ -1,4 +1,27 @@
 <section class="tfa-timeline-section">
+
+    {# CSS Particle System — Industrial Sparks & Smoke (pure CSS, no JS) #}
+    <div class="tfa-timeline-particles" aria-hidden="true">
+        <span class="particle particle--spark" style="--px: 5%;  --delay: 0.0s; --dur: 2.4s; --drift:  12px;"></span>
+        <span class="particle particle--spark" style="--px: 15%; --delay: 0.7s; --dur: 1.9s; --drift:  -8px;"></span>
+        <span class="particle particle--spark" style="--px: 28%; --delay: 1.2s; --dur: 2.8s; --drift:  18px;"></span>
+        <span class="particle particle--spark" style="--px: 42%; --delay: 0.3s; --dur: 2.1s; --drift: -14px;"></span>
+        <span class="particle particle--spark" style="--px: 55%; --delay: 0.9s; --dur: 2.6s; --drift:  10px;"></span>
+        <span class="particle particle--spark" style="--px: 68%; --delay: 0.1s; --dur: 3.0s; --drift: -20px;"></span>
+        <span class="particle particle--spark" style="--px: 78%; --delay: 1.5s; --dur: 2.3s; --drift:  16px;"></span>
+        <span class="particle particle--spark" style="--px: 88%; --delay: 0.4s; --dur: 1.8s; --drift:  -6px;"></span>
+        <span class="particle particle--spark" style="--px: 22%; --delay: 1.8s; --dur: 2.5s; --drift:  22px;"></span>
+        <span class="particle particle--spark" style="--px: 62%; --delay: 0.5s; --dur: 2.0s; --drift: -16px;"></span>
+        <span class="particle particle--spark" style="--px: 38%; --delay: 2.1s; --dur: 2.7s; --drift:   8px;"></span>
+        <span class="particle particle--spark" style="--px: 92%; --delay: 1.0s; --dur: 2.2s; --drift: -12px;"></span>
+        <span class="particle particle--smoke" style="--px: 10%; --delay: 0.0s; --dur: 6.0s;"></span>
+        <span class="particle particle--smoke" style="--px: 30%; --delay: 1.5s; --dur: 7.0s;"></span>
+        <span class="particle particle--smoke" style="--px: 50%; --delay: 0.8s; --dur: 5.5s;"></span>
+        <span class="particle particle--smoke" style="--px: 70%; --delay: 2.2s; --dur: 6.5s;"></span>
+        <span class="particle particle--smoke" style="--px: 85%; --delay: 0.4s; --dur: 7.5s;"></span>
+        <span class="particle particle--smoke" style="--px: 20%; --delay: 3.0s; --dur: 6.2s;"></span>
+    </div>
+
     <div class="tfa-container">
         {# Section Heading #}
         <div class="timeline-header" data-animate="fade-up">
@@ -6,10 +29,10 @@
             <p class="timeline-section-subtitle">{{ module.section_heading.subtitle }}</p>
         </div>
 
-        {# Timeline Stack #}
+        {# Timeline Stack — Cards alternate left/right for GSAP reveal #}
         <div class="process-timeline-stack">
             {% for step in module.steps %}
-            <div class="timeline-stack-card" style="z-index: {{ 100 - loop.index }};">
+            <div class="timeline-stack-card" data-timeline-card="true" data-direction="{% if loop.index % 2 == 1 %}left{% else %}right{% endif %}" style="z-index: {{ 100 - loop.index }};">
 
                 <div class="timeline-glass-panel">
                     {# Chrome Edge Glow & Reflection Handled in CSS #}
@@ -34,90 +57,95 @@
 </section>
 
 <style>
-    /* Inox Chrome Dark Background for the whole section to contrast the glass */
+    /* =========================================================
+       TFA TIMELINE V2 — Vibe Dark / Silver Industrial
+    ========================================================= */
+
     .tfa-timeline-section {
-        min-height: 100vh;
-        padding: 4rem 0 2rem;
+        padding: 5rem 0 3rem;
         box-sizing: border-box;
-        background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
-        background-color: #f8f9fa;
+        background: linear-gradient(180deg, #080c10 0%, #0d1117 50%, #080c10 100%);
         position: relative;
         z-index: 20;
+        overflow: hidden;
     }
 
-    .tfa-timeline-section>.tfa-container {
+    .tfa-timeline-section > .tfa-container {
         max-width: 1200px;
         margin: 0 auto;
-        padding: 0 1rem;
+        padding: 0 1.5rem;
         position: relative;
+        z-index: 2;
     }
 
+    /* ---- Header ---- */
     .timeline-header {
         text-align: center;
-        margin-bottom: 3rem;
+        margin-bottom: 4rem;
         position: relative;
-        z-index: 200;
-        flex-shrink: 0;
+        z-index: 10;
     }
 
     .timeline-section-title {
         font-size: 2.8rem;
         font-weight: 800;
         margin-bottom: 1rem;
-        color: #0f172a;
+        color: #f1f5f9;
         letter-spacing: -0.02em;
     }
 
     .timeline-section-subtitle {
         font-size: 1.125rem;
-        color: #64748b;
+        color: #94a3b8;
         max-width: 700px;
         margin: 0 auto;
         line-height: 1.6;
     }
 
-    /* Stack Container */
+    /* ---- Stack Container — widened for zig-zag alternation ---- */
     .process-timeline-stack {
         position: relative;
         width: 100%;
-        max-width: 520px;
-        height: 320px;
+        max-width: 760px;
         margin: 0 auto;
-        perspective: 1500px;
+        display: flex;
+        flex-direction: column;
+        gap: 2.5rem;
+        align-items: stretch;
     }
 
-    /* Absolute Cards */
+    /* ---- Cards — alternating zig-zag alignment ---- */
     .timeline-stack-card {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+        position: relative;
+        width: 82%;
+        min-height: 300px;
         display: flex;
         justify-content: center;
         align-items: center;
-        transform-origin: bottom center;
-        /* Pivot from the bottom during animations */
         will-change: transform, opacity;
     }
 
-    /* Glassmorphism Panel (Inox Chrome Style) */
+    .timeline-stack-card[data-direction="left"] {
+        align-self: flex-start;
+    }
+
+    .timeline-stack-card[data-direction="right"] {
+        align-self: flex-end;
+    }
+
+    /* ---- Glassmorphism Panel (Inox Chrome Style) ---- */
     .timeline-glass-panel {
         width: 100%;
         height: 100%;
-
-        /* Metallic Chrome Gradient Background 
         background: linear-gradient(135deg,
-                rgba(255, 255, 255, 0.95) 0%,
-                rgba(240, 242, 245, 0.75) 40%,
-                rgba(225, 228, 232, 0.85) 60%,
-                rgba(255, 255, 255, 0.98) 100%);
-        */
-        background: linear-gradient(135deg, rgb(81 81 81) 0%, rgb(171 171 171) 40%, rgb(141 141 141) 60%, rgb(41 41 41 / 98%) 100%);
+            rgb(75, 75, 75) 0%,
+            rgb(165, 165, 165) 40%,
+            rgb(135, 135, 135) 60%,
+            rgb(38, 38, 38) 100%);
         backdrop-filter: blur(25px) saturate(180%);
         -webkit-backdrop-filter: blur(25px) saturate(180%);
         border-radius: 24px;
-        padding: 2rem 2rem;
+        padding: 2rem 2.25rem;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -125,27 +153,25 @@
         justify-content: center;
         position: relative;
         z-index: 1;
-
-        /* Premium Chrome Shadow */
         box-shadow:
-            0 24px 48px rgba(0, 0, 0, 0.08),
-            0 12px 24px rgba(0, 0, 0, 0.04);
+            0 24px 48px rgba(0, 0, 0, 0.45),
+            0 12px 24px rgba(0, 0, 0, 0.25),
+            inset 0 1px 0 rgba(255, 255, 255, 0.12);
     }
 
-    /* Silver Thread Gradient Border (Fio Prateado) */
+    /* Silver Thread Border */
     .timeline-glass-panel::before {
         content: '';
         position: absolute;
         inset: 0;
         border-radius: 24px;
         padding: 1px;
-        /* Espessura do fio prateado */
         background: linear-gradient(135deg,
-                rgba(255, 255, 255, 1) 0%,
-                rgba(180, 180, 180, 0.4) 20%,
-                rgba(255, 255, 255, 0.9) 50%,
-                rgba(160, 160, 160, 0.3) 80%,
-                rgba(255, 255, 255, 1) 100%);
+            rgba(255, 255, 255, 0.9) 0%,
+            rgba(180, 180, 180, 0.3) 20%,
+            rgba(255, 255, 255, 0.8) 50%,
+            rgba(160, 160, 160, 0.25) 80%,
+            rgba(255, 255, 255, 0.9) 100%);
         -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
         -webkit-mask-composite: xor;
         mask-composite: exclude;
@@ -153,27 +179,10 @@
         pointer-events: none;
     }
 
-    /* Fake depth offset to make them look obviously stacked initially 
-       This will be handled by GSAP, but a fallback is good */
-    .timeline-stack-card:nth-child(2) {
-        transform: translateY(10px) scale(0.98);
-    }
-
-    .timeline-stack-card:nth-child(3) {
-        transform: translateY(20px) scale(0.96);
-    }
-
-    .timeline-stack-card:nth-child(4) {
-        transform: translateY(30px) scale(0.94);
-    }
-
-    .timeline-stack-card:nth-child(5) {
-        transform: translateY(40px) scale(0.92);
-    }
-
+    /* ---- Step Badge ---- */
     .step-badge {
         background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #1e293b 100%);
-        color: #fff;
+        color: #e2e8f0;
         width: 56px;
         height: 56px;
         border-radius: 50%;
@@ -183,18 +192,14 @@
         font-size: 1.4rem;
         font-weight: 800;
         margin-bottom: 1rem;
-
-        /* Metallic border and shadow */
-        border: 2px solid rgba(255, 255, 255, 0.5);
+        border: 2px solid rgba(255, 255, 255, 0.4);
         box-shadow:
-            0 10px 20px rgba(0, 0, 0, 0.15),
-            inset 0 2px 4px rgba(255, 255, 255, 0.3);
-
+            0 10px 20px rgba(0, 0, 0, 0.3),
+            inset 0 2px 4px rgba(255, 255, 255, 0.2);
         position: relative;
         overflow: hidden;
     }
 
-    /* Steel Sheen on Badge */
     .step-badge::before {
         content: '';
         position: absolute;
@@ -208,19 +213,13 @@
     }
 
     @keyframes timeline-sheen {
-
-        0%,
-        50% {
-            left: -100%;
-        }
-
-        100% {
-            left: 200%;
-        }
+        0%, 50% { left: -100%; }
+        100% { left: 200%; }
     }
 
+    /* ---- Card Text (light for dark card background) ---- */
     .step-title {
-        color: #0f172a;
+        color: #f1f5f9;
         font-weight: 800;
         font-size: 1.25rem;
         margin-bottom: 0.5rem;
@@ -228,12 +227,13 @@
     }
 
     .step-description {
-        color: #303030;
-        font-size: 1.33rem;
+        color: #cbd5e1;
+        font-size: 1rem;
         line-height: 1.6;
         margin-bottom: 1rem;
     }
 
+    /* ---- Duration Badge ---- */
     .step-duration {
         display: inline-flex;
         align-items: center;
@@ -241,72 +241,77 @@
         border-radius: 30px;
         font-size: 0.8rem;
         font-weight: 600;
-        color: #fff;
+        color: #e2e8f0;
         position: relative;
         overflow: hidden;
         z-index: 1;
-
-        /* Inox Chrome Glass — same as .btn-hero-secondary */
         background: rgba(255, 255, 255, 0.08);
         backdrop-filter: blur(16px);
         -webkit-backdrop-filter: blur(16px);
-        border: 1px solid rgba(255, 255, 255, 0.25);
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.3);
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* Metallic Spotlight underlay */
     .step-duration::before {
         content: '';
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: radial-gradient(circle at 50% 50%,
-                rgba(255, 255, 255, 0.35) 0%,
-                rgba(255, 255, 255, 0.0) 70%);
+        inset: 0;
+        background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
         z-index: -1;
-        opacity: 0.6;
+        opacity: 0.5;
         border-radius: 30px;
     }
 
     .step-duration:hover {
         transform: translateY(-2px);
-        border-color: rgba(255, 255, 255, 0.6);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4), inset 0 2px 3px rgba(255, 255, 255, 0.8);
+        border-color: rgba(255, 255, 255, 0.55);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.45), inset 0 2px 3px rgba(255, 255, 255, 0.6);
     }
 
+    /* ---- Editor Guard: flatten animations in HubSpot editor ---- */
+    .hs-edit-mode .tfa-timeline-particles,
+    .hs-inline-edit .tfa-timeline-particles {
+        display: none;
+    }
+
+    .hs-edit-mode [data-timeline-card],
+    .hs-inline-edit [data-timeline-card] {
+        opacity: 1 !important;
+        transform: none !important;
+        align-self: stretch;
+        width: 100%;
+    }
+
+    /* ---- Responsive ---- */
     @media (max-width: 768px) {
         .tfa-timeline-section {
-            padding: 4rem 0;
+            padding: 3.5rem 0 2rem;
         }
 
         .timeline-section-title {
-            font-size: 2.2rem;
+            font-size: 2rem;
         }
 
         .process-timeline-stack {
-            height: 420px;
+            gap: 1.75rem;
+        }
+
+        .timeline-stack-card {
+            width: 100%;
+            align-self: stretch !important;
         }
 
         .timeline-glass-panel {
-            padding: 2rem 1.5rem;
-        }
-
-        .step-badge {
-            width: 60px;
-            height: 60px;
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
+            padding: 1.75rem 1.5rem;
         }
 
         .step-title {
-            font-size: 1.5rem;
+            font-size: 1.1rem;
         }
 
         .step-description {
-            font-size: 1rem;
+            font-size: 0.95rem;
         }
     }
 </style>
