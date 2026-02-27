@@ -30,6 +30,26 @@
   {{ require_js("https://unpkg.com/lenis@1.1.5/dist/lenis.min.js", {"position": "footer", "defer": true}) }}
   {{ require_js("https://unpkg.com/split-type", {"position": "footer", "defer": true}) }}
 
+  {# SEO & Acessibilidade Head-Mkt: JSON-LD Metadata #}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "TF Aço e Inox",
+      "url": "https://www.tfacoeinox.com.br",
+      "logo": "{{ brand_settings.primary_logo.src }}",
+      "description": "{{ page_meta.meta_description }}",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "BR"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer support"
+      }
+    }
+  </script>
+
   {# To see a full list of what is included via standard_header_includes please reference this article:
   https://developers.hubspot.com/docs/cms/hubl/variables#required-page-template-variables #}
   {{ standard_header_includes }}

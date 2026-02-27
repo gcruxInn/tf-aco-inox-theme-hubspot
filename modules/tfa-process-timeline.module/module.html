@@ -2,18 +2,30 @@
 
     {# CSS Particle System — Industrial Sparks & Smoke (pure CSS, no JS) #}
     <div class="tfa-timeline-particles" aria-hidden="true">
-        <span class="particle particle--spark" style="--px: 5%;  --py: 8%;  --delay: 0.0s; --dur: 2.4s; --drift:  12px;"></span>
-        <span class="particle particle--spark" style="--px: 15%; --py: 12%; --delay: 0.7s; --dur: 1.9s; --drift:  -8px;"></span>
-        <span class="particle particle--spark" style="--px: 28%; --py: 6%;  --delay: 1.2s; --dur: 2.8s; --drift:  18px;"></span>
-        <span class="particle particle--spark" style="--px: 42%; --py: 10%; --delay: 0.3s; --dur: 2.1s; --drift: -14px;"></span>
-        <span class="particle particle--spark" style="--px: 55%; --py: 14%; --delay: 0.9s; --dur: 2.6s; --drift:  10px;"></span>
-        <span class="particle particle--spark" style="--px: 68%; --py: 7%;  --delay: 0.1s; --dur: 3.0s; --drift: -20px;"></span>
-        <span class="particle particle--spark" style="--px: 78%; --py: 11%; --delay: 1.5s; --dur: 2.3s; --drift:  16px;"></span>
-        <span class="particle particle--spark" style="--px: 88%; --py: 9%;  --delay: 0.4s; --dur: 1.8s; --drift:  -6px;"></span>
-        <span class="particle particle--spark" style="--px: 22%; --py: 15%; --delay: 1.8s; --dur: 2.5s; --drift:  22px;"></span>
-        <span class="particle particle--spark" style="--px: 62%; --py: 5%;  --delay: 0.5s; --dur: 2.0s; --drift: -16px;"></span>
-        <span class="particle particle--spark" style="--px: 38%; --py: 13%; --delay: 2.1s; --dur: 2.7s; --drift:   8px;"></span>
-        <span class="particle particle--spark" style="--px: 92%; --py: 8%;  --delay: 1.0s; --dur: 2.2s; --drift: -12px;"></span>
+        <span class="particle particle--spark"
+            style="--px: 5%;  --py: 8%;  --delay: 0.0s; --dur: 2.4s; --drift:  12px;"></span>
+        <span class="particle particle--spark"
+            style="--px: 15%; --py: 12%; --delay: 0.7s; --dur: 1.9s; --drift:  -8px;"></span>
+        <span class="particle particle--spark"
+            style="--px: 28%; --py: 6%;  --delay: 1.2s; --dur: 2.8s; --drift:  18px;"></span>
+        <span class="particle particle--spark"
+            style="--px: 42%; --py: 10%; --delay: 0.3s; --dur: 2.1s; --drift: -14px;"></span>
+        <span class="particle particle--spark"
+            style="--px: 55%; --py: 14%; --delay: 0.9s; --dur: 2.6s; --drift:  10px;"></span>
+        <span class="particle particle--spark"
+            style="--px: 68%; --py: 7%;  --delay: 0.1s; --dur: 3.0s; --drift: -20px;"></span>
+        <span class="particle particle--spark"
+            style="--px: 78%; --py: 11%; --delay: 1.5s; --dur: 2.3s; --drift:  16px;"></span>
+        <span class="particle particle--spark"
+            style="--px: 88%; --py: 9%;  --delay: 0.4s; --dur: 1.8s; --drift:  -6px;"></span>
+        <span class="particle particle--spark"
+            style="--px: 22%; --py: 15%; --delay: 1.8s; --dur: 2.5s; --drift:  22px;"></span>
+        <span class="particle particle--spark"
+            style="--px: 62%; --py: 5%;  --delay: 0.5s; --dur: 2.0s; --drift: -16px;"></span>
+        <span class="particle particle--spark"
+            style="--px: 38%; --py: 13%; --delay: 2.1s; --dur: 2.7s; --drift:   8px;"></span>
+        <span class="particle particle--spark"
+            style="--px: 92%; --py: 8%;  --delay: 1.0s; --dur: 2.2s; --drift: -12px;"></span>
         <span class="particle particle--smoke" style="--px: 10%; --py: 5%;  --delay: 0.0s; --dur: 6.0s;"></span>
         <span class="particle particle--smoke" style="--px: 30%; --py: 8%;  --delay: 1.5s; --dur: 7.0s;"></span>
         <span class="particle particle--smoke" style="--px: 50%; --py: 4%;  --delay: 0.8s; --dur: 5.5s;"></span>
@@ -32,7 +44,9 @@
         {# Timeline Stack — Cards alternate left/right for GSAP reveal #}
         <div class="process-timeline-stack">
             {% for step in module.steps %}
-            <div class="timeline-stack-card" data-timeline-card="true" data-direction="{% if loop.index % 2 == 1 %}left{% else %}right{% endif %}" style="z-index: {{ loop.index }}; top: calc(15vh + {{ loop.index0 * 20 }}px);">
+            <div class="timeline-stack-card" data-timeline-card="true"
+                data-direction="{% if loop.index % 2 == 1 %}left{% else %}right{% endif %}"
+                data-index="{{ loop.index0 }}">
 
                 <div class="timeline-glass-panel">
                     {# Chrome Edge Glow & Reflection Handled in CSS #}
@@ -58,19 +72,19 @@
 
 <style>
     /* =========================================================
-       TFA TIMELINE V5 — Vibe Dark / Silver Industrial
+       TFA TIMELINE V7 — Cinematic Fly-In / Vibe Dark Silver
     ========================================================= */
 
     .tfa-timeline-section {
-        padding: 5rem 0 3rem;
         box-sizing: border-box;
         background: linear-gradient(180deg, #080c10 0%, #0d1117 50%, #080c10 100%);
         position: relative;
         z-index: 20;
-        overflow: clip; /* 'clip' preserves particle clipping without creating a scroll container, keeping position:sticky functional */
+        overflow: hidden;
+        perspective: 1000px;
     }
 
-    .tfa-timeline-section > .tfa-container {
+    .tfa-timeline-section>.tfa-container {
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 1.5rem;
@@ -102,37 +116,39 @@
         line-height: 1.6;
     }
 
-    /* ---- Stack Container — widened for zig-zag alternation ---- */
+    /* ---- Stack Container — fullscreen viewport stage for pinned cards ---- */
     .process-timeline-stack {
         position: relative;
         width: 100%;
         max-width: 760px;
+        height: 100vh;
         margin: 0 auto;
         display: flex;
-        flex-direction: column;
-        gap: 2.5rem;
-        align-items: stretch;
+        align-items: center;
+        justify-content: center;
         transform-style: preserve-3d;
     }
 
-    /* ---- Cards — alternating zig-zag alignment ---- */
+    /* ---- Cards — absolute stacking for cinematic fly-in ---- */
     .timeline-stack-card {
-        position: sticky;
+        position: absolute;
         width: 82%;
+        max-width: 620px;
         min-height: 300px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         display: flex;
         justify-content: center;
         align-items: center;
         will-change: transform, opacity;
         transform-style: preserve-3d;
+        opacity: 0;
+        pointer-events: none;
     }
 
-    .timeline-stack-card[data-direction="left"] {
-        align-self: flex-start;
-    }
-
-    .timeline-stack-card[data-direction="right"] {
-        align-self: flex-end;
+    .timeline-stack-card.is-active {
+        pointer-events: auto;
     }
 
     /* ---- Glassmorphism Panel (Inox Chrome Style) ---- */
@@ -140,10 +156,10 @@
         width: 100%;
         height: 100%;
         background: linear-gradient(135deg,
-            rgb(75, 75, 75) 0%,
-            rgb(165, 165, 165) 40%,
-            rgb(135, 135, 135) 60%,
-            rgb(38, 38, 38) 100%);
+                rgb(75, 75, 75) 0%,
+                rgb(165, 165, 165) 40%,
+                rgb(135, 135, 135) 60%,
+                rgb(38, 38, 38) 100%);
         backdrop-filter: blur(25px) saturate(180%);
         -webkit-backdrop-filter: blur(25px) saturate(180%);
         border-radius: 24px;
@@ -169,12 +185,13 @@
         border-radius: 24px;
         padding: 1px;
         background: linear-gradient(135deg,
-            rgba(255, 255, 255, 0.9) 0%,
-            rgba(180, 180, 180, 0.3) 20%,
-            rgba(255, 255, 255, 0.8) 50%,
-            rgba(160, 160, 160, 0.25) 80%,
-            rgba(255, 255, 255, 0.9) 100%);
+                rgba(255, 255, 255, 0.9) 0%,
+                rgba(180, 180, 180, 0.3) 20%,
+                rgba(255, 255, 255, 0.8) 50%,
+                rgba(160, 160, 160, 0.25) 80%,
+                rgba(255, 255, 255, 0.9) 100%);
         -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
         -webkit-mask-composite: xor;
         mask-composite: exclude;
         z-index: -1;
@@ -215,8 +232,15 @@
     }
 
     @keyframes timeline-sheen {
-        0%, 50% { left: -100%; }
-        100% { left: 200%; }
+
+        0%,
+        50% {
+            left: -100%;
+        }
+
+        100% {
+            left: 200%;
+        }
     }
 
     /* ---- Card Text (light for dark card background) ---- */
@@ -277,31 +301,37 @@
         display: none;
     }
 
+    .hs-edit-mode .process-timeline-stack {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
     .hs-edit-mode [data-timeline-card],
     .hs-inline-edit [data-timeline-card] {
+        position: relative !important;
         opacity: 1 !important;
         transform: none !important;
-        align-self: stretch;
-        width: 100%;
+        width: 100% !important;
+        top: auto !important;
+        left: auto !important;
+        pointer-events: auto !important;
+    }
+
+    .hs-edit-mode .tfa-timeline-section {
+        overflow: visible !important;
+        perspective: none !important;
     }
 
     /* ---- Responsive ---- */
     @media (max-width: 768px) {
-        .tfa-timeline-section {
-            padding: 3.5rem 0 2rem;
-        }
-
         .timeline-section-title {
             font-size: 2rem;
         }
 
-        .process-timeline-stack {
-            gap: 1.75rem;
-        }
-
         .timeline-stack-card {
-            width: 100%;
-            align-self: stretch !important;
+            width: 92%;
         }
 
         .timeline-glass-panel {

@@ -34,39 +34,53 @@
     <div class="hero-container">
         <div class="hero-content-wrapper">
 
-            {# Headline #}
-            <h1 class="hero-headline">
-                {{ module.hero_content.headline }}
-            </h1>
+            {# Intro Content #}
+            <div class="hero-intro-content">
+                {# Headline #}
+                <h1 class="hero-headline">
+                    {{ module.hero_content.headline }}
+                </h1>
 
-            {# Subheadline #}
-            <p class="hero-subheadline">
-                {{ module.hero_content.subheadline }}
-            </p>
+                {# Subheadline #}
+                <p class="hero-subheadline">
+                    {{ module.hero_content.subheadline }}
+                </p>
 
-            {# CTAs #}
-            <div class="hero-cta-wrapper">
-                {% if module.hero_content.cta_primary_text %}
-                <a href="{{ module.hero_content.cta_primary_link }}" class="btn-hero-primary"
-                    data-border-style="{{ module.style.cta_border_style }}">
-                    {{ module.hero_content.cta_primary_text }}
-                </a>
-                {% endif %}
+                {# CTAs #}
+                <div class="hero-cta-wrapper">
+                    {% if module.hero_content.cta_primary_text %}
+                    <a href="{{ module.hero_content.cta_primary_link }}" class="btn-hero-primary"
+                        data-border-style="{{ module.style.cta_border_style }}">
+                        {{ module.hero_content.cta_primary_text }}
+                    </a>
+                    {% endif %}
 
-                {% if module.hero_content.cta_secondary_text %}
-                <a href="{{ module.hero_content.cta_secondary_link }}" class="btn-hero-secondary">
-                    {{ module.hero_content.cta_secondary_text }}
-                </a>
+                    {% if module.hero_content.cta_secondary_text %}
+                    <a href="{{ module.hero_content.cta_secondary_link }}" class="btn-hero-secondary">
+                        {{ module.hero_content.cta_secondary_text }}
+                    </a>
+                    {% endif %}
+                </div>
+
+                {# Trust Badges (Optional) #}
+                {% if module.badges %}
+                <div class="hero-trust-badges">
+                    {% for badge in module.badges %}
+                    <div class="hero-badge-item">
+                        <span style="font-size: 1.25rem;">{{ badge.icon }}</span>
+                        <span style="font-size: 0.9rem; font-weight: 500;">{{ badge.text }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
                 {% endif %}
             </div>
 
-            {# Trust Badges (Optional) #}
-            {% if module.badges %}
-            <div class="hero-trust-badges">
-                {% for badge in module.badges %}
-                <div class="hero-badge-item">
-                    <span style="font-size: 1.25rem;">{{ badge.icon }}</span>
-                    <span style="font-size: 0.9rem; font-weight: 500;">{{ badge.text }}</span>
+            {# Cinematic Scroll Chapters #}
+            {% if module.scroll_chapters %}
+            <div class="hero-scroll-chapters">
+                {% for chapter in module.scroll_chapters %}
+                <div class="hero-chapter" data-chapter="{{ loop.index }}">
+                    <h2 class="hero-chapter-headline">{{ chapter.headline }}</h2>
                 </div>
                 {% endfor %}
             </div>
@@ -76,10 +90,10 @@
     </div>
 
     {# Scroll Indicator #}
-    <div class="hero-scroll-indicator">
+    <button class="hero-scroll-indicator" aria-label="Scroll down">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M12 5v14M19 12l-7 7-7-7" />
         </svg>
-    </div>
+    </button>
 
 </section>

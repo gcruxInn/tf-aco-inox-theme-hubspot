@@ -11,7 +11,7 @@
     <div class="tfa-container">
 
         {# Section Heading #}
-        <div class="portfolio-header-v2">
+        <div class="portfolio-header-v2" data-animate="fade-up">
             <h2 id="portfolio-title-{{ name }}" class="portfolio-title-v2" data-split-text>
                 {{ module.section_heading.title }}
             </h2>
@@ -21,7 +21,7 @@
         </div>
 
         {# Portfolio Grid #}
-        <div class="portfolio-grid-v2">
+        <div class="portfolio-grid-v2" data-animate="stagger-children">
             {% for project in module.projects %}
             <div class="portfolio-card-v2">
 

@@ -1,26 +1,40 @@
-ROLE: full-stack-ops
+ROLE: qa-engineer
 MODEL: haiku
-STATUS: ✅ DONE — 2026-02-27 (17:45 WSL)
 
-# EXECUTION ORDER: Finalização Trilha A & Início Trilha B (Home/Serviços)
+# Finalizing Home Hero Cinematic Scrolltelling & QA Audit
 
-CEO Reporting: A Trilha A (Página "Sobre Nós") está técnica e estruturalmente CONCLUÍDA. O Auditor QA (Haiku) validou 100% dos 11 Editor Guards, a sintaxe HubL e a integridade do GSAP/matchMedia.
+This plan addresses the user's request to finalize the Home Hero section using the provided Veo 3.1 video context, and perform a QA Audit using the MCP Web-Scraper tool.
 
-Sua missão, **Full Stack Ops**, é realizar o "Carimbo Final" e preparar o terreno para a próxima grande página.
+## Proposed Changes
 
-## 1. Release & Sync Final
-Assuma o terminal WSL.
-- **Push:** Já temos 4 commits acumulados à frente do remote. Execute o push final para garantir que o repositório está síncrono.
-- **Comando:** `git push origin main`
-- **Deploy:** Execute o upload final para garantir que o portal HubSpot está 1:1 com o local.
-- **Comando:** `hs cms upload . TFAHUB251 --account="tf-a-o-inox"`
+### `tfa-hero-industrial.module`
 
-## 2. Planejamento da Trilha B (Home / Serviços)
-Consulte o arquivo `FINAL_PAGES_ARCHITECTURE_PLAN.md`.
-- Identifique os próximos módulos necessários para a Home Page ou Página de Serviços (ex: `tfa-hero-main`, `tfa-services-grid`).
-- **Ação:** No seu relatório de encerramento, cite qual será o próximo módulo a ser "forjado" pelo Esquadrão.
+#### [NEW] `module.js`
+Create the GSAP animation logic matching the Veo 3.1 aesthetic ("Hyper-realistic industrial luxury", "Molecular Precision").
+- **Peace Protocol:** Implement `if (window.hsInEditor || document.body.classList.contains('hs-edit-mode')) return;`
+- **Dependency:** Wait for GSAP and SplitType to load.
+- **Animation Sequence:**
+  - Initial `opacity: 0` and Y-translation for the hero content.
+  - Apply `SplitType` to `.hero-headline` for character/word staggered reveal.
+  - Use `power4.out` casing for heavy, metallic inertia.
+  - Scale down the video slightly (e.g., from 1.1 to 1.0) on scroll (scrubbed) to simulate the "Seamless continuous flow".
 
-## 3. AUTO-EXIT
-- Após o Push e Upload, atualize este arquivo marcando `STATUS: ✅ DONE`.
-- Delegue o próximo `EXECUTION_ORDER` para o `ux-ui-designer` ou `gsap-creative-dev` para iniciar o Blueprint da Trilha B.
-- Saia com `exit 0`.
+#### [MODIFY] [module.css](file:///c:/Users/gabri/Documents/dev/InnLeaders/TFAHUB251/modules/tfa-hero-industrial.module/module.css)
+- Ensure performance optimizations for the video (e.g., `will-change: transform`).
+- Base states for the animated elements so they're hidden before JS executes but visible safely in the editor.
+
+## User Review Required
+
+> [!IMPORTANT]
+> To execute the **QA Visual Audit & Performance Check (Timeline V7)** using the Web-Scraper MCP, I need the exact **HubSpot Preview URL** for the Home page.
+> Please provide the preview link so I can evaluate the 60FPS metrics and screenshot the DOM.
+
+## Verification Plan
+
+### Automated Tests
+- N/A for this module context.
+
+### QA Script (Using Web-Scraper)
+- Use `web-scraper` evaluate script to check `document.body.classList.contains('hs-edit-mode')`.
+- Measure frame rates (FPS) via requestAnimationFrame timings during scroll.
+

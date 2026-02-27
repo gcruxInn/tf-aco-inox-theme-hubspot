@@ -25,8 +25,9 @@
 
 <style>
     .tfa-logos-section {
-        border-bottom: 1px solid #eee;
-        padding: 2.5rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        /* Dark theme border */
+        padding: 4rem 0;
     }
 
     .tfa-container {
@@ -39,31 +40,35 @@
         text-align: center;
         font-size: 0.85rem;
         text-transform: uppercase;
-        color: #999;
-        letter-spacing: 1.5px;
-        margin-bottom: 1.5rem;
-        font-weight: 500;
+        color: #d1d5db;
+        /* Lighter silver for legibility */
+        letter-spacing: 2px;
+        margin-bottom: 2.5rem;
+        font-weight: 600;
     }
 
     .logos-row {
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 3rem;
+        gap: 4rem;
         flex-wrap: wrap;
     }
 
     .logo-img {
-        max-height: 40px;
+        max-height: 45px;
         width: auto;
-        filter: grayscale(100%);
-        opacity: 0.5;
-        transition: all 0.3s ease;
+        filter: grayscale(100%) brightness(200%) contrast(120%);
+        /* Make logos look silver/white */
+        opacity: 0.35;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .logo-img:hover {
-        filter: grayscale(0%);
-        opacity: 1;
+        filter: grayscale(100%) brightness(300%) contrast(150%);
+        /* Bright silver on hover */
+        opacity: 0.9;
+        transform: translateY(-2px);
     }
 
     @media (max-width: 768px) {

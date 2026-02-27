@@ -76,6 +76,8 @@
 }
 
 .hero-content-wrapper {
+  position: relative;
+  /* REQUIRED FOR SCROLL CHAPTERS TO BE BOUNDED */
   max-width: 800px;
   margin: 0 auto;
   text-align: center;
@@ -90,8 +92,6 @@
   color: #ffffff;
   line-height: 1.2;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  /* Base state: Hidden until GSAP animation loads */
-  opacity: 0;
 }
 
 .hero-subheadline {
@@ -101,8 +101,6 @@
   margin-left: auto;
   margin-right: auto;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  /* Base state: Hidden until GSAP animation loads */
-  opacity: 0;
 }
 
 .hero-cta-wrapper {
@@ -111,8 +109,6 @@
   justify-content: center;
   gap: 1rem;
   margin-bottom: 2rem;
-  /* Base state: Hidden until GSAP animation loads */
-  opacity: 0;
 }
 
 /* CTA Primary Button - Base Styles */
@@ -344,8 +340,6 @@
   justify-content: center;
   gap: 1.5rem;
   margin-top: 1.5rem;
-  /* Base state: Hidden until GSAP animation loads, then opacity 0.9 on animation */
-  opacity: 0;
 }
 
 .hero-badge-item {
@@ -363,8 +357,10 @@
   z-index: 3;
   color: rgba(255, 255, 255, 0.7);
   animation: bounce 2s infinite;
-  /* Base state: Hidden until GSAP animation loads */
-  opacity: 0;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 10px;
 }
 
 @keyframes bounce {
@@ -393,5 +389,51 @@
 
   .hero-subheadline {
     font-size: 1.1rem !important;
+  }
+}
+
+/* === CINEMATIC SCROLL CHAPTERS === */
+.hero-intro-content {
+  width: 100%;
+}
+
+.hero-scroll-chapters {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-chapter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+  opacity: 0;
+  /* Hidden by default, GSAP handles opacity */
+  will-change: opacity, transform;
+}
+
+.hero-chapter-headline {
+  color: #ffffff;
+  font-size: 4rem;
+  /* Big and bold */
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  margin: 0;
+  font-family: 'Bebas Neue', 'Inter', sans-serif;
+}
+
+@media (max-width: 768px) {
+  .hero-chapter-headline {
+    font-size: 2.5rem;
   }
 }

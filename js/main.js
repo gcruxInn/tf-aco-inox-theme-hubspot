@@ -184,6 +184,7 @@ function initLenis() {
     lerp: 0.1, // controls the fluidity/smoothness
     smoothWheel: true,
   });
+  window.lenis = lenis; // Expose globally for cinematic control from modules
 
   // Sync GSAP ScrollTrigger with Lenis
   lenis.on('scroll', ScrollTrigger.update);

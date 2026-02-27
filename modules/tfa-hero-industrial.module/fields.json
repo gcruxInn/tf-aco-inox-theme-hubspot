@@ -13,6 +13,33 @@
     ]
   },
   {
+    "name": "scroll_chapters",
+    "label": "Scrolltelling Chapters",
+    "type": "group",
+    "occurrence": {
+      "min": 0,
+      "max": 10,
+      "default": 6
+    },
+    "default": [
+      { "headline": "PRECISÃO MOLECULAR" },
+      { "headline": "ESTRUTURA E ESCALA" },
+      { "headline": "DOMÍNIO CORPORATIVO" },
+      { "headline": "FUSÃO MECÂNICA" },
+      { "headline": "ASCENSÃO VERTICAL" },
+      { "headline": "OBRA PRIMA FINALIZADA" }
+    ],
+    "children": [
+      {
+        "name": "headline",
+        "label": "Chapter Headline",
+        "type": "text",
+        "default": "Chapter Headline"
+      }
+    ],
+    "help_text": "Headlines that appear sequentially as the user scrolls through the cinematic video."
+  },
+  {
     "name": "style",
     "label": "Style Settings",
     "type": "group",
@@ -25,7 +52,7 @@
           ["image", "Image"],
           ["video", "Video"]
         ],
-        "default": "image"
+        "default": "video"
       },
       { "name": "bg_image", "label": "Background Image / Video Poster", "type": "image", "help_text": "Used as background if 'Image' is selected, OR as a fallback poster if 'Video' is selected but fails to load." },
       { 

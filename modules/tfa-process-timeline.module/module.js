@@ -1,24 +1,34 @@
 /**
- * TFA Process Timeline — GSAP Scroll Reveal (V6)
- * 3D Ironhill Forge Effect — Lateral Inclined Entry
- * + Graceful Degradation Mobile via gsap.matchMedia()
+ * TFA Process Timeline — Cinematic Fly-In Cards (V7)
+ * Pinned Section + Horizontal Fly-In/Exit + Observer Drag/Swipe
  *
- * Rules:
- *  - NO PINNING under any circumstances.
- *  - Isolated IIFE: does not pollute global scope.
- *  - Editor Guard (Peace Protocol): all animations disabled inside
- *    HubSpot Drop-and-Drop editor contexts.
- *  - matchMedia scopes contain all ScrollTriggers to prevent memory leaks.
- *  - Desktop metrics (>= 768px) remain untouched.
- *  - Mobile (< 768px) uses reduced rotation/offset for FPS preservation.
+ * Architecture:
+ *  - Section is PINNED via ScrollTrigger (pin: true, scrub: 1)
+ *  - Cards fly in from alternating sides (left/right) with heavy inertia
+ *  - Each card lands center, then exits opposite side on continued scroll
+ *  - Observer plugin enables touch/drag lateral navigation
+ *  - Peace Protocol: all animations disabled inside HubSpot editor
+ *
+ * GSAP Plugins required: ScrollTrigger, Observer
+ */
+/**
+ * TFA Process Timeline — Cinematic Fly-In Cards (V7)
+ * Pinned Section + Horizontal Fly-In/Exit + Observer Drag/Swipe
+ *
+ * Architecture:
+ *  - Section is PINNED via ScrollTrigger (pin: true, scrub: 1)
+ *  - Cards fly in from alternating sides (left/right) with heavy inertia
+ *  - Each card lands center, then exits opposite side on continued scroll
+ *  - Observer plugin enables touch/drag lateral navigation
+ *  - Peace Protocol: all animations disabled inside HubSpot editor
+ *
+ * GSAP Plugins required: ScrollTrigger, Observer
  */
 (function () {
   'use strict';
 
   // ============================================================
-  // EDITOR GUARD (Peace Protocol)
-  // Abort immediately if running inside the HubSpot content editor
-  // to prevent layout breakages and animation conflicts.
+  // PEACE PROTOCOL — Editor Guard
   // ============================================================
   if (
     document.body.classList.contains('hs-edit-mode') ||
@@ -30,147 +40,169 @@
 
   // ============================================================
   // DEPENDENCY CHECK
-  // Graceful degradation: if GSAP / ScrollTrigger are unavailable,
-  // cards remain visible (opacity:1 fallback via CSS Editor Guard rules).
   // ============================================================
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
-    console.warn('[TFA Timeline V6] GSAP or ScrollTrigger not loaded. Animations skipped.');
+    console.warn('[TFA Timeline V7] GSAP or ScrollTrigger not loaded. Animations skipped.');
     document.querySelectorAll('[data-timeline-card]').forEach(function (card) {
       card.style.opacity = '1';
       card.style.transform = 'none';
+      card.style.position = 'relative';
+      card.style.pointerEvents = 'auto';
     });
+    var stack = document.querySelector('.process-timeline-stack');
+    if (stack) {
+      stack.style.height = 'auto';
+      stack.style.display = 'flex';
+      stack.style.flexDirection = 'column';
+      stack.style.gap = '2rem';
+    }
     return;
   }
 
   gsap.registerPlugin(ScrollTrigger);
 
+  // Register Observer if available (touch/drag support)
+  var hasObserver = typeof Observer !== 'undefined';
+  if (hasObserver) {
+    gsap.registerPlugin(Observer);
+  }
+
   // ============================================================
-  // RESPONSIVE ANIMATION via gsap.matchMedia()
-  // All ScrollTrigger instances live inside their respective scopes.
-  // GSAP handles cleanup automatically when breakpoints switch,
-  // preventing memory leaks from orphaned ScrollTrigger instances.
+  // CONFIGURATION
   // ============================================================
-  var mm = gsap.matchMedia();
+  var section = document.querySelector('.tfa-timeline-section');
+  var stackContainer = document.querySelector('.process-timeline-stack');
+  var cards = gsap.utils.toArray('[data-timeline-card]');
+  var header = document.querySelector('.tfa-timeline-section .timeline-header');
 
-  // ----------------------------------------------------------
-  // SCOPE 1: DESKTOP (>= 768px)
-  // Full 3D Ironhill Forge effect — heavy metallic inertia intact.
-  // ----------------------------------------------------------
-  mm.add('(min-width: 768px)', function () {
-    var section = document.querySelector('.tfa-timeline-section');
-    if (section) {
-      gsap.set(section, { perspective: 800 });
-    }
+  if (!section || !stackContainer || cards.length === 0) return;
 
-    var header = document.querySelector('.tfa-timeline-section .timeline-header');
-    if (header) {
-      gsap.fromTo(
-        header,
-        { y: 28, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.9,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: header,
-            start: 'top 88%',
-            toggleActions: 'play none none none'
-          }
+  var totalCards = cards.length;
+  // Each card gets 2 phases: fly-in (land) + fly-out (exit) = 2 segments per card
+  // Last card only lands (no exit), so: (totalCards * 2 - 1) segments
+  var totalSegments = totalCards * 2 - 1;
+
+  // ============================================================
+  // HEADER ANIMATION — plays once on scroll
+  // ============================================================
+  if (header) {
+    gsap.fromTo(
+      header,
+      { y: 28, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.9,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: header,
+          start: 'top 88%',
+          toggleActions: 'play none none none'
         }
-      );
-    }
+      }
+    );
+  }
 
-    var cards = document.querySelectorAll('[data-timeline-card]');
-    cards.forEach(function (card) {
-      var isLeft  = card.dataset.direction === 'left';
-      var rotateY = isLeft ?  75 : -75;
-      var xOffset = isLeft ? -80 :  80;
+  // ============================================================
+  // INITIAL CARD SETUP — position off-screen
+  // ============================================================
+  cards.forEach(function (card, i) {
+    var isOdd = i % 2 === 0; // 0-indexed: even index = odd card (flies from left)
+    var xStart = isOdd ? '-120vw' : '120vw';
+    var rotateZ = isOdd ? -12 : 12;
+    var rotateY = isOdd ? 25 : -25;
 
-      gsap.fromTo(
-        card,
-        {
-          rotateY: rotateY,
-          x: xOffset,
-          opacity: 0,
-          transformOrigin: isLeft ? 'left center' : 'right center'
-        },
-        {
-          rotateY: 0,
-          x: 0,
-          opacity: 1,
-          duration: 0.92,
-          ease: 'expo.out',
-          scrollTrigger: {
-            trigger: card,
-            start: 'top 84%',
-            toggleActions: 'play none none none',
-            invalidateOnRefresh: true
-          }
-        }
-      );
+    gsap.set(card, {
+      x: xStart,
+      rotateZ: rotateZ,
+      rotateY: rotateY,
+      opacity: 0,
+      scale: 0.85,
+      transformOrigin: 'center center'
     });
   });
 
-  // ----------------------------------------------------------
-  // SCOPE 2: MOBILE (< 768px)
-  // Reduced 3D depth for FPS preservation on mid-range devices.
-  // rotateY: 75° -> 40° | x: 80px -> 40px | duration: 0.92 -> 0.75
-  // ----------------------------------------------------------
-  mm.add('(max-width: 767px)', function () {
-    var section = document.querySelector('.tfa-timeline-section');
-    if (section) {
-      gsap.set(section, { perspective: 600 });
-    }
+  // ============================================================
+  // MASTER TIMELINE — scrubbed by ScrollTrigger
+  // ============================================================
+  var masterTL = gsap.timeline();
 
-    var header = document.querySelector('.tfa-timeline-section .timeline-header');
-    if (header) {
-      gsap.fromTo(
-        header,
-        { y: 20, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.75,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: header,
-            start: 'top 88%',
-            toggleActions: 'play none none none'
-          }
-        }
-      );
-    }
+  cards.forEach(function (card, i) {
+    var isOdd = i % 2 === 0;
+    var exitX = isOdd ? '120vw' : '-120vw'; // Exit to opposite side
 
-    var cards = document.querySelectorAll('[data-timeline-card]');
-    cards.forEach(function (card) {
-      var isLeft  = card.dataset.direction === 'left';
-      var rotateY = isLeft ?  40 : -40;
-      var xOffset = isLeft ? -40 :  40;
-
-      gsap.fromTo(
-        card,
-        {
-          rotateY: rotateY,
-          x: xOffset,
-          opacity: 0,
-          transformOrigin: isLeft ? 'left center' : 'right center'
-        },
-        {
-          rotateY: 0,
-          x: 0,
-          opacity: 1,
-          duration: 0.75,
-          ease: 'expo.out',
-          scrollTrigger: {
-            trigger: card,
-            start: 'top 84%',
-            toggleActions: 'play none none none',
-            invalidateOnRefresh: true
-          }
-        }
-      );
+    // Phase 1: FLY IN (land at center)
+    masterTL.to(card, {
+      x: 0,
+      rotateZ: 0,
+      rotateY: 0,
+      opacity: 1,
+      scale: 1,
+      duration: 1,
+      ease: 'power4.out',
+      onStart: function () {
+        card.classList.add('is-active');
+      }
     });
+
+    // Phase 2: FLY OUT (exit to opposite side) — skip for last card
+    if (i < totalCards - 1) {
+      masterTL.to(card, {
+        x: exitX,
+        rotateZ: isOdd ? 8 : -8,
+        rotateY: isOdd ? -20 : 20,
+        opacity: 0,
+        scale: 0.9,
+        duration: 1,
+        ease: 'power3.in',
+        onStart: function () {
+          card.classList.remove('is-active');
+        }
+      });
+    }
   });
+
+  // ============================================================
+  // PIN THE SECTION + SCRUB THE MASTER TIMELINE
+  // ============================================================
+  ScrollTrigger.create({
+    trigger: section,
+    pin: true,
+    scrub: 1,
+    start: 'top top',
+    end: '+=' + (totalSegments * 100) + '%',
+    animation: masterTL,
+    invalidateOnRefresh: true,
+    anticipatePin: 1
+  });
+
+  // ============================================================
+  // OBSERVER — Touch / Drag / Swipe lateral navigation
+  // Maps horizontal drag to scroll progress for mobile UX
+  // ============================================================
+  if (hasObserver) {
+    var isDragging = false;
+    var dragSensitivity = 2.5; // px-to-scroll multiplier
+
+    Observer.create({
+      target: section,
+      type: 'touch,pointer',
+      dragMinimum: 10,
+      onDragStart: function () {
+        isDragging = true;
+      },
+      onDrag: function (self) {
+        if (!isDragging) return;
+        // Convert horizontal drag delta to vertical scroll movement
+        var delta = -self.deltaX * dragSensitivity;
+        window.scrollBy(0, delta);
+      },
+      onDragEnd: function () {
+        isDragging = false;
+      },
+      tolerance: 10,
+      preventDefault: true
+    });
+  }
 
 })();

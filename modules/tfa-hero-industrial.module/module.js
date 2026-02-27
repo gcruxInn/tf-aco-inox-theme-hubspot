@@ -28,94 +28,187 @@ if (window.hsInEditor || document.body.classList.contains('hs-edit-mode')) {
   if (!heroSection) return;
 
   // ===== HERO CONTENT INITIAL STATE ANIMATION =====
-  // Staggered entrance of headline, subheadline, CTAs, and badges
-  gsap.set([heroHeadline, heroSubheadline, heroCtaWrapper, heroBadges, scrollIndicator], {
-    opacity: 0,
-    y: 40
-  });
-
-  // Apply SplitType to headline for character-level reveal
-  if (heroHeadline && typeof SplitType !== 'undefined') {
-    const split = new SplitType(heroHeadline, { types: 'chars, words' });
-
-    gsap.from(split.chars, {
-      duration: 1.2,
+  function initialContentAnim() {
+    // Staggered entrance of headline, subheadline, CTAs, and badges
+    gsap.set([heroHeadline, heroSubheadline, heroCtaWrapper, heroBadges, scrollIndicator], {
       opacity: 0,
-      y: 20,
-      stagger: 0.05,
-      ease: 'power4.out',
-      delay: 0.2
+      y: 40
     });
-  } else {
-    // Fallback: animate headline without SplitType
-    gsap.to(heroHeadline, {
-      duration: 1,
+
+    // Apply SplitType to headline for character-level reveal
+    if (heroHeadline && typeof SplitType !== 'undefined') {
+      const split = new SplitType(heroHeadline, { types: 'chars, words' });
+
+      gsap.from(split.chars, {
+        duration: 1.2,
+        opacity: 0,
+        y: 20,
+        stagger: 0.05,
+        ease: 'power4.out',
+        delay: 0.2
+      });
+    } else {
+      // Fallback: animate headline without SplitType
+      gsap.to(heroHeadline, {
+        duration: 1,
+        opacity: 1,
+        y: 0,
+        ease: 'power4.out',
+        delay: 0.2
+      });
+    }
+
+    // Staggered animation for supporting elements
+    gsap.to([heroSubheadline, heroCtaWrapper, heroBadges], {
+      duration: 0.8,
       opacity: 1,
       y: 0,
-      ease: 'power4.out',
-      delay: 0.2
+      stagger: 0.1,
+      ease: 'power3.out',
+      delay: 0.8
+    });
+
+    // Scroll indicator animation (continuous bounce)
+    gsap.to(scrollIndicator, {
+      duration: 0.8,
+      opacity: 1,
+      y: 0,
+      ease: 'power3.out',
+      delay: 1.4
     });
   }
 
-  // Staggered animation for supporting elements
-  gsap.to([heroSubheadline, heroCtaWrapper, heroBadges], {
-    duration: 0.8,
-    opacity: 1,
-    y: 0,
-    stagger: 0.1,
-    ease: 'power3.out',
-    delay: 0.8
-  });
+  // ===== CINEMATIC SCROLLTELLING ANIMATION =====
+  const introContent = document.querySelector('.hero-intro-content');
+  const scrollChapters = document.querySelectorAll('.hero-chapter');
 
-  // Scroll indicator animation (continuous bounce)
-  gsap.to(scrollIndicator, {
-    duration: 0.8,
-    opacity: 1,
-    y: 0,
-    ease: 'power3.out',
-    delay: 1.4
-  });
+  // ===== SCROLL INDICATOR CLICK EVENT =====
+  if (scrollIndicator) {
+    scrollIndicator.addEventListener('click', (e) => {
+      e.preventDefault();
 
-  // ===== VIDEO SCALE ANIMATION ON SCROLL =====
-  // Scrubbed: Scale down from 1.1 to 1.0 as user scrolls into the hero section
-  if (heroVideo && typeof gsap !== 'undefined' && gsap.plugins && gsap.plugins.ScrollTrigger) {
+      const targetScroll = window.innerHeight * 0.8;
+
+      // Use Lenis for native industrial heavy sliding if loaded
+      if (typeof window.lenis !== 'undefined') {
+        window.lenis.scrollTo(window.scrollY + targetScroll, {
+          duration: 2.5, // Slow cinematic scroll
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) // Easing power4 out
+        });
+      } else {
+        // Fallback smooth scroll
+        window.scrollBy({
+          top: targetScroll,
+          behavior: 'smooth'
+        });
+      }
+    });
+  }
+
+  if (typeof gsap !== 'undefined' && gsap.plugins && gsap.plugins.ScrollTrigger) {
     gsap.registerPlugin(ScrollTrigger);
 
-    gsap.to(heroVideo, {
-      scrollTrigger: {
-        trigger: heroSection,
-        start: 'top top',
-        end: 'bottom top',
-        scrub: 1, // Smooth scrubbing: 1 = smooth follow
-        markers: false
-      },
-      scale: 1,
-      duration: 1,
-      ease: 'power2.inOut'
-    });
+    initialContentAnim(); // Call initial intro anims
 
-    // Initial scale state for the video (starts at 1.1)
-    gsap.set(heroVideo, { scale: 1.1 });
-  }
 
-  // ===== HERO BUTTON HOVER EFFECTS (Metallic mouse tracking for secondary CTA) =====
-  const secondaryCta = document.querySelector('.btn-hero-secondary');
-  if (secondaryCta) {
-    secondaryCta.addEventListener('mousemove', (e) => {
-      const rect = secondaryCta.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 100;
-      const y = ((e.clientY - rect.top) / rect.height) * 100;
-      const angle = Math.atan2(e.clientY - rect.top - rect.height / 2, e.clientX - rect.left - rect.width / 2) * (180 / Math.PI);
+    if (scrollChapters.length > 0) {
+      // Create a master timeline that pins the hero section
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: heroSection,
+          start: 'top top',
+          end: `+=${scrollChapters.length * 100}%`, // Scroll duration scales with chapters
+          scrub: 1, // Smooth scrub
+          pin: true,
+          markers: false
+        }
+      });
 
-      secondaryCta.style.setProperty('--mouse-x', x);
-      secondaryCta.style.setProperty('--mouse-y', y);
-      secondaryCta.style.setProperty('--mouse-angle', angle);
-    });
+      // 1. Video Scale Down slightly
+      if (heroVideo) {
+        gsap.set(heroVideo, { scale: 1.1 });
+        tl.to(heroVideo, {
+          scale: 1,
+          duration: 1,
+          ease: 'power2.inOut'
+        }, 0); // Start at time 0 of timeline
+      }
 
-    secondaryCta.addEventListener('mouseleave', () => {
-      secondaryCta.style.setProperty('--mouse-x', 50);
-      secondaryCta.style.setProperty('--mouse-y', 50);
-      secondaryCta.style.setProperty('--mouse-angle', 0);
-    });
+      // 2. Fade out intro content
+      if (introContent) {
+        tl.to(introContent, {
+          opacity: 0,
+          y: -50,
+          duration: 0.5,
+          ease: 'power2.inOut'
+        }, 0.5);
+      }
+
+      // Also fade out the scroll indicator
+      if (scrollIndicator) {
+        tl.to(scrollIndicator, {
+          opacity: 0,
+          duration: 0.3
+        }, 0.5);
+      }
+
+      // 3. Scrub through each scroll chapter
+      scrollChapters.forEach((chapter, index) => {
+        const headline = chapter.querySelector('.hero-chapter-headline');
+
+        // Setup initial position
+        gsap.set(chapter, { opacity: 0, y: "30%" });
+
+        // Fade in the chapter
+        tl.to(chapter, {
+          opacity: 1,
+          y: "0%",
+          duration: 0.5,
+          ease: 'power3.out'
+        }, "+=0.2");
+
+        if (headline) {
+          gsap.set(headline, { scale: 0.9, opacity: 0.5 });
+          tl.to(headline, {
+            scale: 1,
+            opacity: 1,
+            duration: 0.5,
+            ease: 'power3.out'
+          }, "<");
+        }
+
+        // Keep it visible for a moment
+        tl.to(chapter, {
+          opacity: 1,
+          duration: 1
+        });
+
+        // Fade out if it's not the last one
+        if (index !== scrollChapters.length - 1) {
+          tl.to(chapter, {
+            opacity: 0,
+            y: "-30%",
+            duration: 0.5,
+            ease: 'power3.in'
+          });
+        }
+      });
+    } else {
+      // Fallback: No chapters, just scale the video
+      if (heroVideo) {
+        gsap.to(heroVideo, {
+          scrollTrigger: {
+            trigger: heroSection,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 1
+          },
+          scale: 1,
+          duration: 1,
+          ease: 'power2.inOut'
+        });
+        gsap.set(heroVideo, { scale: 1.1 });
+      }
+    }
   }
 })();
