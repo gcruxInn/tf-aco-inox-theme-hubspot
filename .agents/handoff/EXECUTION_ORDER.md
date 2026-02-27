@@ -1,21 +1,28 @@
-ROLE: qa-enginer
+ROLE: full-stack-ops
 MODEL: sonnet
 
-# EXECUTION ORDER: Timeline V5 — Final Responsiveness Audit
+# EXECUTION ORDER: Timeline V6.1 — Git Backup & Workspace Integrity
 
-O CTO-Front finalizou a correção crítica (Issue #1 e #2) relatada no último ciclo. O `drop-shadow` foi substituído por `box-shadow` e o `invalidateOnRefresh: true` foi injetado no JS. O módulo foi deployado com sucesso.
+O CTO-Front finalizou a V6 com sucesso, implementando a redução de FPS (`matchMedia`) para aparelhos mobile no GSAP 3D. O `module.js` encontra-se devidamente atualizado no seu ambiente local. 
 
-Sua missão agora é a **Auditoria Final de Responsividade e Device-Testing**.
+Contudo, ao verificar os logs do último deploy, percebi a necessidade de uma instrução **crítica** para preservar a raiz do servidor:
 
-## 1. Auditoria Visual HUD (Mobile/Tablet)
-- **Alvo:** Acesse a preview do módulo `tfa-process-timeline` simulando viewports menores (Tablet: 768px, Mobile: 375px/414px).
-- **Inspecionar:** O `position: sticky` e o ScrollTrigger GSAP estão fluidos? A adição do `invalidateOnRefresh: true` resolveu a dessincronização que ocorria em resizes/scrolls nestas viewports?
-- **3D Constraints:** Em telas estreitas, a perspectiva agressiva de 800px e rotação de 75 graus esmaga o conteúdo (textos) dos cards?
-- **Espaçamentos:** Verifique margins e paddings verticais na section para evitar embaraço visual. 
+**CUIDADO COM AS ORDENS DE DEPLOY DA CLI:**
+Nunca suba pastas soltas com o comando referenciado no log anterior (`hs cms upload modules/tfa-process-timeline.module TFAHUB251`). Para não subir a pasta "modules" crua na raiz do *TFAHUB251*, o certo é sempre fazer o deploy do projeto inteiro de forma consolidada e atrelada.
 
-## 2. Reporte Técnico & Handoff (Closed-Loop Audit)
-- Se a auditoria for 100% limpa em Mobile/Tablet: Declare `QA FINAL APPROVED — RESPONSIVE OK` no reporte técnico. O ciclo de desenvolvimento desta feature estará encerrado e o módulo será validado pelo CEO.
-- Se a UX mobile estiver quebrada, liste os gaps (ex: "Desabilitar GSAP 3D em viewports < 768px") para o CTO-Front consertar.
+A única forma permitida para subir o código do theme é:
+`hs cms upload . TFAHUB251`
+
+Sua missão agora é: **Backup do Estado V6 e Garantia de Integridade na HubSpot**.
+
+## 1. Deploy Global de Correção (Safe Sync)
+- Assuma o terminal WSL e execute o upload completo de forma segura para garantir que o projeto inteiro na HubSpot sobrescreva e reestabilize qualquer fragmentação.
+- Comando exato: `hs cms upload . TFAHUB251` (dentro de `/mnt/c/Users/gabri/Documents/dev/InnLeaders/TFAHUB251`)
+
+## 2. Commit da V6 (Git Backup)
+- Realize o `git add .` e o `git commit` da V6 que o CTO-Front acabou de desenvolver via Terminal WSL antes do seu deploy.
+- Mensagem de commit mandatório do CEO: `feat(timeline): implement gsap matchMedia graceful degradation for mid-range mobile`
 
 ## 3. AUTO-EXIT
-- Logo que avaliar tudo de forma sintética, reporte seu veredito e encerre o loop (`exit 0`), liberando o terminal.
+- Após a confirmação dos dois comandos de Sucesso (WSL CLI + Git Status limpo), retorne um status de término para que o Maestro assuma.
+- Lembre-se, use `exit 0` com um pipe ou apenas retorne que acabou para interromper a barreira de prompt passiva do Claude CLI que o Automator roda.
