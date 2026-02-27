@@ -1,28 +1,25 @@
 ROLE: full-stack-ops
 MODEL: sonnet
+STATUS: 🚀 PENDING — 2026-02-27
 
-# EXECUTION ORDER: Timeline V6.1 — Git Backup & Workspace Integrity
+# EXECUTION ORDER: Trilha A (Página "Sobre Nós") — Integração Final
 
-O CTO-Front finalizou a V6 com sucesso, implementando a redução de FPS (`matchMedia`) para aparelhos mobile no GSAP 3D. O `module.js` encontra-se devidamente atualizado no seu ambiente local. 
+Excelente trabalho do esquadrão! O CTO-Front finalizou com precisão cirúrgica a implementação do `tfa-stats-row.module` (Cards Numéricos), garantindo Count-up do GSAP, responsividade e o deploy íntegro (`hs cms upload . TFAHUB251`).
 
-Contudo, ao verificar os logs do último deploy, percebi a necessidade de uma instrução **crítica** para preservar a raiz do servidor:
+Com a **Timeline V6** e os **Cards Numéricos** totalmente operacionais em nosso servidor HubSpot, fechamos as peças fundamentais para construir a **Trilha A (Página "Sobre Nós")**, conforme consta no nosso plano mestre (`FINAL_PAGES_ARCHITECTURE_PLAN.md`).
 
-**CUIDADO COM AS ORDENS DE DEPLOY DA CLI:**
-Nunca suba pastas soltas com o comando referenciado no log anterior (`hs cms upload modules/tfa-process-timeline.module TFAHUB251`). Para não subir a pasta "modules" crua na raiz do *TFAHUB251*, o certo é sempre fazer o deploy do projeto inteiro de forma consolidada e atrelada.
+A bola passou para você, **Full Stack Ops**. Sua missão agora é orquestrar o fim dessa fase, garantindo a integridade dos artefatos no repositório.
 
-A única forma permitida para subir o código do theme é:
-`hs cms upload . TFAHUB251`
+## 1. Revisão e Backup Final do Repo
+Assuma o controle do terminal WSL. Verifique via `git status` e `git diff` o que foi alterado nas últimas iterações do CTO-Front (especialmente em `modules/tfa-stats-row.module/module.html`).
+- **Ação:** Realize o `git add .` e construa um commit atestando a entrega visual do módulo de estatísticas. 
+- **Mensagem Sugerida:** `feat(stats): implement dark/silver blueprint, count-up gsap and responsive grid`
 
-Sua missão agora é: **Backup do Estado V6 e Garantia de Integridade na HubSpot**.
-
-## 1. Deploy Global de Correção (Safe Sync)
-- Assuma o terminal WSL e execute o upload completo de forma segura para garantir que o projeto inteiro na HubSpot sobrescreva e reestabilize qualquer fragmentação.
-- Comando exato: `hs cms upload . TFAHUB251` (dentro de `/mnt/c/Users/gabri/Documents/dev/InnLeaders/TFAHUB251`)
-
-## 2. Commit da V6 (Git Backup)
-- Realize o `git add .` e o `git commit` da V6 que o CTO-Front acabou de desenvolver via Terminal WSL antes do seu deploy.
-- Mensagem de commit mandatório do CEO: `feat(timeline): implement gsap matchMedia graceful degradation for mid-range mobile`
+## 2. Preparação da Próxima Missão (QA / Handoff)
+- Após consolidar o código na branch `main`, defina qual o próximo passo lógico.
+- A Página "Sobre Nós" requer agora apenas montagem visual no Editor da HubSpot (Drag and Drop usando a Timeline e os Stats Row), algo que sai da alçada de código puro.
+- **Opções:** Você deve decidir e escrever no seu encerramento: devemos direcionar o QA-Enginer para auditar o Design Manager nativo da HubSpot da Página Sobre, OU iniciaremos o desenvolvimento do Módulo de Depoimentos (`tfa-testimonials.module`), que é o último que falta nessa página?
 
 ## 3. AUTO-EXIT
-- Após a confirmação dos dois comandos de Sucesso (WSL CLI + Git Status limpo), retorne um status de término para que o Maestro assuma.
-- Lembre-se, use `exit 0` com um pipe ou apenas retorne que acabou para interromper a barreira de prompt passiva do Claude CLI que o Automator roda.
+- Logo que confirmar a integridade do commit no terminal WSL e formular o plano, registre a conclusão.
+- Saia do terminal usando o fluxo tradicional (`exit 0`).

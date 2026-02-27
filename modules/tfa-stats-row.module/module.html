@@ -1,158 +1,180 @@
 {# --- MODULE: TFA Stats Row --- #}
 <section class="tfa-stats-section">
-    <div class="tfa-container">
-        <div class="stats-layout">
-            {# Left Column: Text Content #}
-            <div class="stats-text" data-animate="fade-left">
-                <h2 class="stats-title">{{ module.stats_content.title }}</h2>
-                <div class="stats-description">{{ module.stats_content.description }}</div>
+  <div class="tfa-container">
+    <div class="stats-layout">
 
-                <ul class="stats-bullets">
-                    {% for bullet in module.stats_content.bullets %}
-                    <li class="stats-bullet-item">
-                        <span class="bullet-check">✓</span> {{ bullet }}
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
+      {# Coluna Esquerda: Texto #}
+      <div class="stats-text">
+        <h2 class="stats-title">{{ module.stats_content.title }}</h2>
+        <p class="stats-description">{{ module.stats_content.description }}</p>
+      </div>
 
-            {# Right Column: Stats Grid #}
-            <div class="stats-grid" data-animate="stagger-children">
-                {% for stat in module.stats %}
-                <div class="stat-card">
-                    <span class="stat-number" data-countup="{{ stat.stat_number }}">0</span>
-                    <p class="stat-label">{{ stat.stat_label }}</p>
-                </div>
-                {% endfor %}
-            </div>
+      {# Coluna Direita: Grid de Cards #}
+      <div class="stats-grid">
+        {% for stat in module.stats %}
+        <div class="stat-card">
+          <span class="stat-number" data-countup="{{ stat.stat_number }}">0</span>
+          <p class="stat-label">{{ stat.stat_label }}</p>
         </div>
+        {% endfor %}
+      </div>
+
     </div>
+  </div>
 </section>
 
 <style>
-    .tfa-stats-section {
-        padding: 5rem 0;
-        color: white;
-    }
+  .tfa-stats-section {
+    padding: 5rem 0;
+    background: #111111;
+    font-family: 'Inter', sans-serif;
+  }
 
-    .tfa-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 1rem;
-    }
+  .tfa-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
 
-    .stats-layout {
-        display: grid;
-        grid-template-columns: 5fr 6fr;
-        gap: 4rem;
-        align-items: center;
-    }
+  /* ── Layout ── */
+  .stats-layout {
+    display: grid;
+    grid-template-columns: 5fr 6fr;
+    gap: 4rem;
+    align-items: center;
+  }
 
-    .stats-title {
-        font-size: 2.2rem;
-        font-weight: 800;
-        color: white;
-        margin-bottom: 1rem;
-        line-height: 1.2;
-    }
+  /* ── Typography ── */
+  .stats-title {
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 800;
+    color: #FFFFFF;
+    margin: 0 0 1rem;
+    line-height: 1.2;
+  }
 
-    .stats-description {
-        color: rgba(255, 255, 255, 0.7);
-        font-size: 1rem;
-        line-height: 1.7;
-        margin-bottom: 1.5rem;
-    }
+  .stats-description {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.75;
+    margin: 0;
+  }
 
-    .stats-bullets {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
+  /* ── Stats Grid ── */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
 
-    .stats-bullet-item {
-        margin-bottom: 0.75rem;
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        color: rgba(255, 255, 255, 0.85);
-        font-size: 0.95rem;
-    }
+  /* ── Stat Card ── */
+  .stat-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(192, 192, 192, 0.12);
+    border-radius: 12px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+  }
 
-    .bullet-check {
-        color: #C0C0C0;
-        font-weight: 700;
-        font-size: 1.1rem;
-        flex-shrink: 0;
-    }
+  .stat-card:hover {
+    border-color: rgba(192, 192, 192, 0.30);
+    transform: translateY(-4px);
+  }
 
-    .stats-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-    }
+  .stat-number {
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    font-weight: 800;
+    color: #C0C0C0;
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.65rem;
+  }
 
-    .stat-card {
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(192, 192, 192, 0.15);
-        border-radius: 16px;
-        padding: 2rem 1.5rem;
-        text-align: center;
-        transition: all 0.35s ease;
-    }
+  .stat-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #888888;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
 
-    .stat-card:hover {
-        background: rgba(255, 255, 255, 0.08);
-        border-color: rgba(192, 192, 192, 0.3);
-        transform: translateY(-4px);
-    }
+  /* ── Tablet (768px – 992px) ── */
+  @media (max-width: 992px) {
+    .stats-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+    .stats-grid   { grid-template-columns: repeat(2, 1fr); }
+  }
 
-    .stat-number {
-        font-size: 2.8rem;
-        font-weight: 800;
-        color: #C0C0C0;
-        display: block;
-        line-height: 1;
-        margin-bottom: 0.5rem;
-    }
+  /* ── Mobile (< 768px) ── */
+  @media (max-width: 768px) {
+    .tfa-stats-section { padding: 3.5rem 0; }
+    .stats-title       { font-size: 1.75rem; }
+    .stats-grid        { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .stat-card         { padding: 1.75rem 1.25rem; }
+    .stat-number       { font-size: 2.4rem; }
+  }
 
-    .stat-label {
-        font-size: 0.9rem;
-        color: rgba(255, 255, 255, 0.6);
-        margin: 0;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        font-weight: 500;
-    }
-
-    /* Tablet */
-    @media (max-width: 992px) {
-        .stats-layout {
-            grid-template-columns: 1fr;
-            gap: 2.5rem;
-        }
-    }
-
-    /* Mobile */
-    @media (max-width: 768px) {
-        .tfa-stats-section {
-            padding: 3.5rem 0;
-        }
-
-        .stats-title {
-            font-size: 1.75rem;
-        }
-
-        .stats-grid {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-        }
-
-        .stat-card {
-            padding: 1.5rem 1rem;
-        }
-
-        .stat-number {
-            font-size: 2rem;
-        }
-    }
+  /* ── Small Mobile (< 480px) ── */
+  @media (max-width: 480px) {
+    .stats-grid  { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .stat-card   { padding: 1.25rem 0.75rem; }
+    .stat-number { font-size: 2rem; }
+  }
 </style>
+
+<script>
+(function() {
+  /* Peace Protocol: trava animações no editor visual da HubSpot CRM */
+  if (document.body.classList.contains('hs-edit-mode')) return;
+
+  /* Aguarda GSAP + ScrollTrigger estarem disponíveis */
+  function initStatsAnim() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+      return setTimeout(initStatsAnim, 100);
+    }
+    gsap.registerPlugin(ScrollTrigger);
+
+    /* --- Parse Helper: suporta "10+", "500+", "20k", "98%", "24" --- */
+    function parseStatNumber(raw) {
+      var match = String(raw).trim().match(/^(\d+(?:\.\d+)?)(.*)$/);
+      if (!match) return { num: 0, suffix: '' };
+      return { num: parseFloat(match[1]), suffix: match[2].trim() };
+    }
+
+    /* --- Stagger de Entrada dos Cards --- */
+    gsap.set('.stat-card', { y: 50, opacity: 0 });
+    gsap.to('.stat-card', {
+      y: 0, opacity: 1,
+      duration: 0.9, ease: 'power3.out', stagger: 0.15,
+      scrollTrigger: { trigger: '.stats-grid', start: 'top 80%', once: true }
+    });
+
+    /* --- Slide da Coluna de Texto (from left) --- */
+    gsap.from('.stats-text', {
+      x: -40, opacity: 0,
+      duration: 1.0, ease: 'power3.out',
+      scrollTrigger: { trigger: '.stats-text', start: 'top 85%', once: true }
+    });
+
+    /* --- Count-Up por Card --- */
+    document.querySelectorAll('.stat-number').forEach(function(el) {
+      var raw    = el.getAttribute('data-countup') || '0';
+      var parsed = parseStatNumber(raw);
+      var proxy  = { val: 0 };
+      gsap.to(proxy, {
+        val: parsed.num, duration: 2.5, ease: 'power4.out',
+        onUpdate: function() {
+          var display = Number.isInteger(parsed.num)
+            ? Math.round(proxy.val)
+            : proxy.val.toFixed(1);
+          el.textContent = display + parsed.suffix;
+        },
+        scrollTrigger: { trigger: el, start: 'top 85%', once: true }
+      });
+    });
+  }
+
+  initStatsAnim();
+})();
+</script>
