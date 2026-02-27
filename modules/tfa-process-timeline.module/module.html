@@ -32,7 +32,7 @@
         {# Timeline Stack — Cards alternate left/right for GSAP reveal #}
         <div class="process-timeline-stack">
             {% for step in module.steps %}
-            <div class="timeline-stack-card" data-timeline-card="true" data-direction="{% if loop.index % 2 == 1 %}left{% else %}right{% endif %}" style="z-index: {{ 100 - loop.index }};">
+            <div class="timeline-stack-card" data-timeline-card="true" data-direction="{% if loop.index % 2 == 1 %}left{% else %}right{% endif %}" style="z-index: {{ loop.index }}; top: calc(15vh + {{ loop.index0 * 20 }}px);">
 
                 <div class="timeline-glass-panel">
                     {# Chrome Edge Glow & Reflection Handled in CSS #}
@@ -67,7 +67,7 @@
         background: linear-gradient(180deg, #080c10 0%, #0d1117 50%, #080c10 100%);
         position: relative;
         z-index: 20;
-        overflow: hidden;
+        overflow: clip; /* 'clip' preserves particle clipping without creating a scroll container, keeping position:sticky functional */
     }
 
     .tfa-timeline-section > .tfa-container {
@@ -116,7 +116,7 @@
 
     /* ---- Cards — alternating zig-zag alignment ---- */
     .timeline-stack-card {
-        position: relative;
+        position: sticky;
         width: 82%;
         min-height: 300px;
         display: flex;
