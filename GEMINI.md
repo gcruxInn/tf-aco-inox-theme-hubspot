@@ -6,11 +6,9 @@
 Escalabilidade, Segurança e Autonomia são inegociáveis.
 
 ## Build Commands
-- **Deploy Total:** `hs cms upload . TFAHUB251 --account="tf-a-o-inox"`
-- **Deploy de arquivo específico:** `hs cms upload <caminho_local> <caminho_remoto> --account="tf-a-o-inox"`
-- **Deletar arquivo remoto:** `hs cms delete <caminho_remoto> --account="tf-a-o-inox"`
-- **Fetch (Sync):** `hs cms fetch` baixa as alterações do portal para local.
-- *Nota Crítica:* Os comandos `hs cms validate` e `hs project validate` **não se aplicam** a este projeto, pois subimos diretamente no Design Manager e não utilizamos o formato `hsproject`.
+- `hs upload <src> <dest>`: Uploads the project (Deploy). NUNCA utilize `hs project upload` com espaços soltos no terminal; use estritamente `hs upload . TFAHUB251`.
+- `hs validate`: Validates the project structure and syntax.
+- `hs fetch`: Baixa as alterações do portal para local (Sync).
 
 ## Golden Architecture Rules
 1. **HubSpot Native First:** Toda lógica de produção deve ser nativa HubSpot (Serverless Functions/Workflows/CRM Objects).
@@ -45,7 +43,7 @@ Para extrair a máxima potência do stack MCP, utilize as ferramentas conforme s
 ## Padrões de Desenvolvimento
 - **Ferramentas:** Sempre priorize `HubSpotDev` (via Bash/MCP) para interações de CLI.
 - **Design System:** Seguir estritamente o `vibe-blueprint.json` para tokens de design.
-- **Serverless:** Funções devem residir na pasta `functions/`, usar Node.js 18+ e serem implantadas via `hs cms upload`.
+- **Serverless:** Funções devem residir na pasta `functions/`, usar Node.js 18+ e serem implantadas via `hs upload`.
 - **(NEW) HubL Syntax:** AI must **NOT** fragment `{%` or `{{` tags with spaces or newlines. **ALWAYS** verify single line syntax for `include`, `macro` and `set`.
 
 

@@ -2,24 +2,24 @@
 
     {# CSS Particle System — Industrial Sparks & Smoke (pure CSS, no JS) #}
     <div class="tfa-timeline-particles" aria-hidden="true">
-        <span class="particle particle--spark" style="--px: 5%;  --delay: 0.0s; --dur: 2.4s; --drift:  12px;"></span>
-        <span class="particle particle--spark" style="--px: 15%; --delay: 0.7s; --dur: 1.9s; --drift:  -8px;"></span>
-        <span class="particle particle--spark" style="--px: 28%; --delay: 1.2s; --dur: 2.8s; --drift:  18px;"></span>
-        <span class="particle particle--spark" style="--px: 42%; --delay: 0.3s; --dur: 2.1s; --drift: -14px;"></span>
-        <span class="particle particle--spark" style="--px: 55%; --delay: 0.9s; --dur: 2.6s; --drift:  10px;"></span>
-        <span class="particle particle--spark" style="--px: 68%; --delay: 0.1s; --dur: 3.0s; --drift: -20px;"></span>
-        <span class="particle particle--spark" style="--px: 78%; --delay: 1.5s; --dur: 2.3s; --drift:  16px;"></span>
-        <span class="particle particle--spark" style="--px: 88%; --delay: 0.4s; --dur: 1.8s; --drift:  -6px;"></span>
-        <span class="particle particle--spark" style="--px: 22%; --delay: 1.8s; --dur: 2.5s; --drift:  22px;"></span>
-        <span class="particle particle--spark" style="--px: 62%; --delay: 0.5s; --dur: 2.0s; --drift: -16px;"></span>
-        <span class="particle particle--spark" style="--px: 38%; --delay: 2.1s; --dur: 2.7s; --drift:   8px;"></span>
-        <span class="particle particle--spark" style="--px: 92%; --delay: 1.0s; --dur: 2.2s; --drift: -12px;"></span>
-        <span class="particle particle--smoke" style="--px: 10%; --delay: 0.0s; --dur: 6.0s;"></span>
-        <span class="particle particle--smoke" style="--px: 30%; --delay: 1.5s; --dur: 7.0s;"></span>
-        <span class="particle particle--smoke" style="--px: 50%; --delay: 0.8s; --dur: 5.5s;"></span>
-        <span class="particle particle--smoke" style="--px: 70%; --delay: 2.2s; --dur: 6.5s;"></span>
-        <span class="particle particle--smoke" style="--px: 85%; --delay: 0.4s; --dur: 7.5s;"></span>
-        <span class="particle particle--smoke" style="--px: 20%; --delay: 3.0s; --dur: 6.2s;"></span>
+        <span class="particle particle--spark" style="--px: 5%;  --py: 8%;  --delay: 0.0s; --dur: 2.4s; --drift:  12px;"></span>
+        <span class="particle particle--spark" style="--px: 15%; --py: 12%; --delay: 0.7s; --dur: 1.9s; --drift:  -8px;"></span>
+        <span class="particle particle--spark" style="--px: 28%; --py: 6%;  --delay: 1.2s; --dur: 2.8s; --drift:  18px;"></span>
+        <span class="particle particle--spark" style="--px: 42%; --py: 10%; --delay: 0.3s; --dur: 2.1s; --drift: -14px;"></span>
+        <span class="particle particle--spark" style="--px: 55%; --py: 14%; --delay: 0.9s; --dur: 2.6s; --drift:  10px;"></span>
+        <span class="particle particle--spark" style="--px: 68%; --py: 7%;  --delay: 0.1s; --dur: 3.0s; --drift: -20px;"></span>
+        <span class="particle particle--spark" style="--px: 78%; --py: 11%; --delay: 1.5s; --dur: 2.3s; --drift:  16px;"></span>
+        <span class="particle particle--spark" style="--px: 88%; --py: 9%;  --delay: 0.4s; --dur: 1.8s; --drift:  -6px;"></span>
+        <span class="particle particle--spark" style="--px: 22%; --py: 15%; --delay: 1.8s; --dur: 2.5s; --drift:  22px;"></span>
+        <span class="particle particle--spark" style="--px: 62%; --py: 5%;  --delay: 0.5s; --dur: 2.0s; --drift: -16px;"></span>
+        <span class="particle particle--spark" style="--px: 38%; --py: 13%; --delay: 2.1s; --dur: 2.7s; --drift:   8px;"></span>
+        <span class="particle particle--spark" style="--px: 92%; --py: 8%;  --delay: 1.0s; --dur: 2.2s; --drift: -12px;"></span>
+        <span class="particle particle--smoke" style="--px: 10%; --py: 5%;  --delay: 0.0s; --dur: 6.0s;"></span>
+        <span class="particle particle--smoke" style="--px: 30%; --py: 8%;  --delay: 1.5s; --dur: 7.0s;"></span>
+        <span class="particle particle--smoke" style="--px: 50%; --py: 4%;  --delay: 0.8s; --dur: 5.5s;"></span>
+        <span class="particle particle--smoke" style="--px: 70%; --py: 9%;  --delay: 2.2s; --dur: 6.5s;"></span>
+        <span class="particle particle--smoke" style="--px: 85%; --py: 6%;  --delay: 0.4s; --dur: 7.5s;"></span>
+        <span class="particle particle--smoke" style="--px: 20%; --py: 12%; --delay: 3.0s; --dur: 6.2s;"></span>
     </div>
 
     <div class="tfa-container">
@@ -58,7 +58,7 @@
 
 <style>
     /* =========================================================
-       TFA TIMELINE V2 — Vibe Dark / Silver Industrial
+       TFA TIMELINE V5 — Vibe Dark / Silver Industrial
     ========================================================= */
 
     .tfa-timeline-section {
@@ -112,6 +112,7 @@
         flex-direction: column;
         gap: 2.5rem;
         align-items: stretch;
+        transform-style: preserve-3d;
     }
 
     /* ---- Cards — alternating zig-zag alignment ---- */
@@ -123,6 +124,7 @@
         justify-content: center;
         align-items: center;
         will-change: transform, opacity;
+        transform-style: preserve-3d;
     }
 
     .timeline-stack-card[data-direction="left"] {

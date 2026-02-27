@@ -252,66 +252,7 @@ function initGSAPAnimations() {
       });
   });
 
-  // Process Timeline - Tinder Swipe Stack Cards
-  // We query the stack container for correct position detection,
-  // but pin the actual section parent so the entire module stays fixed.
-  const timelineStack = document.querySelector('.process-timeline-stack');
-  const timelineSection = timelineStack ? timelineStack.closest('.tfa-timeline-section') : null;
-  const stackCards = gsap.utils.toArray('.timeline-stack-card');
 
-  if (timelineSection && timelineStack && stackCards.length > 0) {
-    // Initial state: cascade setup to override CSS fallbacks
-    gsap.set(stackCards, {
-      y: (i) => i * 15,
-      scale: (i) => 1 - (i * 0.04),
-      transformOrigin: "bottom center"
-    });
-
-    // Recalculate all ScrollTrigger positions after full layout is settled
-    setTimeout(() => ScrollTrigger.refresh(), 500);
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: timelineSection,
-        start: "top top",
-        end: `+=${stackCards.length * 100}%`,
-        pin: true,
-        pinSpacing: true,
-        scrub: 1.2,
-        invalidateOnRefresh: true,
-        markers: true // DEBUG: remove after confirming position
-      }
-    });
-
-    // Scroll buffer: dead zone after pin so section settles before cards move
-    const scrollBuffer = 0.5;
-
-    // Animate each card except the last
-    stackCards.forEach((card, i) => {
-      if (i < stackCards.length - 1) {
-        const direction = i % 2 === 0 ? -1 : 1;
-
-        tl.to(card, {
-          yPercent: -200,
-          xPercent: direction * 60,
-          rotationZ: direction * -15,
-          opacity: 0,
-          duration: 1,
-          ease: "power2.inOut"
-        }, (i * 1) + scrollBuffer);
-
-        for (let j = i + 1; j < stackCards.length; j++) {
-          const newIndex = j - (i + 1);
-          tl.to(stackCards[j], {
-            y: newIndex * 15,
-            scale: 1 - (newIndex * 0.04),
-            duration: 1,
-            ease: "power2.inOut"
-          }, (i * 1) + scrollBuffer);
-        }
-      }
-    });
-  }
 
   // Extreme Mechanics: Horizontal Scroll Pinning for Differentiators
   const diffOuterWrapper = document.querySelector('.diff-super-gsap-wrapper');
