@@ -1,180 +1,506 @@
 {# --- MODULE: TFA Stats Row --- #}
-<section class="tfa-stats-section">
-  <div class="tfa-container">
-    <div class="stats-layout">
+<section id="tfa-stats-{{ name }}" class="tfa-stats-section hs-edit-disable-pin">
 
-      {# Coluna Esquerda: Texto #}
-      <div class="stats-text">
-        <h2 class="stats-title">{{ module.stats_content.title }}</h2>
-        <p class="stats-description">{{ module.stats_content.description }}</p>
+  <div id="stats-container-{{ name }}" class="stats-pinned-container">
+
+    {# HUD for GSAP Debugging (Focus on Numbers) - Scoped Inside Sticky #}
+    <div id="stats-vision-hud-{{ name }}" class="tfa-gsap-hud">
+      <div class="hud-header">
+        <strong>NUMBERS VISION</strong>
+        <button id="stats-copy-log-{{ name }}">COPY LOGS</button>
       </div>
-
-      {# Coluna Direita: Grid de Cards #}
-      <div class="stats-grid">
-        {% for stat in module.stats %}
-        <div class="stat-card">
-          <span class="stat-number" data-countup="{{ stat.stat_number }}">0</span>
-          <p class="stat-label">{{ stat.stat_label }}</p>
-        </div>
-        {% endfor %}
-      </div>
-
+      <div class="hud-body" id="stats-vision-log-{{ name }}"></div>
     </div>
+
+    {# Cinematic Interactive Background #}
+    <div class="stats-cinematic-bg" aria-hidden="true"></div>
+
+    <div class="tfa-container h-100">
+      <div class="stats-layout-huge">
+
+        {# Left: Static/Parallax Title #}
+        <div class="stats-intro-layer">
+          <h2 class="stats-title">{{ module.stats_content.title }}</h2>
+          <div class="stats-divider"></div>
+          <p class="stats-description">{{ module.stats_content.description }}</p>
+        </div>
+
+        {# Right: Massive 3D Stage for Numbers #}
+        <div class="stats-massive-stage">
+          {% for stat in module.stats %}
+          <div class="massive-stat-item" data-raw="{{ stat.stat_number }}" data-index="{{ loop.index0 }}">
+            <div class="stat-num-wrap">
+              <span class="st-num">0</span><span class="st-suffix"></span>
+            </div>
+            <p class="st-label">{{ stat.stat_label }}</p>
+          </div>
+          {% endfor %}
+        </div>
+
+      </div>
+    </div>
+
   </div>
 </section>
 
 <style>
+  /* =========================================================
+     TFA STATS ROW V8 — UAU GRANDE (Cinematic Scroll Fly-Through)
+  ========================================================= */
   .tfa-stats-section {
-    padding: 5rem 0;
-    background: #111111;
+    background: #030508;
+    /* Deep industrial void */
     font-family: 'Inter', sans-serif;
+    position: relative;
+    /* overflow is NOT hidden here to allow the pinned container to scrub */
   }
 
-  .tfa-container {
-    max-width: 1200px;
+  .stats-pinned-container {
+    width: 100%;
+    height: 100vh;
+    min-height: 800px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: radial-gradient(circle at 75% 50%, #0d1521 0%, #030508 70%);
+  }
+
+  /* ── Cinematic Blueprint BG (Scales and Rotates on Scrub) ── */
+  .stats-cinematic-bg {
+    position: absolute;
+    inset: -30%;
+    /* Oversized to allow massive rotation/parallax without showing edges */
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+    background-size: 80px 80px;
+    background-position: center;
+    z-index: 0;
+    pointer-events: none;
+    transform-origin: center;
+    /* Heavy dark vignette overlay */
+    box-shadow: inset 0 0 400px 150px #030508;
+    will-change: transform;
+  }
+
+  .tfa-container.h-100 {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 0 1.5rem;
+    z-index: 2;
+    padding: 0 2rem;
   }
 
-  /* ── Layout ── */
-  .stats-layout {
+  /* ── Layout Grid ── */
+  .stats-layout-huge {
     display: grid;
-    grid-template-columns: 5fr 6fr;
-    gap: 4rem;
+    grid-template-columns: 4fr 8fr;
+    gap: 2rem;
+    width: 100%;
     align-items: center;
   }
 
-  /* ── Typography ── */
+  /* ── Typography (Left Column) ── */
+  .stats-intro-layer {
+    position: relative;
+    z-index: 10;
+    will-change: transform, opacity;
+  }
+
   .stats-title {
-    font-size: clamp(1.8rem, 3vw, 2.6rem);
-    font-weight: 800;
-    color: #FFFFFF;
-    margin: 0 0 1rem;
-    line-height: 1.2;
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    font-weight: 900;
+    color: transparent;
+    background: linear-gradient(135deg, #ffffff 0%, #808b9e 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    margin: 0 0 1.5rem;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    text-shadow: 0 30px 40px rgba(0, 0, 0, 0.5);
+  }
+
+  .stats-divider {
+    width: 80px;
+    height: 5px;
+    background: linear-gradient(90deg, #00ffd5, #0077ff);
+    margin-bottom: 2.5rem;
+    box-shadow: 0 0 20px rgba(0, 255, 213, 0.6);
   }
 
   .stats-description {
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.65);
-    line-height: 1.75;
+    font-size: 1.25rem;
+    color: #cbd5e1;
+    line-height: 1.7;
     margin: 0;
+    max-width: 90%;
+    font-weight: 300;
   }
 
-  /* ── Stats Grid ── */
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
+  /* ── Massive 3D Stage (Right Column) ── */
+  .stats-massive-stage {
+    position: relative;
+    width: 100%;
+    height: 80vh;
   }
 
-  /* ── Stat Card ── */
-  .stat-card {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(192, 192, 192, 0.12);
-    border-radius: 12px;
-    padding: 2.5rem 2rem;
+  .massive-stat-item {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* Initially pushed far away and hidden */
+    opacity: 0;
     text-align: center;
-    transition: border-color 0.3s ease, transform 0.3s ease;
+    width: 100%;
+    pointer-events: none;
+    will-change: transform, opacity, filter;
   }
 
-  .stat-card:hover {
-    border-color: rgba(192, 192, 192, 0.30);
-    transform: translateY(-4px);
+  /* ── Huge Number styling ── */
+  .stat-num-wrap {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(8rem, 16vw, 22rem);
+    font-weight: 900;
+    line-height: 0.85;
+    color: #ffffff;
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    letter-spacing: -0.05em;
+    /* Cinematic Steel Text */
+    background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 40%, #475569 90%, #0f172a 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* Drop shadow to pop from background */
+    filter: drop-shadow(0 40px 50px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 20px rgba(255, 255, 255, 0.1));
   }
 
-  .stat-number {
-    font-size: clamp(3rem, 5vw, 4.5rem);
+  .st-suffix {
+    font-size: clamp(4rem, 8vw, 12rem);
+    color: #a0aab5;
+    background: none;
+    -webkit-text-fill-color: #a0aab5;
+  }
+
+  .st-label {
+    font-size: clamp(1.2rem, 2.5vw, 2.8rem);
     font-weight: 800;
-    color: #C0C0C0;
-    display: block;
-    line-height: 1;
-    margin-bottom: 0.65rem;
-  }
-
-  .stat-label {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: #888888;
-    margin: 0;
+    color: #00ffd5;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 0.25em;
+    margin-top: 1.5rem;
+    text-shadow: 0 0 30px rgba(0, 255, 213, 0.4), 0 5px 15px rgba(0, 0, 0, 0.8);
+    opacity: 0.9;
   }
 
-  /* ── Tablet (768px – 992px) ── */
+  /* ── HUD DEBUG CONSOLE ── */
+  .tfa-gsap-hud {
+    display: none; /* Desativado para produção */
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 340px;
+    height: 300px;
+    background: rgba(8, 12, 16, 0.95);
+    border: 1px solid rgba(0, 255, 213, 0.3);
+    border-top: 3px solid #00ffd5;
+    border-radius: 8px;
+    z-index: 99999;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 11px;
+    color: #00ffd5;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 255, 213, 0.15);
+    backdrop-filter: blur(10px);
+    transition: opacity 0.3s ease;
+  }
+
+  .hud-header {
+    background: rgba(0, 255, 213, 0.1);
+    color: #fff;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 255, 213, 0.2);
+  }
+
+  .hud-header button {
+    background: #00ffd5;
+    color: #000;
+    border: none;
+    padding: 6px 10px;
+    font-size: 10px;
+    font-weight: 900;
+    cursor: pointer;
+    border-radius: 4px;
+    letter-spacing: 1px;
+    transition: transform 0.1s;
+  }
+
+  .hud-header button:active {
+    transform: scale(0.95);
+  }
+
+  .hud-body {
+    padding: 12px;
+    overflow-y: auto;
+    flex-grow: 1;
+    line-height: 1.4;
+  }
+
+  .hud-body::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .hud-body::-webkit-scrollbar-thumb {
+    background: rgba(0, 255, 213, 0.4);
+    border-radius: 4px;
+  }
+
+  /* ── Editor Mode Bypass ── */
+  .hs-edit-mode .stats-pinned-container,
+  .hs-inline-edit .stats-pinned-container {
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
+    padding: 5rem 0;
+  }
+
+  .hs-edit-mode .tfa-gsap-hud {
+    display: none !important;
+  }
+
+  .hs-edit-mode .massive-stat-item,
+  .hs-inline-edit .massive-stat-item {
+    position: relative !important;
+    transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+    margin-bottom: 5rem;
+    top: auto;
+    left: auto;
+    pointer-events: auto !important;
+  }
+
+  .hs-edit-mode .stats-layout-huge {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .hs-edit-mode .stats-massive-stage {
+    height: auto !important;
+    display: block !important;
+    perspective: none !important;
+  }
+
+  /* ── Mobile ── */
   @media (max-width: 992px) {
-    .stats-layout { grid-template-columns: 1fr; gap: 2.5rem; }
-    .stats-grid   { grid-template-columns: repeat(2, 1fr); }
-  }
+    .stats-layout-huge {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
 
-  /* ── Mobile (< 768px) ── */
-  @media (max-width: 768px) {
-    .tfa-stats-section { padding: 3.5rem 0; }
-    .stats-title       { font-size: 1.75rem; }
-    .stats-grid        { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-    .stat-card         { padding: 1.75rem 1.25rem; }
-    .stat-number       { font-size: 2.4rem; }
-  }
+    .stats-intro-layer {
+      margin-bottom: 2rem;
+    }
 
-  /* ── Small Mobile (< 480px) ── */
-  @media (max-width: 480px) {
-    .stats-grid  { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
-    .stat-card   { padding: 1.25rem 0.75rem; }
-    .stat-number { font-size: 2rem; }
+    .stats-divider {
+      margin: 0 auto 2rem;
+    }
+
+    .stats-description {
+      margin: 0 auto;
+    }
+
+    .stats-pinned-container {
+      height: 100vh;
+      /* Keep 100vh for mobile immersive feel */
+    }
+
+    .stat-num-wrap {
+      font-size: clamp(6rem, 25vw, 10rem);
+    }
   }
 </style>
 
 <script>
-(function() {
-  /* Peace Protocol: trava animações no editor visual da HubSpot CRM */
-  if (document.body.classList.contains('hs-edit-mode')) return;
+  (function () {
+    /* Peace Protocol */
+    if (document.body.classList.contains('hs-edit-mode') || document.querySelector('.hs-inline-edit')) return;
 
-  /* Aguarda GSAP + ScrollTrigger estarem disponíveis */
-  function initStatsAnim() {
-    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
-      return setTimeout(initStatsAnim, 100);
-    }
-    gsap.registerPlugin(ScrollTrigger);
+    function initNumbersAnim() {
+      if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+        return setTimeout(initNumbersAnim, 100);
+      }
+      gsap.registerPlugin(ScrollTrigger);
 
-    /* --- Parse Helper: suporta "10+", "500+", "20k", "98%", "24" --- */
-    function parseStatNumber(raw) {
-      var match = String(raw).trim().match(/^(\d+(?:\.\d+)?)(.*)$/);
-      if (!match) return { num: 0, suffix: '' };
-      return { num: parseFloat(match[1]), suffix: match[2].trim() };
-    }
+      // --- HUD Setup ---
+      var DEBUG_VISION = false; // Mude para true para ver o log na tela
+      var hudLog = document.getElementById('stats-vision-log-{{ name }}');
+      var logs = [];
+      var logLimit = 1000;
 
-    /* --- Stagger de Entrada dos Cards --- */
-    gsap.set('.stat-card', { y: 50, opacity: 0 });
-    gsap.to('.stat-card', {
-      y: 0, opacity: 1,
-      duration: 0.9, ease: 'power3.out', stagger: 0.15,
-      scrollTrigger: { trigger: '.stats-grid', start: 'top 80%', once: true }
-    });
+      function logNumVision(msg) {
+        if (!DEBUG_VISION || !hudLog) return;
+        logs.push(msg);
+        if (logs.length > logLimit) logs.shift();
+        hudLog.innerHTML = logs.join('<br>');
+        hudLog.scrollTop = hudLog.scrollHeight;
+      }
 
-    /* --- Slide da Coluna de Texto (from left) --- */
-    gsap.from('.stats-text', {
-      x: -40, opacity: 0,
-      duration: 1.0, ease: 'power3.out',
-      scrollTrigger: { trigger: '.stats-text', start: 'top 85%', once: true }
-    });
+      var copyBtn = document.getElementById('stats-copy-log-{{ name }}');
+      if (copyBtn) {
+        copyBtn.addEventListener('click', function () {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(logs.join('\n')).then(function () {
+              var old = copyBtn.textContent;
+              copyBtn.textContent = 'COPIED!';
+              setTimeout(function () { copyBtn.textContent = old; }, 2000);
+            });
+          }
+        });
+      }
 
-    /* --- Count-Up por Card --- */
-    document.querySelectorAll('.stat-number').forEach(function(el) {
-      var raw    = el.getAttribute('data-countup') || '0';
-      var parsed = parseStatNumber(raw);
-      var proxy  = { val: 0 };
-      gsap.to(proxy, {
-        val: parsed.num, duration: 2.5, ease: 'power4.out',
-        onUpdate: function() {
-          var display = Number.isInteger(parsed.num)
-            ? Math.round(proxy.val)
-            : proxy.val.toFixed(1);
-          el.textContent = display + parsed.suffix;
-        },
-        scrollTrigger: { trigger: el, start: 'top 85%', once: true }
+      logNumVision('--- STATS VISION HUD INITIALIZED ---');
+
+      /* --- Parcer de Números --- */
+      function parseStatNumber(raw) {
+        var match = String(raw).trim().match(/^(\d+(?:\.\d+)?)(.*)$/);
+        if (!match) return { num: 0, suffix: '' };
+        return { num: parseFloat(match[1]), suffix: match[2].trim() };
+      }
+
+      var section = document.getElementById('tfa-stats-{{ name }}');
+      var container = document.getElementById('stats-container-{{ name }}');
+      var bg = section.querySelector('.stats-cinematic-bg');
+      var introLayer = section.querySelector('.stats-intro-layer');
+      var statItems = gsap.utils.toArray(section.querySelectorAll('.massive-stat-item'));
+
+      if (!section || statItems.length === 0) return;
+
+      // A duração total do scroll baseada em quantos items temos.
+      // Modificado para 75vh (Metade da distância anterior) para acelerar a fluidez
+      var scrollDepthVH = statItems.length * 75; // ex: 300vh
+
+      // Abordagem Native Sticky: Protege contra bugs de Webkit e transformações do Hubspot Wrapper
+      section.style.height = scrollDepthVH + 'vh';
+      container.style.position = 'sticky';
+      container.style.top = '0';
+
+      // Forçar refresh pro GSAP reler o DOM agora que alteramos as alturas fisicamente. 
+      // Executado com atraso para garantir que os módulos de cima (O PROCESSO) já tenham construído
+      // seus pin-spacers massivos. Caso contrário, este ScrollTrigger acha que a seção está 6000px mais pra cima.
+      setTimeout(function () {
+        ScrollTrigger.sort();
+        ScrollTrigger.refresh();
+      }, 500);
+
+      window.addEventListener('load', function () {
+        ScrollTrigger.refresh();
       });
-    });
-  }
 
-  initStatsAnim();
-})();
+      logNumVision('Total Numbers: ' + statItems.length);
+      logNumVision('Scroll Depth: ' + scrollDepthVH + 'vh');
+
+      // --- MASTER SCROLL TIMELINE (NATIVE STICKY) ---
+      var masterTL = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 0.5, // Resposta mais ágil da física (era 1.0)
+          onUpdate: function (self) {
+            logNumVision('> MASTER SCRUB: ' + (self.progress * 100).toFixed(1) + '%');
+          }
+        }
+      });
+
+      // 3. O LOOP UAU GRANDE (Fly-Through Numbers)
+      var stepBase = 10; // "Tempo" virtual para cada cartão completar seu ciclo
+      var overlap = 3;   // O quanto um cartão sobrepõe o outro
+
+      // Matemática exata do fim da animação
+      var totalVirtualDuration = ((statItems.length - 1) * (stepBase - overlap)) + (stepBase * 1.1);
+
+      // 1. Cinematic Background Animation
+      masterTL.to(bg, {
+        scale: 1.35,
+        rotationZ: 4,
+        ease: 'none',
+        duration: totalVirtualDuration // Duração calc exata
+      }, 0);
+
+      // 2. Título Desaparecendo Suavemente
+      masterTL.to(introLayer, {
+        y: -100,
+        opacity: 0.1,
+        ease: 'none',
+        duration: totalVirtualDuration
+      }, 0);
+
+      statItems.forEach(function (item, i) {
+        // Guarantee centering before any z-transforms
+        gsap.set(item, { xPercent: -50, yPercent: -50 });
+
+        var rawNum = item.getAttribute('data-raw') || '0';
+        var parsed = parseStatNumber(rawNum);
+
+        var numEl = item.querySelector('.st-num');
+        var sufEl = item.querySelector('.st-suffix');
+        if (sufEl) sufEl.textContent = parsed.suffix;
+
+        var proxy = { val: 0 };
+
+        // Cálculo de quando essa animação entra na Timeline
+        var startTime = i * (stepBase - overlap);
+
+        logNumVision('Registering Number [' + i + '] at t=' + startTime);
+
+        // FASE A: Entrando do Fundo Sideral na Câmera (Zoom IN pesado / Sem Z-axis nativo pra evitar bug Webkit)
+        masterTL.fromTo(item,
+          { scale: 0.05, opacity: 0, filter: 'blur(30px)', y: -150 },
+          {
+            scale: 1, opacity: 1, filter: 'blur(0px)', y: 0,
+            duration: stepBase * 0.4,
+            ease: 'power2.out',
+            onStart: function () { logNumVision('>>> [' + i + '] SURGINDO NO HORIZONTE'); }
+          },
+          startTime
+        );
+
+        // FASE B: O "Count-Up" Cinematográfico
+        masterTL.to(proxy, {
+          val: parsed.num,
+          duration: stepBase * 0.4,
+          ease: 'power3.out',
+          onUpdate: function () {
+            var display = Number.isInteger(parsed.num) ? Math.round(proxy.val) : proxy.val.toFixed(1);
+            numEl.textContent = display;
+          }
+        }, startTime + (stepBase * 0.1));
+
+        // FASE C: Saindo Ferozmente na Direção do Usuário (Fly by Camera usando Scale massivo)
+        masterTL.to(item, {
+          scale: 6,       // Engole a tela inteira sem usar translateZ
+          opacity: 0,
+          filter: 'blur(20px)',
+          y: 200,         // Simula gravidade lateral/inferior pra dar peso
+          duration: stepBase * 0.4,
+          ease: 'power2.in',
+          onStart: function () { logNumVision('<<< [' + i + '] VOA EM DIREÇÃO A TELA'); }
+        }, startTime + (stepBase * 0.7));
+
+      });
+
+    }
+
+    initNumbersAnim();
+  })();
 </script>

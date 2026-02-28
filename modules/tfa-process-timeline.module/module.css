@@ -25,10 +25,10 @@
     width: 2px;
     height: 6px;
     background: radial-gradient(ellipse at center,
-        #fffde7 0%,
-        #ffd600 35%,
-        #ff6d00 70%,
-        transparent 100%);
+            #fffde7 0%,
+            #ffd600 35%,
+            #ff6d00 70%,
+            transparent 100%);
     border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
     box-shadow: 0 0 8px 2px rgba(255, 160, 0, 0.95);
     opacity: 0;
@@ -40,17 +40,34 @@
         transform: translateY(0) translateX(0) scale(1);
         opacity: 0;
     }
+
     8% {
         opacity: 1;
     }
+
     55% {
         transform: translateY(-38vh) translateX(var(--drift, 10px)) scale(0.45);
         opacity: 0.75;
     }
+
     100% {
-        transform: translateY(-70vh) translateX(calc(var(--drift, 10px) * 1.6)) scale(0.05);
         opacity: 0;
     }
+}
+
+/* ---- Blue Spark Particles — intense plasma / arc welder sparks ---- */
+.particle--spark-blue {
+    width: 2px;
+    height: 7px;
+    background: radial-gradient(ellipse at center,
+            #e0f7fa 0%,
+            #00e5ff 35%,
+            #00b0ff 70%,
+            transparent 100%);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    box-shadow: 0 0 12px 3px rgba(0, 176, 255, 0.95);
+    opacity: 0;
+    animation: tfa-spark-rise var(--dur, 2s) var(--delay, 0s) infinite ease-out;
 }
 
 /* ---- Smoke Particles — dark gray blurry clouds ---- */
@@ -58,9 +75,9 @@
     width: 55px;
     height: 55px;
     background: radial-gradient(circle,
-        rgba(90, 90, 90, 0.22) 0%,
-        rgba(50, 50, 50, 0.08) 55%,
-        transparent 100%);
+            rgba(90, 90, 90, 0.22) 0%,
+            rgba(50, 50, 50, 0.08) 55%,
+            transparent 100%);
     border-radius: 50%;
     filter: blur(12px);
     opacity: 0;
@@ -72,12 +89,15 @@
         transform: translateY(0) scale(0.35);
         opacity: 0;
     }
+
     18% {
         opacity: 0.38;
     }
+
     65% {
         opacity: 0.18;
     }
+
     100% {
         transform: translateY(-70vh) scale(2.8);
         opacity: 0;

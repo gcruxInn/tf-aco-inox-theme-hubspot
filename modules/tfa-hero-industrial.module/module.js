@@ -5,7 +5,7 @@ if (window.hsInEditor || document.body.classList.contains('hs-edit-mode')) {
 }
 
 // ===== Dependency Check & Initialization Loop =====
-(function initHeroAnimation() {
+window.addEventListener('load', function initHeroAnimation() {
   if (typeof gsap === 'undefined' || typeof SplitType === 'undefined') {
     setTimeout(initHeroAnimation, 100);
     return;
@@ -211,4 +211,4 @@ if (window.hsInEditor || document.body.classList.contains('hs-edit-mode')) {
       }
     }
   }
-})();
+});

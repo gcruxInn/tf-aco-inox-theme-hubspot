@@ -26,6 +26,20 @@
             style="--px: 38%; --py: 13%; --delay: 2.1s; --dur: 2.7s; --drift:   8px;"></span>
         <span class="particle particle--spark"
             style="--px: 92%; --py: 8%;  --delay: 1.0s; --dur: 2.2s; --drift: -12px;"></span>
+
+        {# Intense Blue Sparks / Welder Sparks #}
+        <span class="particle particle--spark-blue"
+            style="--px: 12%; --py: 5%;  --delay: 0.2s; --dur: 1.7s; --drift: 15px;"></span>
+        <span class="particle particle--spark-blue"
+            style="--px: 33%; --py: 11%; --delay: 1.1s; --dur: 2.1s; --drift: -18px;"></span>
+        <span class="particle particle--spark-blue"
+            style="--px: 48%; --py: 4%;  --delay: 0.6s; --dur: 1.9s; --drift: 20px;"></span>
+        <span class="particle particle--spark-blue"
+            style="--px: 75%; --py: 14%; --delay: 1.4s; --dur: 2.4s; --drift: -15px;"></span>
+        <span class="particle particle--spark-blue"
+            style="--px: 85%; --py: 9%;  --delay: 0.9s; --dur: 1.8s; --drift: 12px;"></span>
+
+        {# Standard Background Smoke #}
         <span class="particle particle--smoke" style="--px: 10%; --py: 5%;  --delay: 0.0s; --dur: 6.0s;"></span>
         <span class="particle particle--smoke" style="--px: 30%; --py: 8%;  --delay: 1.5s; --dur: 7.0s;"></span>
         <span class="particle particle--smoke" style="--px: 50%; --py: 4%;  --delay: 0.8s; --dur: 5.5s;"></span>
@@ -34,27 +48,27 @@
         <span class="particle particle--smoke" style="--px: 20%; --py: 12%; --delay: 3.0s; --dur: 6.2s;"></span>
     </div>
 
+    <div class="tfa-timeline-huge-bg" aria-hidden="true">
+        <div class="huge-text-inner" data-text="O PROCESSO">O PROCESSO</div>
+    </div>
+
     <div class="tfa-container">
         {# Section Heading #}
         <div class="timeline-header" data-animate="fade-up">
             <h2 class="timeline-section-title">{{ module.section_heading.title }}</h2>
             <p class="timeline-section-subtitle">{{ module.section_heading.subtitle }}</p>
         </div>
+    </div>
 
-        {# Timeline Stack — Cards alternate left/right for GSAP reveal #}
-        <div class="process-timeline-stack">
+    {# Timeline Track — Ironhill Horizontal Flow #}
+    <div class="process-timeline-track-wrapper">
+        <div class="process-timeline-track">
             {% for step in module.steps %}
-            <div class="timeline-stack-card" data-timeline-card="true"
-                data-direction="{% if loop.index % 2 == 1 %}left{% else %}right{% endif %}"
-                data-index="{{ loop.index0 }}">
-
+            <div class="timeline-track-card" data-timeline-card="true" data-index="{{ loop.index0 }}">
                 <div class="timeline-glass-panel">
-                    {# Chrome Edge Glow & Reflection Handled in CSS #}
-
                     <div class="step-badge">
                         {{ step.step_number }}
                     </div>
-
                     <div class="step-content">
                         <h3 class="step-title">{{ step.title }}</h3>
                         <p class="step-description">{{ step.description }}</p>
@@ -63,16 +77,23 @@
                         </div>
                     </div>
                 </div>
-
             </div>
             {% endfor %}
+            <div class="timeline-spacer"></div>
         </div>
+    </div>
+
+    {# Ironhill Progress Dots (Bottom Pill) #}
+    <div class="timeline-progress-dots" aria-hidden="true">
+        {% for step in module.steps %}
+        <div class="tfa-dot {% if loop.first %}active{% endif %}"></div>
+        {% endfor %}
     </div>
 </section>
 
 <style>
     /* =========================================================
-       TFA TIMELINE V7 — Cinematic Fly-In / Vibe Dark Silver
+       TFA TIMELINE V7 — Cinematic Horizontal Flow (Ironhill Style)
     ========================================================= */
 
     .tfa-timeline-section {
@@ -81,7 +102,52 @@
         position: relative;
         z-index: 20;
         overflow: hidden;
-        perspective: 1000px;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 6rem 0;
+    }
+
+    /* ---- HUGE BACKGROUND TEXT (LOCKED) ---- */
+    .tfa-timeline-huge-bg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        text-align: center;
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    .tfa-timeline-huge-bg .huge-text-inner {
+        font-size: clamp(8rem, 25vw, 28rem);
+        font-weight: 900;
+        font-family: 'Inter', sans-serif;
+        line-height: 1;
+        letter-spacing: -0.05em;
+        white-space: nowrap;
+        color: transparent;
+        -webkit-text-stroke: 2px rgba(255, 255, 255, 0.04);
+        position: relative;
+        display: inline-block;
+    }
+
+    /* O Preenchimento Metálico (Iniciado Escondido) */
+    .tfa-timeline-huge-bg .huge-text-inner::after {
+        content: attr(data-text);
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: transparent;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(100, 100, 100, 0.04) 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -webkit-text-stroke: 0;
+        /* clip-path animation via GSAP CSS Variables */
+        clip-path: polygon(0 0, var(--fill, 0%) 0, var(--fill, 0%) 100%, 0% 100%);
     }
 
     .tfa-timeline-section>.tfa-container {
@@ -90,12 +156,13 @@
         padding: 0 1.5rem;
         position: relative;
         z-index: 2;
+        width: 100%;
     }
 
     /* ---- Header ---- */
     .timeline-header {
         text-align: center;
-        margin-bottom: 4rem;
+        margin-bottom: 3rem;
         position: relative;
         z-index: 10;
     }
@@ -116,40 +183,70 @@
         line-height: 1.6;
     }
 
-    /* ---- Stack Container — fullscreen viewport stage for pinned cards ---- */
-    .process-timeline-stack {
+    /* ---- Track Wrapper (Viewport) ---- */
+    .process-timeline-track-wrapper {
         position: relative;
+        z-index: 5;
         width: 100%;
-        max-width: 760px;
-        height: 100vh;
-        margin: 0 auto;
+    }
+
+    /* ---- Horizontal Track ---- */
+    .process-timeline-track {
         display: flex;
-        align-items: center;
-        justify-content: center;
+        align-items: stretch;
+        width: max-content;
+        padding: 2rem 50vw;
+        /* Inicia o primeiro card no meio e adiciona margem final */
+        will-change: transform;
+        perspective: 2000px;
         transform-style: preserve-3d;
     }
 
-    /* ---- Cards — absolute stacking for cinematic fly-in ---- */
-    .timeline-stack-card {
+    /* ---- Cards ---- */
+    .timeline-track-card {
+        width: 420px;
+        flex-shrink: 0;
+        margin-right: 3rem;
+        position: relative;
+        padding-bottom: 2rem;
+        transform-style: preserve-3d;
+    }
+
+    .timeline-spacer {
+        width: 30vw;
+        flex-shrink: 0;
+    }
+
+    /* ---- Ironhill Progress Dots (Pill) ---- */
+    .timeline-progress-dots {
         position: absolute;
-        width: 82%;
-        max-width: 620px;
-        min-height: 300px;
-        top: 50%;
+        bottom: 2.5rem;
         left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translateX(-50%);
         display: flex;
-        justify-content: center;
-        align-items: center;
-        will-change: transform, opacity;
-        transform-style: preserve-3d;
-        opacity: 0;
-        pointer-events: none;
+        gap: 0.6rem;
+        padding: 0.6rem 1.25rem;
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 40px;
+        z-index: 50;
     }
 
-    .timeline-stack-card.is-active {
-        pointer-events: auto;
+    .tfa-dot {
+        width: 6px;
+        height: 6px;
+        background: rgba(255, 255, 255, 0.25);
+        border-radius: 50%;
+        transition: all 0.4s ease;
     }
+
+    .tfa-dot.active {
+        background: #f1f5f9;
+        transform: scale(1.4);
+    }
+
 
     /* ---- Glassmorphism Panel (Inox Chrome Style) ---- */
     .timeline-glass-panel {
@@ -301,11 +398,14 @@
         display: none;
     }
 
-    .hs-edit-mode .process-timeline-stack {
+    .hs-edit-mode .process-timeline-track {
         height: auto;
         display: flex;
         flex-direction: column;
         gap: 2rem;
+        padding: 2rem 0;
+        width: 100%;
+        align-items: center;
     }
 
     .hs-edit-mode [data-timeline-card],
@@ -314,9 +414,11 @@
         opacity: 1 !important;
         transform: none !important;
         width: 100% !important;
+        max-width: 600px;
         top: auto !important;
         left: auto !important;
         pointer-events: auto !important;
+        margin: 0 !important;
     }
 
     .hs-edit-mode .tfa-timeline-section {
