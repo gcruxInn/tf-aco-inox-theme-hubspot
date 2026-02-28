@@ -213,12 +213,13 @@ a:hover {
 }
 
 /* --- CONTAINER & LAYOUT --- */
-.container {
-    max-width: var(--container-max-width);
+.container,
+.tfa-container {
+    max-width: var(--container-max-width, 1200px);
     margin-left: auto;
     margin-right: auto;
-    padding-left: var(--container-padding);
-    padding-right: var(--container-padding);
+    padding-left: var(--container-padding, 1.5rem);
+    padding-right: var(--container-padding, 1.5rem);
 }
 
 @media (min-width: 768px) {

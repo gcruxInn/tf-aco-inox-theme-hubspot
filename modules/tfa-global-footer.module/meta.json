@@ -1,0 +1,13 @@
+{
+  "label": "TFA - Global Footer",
+  "css_assets": [
+    {
+      "path": "../modules/tfa-global-footer.module/module.css"
+    }
+  ],
+  "external_js": [],
+  "global": true,
+  "help_text": "Rodapé global com links, contatos e redes sociais.",
+  "host_template_types": ["PAGE"],
+  "is_available_for_new_content": true
+}

@@ -1,22 +1,17 @@
 [
-  { "name": "headline", "label": "Headline", "type": "text", "default": "Pronto Para Transformar Seu Projeto em Realidade?" },
-  { "name": "subheadline", "label": "Sub-headline", "type": "text", "default": "Entre em contato e receba um orçamento personalizado sem compromisso. Nossa equipe técnica está pronta para transformar sua visão em realidade." },
   {
-    "name": "primary_cta",
-    "label": "Primary Button",
+    "name": "text",
+    "label": "Group: Text",
     "type": "group",
     "children": [
-      { "name": "text", "label": "Text", "type": "text", "default": "Solicitar Orçamento Grátis" },
-      { "name": "link", "label": "Link", "type": "text", "default": "/orcamento" }
+      { "name": "headline", "label": "Headline", "type": "text", "default": "Pronto Para Transformar Seu Projeto em Realidade?" },
+      { "name": "subhead", "label": "Sub-headline", "type": "text", "default": "Entre em contato e receba um orçamento sem compromisso." }
     ]
   },
   {
-    "name": "secondary_cta",
-    "label": "Secondary Button",
-    "type": "group",
-    "children": [
-      { "name": "text", "label": "Text", "type": "text", "default": "Falar no WhatsApp" },
-      { "name": "link", "label": "Link", "type": "text", "default": "https://wa.me/5581999699449" }
-    ]
+    "name": "cta_form",
+    "label": "Formulário de Contato (CRM)",
+    "required": true,
+    "type": "form"
   }
 ]

@@ -1,0 +1,26 @@
+# Sprint Tarefas: Testimonials, CTA Nativo e Footer Dinâmico
+
+## 1. Cinematic Testimonials ("UAU GRANDE")
+- [x] Adicionar suporte GSAP / SplitType no header do módulo
+- [x] Implementar animações pesadas nos blocos (ScrollTrigger)
+- [x] Adicionar camadas visuais de "fagulhas/smoking" via CSS/JS
+- [x] Auditar no Preview para checar a estética Vibe Cloning (Grid 3-col e GSAP fixados)
+
+## 2. Robust Native CTA (Conversion Hook)
+- [x] Criar ou adaptar form fields (fields.json) para suportar instâncias de formulário HubSpot
+- [x] Renderizar a tag `{% form %}` conectada a um form da conta portal
+- [x] Estilizar inputs e submit de forma extrema e premium (Dark/Silver)
+- [x] Executar teste prático preenchendo o e-mail (Verificado via Auditor)
+
+## 3. Dinamic Footer (100% Editable)
+- [x] Criar novo módulo Global Footer (tfa-global-footer.module)
+- [x] Migrar markup do footer.hubl.html e substituir hardcodes por Repeater Loops
+- [x] Injetar o novo módulo no global partial footer.hubl.html
+- [x] Validar a experiência de edição via painel HubSpot DnD (Pronto para Uso)
+
+## 4. Finalização
+- [x] Executar check de validação e estabilidade `hs cms validate`
+- [x] Corrigir vazamento de CSS do .tfa-container (800px) que quebrava grids globais
+- [x] Sincronizar Testimonials JS para 'run' pattern garantindo a presença do GSAP
+- [x] Realizar Report e Commits para registro de Handoff
+- [x] Restaurar layout de 3 colunas em Portfólio e Depoimentos (Desktop)

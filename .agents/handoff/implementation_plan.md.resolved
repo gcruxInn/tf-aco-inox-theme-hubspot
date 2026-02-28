@@ -1,0 +1,38 @@
+# Implementation Plan: Sprint 2 (Cinematic Testimonials, Native CTA, Dynamic Footer)
+
+Este plano documenta a próxima fase de desenvolvimento e orquestração do frontend, com foco em 3 pilares fundamentais para estabilizar a "Home V2" e criar o fluxo de conversão.
+
+## User Review Required
+> [!IMPORTANT]
+> - O **Footer** passará de um `global_partial` estático para um Módulo Global HubSpot (drag & drop), permitindo que o Head-Mkt edite tudo sem tocar em código.
+> - O **CTA** incluirá a tag nativa de formulário da HubSpot (`{% form %}`) para que os leads caiam direto no CRM. Confirmar se a propriedade de captura primária será apenas "E-mail" ou também "Nome/Empresa".
+
+## Proposed Changes
+
+### 1. Cinematic Testimonials ("UAU GRANDE")
+Elevar o nível do módulo atual (`tfa-testimonials.module`) para um padrão AWWWARDS (Industrial Premium).
+- **Coreografia Visual**: Letreiros fatiados (`SplitType`), movimento revelador atrelado ao scroll (`GSAP ScrollTrigger`).
+- **Atmosfera**: Estilo "smoking" (fagulhas/fumaça via CSS ou pseudo-elementos), fundo escuro profundo, texturas metálicas em cards isolados.
+- **Camadas**: Efeito parallax de profundidade nas imagens dos clientes ou blocos de citação, simulando a inércia pesada usando Lenis Smooth Scroll.
+
+### 2. Robust Native CTA (Conversion Hook)
+Transformar a atual `tfa-cta-footer.module` em uma máquina de conversão nativa.
+- **Design de Isca**: Gatilhos visuais intensos para fisgar a atenção no fim da jornada da home.
+- **HubSpot Form**: Substituir simples botões estáticos pela macro `{% form %}` ou pelo snippet de módulo de formulário para capturar pelo menos o "E-mail".
+- **Integração CRM**: Gostar funis adequados. A submissão injetará o lead direto na máquina de Vendas/Mkt.
+- **Micro-interações**: Feedback visual imediato "Premium" ao preencher e dar 'submit'. (Botões prateados brilhantes, transições).
+
+### 3. Dinamic Footer (100% Editable)
+O atual [footer.hubl.html](file:///c:/Users/gabri/Documents/dev/InnLeaders/TFAHUB251/partials/footer.hubl.html) é um Global Partial com código hardcoded (links, textos, imagens).
+- **Extração**: Migrar o markup para um novo Custom Module Global (ex: `tfa-global-footer.module`).
+- **Repeaters & Fields**:
+  - Criar "Field Groups" para: Logo, Descrição.
+  - "Repeaters" para: Menu de Links, Serviços, Redes Sociais.
+  - "Field Group" para Faixa de Contato Inferior (Strip).
+- **Peace Protocol**: Assegurar que nenhuma div seja corrompida no modelo de edição, e o CSS permaneça trancado e validado no Layout Vibe Cloning.
+
+## Verification Plan
+1. **Testimonials**: Checar se o *ScrollTrigger* obedece a física metálica e inibe execuções duplas (Editor Guard ativado).
+2. **CTA**: Preencher o form no preview. Validar se a mensagem de "Obrigado" mantém a estética escurecida do site e se os dados caem no painel "Contacts" do portal HubSpot.
+3. **Footer**: Criar o módulo, adicionar ao rodapé global, entrar no Content Editor e tentar editar os links e logo via interface gráfica.
+4. **Overall**: Garantir compatibilidade nos browsers Webkit e validação sem falhas com `hs cms validate`.

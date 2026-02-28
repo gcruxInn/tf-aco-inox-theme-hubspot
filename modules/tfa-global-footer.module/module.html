@@ -1,0 +1,383 @@
+{# --- MODULE: TFA Global Footer (100% Editable) --- #}
+<footer class="tfa-footer" role="contentinfo" itemscope itemtype="http://schema.org/WPFooter">
+
+    <div class="footer-container">
+
+        {# TOP FOOTER: Logo + Columns #}
+        <div class="footer-grid">
+
+            {# Column 1: Brand #}
+            <div class="footer-brand" data-animate="fade-up">
+                <a href="/" aria-label="TF Aço e Inox - Início" class="footer-logo">
+                    {% if module.brand.logo.src %}
+                    <img src="{{ module.brand.logo.src }}" alt="{{ module.brand.logo.alt }}"
+                        width="{{ module.brand.logo.width }}" style="filter: brightness(1.2) contrast(1.1);"
+                        loading="lazy">
+                    {% endif %}
+                </a>
+                <p class="brand-description">
+                    {{ module.brand.description }}
+                </p>
+                {# Social Links #}
+                <div class="social-links" data-animate="stagger-children">
+                    {% if module.social_links.whatsapp %}
+                    <a href="{{ module.social_links.whatsapp }}" target="_blank" rel="noopener"
+                        aria-label="WhatsApp TF Aço e Inox" class="social-btn btn-whatsapp">💬</a>
+                    {% endif %}
+                    {% if module.social_links.instagram %}
+                    <a href="{{ module.social_links.instagram }}" target="_blank" rel="noopener"
+                        aria-label="Instagram TF Aço e Inox" class="social-btn btn-instagram">📸</a>
+                    {% endif %}
+                    {% if module.social_links.linkedin %}
+                    <a href="{{ module.social_links.linkedin }}" target="_blank" rel="noopener"
+                        aria-label="LinkedIn TF Aço e Inox" class="social-btn btn-linkedin">💼</a>
+                    {% endif %}
+                </div>
+            </div>
+
+            {# Columns: Empresa / Serviços / Recursos #}
+            {% for col in module.columns %}
+            <div class="footer-col" data-animate="fade-up" style="transition-delay: 0.1s;">
+                <h4 class="footer-heading">{{ col.title }}</h4>
+                <ul class="footer-links">
+                    {% for link in col.links %}
+                    <li><a href="{{ link.url }}">{{ link.text }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+
+        </div>
+
+        {# CONTACT STRIP #}
+        <div class="footer-contact-strip" data-animate="fade-up">
+            <div class="strip-item">
+                <span class="strip-icon">📞</span>
+                <div>
+                    <div class="strip-label">Telefone</div>
+                    <a href="{{ module.contact_strip.phone_link }}" class="strip-link">{{ module.contact_strip.phone
+                        }}</a>
+                </div>
+            </div>
+            <div class="strip-item">
+                <span class="strip-icon">✉️</span>
+                <div>
+                    <div class="strip-label">E-mail</div>
+                    <a href="mailto:{{ module.contact_strip.email }}" class="strip-link truncate">{{
+                        module.contact_strip.email }}</a>
+                </div>
+            </div>
+            <div class="strip-item">
+                <span class="strip-icon">📍</span>
+                <div>
+                    <div class="strip-label">Localização</div>
+                    <span class="strip-text">{{ module.contact_strip.location }}</span>
+                </div>
+            </div>
+            <div class="strip-action">
+                <a href="{{ module.contact_strip.cta_link }}" class="btn-silver">
+                    {{ module.contact_strip.cta_text }}
+                </a>
+            </div>
+        </div>
+
+        {# BOTTOM: Copyright #}
+        <div class="footer-bottom">
+            <p class="copyright-text">
+                &copy; 2026 <strong>{{ module.footer_bottom.copyright }}</strong>
+            </p>
+            <p class="credits-text">
+                Desenvolvido com ♦ e tecnologia HubSpot CMS
+            </p>
+        </div>
+
+    </div>
+</footer>
+
+{# WhatsApp Floating Button (Mobile-first) #}
+{% if module.social_links.whatsapp %}
+<a href="{{ module.social_links.whatsapp }}?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento"
+    target="_blank" rel="noopener" aria-label="Fale conosco pelo WhatsApp" class="floating-whatsapp">
+    💬
+</a>
+{% endif %}
+
+<style>
+    /* ==========================================================================
+     TFA FOOTER - Vibe Cloning Industrial Dark/Silver
+     ========================================================================== */
+    .tfa-footer {
+        background: linear-gradient(180deg, #0a0e14 0%, #06090d 100%);
+        color: #94a3b8;
+        padding: 6rem 0 0;
+        font-family: 'Inter', sans-serif;
+        position: relative;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+    }
+
+    /* ---- Grid Layout ---- */
+    .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 4rem;
+        margin-bottom: 5rem;
+    }
+
+    .brand-description {
+        color: #cbd5e1;
+        font-size: 0.95rem;
+        line-height: 1.8;
+        margin: 1.5rem 0 2rem;
+        max-width: 90%;
+    }
+
+    /* ---- Social Buttons ---- */
+    .social-links {
+        display: flex;
+        gap: 0.75rem;
+    }
+
+    .social-btn {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-decoration: none;
+        font-size: 1.2rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .social-btn:hover {
+        transform: translateY(-3px) scale(1.05);
+    }
+
+    .btn-whatsapp {
+        background: #25D366;
+    }
+
+    .btn-instagram {
+        background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+    }
+
+    .btn-linkedin {
+        background: #0077B5;
+    }
+
+    /* ---- Columns & Links ---- */
+    .footer-heading {
+        color: #e2e8f0;
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 2rem;
+        position: relative;
+    }
+
+    .footer-heading::after {
+        content: '';
+        position: absolute;
+        bottom: -0.75rem;
+        left: 0;
+        width: 24px;
+        height: 2px;
+        background: #C0C0C0;
+    }
+
+    .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .footer-links a {
+        color: #94a3b8;
+        text-decoration: none;
+        font-size: 0.95rem;
+        transition: color 0.2s ease, transform 0.2s ease;
+        display: inline-block;
+    }
+
+    .footer-links a:hover {
+        color: #ffffff;
+        transform: translateX(4px);
+    }
+
+    /* ---- Contact Strip ---- */
+    .footer-contact-strip {
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 2.5rem 0;
+        margin-bottom: 2rem;
+        display: flex;
+        gap: 3rem;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .strip-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .strip-icon {
+        color: #C0C0C0;
+        font-size: 1.4rem;
+        background: rgba(255, 255, 255, 0.05);
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .strip-label {
+        font-size: 0.75rem;
+        color: #64748b;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-bottom: 0.2rem;
+    }
+
+    .strip-link,
+    .strip-text {
+        color: #f8fafc;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.95rem;
+        transition: color 0.2s ease;
+    }
+
+    .strip-link:hover {
+        color: #C0C0C0;
+    }
+
+    .strip-action {
+        margin-left: auto;
+    }
+
+    .btn-silver {
+        background: linear-gradient(135deg, #e2e8f0 0%, #94a3b8 100%);
+        color: #0f172a;
+        padding: 1rem 2.25rem;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 800;
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        display: inline-block;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+    }
+
+    .btn-silver:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(148, 163, 184, 0.3);
+        background: linear-gradient(135deg, #f8fafc 0%, #cbd5e1 100%);
+    }
+
+    /* ---- Bottom Copyright ---- */
+    .footer-bottom {
+        padding: 2rem 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .copyright-text {
+        color: #64748b;
+        font-size: 0.85rem;
+        margin: 0;
+    }
+
+    .copyright-text strong {
+        color: #cbd5e1;
+        font-weight: 600;
+    }
+
+    .credits-text {
+        color: #475569;
+        font-size: 0.8rem;
+        margin: 0;
+    }
+
+    /* ---- Floating WhatsApp ---- */
+    .floating-whatsapp {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: #25D366;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+        z-index: 9999;
+        text-decoration: none;
+        transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+    }
+
+    .floating-whatsapp:hover {
+        transform: scale(1.1) rotate(5deg);
+        box-shadow: 0 12px 32px rgba(37, 211, 102, 0.6);
+    }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 1024px) {
+        .footer-grid {
+            grid-template-columns: 1.5fr 1fr 1fr;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .footer-grid {
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+
+        .footer-contact-strip {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 2rem;
+        }
+
+        .strip-action {
+            margin-left: 0;
+            width: 100%;
+        }
+
+        .btn-silver {
+            width: 100%;
+            text-align: center;
+        }
+
+        .footer-bottom {
+            flex-direction: column;
+            text-align: center;
+            justify-content: center;
+        }
+    }
+</style>

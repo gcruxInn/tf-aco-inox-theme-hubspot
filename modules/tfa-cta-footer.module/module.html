@@ -1,38 +1,40 @@
-{# --- MODULE: TFA CTA Footer --- #}
+{# --- MODULE: TFA Native CTA (Conversion Hook) --- #}
 <section class="tfa-cta-section">
     <div class="cta-accent-line"></div>
     <div class="tfa-container" data-animate="fade-up">
-        <h2 class="cta-headline">{{ module.text.headline }}</h2>
-        <p class="cta-subhead">{{ module.text.subhead }}</p>
-        <div class="cta-buttons">
-            {% if module.actions.primary.url.href %}
-            {% set href = module.actions.primary.url.href %}
-            {% if module.actions.primary.url.type is equalto "EMAIL_ADDRESS" %}
-            {% set href = "mailto:" + href %}
-            {% endif %}
-            <a href="{{ href }}" class="cta-btn-primary">
-                {{ module.actions.primary.button_text }}
-            </a>
-            {% endif %}
 
-            {% if module.actions.secondary.url.href %}
-            {% set href2 = module.actions.secondary.url.href %}
-            <a href="{{ href2 }}" class="cta-btn-secondary">
-                {{ module.actions.secondary.button_text }}
-            </a>
+        <h2 class="cta-headline" data-split-text>{{ module.text.headline }}</h2>
+        <p class="cta-subhead" data-split-text>{{ module.text.subhead }}</p>
+
+        <div class="cta-form-container">
+            {% if module.cta_form.form_id %}
+            {% form
+            form_to_use="{{ module.cta_form.form_id }}",
+            response_response_type="{{ module.cta_form.response_type }}",
+            response_message="{{ module.cta_form.message }}",
+            response_redirect_id="{{ module.cta_form.redirect_id }}",
+            response_redirect_url="{{ module.cta_form.redirect_url }}",
+            gotowebinar_webinar_key="{{ module.cta_form.gotowebinar_webinar_key }}"
+            %}
+            {% else %}
+            <div class="form-placeholder">
+                Selecione um formulário no editor lateral para ativar a conversão.
+            </div>
             {% endif %}
         </div>
+
     </div>
 </section>
 
 <style>
     .tfa-cta-section {
-        background: linear-gradient(135deg, #1a1a1b 0%, #111 100%);
-        color: white;
+        background: linear-gradient(135deg, #111111 0%, #1a1a1b 100%);
+        color: #FFFFFF;
         text-align: center;
         position: relative;
         overflow: hidden;
-        padding: 5rem 0;
+        padding: 6rem 0;
+        font-family: 'Inter', sans-serif;
     }
 
     .cta-accent-line {
@@ -41,85 +43,123 @@
         left: 0;
         width: 100%;
         height: 4px;
-        background: linear-gradient(90deg, #C0C0C0, #1a1a1b, #C0C0C0);
+        background: linear-gradient(90deg, #1a1a1b, #C0C0C0, #1a1a1b);
     }
 
-    .tfa-container {
-        max-width: 1200px;
+    .tfa-cta-section .tfa-container {
+        max-width: 800px;
         margin: 0 auto;
-        padding: 0 1rem;
+        padding: 0 1.5rem;
     }
 
     .cta-headline {
-        color: white;
-        font-size: 2.2rem;
+        color: #FFFFFF;
+        font-size: clamp(1.8rem, 3.5vw, 2.8rem);
         font-weight: 800;
         margin-bottom: 1rem;
+        letter-spacing: -0.02em;
     }
 
     .cta-subhead {
         color: rgba(255, 255, 255, 0.65);
-        margin-bottom: 2.5rem;
+        margin-bottom: 3.5rem;
         font-size: 1.15rem;
-        max-width: 700px;
+        max-width: 600px;
         margin-left: auto;
         margin-right: auto;
         line-height: 1.7;
     }
 
-    .cta-buttons {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 1rem;
+    /* --- Form Container Override --- */
+    .cta-form-container {
+        background: rgba(26, 26, 27, 0.4);
+        border: 1px solid rgba(192, 192, 192, 0.12);
+        border-radius: 12px;
+        padding: 2.5rem;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
     }
 
-    .cta-btn-primary {
+    .form-placeholder {
+        padding: 2rem;
+        border: 1px dashed rgba(192, 192, 192, 0.5);
+        color: #888888;
+        border-radius: 8px;
+    }
+
+    /* --- HubSpot Form Deep Stylization (Dark/Silver) --- */
+    .tfa-cta-section .hs-form {
+        text-align: left;
+    }
+
+    .tfa-cta-section .hs-form-field {
+        margin-bottom: 1.5rem;
+    }
+
+    .tfa-cta-section .hs-form label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: rgba(192, 192, 192, 0.8);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .tfa-cta-section .hs-input {
+        width: 100%;
+        padding: 1rem 1.25rem;
+        background: rgba(0, 0, 0, 0.4);
+        border: 1px solid rgba(192, 192, 192, 0.2);
+        border-radius: 8px;
+        color: #FFFFFF;
+        font-family: inherit;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .tfa-cta-section .hs-input:focus {
+        outline: none;
+        border-color: #C0C0C0;
+        background: rgba(0, 0, 0, 0.6);
+        box-shadow: 0 0 0 4px rgba(192, 192, 192, 0.1);
+    }
+
+    /* Botão de Envio (Submit - Premium Metálico) */
+    .tfa-cta-section .hs-submit {
+        margin-top: 2rem;
+        text-align: center;
+    }
+
+    .tfa-cta-section .hs-button.primary {
         display: inline-block;
-        padding: 1rem 2.5rem;
+        width: 100%;
+        padding: 1.1rem 2.5rem;
         background: linear-gradient(135deg, #C0C0C0 0%, #a8a8a8 100%);
-        color: #1a1a1b;
-        font-weight: 700;
+        color: #111111;
+        font-family: inherit;
+        font-weight: 800;
+        font-size: 1.1rem;
+        border: none;
         border-radius: 8px;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        font-size: 1rem;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .cta-btn-primary:hover {
+    .tfa-cta-section .hs-button.primary:hover {
         transform: translateY(-3px);
-        box-shadow: 0 8px 25px rgba(192, 192, 192, 0.3);
+        box-shadow: 0 10px 25px rgba(192, 192, 192, 0.25);
     }
 
-    .cta-btn-secondary {
-        display: inline-block;
-        padding: 1rem 2.5rem;
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        color: white;
-        border-radius: 8px;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        font-size: 1rem;
+    .tfa-cta-section .hs_error_rollup {
+        color: #ff6b6b;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
     }
 
-    .cta-btn-secondary:hover {
-        background: rgba(255, 255, 255, 0.1);
-        border-color: rgba(255, 255, 255, 0.5);
-        transform: translateY(-3px);
-    }
-
+    /* Mobile */
     @media (max-width: 768px) {
-        .tfa-cta-section {
-            padding: 3.5rem 0;
-        }
-
-        .cta-headline {
-            font-size: 1.75rem;
-        }
-
-        .cta-buttons {
-            flex-direction: column;
-            align-items: center;
+        .cta-form-container {
+            padding: 1.5rem;
         }
     }
 </style>

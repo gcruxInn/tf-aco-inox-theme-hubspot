@@ -200,7 +200,8 @@
 
   /* ── HUD DEBUG CONSOLE ── */
   .tfa-gsap-hud {
-    display: none; /* Desativado para produção */
+    display: none;
+    /* Desativado para produção */
     position: absolute;
     bottom: 20px;
     right: 20px;
@@ -501,6 +502,10 @@
 
     }
 
-    initNumbersAnim();
+    if (document.readyState === 'complete') {
+      initNumbersAnim();
+    } else {
+      window.addEventListener('load', initNumbersAnim);
+    }
   })();
 </script>

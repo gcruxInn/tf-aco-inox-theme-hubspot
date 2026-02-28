@@ -1,0 +1,21 @@
+# Sprint Tarefas: Cinematic Testimonials Upgrade (AWWWARDS Level)
+
+## 1. UX/UI & GSAP Creative Dev (Design & Blueprint de Coreografia)
+- [x] Definir a mecânica visual de "Stacking Cards" (Scroll pegajoso onde os cartões empilham na tela).
+- [x] Aplicar bordas Frost Glass, sombras escurecidas e reflexos metálicos nos cards.
+
+## 2. CTO-Front (Arquitetura HubL & CSS Industrial)
+- [x] Estruturar o `module.html` com wrapping para suportar `position: sticky`.
+- [x] Modificar o `module.css` para retirar a grade de 3 colunas padrão e transformar em um fluxo empilhado central ou em bloco lateral (se o design pedir). *Para este caso de AWWWARDS, empilhamento sticky de painéis é o ideal.*
+
+## 3. GSAP Creative Dev & CTO-Front (Implementação de Física GSAP/Lenis)
+- [x] Substituir o Stagger FadeUp atual por um ScrollTrigger que gerencia a profundidade do eixo Z em sincronia com o `sticky` do CSS.
+- [x] Garantir que o texto (SplitType) interage suavemente junto com a rolagem empilhada.
+- [x] Testar Peace Protocol (Desativar GSAP no modo de edição do HubSpot).
+
+## 4. Full Stack Ops & Head-Mkt (Consolidação de CMS & Repeater)
+- [x] Ajustar `fields.json` caso surjam novos controles (ex: controle de velocidade ou profundidade, embora o ideal seja deixar padronizado "Set-and-Forget"). (Módulo mantido Autonomo, sem overhead na UI do CMS).
+
+## 5. QA-Engineer (Auditoria Final de Performance Visual e de Código)
+- [x] Testar no browser (QA-Auditor) para garantir que não haja "Flicker". (Efeito Stacking e Parallax confirmados no portal live)
+- [x] Executar `hs cms validate`. (Validado pelo framework nativo do Editor Guardian).
