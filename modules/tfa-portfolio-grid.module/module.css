@@ -2,8 +2,10 @@
 
 .tfa-portfolio-v2 {
     padding: 6rem 0;
-    background-color: #1A1A1B; /* Vibe Blueprint: Secondary (Dark) */
-    color: #FFFFFF; /* Vibe Blueprint: Text */
+    background-color: #1A1A1B;
+    /* Vibe Blueprint: Secondary (Dark) */
+    color: #FFFFFF;
+    /* Vibe Blueprint: Text */
 }
 
 /* Header Alignment */
@@ -23,7 +25,8 @@
 
 .portfolio-subtitle-v2 {
     font-size: 1.1rem;
-    color: #C0C0C0; /* Vibe Blueprint: Primary/Silver */
+    color: #C0C0C0;
+    /* Vibe Blueprint: Primary/Silver */
     line-height: 1.6;
 }
 
@@ -31,7 +34,17 @@
 .portfolio-grid-v2 {
     display: grid;
     /* This ensures columns do not stack vertically in the HubSpot Editor */
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    /* Use repeat(3, 1fr) to force 3 columns on desktop, falling back carefully */
+    grid-template-columns: repeat(3, 1fr);
+
+    @media (max-width: 1024px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+    }
+
     gap: 2.5rem;
 }
 
@@ -41,6 +54,7 @@
     flex-wrap: wrap;
     gap: 2rem;
 }
+
 .hs-inline-edit .portfolio-card-v2 {
     flex: 1 1 calc(33.333% - 2rem);
     min-width: 300px;
@@ -64,9 +78,11 @@
     position: relative;
     width: 100%;
     height: 380px;
-    border-radius: 4px; /* Industrial hard edge */
+    border-radius: 4px;
+    /* Industrial hard edge */
     overflow: hidden;
-    background-color: #333333; /* Industrial Lead */
+    background-color: #333333;
+    /* Industrial Lead */
     margin-bottom: 1.5rem;
 }
 
@@ -93,8 +109,12 @@
 /* Hover Overlay (Dark Steel effect) */
 .portfolio-overlay-v2 {
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(26, 26, 27, 0.7); /* Dark semi-transparent */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(26, 26, 27, 0.7);
+    /* Dark semi-transparent */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -116,7 +136,8 @@
     font-size: 1rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-    text-decoration: none !important; /* Forces no underline globally */
+    text-decoration: none !important;
+    /* Forces no underline globally */
     transform: translateY(20px);
     transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
@@ -137,7 +158,8 @@
 
 .portfolio-category-v2 {
     display: inline-block;
-    color: #C0C0C0; /* Silver Accent */
+    color: #C0C0C0;
+    /* Silver Accent */
     font-size: 0.8rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -161,8 +183,8 @@
 
 /* Responsiveness */
 @media (max-width: 992px) {
-    .portfolio-title-v2 {
-        font-size: 2rem;
+    .portfolio-grid-v2 {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -170,7 +192,7 @@
     .tfa-portfolio-v2 {
         padding: 4rem 0;
     }
-    
+
     .portfolio-image-wrapper {
         height: 300px;
     }

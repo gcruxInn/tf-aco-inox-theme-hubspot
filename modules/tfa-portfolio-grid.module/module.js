@@ -17,7 +17,7 @@
     }
 
     // Aguarda o carregamento do DOM para inicializar
-    document.addEventListener('DOMContentLoaded', () => {
+    function run() {
         // Verifica se as dependências existem antes de inicializar
         if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined' || typeof Lenis === 'undefined') {
             console.warn('[TFAHUB251] GSAP, ScrollTrigger or Lenis not found.');
@@ -26,21 +26,8 @@
 
         gsap.registerPlugin(ScrollTrigger);
 
-        // 2. Lenis Smooth Scroll (Inércia Industrial/Pesada)
-        const lenis = new Lenis({
-            lerp: 0.05, // Smoothness peso pesado
-            duration: 1.5,
-            smoothWheel: true,
-            wheelMultiplier: 1,
-            touchMultiplier: 2
-        });
-
-        lenis.on('scroll', ScrollTrigger.update);
-
-        gsap.ticker.add((time) => {
-            lenis.raf(time * 1000);
-        });
-        gsap.ticker.lagSmoothing(0);
+        // Lenis instances should NOT be created here. It belongs to main.js
+        // GSAP Ticker and ScrollTrigger updating are also handled globally.
 
         // 3. SplitType + GSAP: Reveal Vertical com Máscara
         if (typeof SplitType !== 'undefined') {
@@ -95,12 +82,6 @@
             });
         }
 
-        // 5. Cleanup e Recalculate
-        // Recalcular ScrollTrigger caso o DOM mude (ex: imagens carregando)
-        window.addEventListener('load', () => {
-            ScrollTrigger.refresh();
-        });
-
         // Resize Observer para lidar com reflows e re-calcular GSAP
         let resizeTimer;
         window.addEventListener('resize', () => {
@@ -109,5 +90,13 @@
                 ScrollTrigger.refresh();
             }, 250);
         });
-    });
+
+        ScrollTrigger.refresh();
+    }
+
+    if (document.readyState === 'complete') {
+        run();
+    } else {
+        window.addEventListener('load', run);
+    }
 })();
