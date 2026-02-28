@@ -52,9 +52,16 @@ Target: HubSpot CMS (Theme: TFAHUB251 - Root Structure).
   - ✅ **Editor Styles:** Configured `theme.json` to load CSS in the editor.
   - ✅ **Syntax Audit:** Fixed broken HubL tags in all CSS files.
 
+- [DONE] **Phase 14: Cinematic Engine & Stats Row (Feb 2026):**
+  - ✅ **Stats Row Cinematic Engine**: Implemented 2D Scaling + Y-axis fallback for 3D transforms.
+  - ✅ **Native Sticky Protocol**: Resolved HubSpot wrapper conflicts by using CSS `sticky`.
+  - ✅ **Performance Tuning**: Reduced scroll depth by 50% and optimized `scrub` delay.
+  - ✅ **Governance & HUD**: Created "Vision" HUD for auditing and updated handoff documentation.
+  - ✅ **10h Intensive Cycle**: Concluded a full day of engineering, documentation, and reporting.
+
 - [PENDING] **Next Steps** (User decision required):
-  - **Option A:** Hero overlay implementation with navy blue gradient + "spark wire" CTA borders
-  - **Option B:** Content page creation (Sobre Nós, Serviços, Portfólio, Contato) using Instagram captions
+  - **Option A:** Centralize "Vision HUD" control in Theme Settings (fields.json).
+  - **Option B:** Expand the Cinematic Engine to other modules (Portfolio/Services) using the established coordinate framework.
 
 ## Module Inventory (10 Total - All Validated)
 1. `tfa-client-logos` (image fields)
@@ -65,17 +72,15 @@ Target: HubSpot CMS (Theme: TFAHUB251 - Root Structure).
 6. `tfa-portfolio-grid` (6 projects - new)
 7. `tfa-process-timeline` (8-step timeline - new)
 8. `tfa-services-grid` (6 services - new)
-9. `tfa-stats-row` (4 statistics)
+9. `tfa-stats-row` (Cinematic "UAU GRANDE" Engine Installed)
 10. `tfa-testimonials` (carousel - new)
 
 ## Deployment Notes
-- **Upload Command:** `hs cms upload . TFAHUB251`
+- **Upload Command:** `hs cms upload . TFAHUB251 --account="tf-a-o-inox"`
 - **Remote Cleanup:** Delete old `TF Master Theme HubSpot` from Design Manager
-- **Browser Tool Status:** UNSTABLE (manual validation required)
+- **Browser Tool Status:** Audited via `browser-qa-auditor` skill (V2).
 
 ## Next Priorities
-1. **CTA Design Finalization:** Choose "spark wire" border effect for hero CTA (navy blue bg + orange borders)
-2. **Implementation Path Decision:**
-   - **Path A:** Hero overlay (measure header height, update CSS, apply Instagram brand colors)
-   - **Path B:** Content pages (Sobre/Serviços/Portfólio/Contato with Instagram messaging)
-3. **Post-Implementation:** Visual validation, accessibility testing, mobile responsiveness
+1. **Vision HUD Centralization:** Move `DEBUG_VISION` and visibility logic to a master theme configuration.
+2. **Animation Scaling:** Evaluate applying the "Stats Row" scaling logic to `tfa-portfolio-grid` for consistency.
+3. **Internal Documentation:** Finalize the 10h report and ensure the CEO is briefed on cross-browser achievements.

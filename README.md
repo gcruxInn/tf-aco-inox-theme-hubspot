@@ -142,12 +142,19 @@ All 10 production modules have been validated:
    - `TFA_TEST` (test version)
 3. Keep only: **`TFAHUB251`** (production theme)
 
+### 4. Cinematic Engine (Feb 2026 Update)
+**Advanced "Stats Row" Animation & Governance:**
+*   **Stats Fly-Through Logic**: Implemented 2D Scaling + Y-axis transition as a cross-browser fallback for 3D transforms, ensuring stability on all devices.
+*   **Native Sticky Architecture**: Bypassed HubSpot's dynamic wrapper conflicts by using native CSS `sticky` instead of GSAP pins for section stabilization.
+*   **Pacing Optimization**: Reduced scroll depth by 50% (75vh per card) and tuned `scrub: 0.5` for an immediate, high-performance industrial feel.
+*   **Vision HUD**: Built a real-time debugging HUD (`stats-vision-hud`) for visual coordinate audit, disabled for production via `DEBUG_VISION` flag.
+
 ---
-**Theme Status:** Production-ready (V2) / Cinematic "Steel & Inox" Engine Installed ✅  
-**Upload Status:** Successfully deployed to portal (`hs upload . TFAHUB251`)  
+**Theme Status:** Production-ready (V2.1) / Cinematic "Steel & Inox" Engine Validated ✅  
+**Upload Status:** Successfully deployed to portal (`hs cms upload . TFAHUB251`)  
 **Field Validation:** All modules use 2026-compliant types  
-**Architecture:** 100% Set-and-Forget (Autonomic Computing). Nenhuma dependência externa/middleware foi ou será utilizada para lidar com as regras do negócio do CMS.
-**Recent Upgrade:** Layout "Vibe Cloning Dark/Silver" refatorado com GSAP + Lenis Smooth Scroll, links resetados e eliminação dos empilhamentos anormais de UI.
+**Architecture:** 100% Set-and-Forget (Autonomic Computing). 10-hour intensive engineering cycle (Feb 27, 2026) concluded with success.
+**Recent Upgrade:** Layout "Vibe Cloning Dark/Silver" refined. Stats Row optimized for "UAU GRANDE" cinematic experience with zero-jitter sticky logic.
 
 > **⚠️ CRITICAL NOTE (Feb 17, 2026):**  
 > A critical issue was detected where AI agents (via MCP) corrupted HubL syntax in CSS files.

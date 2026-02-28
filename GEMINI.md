@@ -6,7 +6,7 @@
 Escalabilidade, Segurança e Autonomia são inegociáveis.
 
 ## Build Commands
-- `hs cms upload <src> <dest>`: Uploads the project (Deploy). NUNCA utilize `hs project upload` com espaços soltos no terminal; use estritamente `hs cms    upload . TFAHUB251`.
+- `hs cms upload <src> <dest>`: Uploads the project (Deploy). NUNCA utilize `hs project upload` com espaços soltos no terminal; use estritamente `hs cms upload . TFAHUB251 --account="tf-a-o-inox"`.
 - `hs cms validate`: Validates the project structure and syntax.
 - `hs cms fetch`: Baixa as alterações do portal para local (Sync).
 
