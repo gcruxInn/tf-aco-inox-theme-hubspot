@@ -5,12 +5,126 @@
  * ------------------------------------------------------------ */
 
 .tfa-testimonials-section {
-    padding: 5rem 0;
+    position: relative;
+    padding: 6rem 0;
     background: #111111;
     font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    /* Prevents GSAP scaled elements and FX from breaking horizontal bounds */
+}
+
+/* --- Cinematic FX (Fagulhas/Smoke) --- */
+.tfa-cinematic-fx {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+    /* Contains smoke scaling and translation */
+}
+
+.smoke-layer {
+    position: absolute;
+    bottom: -15%;
+    left: 0;
+    width: 100%;
+    height: 80%;
+    background: radial-gradient(ellipse at bottom, rgba(192, 192, 192, 0.07) 0%, rgba(17, 17, 17, 0) 70%);
+    filter: blur(20px);
+    animation: drift 12s infinite alternate ease-in-out;
+}
+
+@keyframes drift {
+    0% {
+        transform: scale(1.05) translateX(-2%) translateY(2%);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(1) translateX(2%) translateY(-2%);
+        opacity: 0.8;
+    }
+}
+
+/* Faíscas / Sparks */
+.sparks-layer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.spark {
+    position: absolute;
+    bottom: -10px;
+    width: 3px;
+    height: 3px;
+    background: #C0C0C0;
+    border-radius: 50%;
+    box-shadow: 0 0 10px 2px rgba(192, 192, 192, 0.8);
+    opacity: 0;
+}
+
+.spark.s1 {
+    left: 20%;
+    animation: spark-fly 6s infinite linear 0s;
+}
+
+.spark.s2 {
+    left: 45%;
+    animation: spark-fly 8s infinite linear 2s;
+}
+
+.spark.s3 {
+    left: 70%;
+    animation: spark-fly 5s infinite linear 4s;
+}
+
+.spark.s4 {
+    left: 30%;
+    animation: spark-fly 7s infinite linear 1s;
+}
+
+.spark.s5 {
+    left: 85%;
+    animation: spark-fly 9s infinite linear 3s;
+}
+
+.spark.s6 {
+    left: 10%;
+    animation: spark-fly 6.5s infinite linear 5s;
+}
+
+@keyframes spark-fly {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    50% {
+        transform: translateY(-50vh) translateX(20px) scale(0.6);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateY(-100vh) translateX(-20px) scale(0.1);
+        opacity: 0;
+    }
 }
 
 .tfa-testimonials-section .tfa-container {
+    position: relative;
+    z-index: 1;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 1.5rem;
@@ -19,7 +133,13 @@
 /* ── Section Header ── */
 .tfa-testimonials-section .testimonials-header {
     text-align: center;
-    margin-bottom: 3.5rem;
+    position: absolute;
+    top: max(80px, 12vh);
+    /* Safe distance from navbar */
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    pointer-events: none;
 }
 
 .tfa-testimonials-section .testimonials-title {
@@ -39,29 +159,97 @@
     line-height: 1.75;
 }
 
-/* ── Grid 2-col ── */
-.tfa-testimonials-section .testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
+/* ── Fly-Through Stage ── */
+.tfa-testimonials-section .testimonials-fly-stage {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* ── Card — vidro fumê + borda metálica ── */
+/* Deep Background Layers */
+.tfa-testimonials-section .stage-deep-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.tfa-testimonials-section .ambient-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, rgba(192, 192, 192, 0.05) 0%, rgba(17, 17, 17, 0) 70%);
+    filter: blur(60px);
+}
+
+.tfa-testimonials-section .tech-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(rgba(192, 192, 192, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(192, 192, 192, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    opacity: 0.5;
+    /* Subtle parallax movement via JS */
+}
+
+.tfa-testimonials-section .massive-bg-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: min(15vw, 250px);
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(192, 192, 192, 0.05);
+    white-space: nowrap;
+    text-transform: uppercase;
+    font-family: 'Bebas Neue', sans-serif;
+    /* or Inter if Bebas not loaded */
+    letter-spacing: 0.05em;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+
+/* ── Card — Frost Glass + Borda Metálica (Industrial) ── */
 .tfa-testimonials-section .testimonial-card {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(192, 192, 192, 0.12);
-    border-radius: 12px;
-    padding: 2.5rem 2rem;
-    position: relative;
+    background: rgba(18, 18, 18, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(192, 192, 192, 0.15);
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 3.5rem 4.5rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* Centered absolutely, handled heavily by GSAP */
+    transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
-    /* Hover inertia pesada do aço */
-    transition: border-color 0.3s ease, transform 0.3s ease;
-}
-
-.tfa-testimonials-section .testimonial-card:hover {
-    border-color: rgba(192, 192, 192, 0.30);
-    transform: translateY(-4px);
+    width: 90%;
+    max-width: 850px;
+    opacity: 0;
+    /* Hidden initially */
+    pointer-events: none;
+    /* Only intractable when fully reading */
+    will-change: transform, opacity, filter;
+    z-index: 5;
 }
 
 /* ── Aspas decorativas ── */
@@ -181,30 +369,18 @@
 }
 
 /* ── Tablet (768px – 992px) ── */
-@media (max-width: 992px) {
-    .tfa-testimonials-section .testimonials-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.25rem;
-    }
-}
+/* Removed redundant media queries as they are now inline */
 
 /* ── Mobile (< 768px) ── */
 @media (max-width: 768px) {
-    .tfa-testimonials-section {
-        padding: 3.5rem 0;
-    }
-
-    .tfa-testimonials-section .testimonials-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-
     .tfa-testimonials-section .testimonials-title {
         font-size: 1.75rem;
     }
 
     .tfa-testimonials-section .testimonial-card {
-        padding: 2rem 1.5rem;
+        padding: 2.5rem 1.5rem;
+        border-radius: 12px;
+        width: 95%;
     }
 
     .tfa-testimonials-section .quote-mark {
