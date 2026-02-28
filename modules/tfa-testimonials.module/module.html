@@ -1,48 +1,79 @@
 {# --- MODULE: TFA Testimonials Grid — Dark/Silver Industrial Theme --- #}
 <section class="tfa-testimonials-section">
-    <div class="tfa-container">
+    {# Cinematic Visual FX: Smoke & Sparks #}
+    <div class="tfa-cinematic-fx" aria-hidden="true">
+        <div class="smoke-layer"></div>
+        {# Sparks floating upwards #}
+        <div class="sparks-layer">
+            <div class="spark s1"></div>
+            <div class="spark s2"></div>
+            <div class="spark s3"></div>
+            <div class="spark s4"></div>
+            <div class="spark s5"></div>
+            <div class="spark s6"></div>
+        </div>
+    </div>
+
+    {# Cinematic Fly-Through Stage #}
+    <div class="testimonials-fly-stage">
+
+        {# Interactive Deep Background Layer #}
+        <div class="stage-deep-bg" aria-hidden="true">
+            <div class="ambient-glow"></div>
+            <div class="tech-grid"></div>
+            <div class="massive-bg-text">CONFIANÇA</div>
+        </div>
 
         {# Section Heading #}
-        <div class="testimonials-header">
-            <h2 class="testimonials-title">{{ module.section_heading.title }}</h2>
-            <p class="testimonials-subtitle">{{ module.section_heading.subtitle }}</p>
-        </div>
-
-        {# Testimonials Grid — 2 cols desktop / 1 col mobile #}
-        <div class="testimonials-grid">
-            {% for testimonial in module.testimonials %}
-            <div class="testimonial-card">
-
-                {# Decorative Opening Quote #}
-                <span class="quote-mark" aria-hidden="true">&ldquo;</span>
-
-                {# Star Rating #}
-                <div class="testimonial-stars" aria-label="{{ testimonial.rating or 5 }} estrelas">
-                    {% for i in range(testimonial.rating or 5) %}&#9733;{% endfor %}
-                </div>
-
-                {# Quote Body #}
-                <blockquote class="testimonial-quote">{{ testimonial.quote }}</blockquote>
-
-                {# Client Row: avatar + info + logo #}
-                <div class="testimonial-client">
-
-                    {# Avatar: photo or initial placeholder #}
-                    {% if testimonial.client_photo.src %}<img src="{{ testimonial.client_photo.src }}" alt="{{ testimonial.client_photo.alt or testimonial.client_name }}" loading="lazy" class="client-avatar">{% else %}<div class="client-avatar-placeholder" aria-hidden="true">{{ testimonial.client_name[0] }}</div>{% endif %}
-
-                    {# Name + Role #}
-                    <div class="client-info">
-                        <div class="client-name">{{ testimonial.client_name }}</div>
-                        <div class="client-meta">{{ testimonial.client_role }}{% if testimonial.client_company %}, <span class="client-company">{{ testimonial.client_company }}</span>{% endif %}</div>
-                    </div>
-
-                    {# Company Logo (B2B authority seal) #}
-                    {% if testimonial.company_logo.src %}<img src="{{ testimonial.company_logo.src }}" alt="{{ testimonial.company_logo.alt or testimonial.client_company }}" loading="lazy" class="company-logo">{% endif %}
-
-                </div>
+        <div class="testimonials-header" data-animate="fade-up">
+            <div class="tfa-container">
+                <h2 class="testimonials-title" data-split-text>{{ module.section_heading.title }}</h2>
+                <p class="testimonials-subtitle" data-split-text>{{ module.section_heading.subtitle }}</p>
             </div>
-            {% endfor %}
         </div>
 
+        {% for testimonial in module.testimonials %}
+        <div class="testimonial-card" style="--card-index: {{ loop.index0 }};">
+
+            {# Decorative Opening Quote #}
+            <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+
+            {# Star Rating #}
+            <div class="testimonial-stars" aria-label="{{ testimonial.rating or 5 }} estrelas">
+                {% for i in range(testimonial.rating or 5) %}&#9733;{% endfor %}
+            </div>
+
+            {# Quote Body #}
+            <blockquote class="testimonial-quote">{{ testimonial.quote }}</blockquote>
+
+            {# Client Row: avatar + info + logo #}
+            <div class="testimonial-client">
+
+                {# Avatar: photo or initial placeholder #}
+                {% if testimonial.client_photo.src %}
+                <img src="{{ testimonial.client_photo.src }}"
+                    alt="{{ testimonial.client_photo.alt or testimonial.client_name }}" loading="lazy"
+                    class="client-avatar">
+                {% else %}
+                <div class="client-avatar-placeholder" aria-hidden="true">{{ testimonial.client_name[0] }}</div>
+                {% endif %}
+
+                {# Name + Role #}
+                <div class="client-info">
+                    <div class="client-name">{{ testimonial.client_name }}</div>
+                    <div class="client-meta">{{ testimonial.client_role }}{% if testimonial.client_company %}, <span
+                            class="client-company">{{ testimonial.client_company }}</span>{% endif %}</div>
+                </div>
+
+                {# Company Logo (B2B authority seal) #}
+                {% if testimonial.company_logo.src %}
+                <img src="{{ testimonial.company_logo.src }}"
+                    alt="{{ testimonial.company_logo.alt or testimonial.client_company }}" loading="lazy"
+                    class="company-logo">
+                {% endif %}
+
+            </div>
+        </div>
+        {% endfor %}
     </div>
 </section>
