@@ -11,7 +11,14 @@
       "industrial_lead": "#333333",
       "industrial_black": "#000000"
     },
-    "typography": "Inter, sans-serif"
+    "typography": "Inter, sans-serif",
+    "iconography": {
+      "stroke_width": 1.25,
+      "color": "var(--industrial-silver)",
+      "size_default": "24px",
+      "corner_radius": "2px",
+      "style": "Modern Technical"
+    }
   },
   "modules": {
     "technical_gallery": {

@@ -10,6 +10,14 @@
                              "type":  "menu"
                          },
                          {
+                             "name":  "logo_height",
+                             "label":  "Desktop Logo Height (px)",
+                             "type":  "number",
+                             "default": 60,
+                             "min": 20,
+                             "max": 150
+                         },
+                         {
                              "name":  "menu_vertical_align",
                              "label":  "Vertical Alignment",
                              "type":  "choice",
@@ -112,6 +120,48 @@
                      ]
     },
     {
+        "name": "mobile_settings",
+        "label": "Mobile Menu Settings",
+        "type": "group",
+        "children": [
+            {
+                "name": "mobile_logo_height",
+                "label": "Mobile Logo Height (px)",
+                "type": "number",
+                "default": 40,
+                "min": 20,
+                "max": 100
+            },
+            {
+                "name": "mobile_menu_bg",
+                "label": "Menu Overlay Background",
+                "type": "color",
+                "default": {
+                    "color": "#080c10",
+                    "opacity": 95
+                }
+            },
+            {
+                "name": "hamburger_color",
+                "label": "Hamburger Color",
+                "type": "color",
+                "default": {
+                    "color": "#f1f5f9"
+                }
+            },
+            {
+                "name": "mobile_menu_alignment",
+                "label": "Mobile Menu Alignment",
+                "type": "choice",
+                "choices": [
+                    ["left", "Left"],
+                    ["center", "Center"]
+                ],
+                "default": "left"
+            }
+        ]
+    },
+    {
         "name":  "cta_settings",
         "label":  "CTA Button",
         "type":  "group",
@@ -123,10 +173,16 @@
                              "default":  false
                          },
                          {
+                             "name": "show_cta_on_mobile",
+                             "label": "Show CTA on Mobile",
+                             "type": "boolean",
+                             "default": true
+                         },
+                         {
                              "name":  "cta_text",
                              "label":  "CTA Text",
                              "type":  "text",
-                             "default":  "Request Quote"
+                             "default":  "WhatsApp"
                          },
                          {
                              "name":  "cta_link",
