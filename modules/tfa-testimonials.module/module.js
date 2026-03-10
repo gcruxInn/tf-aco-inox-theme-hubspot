@@ -1,203 +1,136 @@
 /**
- * TFA Testimonials — GSAP Scroll Reveal & Parallax
- * Placed in IIFE to avoid global pollution
+ * TFA Testimonials — Sophisticated Reveal JS
  */
 (function initTestimonialsAnim() {
     'use strict';
 
-    // ============================================================
-    // PEACE PROTOCOL — Editor Guard
-    // Abort immediately if running inside the HubSpot CMS editor
-    // to prevent layout breakages and JS conflicts.
-    // ============================================================
     if (
         document.body.classList.contains('hs-edit-mode') ||
         document.querySelector('.hs-inline-edit') ||
         window.location.href.includes('hs-edit-mode')
-    ) {
-        console.log('[TFAHUB251] HubSpot Editor detected. Testimonials GSAP disabled.');
-        return;
-    }
+    ) return;
 
     function run() {
-        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
-            console.warn('[TFAHUB251] GSAP or ScrollTrigger not found.');
-            return;
-        }
-
+        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
         gsap.registerPlugin(ScrollTrigger);
 
         const section = document.querySelector('.tfa-testimonials-section');
         if (!section) return;
 
-        // 1. SplitType Text Reveal (Header)
-        if (typeof SplitType !== 'undefined') {
-            const splitTexts = section.querySelectorAll('[data-split-text]');
-            splitTexts.forEach(text => {
-                const split = new SplitType(text, { types: 'lines, words' });
-                split.lines.forEach(line => line.style.overflow = 'hidden');
+        const stage = section.querySelector('.testimonials-sticky-stage');
+        const items = gsap.utils.toArray(section.querySelectorAll('.writing-item'));
+        const header = section.querySelector('.testimonials-header');
 
-                gsap.from(split.words, {
-                    scrollTrigger: {
-                        trigger: text,
-                        start: "top 85%",
-                        once: true
-                    },
-                    y: "100%",
-                    opacity: 0,
-                    duration: 1.0,
-                    stagger: 0.02,
-                    ease: "power4.out"
-                });
-            });
-        }
+        if (!items.length) return;
 
-        // 2. Cinematic Fly-Through Coreography (Z-Axis)
-        // Defeat HubSpot's wrapper overflow issues native to DND
-        let parent = section.parentElement;
-        while (parent && parent.tagName !== 'BODY' && parent.tagName !== 'HTML') {
-            const style = window.getComputedStyle(parent);
-            if (style.overflow === 'hidden' || style.overflowX === 'hidden' || style.overflowY === 'hidden') {
-                parent.style.setProperty('overflow', 'visible', 'important');
-                parent.style.setProperty('overflow-x', 'visible', 'important');
-                parent.style.setProperty('overflow-y', 'visible', 'important');
+        // Base scroll depth: 200vh per testimonial to allow slow "writing"
+        const scrollVH = items.length * 200;
+        section.style.height = (scrollVH + 100) + 'vh';
+
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: section,
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 1.2, // Smooth cinematic resistance
+                anticipatePin: 1
             }
-            parent = parent.parentElement;
-        }
+        });
 
-        const stage = section.querySelector('.testimonials-fly-stage');
-        const cards = gsap.utils.toArray(section.querySelectorAll('.testimonial-card'));
+        // 1. Initial fade-out of the header
+        tl.to(header, {
+            opacity: 0,
+            y: -50,
+            duration: 1
+        }, 0);
 
-        if (stage && cards.length > 0) {
-            // Master Timeline tied to scroll duration based on card count
-            const tl = gsap.timeline({
+        items.forEach((item, index) => {
+            const quote = item.querySelector('.testimonial-quote');
+            const info = item.querySelector('.client-info-reveal');
+            
+            // Initial positioning for all items
+            gsap.set(item, { y: 20, opacity: 0, visibility: 'hidden' });
+
+            const startPos = index * 4; // Virtual timeline seconds
+            
+            // FASE: Show Item
+            tl.to(item, {
+                opacity: 1,
+                visibility: 'visible',
+                y: 0,
+                duration: 0.8,
+                ease: "power2.out"
+            }, startPos);
+
+            // "Writing" effect for cursive (using SplitType if available, or simple blur/opacity reveal)
+            if (typeof SplitType !== 'undefined') {
+                const split = new SplitType(quote, { types: 'words,chars' });
+                tl.from(split.chars, {
+                    opacity: 0,
+                    filter: "blur(10px)",
+                    y: 10,
+                    stagger: 0.02,
+                    duration: 2,
+                    ease: "none"
+                }, startPos + 0.2);
+            } else {
+                tl.from(quote, {
+                    opacity: 0,
+                    filter: "blur(20px)",
+                    duration: 1.5,
+                    ease: "none"
+                }, startPos + 0.2);
+            }
+
+            // Reveal client info after quote
+            tl.from(info, {
+                opacity: 0,
+                y: 20,
+                duration: 0.5
+            }, startPos + 2.5);
+
+            // Stay visible for a moment
+            tl.to({}, { duration: 1.5 });
+
+            // FASE: Hide Item (except the last one)
+            if (index < items.length - 1) {
+                tl.to(item, {
+                    opacity: 0,
+                    y: -30,
+                    filter: "blur(20px)",
+                    duration: 0.8,
+                    ease: "power2.in"
+                }, startPos + 4);
+            }
+        });
+
+        // --- SKIP SCENE BUTTON LOGIC ---
+        const skipBtn = section.querySelector('.tfa-skip-scene-btn');
+        if (skipBtn) {
+            gsap.to(skipBtn, {
                 scrollTrigger: {
                     trigger: section,
-                    pin: true,
-                    start: "top top",
-                    end: () => "+=" + (cards.length * 250) + "vh", // Slower scrolling (250vh per card)
-                    scrub: 1.5, // buttery smooth scrub
-                    anticipatePin: 1
-                }
+                    start: 'top 10%',
+                    end: 'bottom 90%',
+                    toggleActions: 'play reverse play reverse'
+                },
+                opacity: 1,
+                visibility: 'visible',
+                y: 0,
+                duration: 0.6
             });
 
-            cards.forEach((card, index) => {
-                const isLast = index === cards.length - 1;
-
-                // Keep them centered, minimal rotation for dynamism
-                const rOffset = (index % 2 === 0 ? 1 : -1) * gsap.utils.random(2, 6);
-
-                // Initial State: Deep in the background
-                gsap.set(card, {
-                    scale: 0.1,
-                    opacity: 0,
-                    filter: "blur(30px)",
-                    z: -1000,
-                    rotation: rOffset,
-                    xPercent: -50,
-                    yPercent: -50,
-                    transformOrigin: "center center"
-                });
-
-                // Overlap timing: the next card starts its journey earlier
-                const startTime = index * 0.7;
-
-                tl.addLabel(`card-${index}`, startTime);
-
-                // Phase A: Enter and focus (0 to 0.4 of its unit)
-                tl.to(card, {
-                    scale: 1,
-                    opacity: 1,
-                    filter: "blur(0px)",
-                    z: 0,
-                    rotation: 0,
-                    ease: "power2.out",
-                    duration: 0.4
-                }, `card-${index}`);
-
-                // Phase B: Pause for reading (0.4 to 0.75 of its unit), drifting slightly (breathing)
-                tl.to(card, {
-                    scale: 1.05,
-                    z: 50,
-                    ease: "none",
-                    duration: 0.35
-                }, `card-${index}+=0.4`);
-
-                // Phase C: Fly Out / Swallow Camera (0.75 to 1.0 of its unit)
-                if (!isLast) {
-                    tl.to(card, {
-                        scale: 6,
-                        opacity: 0,
-                        filter: "blur(40px)",
-                        z: 600,
-                        ease: "power4.in",
-                        duration: 0.25
-                    }, `card-${index}+=0.75`);
+            skipBtn.addEventListener('click', function() {
+                gsap.to(skipBtn, { scale: 0.9, duration: 0.1, yoyo: true, repeat: 1 });
+                const dest = section.offsetTop + section.offsetHeight;
+                if (window.lenis) {
+                    window.lenis.scrollTo(dest, { duration: 2.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
                 } else {
-                    // For the last card, we just let it fade out at the very end so it unpins smoothly
-                    tl.to(card, {
-                        opacity: 0,
-                        scale: 1.5,
-                        filter: "blur(20px)",
-                        duration: 0.25
-                    }, `card-${index}+=0.75`);
+                    window.scrollTo({ top: dest, behavior: 'smooth' });
                 }
+                gsap.to(skipBtn, { opacity: 0, y: 10, duration: 0.4 });
             });
-
-            // Animate the Massive Background Text along the whole timeline
-            const massiveText = section.querySelector('.massive-bg-text');
-            if (massiveText) {
-                // start small, end huge
-                tl.fromTo(massiveText, { scale: 0.8, opacity: 0.1 }, {
-                    scale: 1.4,
-                    opacity: 0.8, // Frost Glass will overlay on top anyway
-                    duration: tl.duration(),
-                    ease: "none"
-                }, 0);
-            }
-
-            // 3. Ambient Parallax (Mouse move tracking)
-            const techGrid = section.querySelector('.tech-grid');
-            const glow = section.querySelector('.ambient-glow');
-
-            if (techGrid && glow) {
-                // Background smoke tied to Scroll
-                gsap.to(techGrid, {
-                    backgroundPositionY: "100%",
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: section,
-                        start: "top bottom",
-                        end: "bottom top",
-                        scrub: true
-                    }
-                });
-
-                // Interactive Mouse tracking
-                section.addEventListener('mousemove', (e) => {
-                    const xProgress = (e.clientX / window.innerWidth) - 0.5;
-                    const yProgress = (e.clientY / window.innerHeight) - 0.5;
-
-                    gsap.to(techGrid, {
-                        x: xProgress * -30,
-                        y: yProgress * -30,
-                        duration: 1,
-                        ease: "power2.out"
-                    });
-
-                    gsap.to(glow, {
-                        xPercent: xProgress * 20,
-                        yPercent: yProgress * 20,
-                        duration: 1.5,
-                        ease: "power2.out"
-                    });
-                });
-            }
         }
-
-
-
-        ScrollTrigger.refresh();
     }
 
     if (document.readyState === 'complete') {

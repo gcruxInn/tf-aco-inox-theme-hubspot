@@ -1,9 +1,7 @@
 {# --- MODULE: TFA Portfolio Grid (Static-First V2) --- #}
 {% require_css %}
 <style>
-    {
-        % include "./module.css" %
-    }
+    {% include "./module.css" %}
 </style>
 {% end_require_css %}
 
@@ -34,7 +32,9 @@
                     {% else %}
                     {# Fallback Industrial Block #}
                     <div class="portfolio-img-placeholder-v2">
-                        <span class="placeholder-icon">📸</span>
+                        <span class="placeholder-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-images"><path d="M18 22H4a2 2 0 0 1-2-2V6"/><path d="m22 13-1.296-1.296a2.41 2.41 0 0 0-3.408 0L11 18"/><circle cx="12" cy="8" r="2"/><rect width="16" height="16" x="6" y="2" rx="2"/></svg>
+                        </span>
                     </div>
                     {% endif %}
 
@@ -46,7 +46,7 @@
                             aria-label="Ver detalhes de {{ project.title }}">
                             <span>Explorar Obra</span>
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M5 12h14M12 5l7 7-7 7" />
                             </svg>
                         </a>

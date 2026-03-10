@@ -275,6 +275,38 @@
       });
     }
 
+    // Dot Navigation Logic
+    progressDots.forEach((dot, index) => {
+      dot.style.cursor = 'pointer';
+      dot.addEventListener('click', () => {
+        const st = ScrollTrigger.create({
+          trigger: section,
+          start: 'top top',
+          end: () => `+=${track.scrollWidth}`
+        });
+        const totalScroll = st.end - st.start;
+        st.kill();
+
+        // Calculate position: 
+        // Each card is centered at progress = (index / (cards.length - 1)) variant or 
+        // by target scroll trigger mapping. Since we use cards.forEach with containerAnimation,
+        // we can find the specific scroll point.
+        const targetScroll = st.start + (totalScroll * (index / (cards.length - 1)));
+
+        if (window.lenis) {
+          window.lenis.scrollTo(targetScroll, {
+            duration: 1.5,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+          });
+        } else {
+          window.scrollTo({
+            top: targetScroll,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
     // 3. Efeito Cinematográfico "Gigante para Fixo" (Referência Ironhill - EGGS)
     // Usamos UMA master Timeline por card guiada com exatidão da direita (100%) até a esquerda (0%)
     cards.forEach((card, index) => {
@@ -293,11 +325,14 @@
           end: "right left",
           scrub: true,
           onUpdate: (self) => {
-            // Opcional: Feedback apenas próximo do meio (+- 0.5%)
+            // Trigger dot activation when card is roughly centered (0.4 to 0.6 range)
+            if (self.progress > 0.4 && self.progress < 0.6) {
+              activateDot(index);
+            }
+
+            // Optional: Debug feedback
             if (DEBUG_VISION && (self.progress > 0.49 && self.progress < 0.51)) {
               logVision(`[${index}] CENTERED p:${self.progress.toFixed(2)}`);
-              // Se ativou o meio, o dot engaja!
-              activateDot(index);
             }
           }
         }
@@ -345,10 +380,8 @@
       }
     });
 
-    // ============================================================
-    // OBSERVER — Touch / Drag / Swipe lateral navigation
-    // ============================================================
-    if (hasObserver) {
+    // 4. OBSERVER — Desktop Only (Touch disabled to prioritize natural vertical scroll flow)
+    if (hasObserver && window.innerWidth > 1024) {
       var isDragging = false;
       var dragSensitivity = 2.5;
 
@@ -373,6 +406,64 @@
         },
         tolerance: 10,
         preventDefault: true
+      });
+    }
+
+    // ============================================================
+    // SKIP SCENE INTERACTION (Cinematic AWWWARDS-style)
+    // ============================================================
+    var skipBtn = document.querySelector('.tfa-skip-scene-btn');
+    if (skipBtn) {
+      // 1. Reveal/Hide logic integrated into Master ScrollTrigger bounds
+      gsap.to(skipBtn, {
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 10%',
+          end: () => `+=${track.scrollWidth}`, // Stay visible until pinning ends
+          toggleActions: 'play reverse play reverse',
+          onEnter: () => gsap.to(skipBtn, { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power3.out' }),
+          onLeave: () => gsap.to(skipBtn, { autoAlpha: 0, y: 20, duration: 0.4, ease: 'power3.in' }),
+          onEnterBack: () => gsap.to(skipBtn, { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power3.out' }),
+          onLeaveBack: () => gsap.to(skipBtn, { autoAlpha: 0, y: 20, duration: 0.4, ease: 'power3.in' })
+        }
+      });
+
+      // 2. Heavy Glide Scroll Logic
+      skipBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        // Calculate destination: the exact point where the ScrollTrigger pin ends
+        // Logic: Trigger Start + Pin Distance (track.scrollWidth)
+        const st = ScrollTrigger.create({
+          trigger: section,
+          start: 'top top',
+          end: () => `+=${track.scrollWidth}`
+        });
+        const targetScroll = st.end;
+        st.kill(); // Temporary check killed immediately after calculation
+
+        if (window.lenis) {
+          window.lenis.scrollTo(targetScroll, {
+            duration: 2.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Power4 out
+            onComplete: () => {
+              gsap.to(skipBtn, { autoAlpha: 0, y: 20, duration: 0.4 });
+            }
+          });
+        } else {
+          window.scrollTo({
+            top: targetScroll,
+            behavior: 'smooth'
+          });
+        }
+
+        // Visual feedback on click
+        gsap.to(skipBtn, {
+          scale: 0.95,
+          duration: 0.1,
+          yoyo: true,
+          repeat: 1
+        });
       });
     }
   });

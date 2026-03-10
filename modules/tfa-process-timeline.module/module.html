@@ -73,7 +73,7 @@
                         <h3 class="step-title">{{ step.title }}</h3>
                         <p class="step-description">{{ step.description }}</p>
                         <div class="step-duration">
-                            ⏱️ {{ step.duration }}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-timer" style="margin-right: 6px;"><line x1="10" y1="2" x2="14" y2="2"/><line x1="12" y1="14" x2="15" y2="11"/><circle cx="12" cy="14" r="8"/></svg> {{ step.duration }}
                         </div>
                     </div>
                 </div>
@@ -89,12 +89,132 @@
         <div class="tfa-dot {% if loop.first %}active{% endif %}"></div>
         {% endfor %}
     </div>
+
+    {# Skip Section Button #}
+    <button class="tfa-skip-scene-btn" aria-label="Skip to next section">
+        <span class="btn-text">PULAR CENA</span>
+        <div class="btn-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m7 13 5 5 5-5M7 6l5 5 5-5" />
+            </svg>
+        </div>
+        <div class="btn-glow"></div>
+    </button>
 </section>
 
 <style>
     /* =========================================================
        TFA TIMELINE V7 — Cinematic Horizontal Flow (Ironhill Style)
+       + Skip Scene Interaction Extension
     ========================================================= */
+
+    /* Skip Scene Button Styling */
+    .tfa-skip-scene-btn {
+        position: absolute;
+        bottom: 2.5rem;
+        left: 3rem;
+        z-index: 100;
+        background: rgba(15, 23, 42, 0.4);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 50px;
+        padding: 0.75rem 1.5rem 0.75rem 0.75rem;
+        display: flex;
+        align-items: center;
+        flex-direction: row-reverse;
+        gap: 1rem;
+        color: #f1f5f9;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .tfa-skip-scene-btn .btn-text {
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.15em;
+        color: rgba(241, 245, 249, 0.8);
+        transition: color 0.3s ease;
+    }
+
+    .tfa-skip-scene-btn .btn-icon {
+        width: 32px;
+        height: 32px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+
+    .tfa-skip-scene-btn:hover {
+        background: rgba(30, 41, 59, 0.6);
+        border-color: rgba(255, 255, 255, 0.3);
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .tfa-skip-scene-btn:hover .btn-text {
+        color: #fff;
+    }
+
+    .tfa-skip-scene-btn:hover .btn-icon {
+        background: #fff;
+        color: #0f172a;
+        /* Subtle indicator animation on hover */
+        transform: translateY(2px);
+    }
+
+    .tfa-skip-scene-btn .btn-glow {
+        position: absolute;
+        inset: -1px;
+        border-radius: 50px;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+    }
+
+    .tfa-skip-scene-btn:hover .btn-glow {
+        opacity: 1;
+        animation: skip-glow 2s linear infinite;
+    }
+
+    @keyframes skip-glow {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
+    }
+
+    @media (max-width: 768px) {
+        .tfa-skip-scene-btn {
+            bottom: 2rem;
+            left: 2rem;
+            width: 52px;
+            height: 52px;
+            padding: 0;
+            border-radius: 50%; /* 100% Round as requested */
+            justify-content: center;
+            flex-direction: row;
+        }
+        .tfa-skip-scene-btn .btn-text {
+            display: none;
+        }
+        .tfa-skip-scene-btn .btn-icon {
+            border: none;
+            background: transparent;
+            width: 100%;
+            height: 100%;
+        }
+        .tfa-skip-scene-btn .btn-glow {
+            border-radius: 50%;
+        }
+    }
 
     .tfa-timeline-section {
         box-sizing: border-box;
@@ -188,7 +308,12 @@
         position: relative;
         z-index: 5;
         width: 100%;
+        overflow-x: clip; /* Modern way to prevent overflow while allowing vertical sticky if needed */
     }
+    .process-timeline-track-wrapper:has(.process-timeline-track) {
+         overflow: visible; /* But we need the track to be visible for pinning logic */
+    }
+    /* Let's actually keep it simple: overflow hidden on the main section is enough if everything is inside */
 
     /* ---- Horizontal Track ---- */
     .process-timeline-track {
@@ -428,12 +553,18 @@
 
     /* ---- Responsive ---- */
     @media (max-width: 768px) {
+        .tfa-timeline-section {
+            overflow-x: hidden !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+        }
+
         .timeline-section-title {
             font-size: 2rem;
         }
 
-        .timeline-stack-card {
-            width: 92%;
+        .timeline-track-card {
+            width: 85vw; /* Much more stable than fixed 420px on mobile */
         }
 
         .timeline-glass-panel {

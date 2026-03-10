@@ -1,79 +1,284 @@
-{# --- MODULE: TFA Testimonials Grid — Dark/Silver Industrial Theme --- #}
-<section class="tfa-testimonials-section">
-    {# Cinematic Visual FX: Smoke & Sparks #}
+{# --- MODULE: TFA Testimonials Grid — Sophisticated Industrial Reveal --- #}
+{# Import Premium Cursive Font (Beth Ellen or similar) #}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playwrite+GB+J&family=Inter:wght@300;400;700;900&display=swap"
+    rel="stylesheet">
+
+<section class="tfa-testimonials-section hs-edit-disable-pin">
+    {# Cinematic Visual FX: Smoke & Dust #}
     <div class="tfa-cinematic-fx" aria-hidden="true">
         <div class="smoke-layer"></div>
-        {# Sparks floating upwards #}
-        <div class="sparks-layer">
-            <div class="spark s1"></div>
-            <div class="spark s2"></div>
-            <div class="spark s3"></div>
-            <div class="spark s4"></div>
-            <div class="spark s5"></div>
-            <div class="spark s6"></div>
-        </div>
     </div>
 
-    {# Cinematic Fly-Through Stage #}
-    <div class="testimonials-fly-stage">
+    <div class="testimonials-sticky-stage">
 
-        {# Interactive Deep Background Layer #}
-        <div class="stage-deep-bg" aria-hidden="true">
-            <div class="ambient-glow"></div>
-            <div class="tech-grid"></div>
-            <div class="massive-bg-text">CONFIANÇA</div>
-        </div>
-
-        {# Section Heading #}
-        <div class="testimonials-header" data-animate="fade-up">
-            <div class="tfa-container">
-                <h2 class="testimonials-title" data-split-text>{{ module.section_heading.title }}</h2>
-                <p class="testimonials-subtitle" data-split-text>{{ module.section_heading.subtitle }}</p>
-            </div>
-        </div>
-
-        {% for testimonial in module.testimonials %}
-        <div class="testimonial-card" style="--card-index: {{ loop.index0 }};">
-
-            {# Decorative Opening Quote #}
-            <span class="quote-mark" aria-hidden="true">&ldquo;</span>
-
-            {# Star Rating #}
-            <div class="testimonial-stars" aria-label="{{ testimonial.rating or 5 }} estrelas">
-                {% for i in range(testimonial.rating or 5) %}&#9733;{% endfor %}
+        <div class="tfa-container">
+            {# Section Heading — "Deixa que o resultado mostre a verdade" #}
+            <div class="testimonials-header" data-animate="fade-up">
+                <h2 class="testimonials-title">Deixa que o <span class="accent-glow">resultado</span></h2>
+                <h3 class="testimonials-subtitle">mostre a verdade.</h3>
             </div>
 
-            {# Quote Body #}
-            <blockquote class="testimonial-quote">{{ testimonial.quote }}</blockquote>
-
-            {# Client Row: avatar + info + logo #}
-            <div class="testimonial-client">
-
-                {# Avatar: photo or initial placeholder #}
-                {% if testimonial.client_photo.src %}
-                <img src="{{ testimonial.client_photo.src }}"
-                    alt="{{ testimonial.client_photo.alt or testimonial.client_name }}" loading="lazy"
-                    class="client-avatar">
-                {% else %}
-                <div class="client-avatar-placeholder" aria-hidden="true">{{ testimonial.client_name[0] }}</div>
-                {% endif %}
-
-                {# Name + Role #}
-                <div class="client-info">
-                    <div class="client-name">{{ testimonial.client_name }}</div>
-                    <div class="client-meta">{{ testimonial.client_role }}{% if testimonial.client_company %}, <span
-                            class="client-company">{{ testimonial.client_company }}</span>{% endif %}</div>
+            {# Sophisticated Scroll Reveal Stage #}
+            <div class="testimonials-writing-stage">
+                {% for testimonial in module.testimonials %}
+                <div class="writing-item" data-index="{{ loop.index0 }}">
+                    <div class="quote-container">
+                        <blockquote class="testimonial-quote reveal-text" data-split-cursive>
+                            {{ testimonial.quote }}
+                        </blockquote>
+                        <div class="client-info-reveal">
+                            <span class="client-name">{{ testimonial.client_name }}</span>
+                            <span class="client-meta">{{ testimonial.client_role }}{% if testimonial.client_company %},
+                                {{ testimonial.client_company }}{% endif %}</span>
+                        </div>
+                    </div>
                 </div>
-
-                {# Company Logo (B2B authority seal) #}
-                {% if testimonial.company_logo.src %}
-                <img src="{{ testimonial.company_logo.src }}"
-                    alt="{{ testimonial.company_logo.alt or testimonial.client_company }}" loading="lazy"
-                    class="company-logo">
-                {% endif %}
-
+                {% endfor %}
             </div>
         </div>
-        {% endfor %}
+
+        {# Skip Section Button #}
+        <button class="tfa-skip-scene-btn" aria-label="Skip to next section">
+            <span class="btn-text">PULAR CENA</span>
+            <div class="btn-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m7 13 5 5 5-5M7 6l5 5 5-5" />
+                </svg>
+            </div>
+            <div class="btn-glow"></div>
+        </button>
     </div>
 </section>
+
+<style>
+    /* =========================================================
+       TFA TESTIMONIALS V8 — SOPHISTICATED REVEAL
+    ========================================================= */
+    .tfa-testimonials-section {
+        background: #030508;
+        color: #fff;
+        position: relative;
+        overflow: visible;
+    }
+
+    .testimonials-sticky-stage {
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        overflow: hidden;
+    }
+
+    .tfa-container {
+        width: 100%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        z-index: 10;
+        position: relative;
+    }
+
+    /* ── Header Styling ── */
+    .testimonials-header {
+        text-align: center;
+        margin-bottom: 5vh;
+        will-change: transform, opacity;
+    }
+
+    .testimonials-title {
+        font-size: clamp(2.5rem, 6vw, 5rem);
+        font-weight: 900;
+        letter-spacing: -0.04em;
+        line-height: 1.1;
+        margin: 0;
+    }
+
+    .accent-glow {
+        color: #fff;
+        text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+    }
+
+    .testimonials-subtitle {
+        font-size: clamp(1rem, 2vw, 1.5rem);
+        font-weight: 300;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.5);
+        margin: 1rem 0 0;
+    }
+
+    /* ── Writing Reveal Stage ── */
+    .testimonials-writing-stage {
+        position: relative;
+        height: 60vh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .writing-item {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .testimonial-quote {
+        font-family: 'Playwrite GB J', cursive;
+        font-size: 2.1rem !important;
+        font-weight: 400;
+        line-height: 1.25;
+        color: rgba(255, 255, 255, 0.95);
+        margin-bottom: 3.5rem;
+        max-width: 900px;
+        letter-spacing: 0.01em;
+        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .client-info-reveal {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .client-name {
+        font-size: 1.2rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: #fff;
+    }
+
+    .client-meta {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: rgba(255, 255, 255, 0.4);
+    }
+
+    /* ── Skip Button ── */
+    /* Shared with Timeline/Stats */
+    .tfa-skip-scene-btn {
+        position: absolute;
+        bottom: 2.5rem;
+        left: 3rem;
+        z-index: 100;
+        background: rgba(15, 23, 42, 0.4);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 50px;
+        padding: 0.75rem 1.5rem 0.75rem 0.75rem;
+        display: flex;
+        align-items: center;
+        flex-direction: row-reverse;
+        gap: 1rem;
+        color: #f1f5f9;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .tfa-skip-scene-btn .btn-text {
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.15em;
+        color: rgba(241, 245, 249, 0.8);
+    }
+
+    .tfa-skip-scene-btn .btn-icon {
+        width: 32px;
+        height: 32px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .tfa-skip-scene-btn:hover {
+        background: rgba(30, 41, 59, 0.6);
+        transform: translateY(-5px) scale(1.02);
+    }
+
+    .tfa-skip-scene-btn:hover .btn-icon {
+        background: #fff;
+        color: #0f172a;
+        transform: translateY(2px);
+    }
+
+    .tfa-skip-scene-btn .btn-glow {
+        position: absolute;
+        inset: -1px;
+        border-radius: 50px;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .tfa-skip-scene-btn:hover .btn-glow {
+        opacity: 1;
+        animation: skip-glow 2s linear infinite;
+    }
+
+    @keyframes skip-glow {
+        0% {
+            transform: translateX(-100%);
+        }
+
+        100% {
+            transform: translateX(100%);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .tfa-skip-scene-btn {
+            bottom: 2rem;
+            left: 2rem;
+            width: 52px;
+            height: 52px;
+            padding: 0;
+            border-radius: 50%;
+            justify-content: center;
+            flex-direction: row;
+        }
+
+        .tfa-skip-scene-btn .btn-text {
+            display: none;
+        }
+
+        .tfa-skip-scene-btn .btn-icon {
+            border: none;
+            background: transparent;
+            width: 100%;
+            height: 100%;
+        }
+
+        .tfa-skip-scene-btn .btn-glow {
+            border-radius: 50%;
+        }
+
+        .testimonial-quote {
+            font-size: clamp(1.4rem, 6vw, 2.2rem);
+        }
+    }
+</style>
