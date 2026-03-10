@@ -1,28 +1,27 @@
 # 🚀 EXECUTION ORDER (Next Session)
 
-## STATUS ATUAL: DEV CONCLUÍDO (Testimonials Awwwards)
-A arquitetura do componente **TFA Testimonials (Z-Axis Fly-Through)** foi finalizada, os bugs de overflow-x (scrollbar horizontal) foram corrigidos e todos os commits de hoje foram executados no repositório local.
+## STATUS ATUAL: DEV CONCLUÍDO (Header Refactor & Icon Harmonization)
+O componente **Global Header** foi totalmente refatorado com mobile drawer, animações GSAP e integração 100% com o CMS. Além disso, foi concluída a **esterilização de iconografia** em todo o site, substituindo emojis e ícones antigos por SVGs Lucide industriais (1.25px stroke) conforme o `vibe-blueprint.json`.
 
 ## 🎯 PRÓXIMAS AÇÕES (MANDATÓRIAS) PARA A PRÓXIMA SESSÃO:
-A próxima sessão deve ser iniciada pelo **QA-Engineer** para atestar a estabilidade do código antes de considerarmos o componente 100% pronto.
+A próxima sessão deve focar na validação visual final de todos os módulos afetados e auditoria de performance das novas animações.
 
-### 1️⃣ Auditoria de Código (HubSpot Validator)
-- **Role:** Full Stack Ops / QA-Engineer
-- **Ação:** Executar a skill `hubspot-validator` nos arquivos recém alterados:
-  - `modules/tfa-testimonials.module/module.js`
-  - `modules/tfa-testimonials.module/module.css`
-  - `modules/tfa-testimonials.module/module.html`
+### 1️⃣ Auditoria de Iconografia & Layout
+- **Role:** QA-Engineer / UX-UI Designer
+- **Ação:** Verificar se todos os módulos estão exibindo os ícones industriais silver corretamente e se não há quebras de layout no mobile após a troca de emojis por SVGs.
+- **Módulos Críticos:**
+  - `tfa-menu-header` (Drawer Mobile)
+  - `tfa-differentiators` (SVGs Lucide)
+  - `tfa-global-footer` (Social & Contact)
+  - `tfa-stats-row` (Skip Button)
 
-### 2️⃣ Auditoria Visual & DOM (Browser QA Auditor)
-- **Role:** QA-Engineer
-- **Ação:** Solicitar ao usuário a *HubSpot Preview URL* da página de testes para o uso do `browser-qa-auditor` via *Web-Scraper MCP*.
-- **Focos do Teste:**
-  1. O comportamento do GSAP no mobile (comportamento de stack, scale e blur).
-  2. Verificações rígidas de vazamento de viewport (`overflow-x`).
-  3. Desempenho (flickers) do `pin: true`.
+### 2️⃣ Auditoria de Código (HubSpot Validator)
+- **Role:** Full Stack Ops
+- **Ação:** Executar `hs validate` para garantir que as novas referências de SVGs e os campos do `fields.json` do Header estão íntegros.
 
-### 3️⃣ Deploy Final e Handoff
-- **Ação:** Caso as auditorias passem, notificar o Head-Mkt/CEO, documentar e aguardar ordens para o próximo componente da arquitetura (ex: hero section, footer, etc.) ou realizar o deploy em master via GitHub.
+### 3️⃣ Teste de Performance Lenis/GSAP
+- **Role:** GSAP Creative Dev
+- **Ação:** Validar se o scroll lock do mobile drawer não está conflitando com o Lenis Scroll global.
 
 ---
 *Gerado automaticamente na conclusão da Sprint "Testimonials Cinematic". Repositório local encontra-se blindado (git status limpo).*

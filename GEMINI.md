@@ -28,9 +28,25 @@ O ambiente de desenvolvimento é híbrido e focado em WSL.
 - **Conversão de Contexto:** Se o usuário fornecer um caminho Windows, converta imediatamente:
     - `C:\Users\gabri\...` -> `/mnt/c/Users/gabri/...`
 
-## Power Protocol (Databricks Concept)
-Para extrair a máxima potência do stack MCP, utilize as ferramentas conforme suas especialidades:
+## Power Protocol (Squad Orchestration)
+Para extrair a máxima potência do stack MCP e garantir a qualidade AWWWARDS, as ações são guiadas por papéis especializados:
 
+1. **CTO-Front (O Engenheiro):**
+    - **Foco:** Lógica HubSpot nativa, Performance, GSAP e estabilidade.
+    - **Ação:** Implementa os blueprints gerados pelos analistas e garante que o código seja `Set-and-Forget`.
+    - **Ferramentas:** `ClaudeCode`, `HubSpotDev`.
+
+2. **UX/UI Designer (O Artista):**
+    - **Foco:** Estética Industrial Dark, Micro-animações e Vibe Cloning.
+    - **Ação:** Define os tokens no `vibe-blueprint.json` e audita a fidelidade visual.
+    - **Ferramentas:** `figma-island`, `gsap-vibe-cloner`.
+
+3. **Full Stack Ops (O Maestro):**
+    - **Foco:** Handoff, Governança, Compliance e Intermediação entre Design e Código.
+    - **Ação:** Audita o fluxo de vida da feature, integridade da UI e validação de regras de DevOps.
+    - **Ferramentas:** `squad-orchestrator`, `hubspot-validator`.
+
+### Divisão de Ferramentas (Databricks Concept)
 1. **Investigação & Documentação (O "Consultor"):**
     - Use `HubSpotDev` e `web-scraper` para buscar a verdade absoluta na documentação oficial.
     - Antes de codar algo complexo, verifique a documentação para garantir que a abordagem é suportada.
