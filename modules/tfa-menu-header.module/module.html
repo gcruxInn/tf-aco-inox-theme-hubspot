@@ -1,45 +1,52 @@
-<!-- 
+<!--
   TFA Menu Header - Native HubSpot Refactor
   Aesthetics: Industrial Dark / Silver
   Governance: Set-and-Forget
 -->
 
-{% set header_style = module.menu_settings.header_style_override != 'default' ? module.menu_settings.header_style_override : theme.header.style %}
-{% set is_sticky = module.menu_settings.header_sticky_override != 'default' ? (module.menu_settings.header_sticky_override == 'sticky') : theme.header.sticky %}
+{# === STYLE RESOLUTION (Module Override → Theme Default) === #}
+{% set header_style = module.menu_settings.header_style_override != 'default' ? module.menu_settings.header_style_override : theme.header_settings.header_style %}
+{% set is_sticky = module.menu_settings.header_sticky_override != 'default' ? (module.menu_settings.header_sticky_override == 'sticky') : theme.header_settings.header_sticky %}
 
-<header class="tfa-header-main {{ header_style }}" 
+<header class="tfa-header-main {{ header_style }}"
         data-sticky="{{ is_sticky }}"
         data-header-style="{{ header_style }}">
-  
-  <div class="tfa-header-container">
-    
-    <!-- Logo Section -->
+
+  <div class="tfa-header-container"
+       style="align-items: {{ module.menu_settings.menu_vertical_align }};">
+
+    <!-- Logo Section (from HubSpot Brand Settings) -->
     <div class="tfa-header-logo">
-      {% if group.logo %}
-        {% set logo_height = module.menu_settings.logo_height %}
-        {% set mobile_logo_height = module.mobile_settings.mobile_logo_height %}
-        <style>
-          .tfa-header-logo img { height: {{ logo_height }}px; }
-          @media (max-width: 1024px) {
-            .tfa-header-logo img { height: {{ mobile_logo_height }}px; }
-          }
-        </style>
+      {% set logo_src = brand_settings.primary_logo.src %}
+      {% set logo_alt = brand_settings.primary_logo.alt || "Logo" %}
+      {% set logo_height = module.menu_settings.logo_height %}
+      {% set mobile_logo_height = module.mobile_settings.mobile_logo_height %}
+      <style>
+        .tfa-header-logo img { height: {{ logo_height }}px; width: auto; }
+        @media (max-width: 1024px) {
+          .tfa-header-logo img { height: {{ mobile_logo_height }}px; }
+        }
+      </style>
+      {% if logo_src %}
         <a href="/">
-          <img src="{{ group.logo.src }}" alt="{{ group.logo.alt }}" loading="eager">
+          <img src="{{ logo_src }}" alt="{{ logo_alt }}" loading="eager">
         </a>
       {% endif %}
     </div>
 
     <!-- Desktop Navigation -->
-    <nav class="tfa-nav-desktop" aria-label="Main Navigation">
-      {% menu id="{{ module.menu_settings.navigation_menu }}" %}
+    <nav class="tfa-nav-desktop" aria-label="Main Navigation"
+         style="justify-content: {{ module.menu_settings.menu_horizontal_align }};">
+      {% if module.menu_settings.navigation_menu %}
+        {% menu id="{{ module.menu_settings.navigation_menu }}" %}
+      {% endif %}
     </nav>
 
     <!-- Actions Section (CTA + Hamburger) -->
     <div class="tfa-header-actions">
-      
+
       {% if module.cta_settings.show_cta %}
-        <a href="{{ module.cta_settings.cta_link.url.href }}" 
+        <a href="{{ module.cta_settings.cta_link.url.href }}"
            class="tfa-header-cta {% if not module.cta_settings.show_cta_on_mobile %}hide-on-mobile{% endif %}"
            style="padding: {{ module.cta_settings.cta_padding }}; margin: {{ module.cta_settings.cta_margin }};">
           {{ module.cta_settings.cta_text }}
@@ -52,19 +59,21 @@
           <span class="hamburger-inner"></span>
         </span>
       </button>
-      
+
     </div>
 
   </div>
 
   <!-- Mobile Drawer Overlay -->
-  <div class="tfa-mobile-drawer" 
+  <div class="tfa-mobile-drawer"
        style="background-color: rgba({{ module.mobile_settings.mobile_menu_bg.color|convert_rgb }}, {{ module.mobile_settings.mobile_menu_bg.opacity / 100 }});">
     <div class="tfa-drawer-content">
       <nav class="tfa-nav-mobile" data-align="{{ module.mobile_settings.mobile_menu_alignment }}">
-        {% menu id="{{ module.menu_settings.navigation_menu }}" %}
+        {% if module.menu_settings.navigation_menu %}
+          {% menu id="{{ module.menu_settings.navigation_menu }}" %}
+        {% endif %}
       </nav>
-      
+
       {% if module.cta_settings.show_cta %}
         <div class="tfa-drawer-footer">
            <a href="{{ module.cta_settings.cta_link.url.href }}" class="tfa-drawer-cta">

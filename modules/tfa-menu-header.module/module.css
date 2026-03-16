@@ -1,13 +1,13 @@
-/* 
-  TFA Menu Header - CSS Styling
+/*
+  TFA Menu Header - Module-Level CSS
   Vibe: Industrial Dark / Silver / Glassmorphism
   Architecture: Mobile-First / Responsive
+  Note: Position/background/style variants are in theme-overrides-header-settings.hubl.css
 */
 
 :root {
   --header-height: 80px;
   --header-height-mobile: 60px;
-  --header-bg-glass: rgba(8, 12, 16, 0.7);
   --header-border-silver: rgba(192, 192, 192, 0.1);
   --industrial-silver: #c0c0c0;
   --industrial-black: #080c10;
@@ -17,41 +17,7 @@
   --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.tfa-header-main {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 9999;
-  transition: var(--transition-smooth);
-  backdrop-filter: blur(0px);
-  border-bottom: 1px solid transparent;
-}
-
-/* Glassmorphism Styles */
-.tfa-header-main.glassmorphism {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.tfa-header-main.glassmorphism_dark {
-  background: var(--header-bg-glass);
-  backdrop-filter: blur(15px);
-  border-bottom: 1px solid var(--header-border-silver);
-}
-
-.tfa-header-main.solid_black {
-  background: var(--industrial-black);
-}
-
-.tfa-header-main.sticky-scrolled {
-  padding: 10px 0;
-  background: var(--header-bg-glass);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--header-border-silver);
-}
-
+/* Container Layout */
 .tfa-header-container {
   max-width: 1400px;
   margin: 0 auto;
@@ -60,6 +26,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  transition: var(--transition-smooth);
+}
+
+.tfa-header-main.sticky-scrolled .tfa-header-container {
+  height: calc(var(--header-height) * 0.85);
 }
 
 /* Logo Section */

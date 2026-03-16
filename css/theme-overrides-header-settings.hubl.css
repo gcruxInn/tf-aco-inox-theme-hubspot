@@ -1,5 +1,6 @@
-﻿/* -----------------------------------------------------------------------------
-   THEME SETTINGS: HEADER STYLES (MAPPED) - LEGO EDITION
+/* -----------------------------------------------------------------------------
+   THEME SETTINGS: HEADER STYLES (MAPPED TO tfa-header-main)
+   Architecture: tfa-menu-header.module is the SOLE header owner.
    ----------------------------------------------------------------------------- */
 {% import './tools/_macros.hubl.css' %}
 
@@ -7,189 +8,178 @@
 :root {
     --brand-primary: {{ theme.brand_settings.primary_color || '#F2542D' }};
     --brand-secondary: {{ theme.brand_settings.secondary_color || '#1A1A1B' }};
-    --header-height: 80px; /* Default used for padding compensation */
+    --header-height: 80px;
+    --header-height-mobile: 60px;
 }
 
-/* 1. WRAPPER BEHAVIOR */
-.header {
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); /* Modern Ease */
-    display: block !important;
+/* Body padding to compensate for fixed header */
+{% if theme.header_settings.header_sticky %}
+body {
+    padding-top: var(--header-height);
+}
+@media (max-width: 1024px) {
+    body {
+        padding-top: var(--header-height-mobile);
+    }
+}
+/* Remove padding in editor mode */
+body.hs-edit-mode {
+    padding-top: 0 !important;
+}
+{% endif %}
+
+/* 1. BASE HEADER (position + z-index only here) */
+.tfa-header-main {
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    display: block;
     width: 100%;
     left: 0;
     z-index: 9999;
 }
 
-/* Default behavior from theme settings */
+/* Sticky vs Static from theme settings */
 {% if theme.header_settings.header_sticky %}
-.header {
-    position: fixed !important; /* Changed from sticky to fixed per request */
-    top: 0 !important;
+.tfa-header-main {
+    position: fixed;
+    top: 0;
 }
 {% else %}
-.header {
-    position: relative !important;
+.tfa-header-main {
+    position: relative;
 }
 {% endif %}
 
-
-/* 2. VISUAL STYLES MAPPED BY CLASS
-   We use BEM modifiers for strong specificity and isolation.
-*/
-
-/* --- 1. GLASSMORPHISM LIGHT --- */
-.header--glassmorphism {
-    background: rgba(255, 255, 255, 0.6) !important;
-    backdrop-filter: blur(20px) saturate(180%) !important;
-    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05) !important;
+/* Module-level overrides (via data-sticky attribute) */
+.tfa-header-main[data-sticky="true"] {
+    position: fixed;
+    top: 0;
 }
-.header--glassmorphism.scrolled {
-    background: rgba(255, 255, 255, 0.85) !important;
-    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1) !important;
+.tfa-header-main[data-sticky="false"] {
+    position: relative;
 }
-.header--glassmorphism a { color: #1A1A1B !important; }
 
 
-/* --- 2. GLASSMORPHISM DARK --- */
-.header--glassmorphism_dark {
-    background: rgba(20, 20, 22, 0.6) !important;
-    backdrop-filter: blur(24px) saturate(180%) !important;
-    -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4) !important;
+/* ================================================================
+   2. VISUAL STYLES — Applied as CSS classes from header_style_override
+   ================================================================ */
+
+/* --- TRANSPARENT (Default / No explicit style) --- */
+.tfa-header-main.default,
+.tfa-header-main:not([class*="glassmorphism"]):not([class*="solid"]):not([class*="transparent"]):not([class*="minimal"]):not([class*="gradient"]) {
+    background: transparent;
+    border-bottom: 1px solid transparent;
 }
-.header--glassmorphism_dark.scrolled {
-    background: rgba(20, 20, 22, 0.9) !important;
-    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.6) !important;
+
+/* --- GLASSMORPHISM LIGHT --- */
+.tfa-header-main.glassmorphism {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
-.header--glassmorphism_dark a { color: #FFFFFF !important; }
-
-
-/* --- 3. SOLID WHITE --- */
-.header--solid_white {
-    background: #FFFFFF !important;
-    border-bottom: 1px solid #E5E7EB !important;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important;
+.tfa-header-main.glassmorphism.sticky-scrolled {
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
 }
-.header--solid_white.scrolled {
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+.tfa-header-main.glassmorphism .tfa-nav-desktop a { color: #C0C0C0; }
+.tfa-header-main.glassmorphism.sticky-scrolled .tfa-nav-desktop a { color: #1A1A1B; }
+
+/* --- GLASSMORPHISM DARK (Industrial) --- */
+.tfa-header-main.glassmorphism_dark {
+    background: rgba(8, 12, 16, 0.7);
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    border-bottom: 1px solid rgba(192, 192, 192, 0.1);
 }
-.header--solid_white a { color: #1A1A1B !important; }
-
-
-/* --- 4. SOLID BLACK --- */
-.header--solid_black {
-    background: #000000 !important;
-    border-bottom: 1px solid #333333 !important;
+.tfa-header-main.glassmorphism_dark.sticky-scrolled {
+    background: rgba(8, 12, 16, 0.95);
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.6);
 }
-.header--solid_black.scrolled {
-    box-shadow: 0 4px 20px rgba(0,0,0,0.5) !important;
-    border-bottom-color: #444 !important;
+.tfa-header-main.glassmorphism_dark .tfa-nav-desktop a { color: #FFFFFF; }
+
+/* --- SOLID WHITE --- */
+.tfa-header-main.solid_white {
+    background: #FFFFFF;
+    border-bottom: 1px solid #E5E7EB;
 }
-.header--solid_black a { color: #FFFFFF !important; }
-
-
-/* --- 5. TRANSPARENT LIGHT (For Light Backgrounds - Dark Text) --- */
-.header--transparent_light {
-    background: transparent !important;
-    border-bottom: 1px solid transparent !important;
-    box-shadow: none !important;
+.tfa-header-main.solid_white.sticky-scrolled {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
-.header--transparent_light a { color: #1A1A1B !important; }
+.tfa-header-main.solid_white .tfa-nav-desktop a { color: #1A1A1B; }
 
-/* Scrolled State -> White Solid */
-.header--transparent_light.scrolled {
-    background: rgba(255, 255, 255, 0.95) !important;
-    border-bottom: 1px solid #E5E7EB !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+/* --- SOLID BLACK (Industrial) --- */
+.tfa-header-main.solid_black {
+    background: #080c10;
+    border-bottom: 1px solid #333333;
+}
+.tfa-header-main.solid_black.sticky-scrolled {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+.tfa-header-main.solid_black .tfa-nav-desktop a { color: #FFFFFF; }
+
+/* --- TRANSPARENT LIGHT (Light BG, Dark Text) --- */
+.tfa-header-main.transparent_light {
+    background: transparent;
+    border-bottom: 1px solid transparent;
+}
+.tfa-header-main.transparent_light .tfa-nav-desktop a { color: #1A1A1B; }
+.tfa-header-main.transparent_light.sticky-scrolled {
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid #E5E7EB;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     backdrop-filter: blur(10px);
 }
 
-
-/* --- 6. TRANSPARENT DARK (For Dark Backgrounds - Light Text) --- */
-.header--transparent_dark {
-    background: transparent !important;
-    border-bottom: 1px solid transparent !important;
-    box-shadow: none !important;
+/* --- TRANSPARENT DARK (Dark BG, Light Text) --- */
+.tfa-header-main.transparent_dark {
+    background: transparent;
+    border-bottom: 1px solid transparent;
 }
-.header--transparent_dark a { color: #FFFFFF !important; }
-
-/* Scrolled State -> Dark Solid */
-.header--transparent_dark.scrolled {
-    background: rgba(10, 10, 10, 0.9) !important;
-    border-bottom: 1px solid #333 !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+.tfa-header-main.transparent_dark .tfa-nav-desktop a { color: #FFFFFF; }
+.tfa-header-main.transparent_dark.sticky-scrolled {
+    background: rgba(10, 10, 10, 0.9);
+    border-bottom: 1px solid #333;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(10px);
 }
 
+/* --- MINIMAL --- */
+.tfa-header-main.minimal {
+    background: #FFFFFF;
+    border-bottom: 1px solid #F3F4F6;
+}
+.tfa-header-main.minimal.sticky-scrolled {
+    border-bottom-color: #E5E7EB;
+}
+.tfa-header-main.minimal .tfa-nav-desktop a { color: #374151; }
 
-/* --- 7. MINIMAL --- */
-.header--minimal {
-    background: #FFFFFF !important;
-    border-bottom: 1px solid #F3F4F6 !important;
-    box-shadow: none !important;
+/* --- GRADIENT INDUSTRIAL --- */
+.tfa-header-main.gradient_industrial {
+    background: linear-gradient(90deg, #1f2937 0%, #111827 100%);
+    border-bottom: 1px solid #374151;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
-.header--minimal.scrolled {
-    border-bottom-color: #E5E7EB !important;
+.tfa-header-main.gradient_industrial.sticky-scrolled {
+    background: linear-gradient(90deg, #111827 0%, #000000 100%);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
 }
-.header--minimal a { color: #374151 !important; }
-
-
-/* --- 8. GRADIENT INDUSTRIAL (NEW!) --- */
-.header--gradient_industrial {
-    background: linear-gradient(90deg, #1f2937 0%, #111827 100%) !important;
-    border-bottom: 1px solid #374151 !important;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
-}
-.header--gradient_industrial.scrolled {
-    background: linear-gradient(90deg, #111827 0%, #000000 100%) !important;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1) !important;
-}
-.header--gradient_industrial a {
-    color: #F9FAFB !important;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
-}
+.tfa-header-main.gradient_industrial .tfa-nav-desktop a { color: #F9FAFB; }
 
 
-/* 3. LOGO CONSTRAINTS */
-.hs_cos_wrapper_type_logo img {
-    max-height: {{ theme.header_settings.header_logo_height || 60 }}px !important;
-    width: auto !important;
-    transition: max-height 0.4s ease;
+/* 3. LOGO CONSTRAINTS (Theme level) */
+.tfa-header-logo img {
+    max-height: {{ theme.header_settings.header_logo_height || 60 }}px;
+    width: auto;
+    transition: all 0.4s ease;
 }
-
-/* Scrolled Logo Effect - Slightly Smaller */
-.header.scrolled .hs_cos_wrapper_type_logo img {
-     max-height: {{ (theme.header_settings.header_logo_height || 60) * 0.85 }}px !important;
+.tfa-header-main.sticky-scrolled .tfa-header-logo img {
+    max-height: {{ (theme.header_settings.header_logo_height || 60) * 0.85 }}px;
 }
 
 
 /* 4. EDITOR FIX */
-body.hs-edit-mode .header {
+body.hs-edit-mode .tfa-header-main {
     position: relative !important;
     top: auto !important;
     z-index: 10 !important;
-    width: 100% !important;
-}
-
-/* 5. STICKY OVERRIDES (Must be last to override default) */
-/* Modern Fixed Header Implementation */
-.header.header--sticky {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    width: 100% !important;
-    z-index: 9999 !important;
-    /* If scrolled, we could add transform logic here if we wanted hide/show behavior */
-}
-
-/* Static Override */
-.header.header--static {
-    position: relative !important;
-    top: auto !important;
-    /* Reset fixed props */
-    left: auto !important;
-    right: auto !important;
 }
