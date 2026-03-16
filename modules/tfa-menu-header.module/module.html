@@ -47,15 +47,7 @@
       background-color: {{ module.mobile_settings.hamburger_color.color }};
     }
 
-    {# Scrolled Transparency Overrides #}
-    {% if header_style is string_containing "transparent" %}
-    .tfa-header-main.sticky-scrolled {
-      background: transparent !important;
-      backdrop-filter: none !important;
-      -webkit-backdrop-filter: none !important;
-      box-shadow: none !important;
-    }
-    {% endif %}
+    {# Scrolled Transparency Overrides - REMOVED AS IT WAS BREAKING THE STICKY CONTRAST #}
 
   {% end_scope_css %}
 </style>
@@ -66,7 +58,7 @@
         data-header-style="{{ header_style }}">
 
   <div class="tfa-header-container"
-       style="align-items: {{ module.menu_settings.menu_vertical_align }};">
+       style="align-items: {{ module.menu_settings.menu_vertical_align }}; gap: 50px;">
 
     <!-- Logo Section (from HubSpot Brand Settings) -->
     <div class="tfa-header-logo">
