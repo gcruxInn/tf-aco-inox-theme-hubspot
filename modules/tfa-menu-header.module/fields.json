@@ -278,12 +278,18 @@
                             },
                             "bottom": null,
                             "left": null,
-                            "right": null,
-                            "border_radius": {
-                                "value": 4,
-                                "units": "px"
-                            }
+                            "right": null
                         }
+                    },
+                    {
+                        "name": "cta_radius",
+                        "label": "CTA Border Radius",
+                        "type": "number",
+                        "display": "text",
+                        "default": 4,
+                        "min": 0,
+                        "max": 100,
+                        "suffix": "px"
                     },
                     {
                         "name": "cta_font",
