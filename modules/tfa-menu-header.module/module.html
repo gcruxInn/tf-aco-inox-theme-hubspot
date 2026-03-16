@@ -2,11 +2,48 @@
   TFA Menu Header - Native HubSpot Refactor
   Aesthetics: Industrial Dark / Silver
   Governance: Set-and-Forget
+  Fields: Content tab = content, Style tab = spacing/colors/fonts
 -->
 
 {# === STYLE RESOLUTION (Module Override → Theme Default) === #}
 {% set header_style = module.menu_settings.header_style_override != 'default' ? module.menu_settings.header_style_override : theme.header_settings.header_style %}
 {% set is_sticky = module.menu_settings.header_sticky_override != 'default' ? (module.menu_settings.header_sticky_override == 'sticky') : theme.header_settings.header_sticky %}
+
+{# === STYLE TAB VALUES === #}
+{% require_css %}
+<style>
+  {% scope_css %}
+
+    {# Header Container Spacing (from Style tab) #}
+    .tfa-header-container {
+      {{ module.styles.header_spacing.header_padding.css }}
+    }
+    .tfa-header-main {
+      {{ module.styles.header_spacing.header_margin.css }}
+    }
+
+    {# Nav Styles (from Style tab) #}
+    .tfa-nav-desktop .hs-menu-wrapper ul {
+      gap: {{ module.styles.nav_styles.nav_spacing }}px;
+    }
+    .tfa-nav-desktop .hs-menu-wrapper ul li a {
+      {{ module.styles.nav_styles.nav_font.css }}
+    }
+
+    {# CTA Styles (from Style tab) #}
+    {% if module.cta_settings.show_cta %}
+    .tfa-header-cta {
+      {{ module.styles.cta_styles.cta_spacing.css }}
+      {{ module.styles.cta_styles.cta_border.css }}
+      {{ module.styles.cta_styles.cta_font.css }}
+      background-color: rgba({{ module.styles.cta_styles.cta_bg_color.color|convert_rgb }}, {{ module.styles.cta_styles.cta_bg_color.opacity / 100 }});
+      color: {{ module.styles.cta_styles.cta_text_color.color }};
+    }
+    {% endif %}
+
+  {% end_scope_css %}
+</style>
+{% end_require_css %}
 
 <header class="tfa-header-main {{ header_style }}"
         data-sticky="{{ is_sticky }}"
@@ -47,8 +84,7 @@
 
       {% if module.cta_settings.show_cta %}
         <a href="{{ module.cta_settings.cta_link.url.href }}"
-           class="tfa-header-cta {% if not module.cta_settings.show_cta_on_mobile %}hide-on-mobile{% endif %}"
-           style="padding: {{ module.cta_settings.cta_padding }}; margin: {{ module.cta_settings.cta_margin }};">
+           class="tfa-header-cta {% if not module.cta_settings.show_cta_on_mobile %}hide-on-mobile{% endif %}">
           {{ module.cta_settings.cta_text }}
         </a>
       {% endif %}

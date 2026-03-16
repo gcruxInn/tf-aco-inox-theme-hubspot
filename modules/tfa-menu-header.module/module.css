@@ -17,11 +17,10 @@
   --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* Container Layout */
+/* Container Layout — padding is controlled by Style tab fields */
 .tfa-header-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 40px;
   height: var(--header-height);
   display: flex;
   align-items: center;
@@ -51,10 +50,10 @@
   justify-content: center;
 }
 
+/* gap is controlled by Style tab nav_spacing field */
 .tfa-nav-desktop .hs-menu-wrapper ul {
   display: flex;
   list-style: none;
-  gap: 35px;
   margin: 0;
   padding: 0;
 }
