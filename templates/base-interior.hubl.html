@@ -1,0 +1,43 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: Interior Page - TF Aço Inox
+  screenshotPath: ../images/template-previews/interior.png
+-->
+{% extends "../layouts/base.hubl.html" %}
+
+{% block body %}
+{% dnd_area "main_content" label="Main Content" %}
+
+{# PAGE HERO BANNER — Compact interior version #}
+{% dnd_section background_color="#030508", padding={ "top": 120, "bottom": 60 } %}
+{% dnd_column width=12 %}
+{% dnd_row %}
+{% dnd_module path="@hubspot/rich_text", html="<h1>{{ page_meta.html_title }}</h1><p class='page-breadcrumb'><a href='/'>Home</a> / <span>{{ page_meta.html_title }}</span></p>" %}
+{% end_dnd_module %}
+{% end_dnd_row %}
+{% end_dnd_column %}
+{% end_dnd_section %}
+
+{# EDITABLE CONTENT AREA — Users can freely add/remove modules via DnD #}
+{% dnd_section padding={ "top": 0, "bottom": 0 } %}
+{% dnd_column width=12 %}
+{% dnd_row %}
+{% dnd_module path="@hubspot/rich_text", html="<p>Content goes here. Use the drag-and-drop editor to add TFA modules.</p>" %}
+{% end_dnd_module %}
+{% end_dnd_row %}
+{% end_dnd_column %}
+{% end_dnd_section %}
+
+{# FINAL CTA — Shared across pages #}
+{% dnd_section padding={ "top": 80, "bottom": 80 } %}
+{% dnd_column width=12 %}
+{% dnd_row %}
+{% dnd_module path="../modules/tfa-cta-footer.module" %}
+{% end_dnd_module %}
+{% end_dnd_row %}
+{% end_dnd_column %}
+{% end_dnd_section %}
+
+{% end_dnd_area %}
+{% endblock body %}
