@@ -7,7 +7,38 @@
 {% extends "../layouts/base.hubl.html" %}
 
 {% block body %}
-{% dnd_area "main_content" label="Main Content" %}
+{% require_head %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ request.domain }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ page_meta.html_title }}"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "{{ page_meta.html_title }}",
+  "description": "{{ page_meta.meta_description }}",
+  "url": "{{ content.absolute_url }}"
+}
+</script>
+{% end_require_head %}
+
+{% dnd_area "interior_content" label="Main Content" %}
 
 {# PAGE HERO BANNER — Compact interior version #}
 {% dnd_section background_color="#030508", padding={ "top": 120, "bottom": 60 } %}

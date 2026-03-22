@@ -6,8 +6,38 @@
 {% extends "../layouts/base.hubl.html" %}
 
 {% block body %}
-{% dnd_area "about_content" label="About Page Content" %}
+{% require_head %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ request.domain }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ page_meta.html_title }}"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "{{ page_meta.html_title }}",
+  "description": "{{ page_meta.meta_description }}",
+  "url": "{{ content.absolute_url }}"
+}
+</script>
+{% end_require_head %}
 
+{% dnd_area "about_content" label="About Page Content" %}
 {# SECTION 1: PAGE HERO - Sobre Nós #}
 {% dnd_section
 padding={ "top": 0, "bottom": 0 }

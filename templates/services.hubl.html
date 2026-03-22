@@ -6,47 +6,88 @@
 {% extends "../layouts/base.hubl.html" %}
 
 {% block body %}
-{% dnd_area "main_content" label="Main Content" %}
+{% require_head %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ request.domain }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ page_meta.html_title }}"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "{{ page_meta.html_title }}",
+  "description": "{{ page_meta.meta_description }}",
+  "url": "{{ content.absolute_url }}"
+}
+</script>
+{% end_require_head %}
 
-{# PAGE HERO — Services #}
-{% dnd_section background_color="#030508", padding={ "top": 120, "bottom": 60 } %}
-{% dnd_column width=12 %}
-{% dnd_row %}
-{% dnd_module path="@hubspot/rich_text", html="<h1>Nossos Serviços</h1><p class='page-breadcrumb'><a href='/'>Home</a> / <span>Serviços</span></p>" %}
-{% end_dnd_module %}
-{% end_dnd_row %}
-{% end_dnd_column %}
-{% end_dnd_section %}
+{% dnd_area "services_content" label="Services Page Content" %}
 
-{# SERVICES GRID #}
-{% dnd_section padding={ "top": 0, "bottom": 0 } %}
-{% dnd_column width=12 %}
-{% dnd_row %}
-{% dnd_module path="../modules/tfa-services-grid.module" %}
-{% end_dnd_module %}
-{% end_dnd_row %}
-{% end_dnd_column %}
-{% end_dnd_section %}
+  {# PAGE HERO BANNER #}
+  {% dnd_section background_color="#030508", padding={ "top": 120, "bottom": 60 } %}
+    {% dnd_column width=12 %}
+      {% dnd_row %}
+        {% dnd_module path="@hubspot/rich_text", html="<h1>Nossos Serviços</h1><p class='page-breadcrumb'><a href='/'>Home</a> / <span>Serviços</span></p>" %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
 
-{# FEATURE GRID — Additional service details #}
-{% dnd_section padding={ "top": 80, "bottom": 80 } %}
-{% dnd_column width=12 %}
-{% dnd_row %}
-{% dnd_module path="../modules/tfa-feature-grid.module" %}
-{% end_dnd_module %}
-{% end_dnd_row %}
-{% end_dnd_column %}
-{% end_dnd_section %}
+  {# SERVICES GRID #}
+  {% dnd_section background_color="#030508", padding={ "top": 0, "bottom": 80 } %}
+    {% dnd_column width=12 %}
+      {% dnd_row %}
+        {% dnd_module path="../modules/tfa-services-grid.module" %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
 
-{# CTA #}
-{% dnd_section padding={ "top": 80, "bottom": 80 } %}
-{% dnd_column width=12 %}
-{% dnd_row %}
-{% dnd_module path="../modules/tfa-cta-footer.module" %}
-{% end_dnd_module %}
-{% end_dnd_row %}
-{% end_dnd_column %}
-{% end_dnd_section %}
+  {# PORTFOLIO FILTRADO #}
+  {% dnd_section background_color="#1a1a1b", padding={ "top": 100, "bottom": 100 } %}
+    {% dnd_column width=12 %}
+      {% dnd_row %}
+        {% dnd_module path="../modules/tfa-portfolio-grid.module" %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+  {# TESTIMONIALS #}
+  {% dnd_section background_color="#030508", padding={ "top": 100, "bottom": 100 } %}
+    {% dnd_column width=12 %}
+      {% dnd_row %}
+        {% dnd_module path="../modules/tfa-testimonials.module" %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+  {# CTA #}
+  {% dnd_section background_color="#030508", padding={ "top": 80, "bottom": 80 } %}
+    {% dnd_column width=12 %}
+      {% dnd_row %}
+        {% dnd_module path="../modules/tfa-cta-footer.module" %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
 
 {% end_dnd_area %}
 {% endblock body %}

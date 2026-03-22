@@ -6,30 +6,60 @@
 {% extends "../layouts/base.hubl.html" %}
 
 {% block body %}
-{% dnd_area "main_content" label="Main Content" %}
+{% require_head %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ request.domain }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ page_meta.html_title }}"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "{{ page_meta.html_title }}",
+  "description": "{{ page_meta.meta_description }}",
+  "url": "{{ content.absolute_url }}"
+}
+</script>
+{% end_require_head %}
 
-{# PAGE HERO — Contact #}
-{% dnd_section background_color="#030508", padding={ "top": 120, "bottom": 60 } %}
+{% dnd_area "contact_content" label="Contact Page Content" %}
+{# CONTACT GRID (INFO + FORM) #}
+{% dnd_section background_color="#1a1a1b", padding={ "top": 80, "bottom": 80 } %}
 {% dnd_column width=12 %}
 {% dnd_row %}
-{% dnd_module path="@hubspot/rich_text", html="<h1>Contato</h1><p class='page-breadcrumb'><a href='/'>Home</a> / <span>Contato</span></p>" %}
+{% dnd_column width=5 %}
+{% dnd_row %}
+{% dnd_module path="@hubspot/rich_text", html="<h2>Fale Conosco</h2>" %}
 {% end_dnd_module %}
 {% end_dnd_row %}
 {% end_dnd_column %}
-{% end_dnd_section %}
-
-{# CONTACT FORM + INFO #}
-{% dnd_section padding={ "top": 40, "bottom": 80 } %}
-{% dnd_column width=12 %}
+{% dnd_column offset=5, width=7 %}
 {% dnd_row %}
 {% dnd_module path="@hubspot/form" %}
 {% end_dnd_module %}
 {% end_dnd_row %}
 {% end_dnd_column %}
+{% end_dnd_row %}
+{% end_dnd_column %}
 {% end_dnd_section %}
 
 {# CLIENT LOGOS #}
-{% dnd_section padding={ "top": 60, "bottom": 60 } %}
+{% dnd_section background_color="#030508", padding={ "top": 80, "bottom": 80 } %}
 {% dnd_column width=12 %}
 {% dnd_row %}
 {% dnd_module path="../modules/tfa-client-logos.module" %}

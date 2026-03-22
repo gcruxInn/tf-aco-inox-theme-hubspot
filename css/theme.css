@@ -527,3 +527,83 @@ a.btn-primary {
         padding: var(--space-3xl) 0;
     }
 }
+
+/* --- HUBSPOT NATIVE FORM OVERRIDES (Industrial Dark/Silver) --- */
+.body-wrapper form.hs-form {
+    background: transparent;
+    padding: var(--space-2xl);
+    border-radius: var(--radius-xl);
+    background: linear-gradient(145deg, rgba(26,26,27,0.8) 0%, rgba(13,13,13,0.95) 100%);
+    border: 1px solid rgba(192,192,192,0.1);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+.body-wrapper form.hs-form .hs-form-field {
+    margin-bottom: var(--space-md);
+}
+
+.body-wrapper form.hs-form label.hs-form-field-label {
+    display: block;
+    color: #C0C0C0;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: var(--space-sm);
+}
+
+.body-wrapper form.hs-form .hs-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(192, 192, 192, 0.2);
+    border-radius: var(--radius-md);
+    padding: 1rem 1.5rem;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.body-wrapper form.hs-form .hs-input:focus {
+    outline: none;
+    border-color: #C0C0C0;
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 15px rgba(192, 192, 192, 0.1);
+}
+
+.body-wrapper form.hs-form .hs-input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.body-wrapper form.hs-form input[type="submit"].hs-button.primary {
+    width: 100%;
+    margin-top: var(--space-md);
+    background: #1a1a1b;
+    color: #C0C0C0;
+    border: 1px solid #C0C0C0;
+    padding: 1rem 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: var(--radius-md);
+}
+
+.body-wrapper form.hs-form input[type="submit"].hs-button.primary:hover {
+    background: #C0C0C0;
+    color: #1a1a1b;
+}
+
+.body-wrapper form.hs-form .hs-error-msgs {
+    list-style: none;
+    padding: 0;
+    margin-top: 5px;
+}
+
+.body-wrapper form.hs-form .hs-error-msgs label {
+    color: #ff4d4d;
+    font-size: 0.75rem;
+    text-transform: none;
+    letter-spacing: normal;
+}
