@@ -412,7 +412,7 @@
     // ============================================================
     // SKIP SCENE INTERACTION (Cinematic AWWWARDS-style)
     // ============================================================
-    var skipBtn = document.querySelector('.tfa-skip-scene-btn');
+    var skipBtn = section.querySelector('.tfa-skip-scene-btn');
     if (skipBtn) {
       // 1. Reveal/Hide logic integrated into Master ScrollTrigger bounds
       gsap.to(skipBtn, {
@@ -470,7 +470,7 @@
     // ============================================================
     // BACK SCENE INTERACTION — Scroll to top of module
     // ============================================================
-    var backBtn = document.querySelector('.tfa-timeline-section .tfa-back-scene-btn');
+    var backBtn = section.querySelector('.tfa-back-scene-btn');
     if (backBtn) {
       gsap.to(backBtn, {
         scrollTrigger: {
