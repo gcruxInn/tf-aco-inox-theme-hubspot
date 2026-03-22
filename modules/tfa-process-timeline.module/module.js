@@ -466,6 +466,46 @@
         });
       });
     }
+
+    // ============================================================
+    // BACK SCENE INTERACTION — Scroll to top of module
+    // ============================================================
+    var backBtn = document.querySelector('.tfa-timeline-section .tfa-back-scene-btn');
+    if (backBtn) {
+      gsap.to(backBtn, {
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 10%',
+          end: function() { return '+=' + track.scrollWidth; },
+          toggleActions: 'play reverse play reverse'
+        },
+        opacity: 1,
+        visibility: 'visible',
+        y: 0,
+        duration: 0.6,
+        ease: 'power3.out'
+      });
+
+      backBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        gsap.to(backBtn, { scale: 0.9, duration: 0.1, yoyo: true, repeat: 1 });
+
+        // Scroll to TOP of this section
+        var targetScroll = section.offsetTop;
+
+        if (window.lenis) {
+          window.lenis.scrollTo(targetScroll, {
+            duration: 2.0,
+            easing: function(t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); }
+          });
+        } else {
+          window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+        }
+
+        gsap.to(backBtn, { opacity: 0, y: 10, duration: 0.4 });
+      });
+    }
   });
 
 })();

@@ -25,5 +25,264 @@
                 {% endfor %}
             </div>
         </div>
+
+        {# Skip Section Button #}
+        <button class="tfa-skip-scene-btn" aria-label="Skip to next section">
+            <span class="btn-text">PULAR CENA</span>
+            <div class="btn-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m7 13 5 5 5-5M7 6l5 5 5-5" />
+                </svg>
+            </div>
+            <div class="btn-glow"></div>
+        </button>
+
+        {# Back Scene Button — Text Only #}
+        <button class="tfa-back-scene-btn" aria-label="Voltar ao topo do módulo">
+            <span class="btn-text">← VOLTAR CENA</span>
+        </button>
     </section>
 </div>
+
+<style>
+    /* Skip Scene Button */
+    .tfa-differentiators .tfa-skip-scene-btn {
+        position: absolute;
+        bottom: 2.5rem;
+        left: 3rem;
+        z-index: 100;
+        background: rgba(15, 23, 42, 0.4);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 50px;
+        padding: 0.75rem 1.5rem 0.75rem 0.75rem;
+        display: flex;
+        align-items: center;
+        flex-direction: row-reverse;
+        gap: 1rem;
+        color: #f1f5f9;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .tfa-differentiators .tfa-skip-scene-btn .btn-text {
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.15em;
+        color: rgba(241, 245, 249, 0.8);
+        transition: color 0.3s ease;
+    }
+
+    .tfa-differentiators .tfa-skip-scene-btn .btn-icon {
+        width: 32px;
+        height: 32px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+
+    .tfa-differentiators .tfa-skip-scene-btn:hover {
+        background: rgba(30, 41, 59, 0.6);
+        border-color: rgba(255, 255, 255, 0.3);
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .tfa-differentiators .tfa-skip-scene-btn:hover .btn-text {
+        color: #fff;
+    }
+
+    .tfa-differentiators .tfa-skip-scene-btn:hover .btn-icon {
+        background: #fff;
+        color: #0f172a;
+        transform: translateY(2px);
+    }
+
+    .tfa-differentiators .tfa-skip-scene-btn .btn-glow {
+        position: absolute;
+        inset: -1px;
+        border-radius: 50px;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+    }
+
+    .tfa-differentiators .tfa-skip-scene-btn:hover .btn-glow {
+        opacity: 1;
+        animation: diff-skip-glow 2s linear infinite;
+    }
+
+    @keyframes diff-skip-glow {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
+    }
+
+    /* Back Scene Button */
+    .tfa-differentiators .tfa-back-scene-btn {
+        position: absolute;
+        bottom: 3rem;
+        left: calc(5rem + 195px);
+        z-index: 100;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px);
+        transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        padding: 0;
+        height: 44px;
+        display: flex;
+        align-items: center;
+    }
+
+    .tfa-differentiators .tfa-back-scene-btn .btn-text {
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.15em;
+        color: rgba(241, 245, 249, 0.5);
+        transition: color 0.3s ease;
+        text-transform: uppercase;
+    }
+
+    .tfa-differentiators .tfa-back-scene-btn:hover .btn-text {
+        color: #fff;
+    }
+
+    @media (max-width: 768px) {
+        .tfa-differentiators .tfa-skip-scene-btn {
+            bottom: 2rem;
+            left: 2rem;
+            width: 52px;
+            height: 52px;
+            padding: 0;
+            border-radius: 50%;
+            justify-content: center;
+            flex-direction: row;
+        }
+        .tfa-differentiators .tfa-skip-scene-btn .btn-text {
+            display: none;
+        }
+        .tfa-differentiators .tfa-skip-scene-btn .btn-icon {
+            border: none;
+            background: transparent;
+            width: 100%;
+            height: 100%;
+        }
+        .tfa-differentiators .tfa-skip-scene-btn .btn-glow {
+            border-radius: 50%;
+        }
+        .tfa-differentiators .tfa-back-scene-btn {
+            display: none;
+        }
+    }
+</style>
+
+<script>
+(function() {
+    'use strict';
+
+    function initDiffSceneButtons() {
+        if (
+            document.body.classList.contains('hs-edit-mode') ||
+            document.querySelector('.hs-inline-edit') ||
+            window.location.href.includes('hs-edit-mode')
+        ) return;
+
+        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+        var section = document.querySelector('.tfa-differentiators');
+        if (!section) return;
+
+        var outerWrapper = document.querySelector('.diff-super-gsap-wrapper');
+        var skipBtn = section.querySelector('.tfa-skip-scene-btn');
+        var backBtn = section.querySelector('.tfa-back-scene-btn');
+
+        // --- SKIP SCENE ---
+        if (skipBtn) {
+            gsap.to(skipBtn, {
+                scrollTrigger: {
+                    trigger: outerWrapper || section,
+                    start: 'top 10%',
+                    end: 'bottom 90%',
+                    toggleActions: 'play reverse play reverse'
+                },
+                opacity: 1,
+                visibility: 'visible',
+                y: 0,
+                duration: 0.6,
+                ease: 'power3.out'
+            });
+
+            skipBtn.addEventListener('click', function() {
+                gsap.to(skipBtn, { scale: 0.9, duration: 0.1, yoyo: true, repeat: 1 });
+
+                var wrapper = outerWrapper || section;
+                var dest = wrapper.offsetTop + wrapper.offsetHeight;
+
+                if (window.lenis) {
+                    window.lenis.scrollTo(dest, {
+                        duration: 2.2,
+                        easing: function(t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); }
+                    });
+                } else {
+                    window.scrollTo({ top: dest, behavior: 'smooth' });
+                }
+
+                gsap.to(skipBtn, { opacity: 0, y: 10, duration: 0.4 });
+            });
+        }
+
+        // --- BACK SCENE ---
+        if (backBtn) {
+            gsap.to(backBtn, {
+                scrollTrigger: {
+                    trigger: outerWrapper || section,
+                    start: 'top 10%',
+                    end: 'bottom 90%',
+                    toggleActions: 'play reverse play reverse'
+                },
+                opacity: 1,
+                visibility: 'visible',
+                y: 0,
+                duration: 0.6,
+                ease: 'power3.out'
+            });
+
+            backBtn.addEventListener('click', function() {
+                gsap.to(backBtn, { scale: 0.9, duration: 0.1, yoyo: true, repeat: 1 });
+
+                // Scroll to TOP of this section
+                var targetScroll = (outerWrapper || section).offsetTop;
+
+                if (window.lenis) {
+                    window.lenis.scrollTo(targetScroll, {
+                        duration: 2.0,
+                        easing: function(t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); }
+                    });
+                } else {
+                    window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+                }
+
+                gsap.to(backBtn, { opacity: 0, y: 10, duration: 0.4 });
+            });
+        }
+    }
+
+    if (document.readyState === 'complete') {
+        initDiffSceneButtons();
+    } else {
+        window.addEventListener('load', initDiffSceneButtons);
+    }
+})();
+</script>

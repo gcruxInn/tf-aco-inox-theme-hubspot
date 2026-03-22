@@ -100,6 +100,11 @@
         </div>
         <div class="btn-glow"></div>
     </button>
+
+    {# Back Scene Button — Text Only #}
+    <button class="tfa-back-scene-btn" aria-label="Voltar ao topo do módulo">
+        <span class="btn-text">← VOLTAR CENA</span>
+    </button>
 </section>
 
 <style>
@@ -214,6 +219,41 @@
         .tfa-skip-scene-btn .btn-glow {
             border-radius: 50%;
         }
+        .tfa-back-scene-btn {
+            display: none;
+        }
+    }
+
+    /* Back Scene Button — Text Only (Industrial Silver) */
+    .tfa-back-scene-btn {
+        position: absolute;
+        bottom: 3rem;
+        left: calc(5rem + 195px);
+        z-index: 100;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px);
+        transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        padding: 0;
+        height: 44px;
+        display: flex;
+        align-items: center;
+    }
+
+    .tfa-back-scene-btn .btn-text {
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.15em;
+        color: rgba(241, 245, 249, 0.5);
+        transition: color 0.3s ease;
+        text-transform: uppercase;
+    }
+
+    .tfa-back-scene-btn:hover .btn-text {
+        color: #fff;
     }
 
     .tfa-timeline-section {
