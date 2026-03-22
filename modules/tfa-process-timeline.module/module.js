@@ -491,8 +491,14 @@
 
         gsap.to(backBtn, { scale: 0.9, duration: 0.1, yoyo: true, repeat: 1 });
 
-        // Scroll to TOP of this section
-        var targetScroll = section.offsetTop;
+        // Scroll to TOP of this pinned section using ScrollTrigger start
+        var st = ScrollTrigger.create({
+          trigger: section,
+          start: 'top top',
+          end: function() { return '+=' + track.scrollWidth; }
+        });
+        var targetScroll = st.start;
+        st.kill();
 
         if (window.lenis) {
           window.lenis.scrollTo(targetScroll, {
