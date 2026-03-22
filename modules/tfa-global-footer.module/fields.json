@@ -27,55 +27,126 @@
     "label": "Redes Sociais",
     "type": "group",
     "children": [
-      { "name": "whatsapp", "label": "WhatsApp Link", "type": "text", "default": "https://wa.me/5581999699449" },
-      { "name": "instagram", "label": "Instagram Link", "type": "text", "default": "#" },
-      { "name": "linkedin", "label": "LinkedIn Link", "type": "text", "default": "#" }
+      {
+        "name": "whatsapp",
+        "label": "WhatsApp Link",
+        "type": "text",
+        "default": "https://wa.me/5581999699449"
+      },
+      {
+        "name": "instagram",
+        "label": "Instagram Link",
+        "type": "text",
+        "default": "#"
+      },
+      {
+        "name": "linkedin",
+        "label": "LinkedIn Link",
+        "type": "text",
+        "default": "#"
+      }
     ]
   },
   {
     "name": "columns",
     "label": "Colunas de Links",
     "type": "group",
-    "occurrence": { "min": 1, "max": 4, "default": 3 },
+    "occurrence": {
+      "min": 1,
+      "max": 4,
+      "default": 3
+    },
     "default": [
       {
         "title": "Empresa",
         "links": [
-          { "text": "Sobre Nós", "url": "/sobre" },
-          { "text": "Missão e Valores", "url": "/sobre#missao" },
-          { "text": "Blog", "url": "/blog" },
-          { "text": "Contato", "url": "/contato" }
+          {
+            "text": "Sobre Nós",
+            "url": "/sobre"
+          },
+          {
+            "text": "Missão e Valores",
+            "url": "/sobre#missao"
+          },
+          {
+            "text": "Blog",
+            "url": "/blog"
+          },
+          {
+            "text": "Contato",
+            "url": "/contato"
+          }
         ]
       },
       {
         "title": "Serviços",
         "links": [
-          { "text": "Estruturas Metálicas", "url": "/servicos/estruturas-metalicas" },
-          { "text": "Corrimãos em Inox", "url": "/servicos/corrimaos-guarda-corpos" },
-          { "text": "Portões e Grades", "url": "/servicos/portoes-grades" },
-          { "text": "Steel Frame", "url": "/servicos/steel-frame" },
-          { "text": "Projetos Industriais", "url": "/servicos/projetos-industriais" },
-          { "text": "→ Ver Todos", "url": "/servicos" }
+          {
+            "text": "Estruturas Metálicas",
+            "url": "/servicos/estruturas-metalicas"
+          },
+          {
+            "text": "Corrimãos em Inox",
+            "url": "/servicos/corrimaos-guarda-corpos"
+          },
+          {
+            "text": "Portões e Grades",
+            "url": "/servicos/portoes-grades"
+          },
+          {
+            "text": "Steel Frame",
+            "url": "/servicos/steel-frame"
+          },
+          {
+            "text": "Projetos Industriais",
+            "url": "/servicos/projetos-industriais"
+          },
+          {
+            "text": "→ Ver Todos",
+            "url": "/servicos"
+          }
         ]
       },
       {
         "title": "Recursos",
         "links": [
-          { "text": "Portfolio", "url": "/portfolio" },
-          { "text": "Solicitar Orçamento", "url": "/orcamento" }
+          {
+            "text": "Portfolio",
+            "url": "/portfolio"
+          },
+          {
+            "text": "Solicitar Orçamento",
+            "url": "/orcamento"
+          }
         ]
       }
     ],
     "children": [
-      { "name": "title", "label": "Título da Coluna", "type": "text" },
+      {
+        "name": "title",
+        "label": "Título da Coluna",
+        "type": "text"
+      },
       {
         "name": "links",
         "label": "Links da Coluna",
         "type": "group",
-        "occurrence": { "min": 1, "max": 10, "default": 4 },
+        "occurrence": {
+          "min": 1,
+          "max": 10,
+          "default": 4
+        },
         "children": [
-          { "name": "text", "label": "Texto do Link", "type": "text" },
-          { "name": "url", "label": "URL Destino", "type": "text" }
+          {
+            "name": "text",
+            "label": "Texto do Link",
+            "type": "text"
+          },
+          {
+            "name": "url",
+            "label": "URL Destino",
+            "type": "text"
+          }
         ]
       }
     ]
@@ -85,12 +156,42 @@
     "label": "Faixa de Contato",
     "type": "group",
     "children": [
-      { "name": "phone", "label": "Telefone / WhatsApp", "type": "text", "default": "+55 81 99969-9449" },
-      { "name": "phone_link", "label": "Link de Telefone", "type": "text", "default": "tel:+5581999699449" },
-      { "name": "email", "label": "E-mail", "type": "text", "default": "comercial2@fenixelevacoes.com.br" },
-      { "name": "location", "label": "Localização", "type": "text", "default": "Recife, PE – Brasil" },
-      { "name": "cta_text", "label": "Botão CTA (Texto)", "type": "text", "default": "Solicitar Orçamento →" },
-      { "name": "cta_link", "label": "Botão CTA (Link)", "type": "text", "default": "/orcamento" }
+      {
+        "name": "phone",
+        "label": "Telefone / WhatsApp",
+        "type": "text",
+        "default": "+55 81 99969-9449"
+      },
+      {
+        "name": "phone_link",
+        "label": "Link de Telefone",
+        "type": "text",
+        "default": "tel:+5581999699449"
+      },
+      {
+        "name": "email",
+        "label": "E-mail",
+        "type": "text",
+        "default": "comercial2@fenixelevacoes.com.br"
+      },
+      {
+        "name": "location",
+        "label": "Localização",
+        "type": "text",
+        "default": "Recife, PE – Brasil"
+      },
+      {
+        "name": "cta_text",
+        "label": "Botão CTA (Texto)",
+        "type": "text",
+        "default": "Solicitar Orçamento →"
+      },
+      {
+        "name": "cta_link",
+        "label": "Botão CTA (Link)",
+        "type": "text",
+        "default": "/orcamento"
+      }
     ]
   },
   {
@@ -98,7 +199,56 @@
     "label": "Rodapé Inferior",
     "type": "group",
     "children": [
-      { "name": "copyright", "label": "Copyright (Ano automático + Texto)", "type": "text", "default": "TF Aço e Inox / Fênix Elevações. Todos os direitos reservados." }
+      {
+        "name": "copyright",
+        "label": "Copyright (Ano automático + Texto)",
+        "type": "text",
+        "default": "TF Aço e Inox / Fênix Elevações. Todos os direitos reservados."
+      }
+    ]
+  },
+  {
+    "name": "styles",
+    "label": "Estilos",
+    "type": "group",
+    "tab": "STYLE",
+    "children": [
+      {
+        "name": "bg_color",
+        "label": "Cor de Fundo",
+        "type": "color",
+        "default": {
+          "color": "#030508",
+          "opacity": 100
+        }
+      },
+      {
+        "name": "text_color",
+        "label": "Cor do Texto",
+        "type": "color",
+        "default": {
+          "color": "#94a3b8",
+          "opacity": 100
+        }
+      },
+      {
+        "name": "link_color",
+        "label": "Cor dos Links",
+        "type": "color",
+        "default": {
+          "color": "#C0C0C0",
+          "opacity": 100
+        }
+      },
+      {
+        "name": "border_color",
+        "label": "Cor da Borda",
+        "type": "color",
+        "default": {
+          "color": "#1e293b",
+          "opacity": 100
+        }
+      }
     ]
   }
 ]

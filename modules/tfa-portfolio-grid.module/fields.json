@@ -79,5 +79,40 @@
         "scope": "Adequação térmica e segurança viária interna NR-12."
       }
     ]
+  },
+  {
+    "name": "styles",
+    "label": "Estilos",
+    "type": "group",
+    "tab": "STYLE",
+    "children": [
+      {
+        "name": "section_bg",
+        "label": "Cor de Fundo",
+        "type": "color",
+        "default": {
+          "color": "#080c10",
+          "opacity": 100
+        }
+      },
+      {
+        "name": "overlay_color",
+        "label": "Cor do Overlay",
+        "type": "color",
+        "default": {
+          "color": "#000000",
+          "opacity": 70
+        }
+      },
+      {
+        "name": "title_color",
+        "label": "Cor do Título",
+        "type": "color",
+        "default": {
+          "color": "#FFFFFF",
+          "opacity": 100
+        }
+      }
+    ]
   }
 ]

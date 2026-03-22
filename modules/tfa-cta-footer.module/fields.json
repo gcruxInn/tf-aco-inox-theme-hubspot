@@ -4,8 +4,18 @@
     "label": "Group: Text",
     "type": "group",
     "children": [
-      { "name": "headline", "label": "Headline", "type": "text", "default": "Pronto Para Transformar Seu Projeto em Realidade?" },
-      { "name": "subhead", "label": "Sub-headline", "type": "text", "default": "Entre em contato e receba um orçamento sem compromisso." }
+      {
+        "name": "headline",
+        "label": "Headline",
+        "type": "text",
+        "default": "Pronto Para Transformar Seu Projeto em Realidade?"
+      },
+      {
+        "name": "subhead",
+        "label": "Sub-headline",
+        "type": "text",
+        "default": "Entre em contato e receba um orçamento sem compromisso."
+      }
     ]
   },
   {
@@ -13,5 +23,57 @@
     "label": "Formulário de Contato (CRM)",
     "required": true,
     "type": "form"
+  },
+  {
+    "name": "styles",
+    "label": "Estilos",
+    "type": "group",
+    "tab": "STYLE",
+    "children": [
+      {
+        "name": "section_bg",
+        "label": "Cor de Fundo",
+        "type": "color",
+        "default": {
+          "color": "#030508",
+          "opacity": 100
+        }
+      },
+      {
+        "name": "title_color",
+        "label": "Cor do Título",
+        "type": "color",
+        "default": {
+          "color": "#FFFFFF",
+          "opacity": 100
+        }
+      },
+      {
+        "name": "cta_bg",
+        "label": "Cor do CTA",
+        "type": "color",
+        "default": {
+          "color": "#C0C0C0",
+          "opacity": 100
+        }
+      },
+      {
+        "name": "cta_text_color",
+        "label": "Cor do Texto do CTA",
+        "type": "color",
+        "default": {
+          "color": "#080c10",
+          "opacity": 100
+        }
+      },
+      {
+        "name": "cta_radius",
+        "label": "Border Radius do CTA (px)",
+        "type": "number",
+        "default": 4,
+        "min": 0,
+        "max": 50
+      }
+    ]
   }
 ]

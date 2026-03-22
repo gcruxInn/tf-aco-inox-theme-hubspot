@@ -1,12 +1,26 @@
 [
-  { "name": "title", "label": "Section Title", "type": "text", "default": "Empresas que confiam na TF Aço Inox" },
+  {
+    "name": "title",
+    "label": "Section Title",
+    "type": "text",
+    "default": "Empresas que confiam na TF Aço Inox"
+  },
   {
     "name": "logos",
     "label": "Client Logos",
     "type": "group",
-    "occurrence": { "min": 1, "max": 20, "sorting_label_field": "alt_text" },
+    "occurrence": {
+      "min": 1,
+      "max": 20,
+      "sorting_label_field": "alt_text"
+    },
     "default": [
-        { "alt_text": "Petrobras", "image": { "src": "https://placehold.co/120x40?text=Petrobras" } }
+      {
+        "alt_text": "Petrobras",
+        "image": {
+          "src": "https://placehold.co/120x40?text=Petrobras"
+        }
+      }
     ],
     "children": [
       {
@@ -21,9 +35,43 @@
         "default": "Client Logo"
       },
       {
-         "name": "link",
-         "label": "Link (Optional)",
-         "type": "text"
+        "name": "link",
+        "label": "Link (Optional)",
+        "type": "text"
+      }
+    ]
+  },
+  {
+    "name": "styles",
+    "label": "Estilos",
+    "type": "group",
+    "tab": "STYLE",
+    "children": [
+      {
+        "name": "section_bg",
+        "label": "Cor de Fundo",
+        "type": "color",
+        "default": {
+          "color": "#030508",
+          "opacity": 100
+        }
+      },
+      {
+        "name": "logo_opacity",
+        "label": "Opacidade dos Logos (%)",
+        "type": "number",
+        "default": 50,
+        "min": 10,
+        "max": 100
+      },
+      {
+        "name": "title_color",
+        "label": "Cor do Título",
+        "type": "color",
+        "default": {
+          "color": "#FFFFFF",
+          "opacity": 100
+        }
       }
     ]
   }

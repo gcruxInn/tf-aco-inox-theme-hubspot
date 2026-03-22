@@ -4,41 +4,114 @@
     "label": "Section Heading",
     "type": "group",
     "children": [
-      { "name": "title", "label": "Title", "type": "text", "default": "Por Que Escolher a TF Aço e Inox?" },
-      { "name": "subtitle", "label": "Subtitle", "type": "text", "default": "Diferenciais que nos tornam a escolha certa para seu projeto" }
+      {
+        "name": "title",
+        "label": "Title",
+        "type": "text",
+        "default": "Por Que Escolher a TF Aço e Inox?"
+      },
+      {
+        "name": "subtitle",
+        "label": "Subtitle",
+        "type": "text",
+        "default": "Diferenciais que nos tornam a escolha certa para seu projeto"
+      }
     ]
   },
   {
     "name": "differentiators",
     "label": "Diferenciadores",
     "type": "group",
-    "occurrence": { "min": 4, "max": 4, "sorting_label_field": "title" },
+    "occurrence": {
+      "min": 4,
+      "max": 4,
+      "sorting_label_field": "title"
+    },
     "default": [
-      { 
-        "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-cpu\"><rect width=\"16\" height=\"16\" x=\"4\" y=\"4\" rx=\"2\"/><rect width=\"6\" height=\"6\" x=\"9\" y=\"9\" rx=\"1\"/><path d=\"M15 2v2\"/><path d=\"M15 20v2\"/><path d=\"M2 15h2\"/><path d=\"M2 9h2\"/><path d=\"M20 15h2\"/><path d=\"M20 9h2\"/><path d=\"M9 2v2\"/><path d=\"M9 20v2\"/></svg>", 
-        "title": "Inovação Contínua", 
+      {
+        "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-cpu\"><rect width=\"16\" height=\"16\" x=\"4\" y=\"4\" rx=\"2\"/><rect width=\"6\" height=\"6\" x=\"9\" y=\"9\" rx=\"1\"/><path d=\"M15 2v2\"/><path d=\"M15 20v2\"/><path d=\"M2 15h2\"/><path d=\"M2 9h2\"/><path d=\"M20 15h2\"/><path d=\"M20 9h2\"/><path d=\"M9 2v2\"/><path d=\"M9 20v2\"/></svg>",
+        "title": "Inovação Contínua",
         "description": "Processos modernos e tecnologia de ponta para resultados superiores"
       },
-      { 
-        "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-gauge\"><path d=\"m12 14 4-4\"/><path d=\"M3.34 19a10 10 0 1 1 17.32 0\"/></svg>", 
-        "title": "Agilidade na Execução", 
+      {
+        "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-gauge\"><path d=\"m12 14 4-4\"/><path d=\"M3.34 19a10 10 0 1 1 17.32 0\"/></svg>",
+        "title": "Agilidade na Execução",
         "description": "Prazos cumpridos com eficiência operacional comprovada"
       },
-      { 
-        "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-shield-check\"><path d=\"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z\"/><path d=\"m9 12 2 2 4-4\"/></svg>", 
-        "title": "Qualidade Certificada", 
+      {
+        "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-shield-check\"><path d=\"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z\"/><path d=\"m9 12 2 2 4-4\"/></svg>",
+        "title": "Qualidade Certificada",
         "description": "Materiais premium e acabamento de excelência em cada entrega"
       },
-      { 
-        "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-handshake\"><path d=\"m11 17 2 2 6-6\"/><path d=\"m18 14 2.5 2.5a3.34 3.34 0 0 1 0 4.7 3.33 3.33 0 0 1-4.7 0L13 18.5\"/><path d=\"m5 14-2.5 2.5a3.34 3.34 0 0 0 0 4.7 3.33 3.33 0 0 0 4.7 0L11 17.5\"/><path d=\"M7 14.5l-3.5-3.5a3.34 3.34 0 0 1 0-4.7 3.33 3.33 0 0 1 4.7 0l3.5 3.5\"/><path d=\"M17 14.5l3.5-3.5a3.34 3.34 0 0 0 0-4.7 3.33 3.33 0 0 0-4.7 0l-3.5 3.5\"/></svg>", 
-        "title": "Responsabilidade Total", 
+      {
+        "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-handshake\"><path d=\"m11 17 2 2 6-6\"/><path d=\"m18 14 2.5 2.5a3.34 3.34 0 0 1 0 4.7 3.33 3.33 0 0 1-4.7 0L13 18.5\"/><path d=\"m5 14-2.5 2.5a3.34 3.34 0 0 0 0 4.7 3.33 3.33 0 0 0 4.7 0L11 17.5\"/><path d=\"M7 14.5l-3.5-3.5a3.34 3.34 0 0 1 0-4.7 3.33 3.33 0 0 1 4.7 0l3.5 3.5\"/><path d=\"M17 14.5l3.5-3.5a3.34 3.34 0 0 0 0-4.7 3.33 3.33 0 0 0-4.7 0l-3.5 3.5\"/></svg>",
+        "title": "Responsabilidade Total",
         "description": "Do projeto à entrega, com você em cada etapa do processo"
       }
     ],
     "children": [
-      { "name": "icon", "label": "Icon (SVG Only)", "type": "text", "default": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-cpu\"><rect width=\"16\" height=\"16\" x=\"4\" y=\"4\" rx=\"2\"/><rect width=\"6\" height=\"6\" x=\"9\" y=\"9\" rx=\"1\"/><path d=\"M15 2v2\"/><path d=\"M15 20v2\"/><path d=\"M2 15h2\"/><path d=\"M2 9h2\"/><path d=\"M20 15h2\"/><path d=\"M20 9h2\"/><path d=\"M9 2v2\"/><path d=\"M9 20v2\"/></svg>" },
-      { "name": "title", "label": "Title", "type": "text", "default": "Título" },
-      { "name": "description", "label": "Description", "type": "text", "default": "Descrição do diferencial" }
+      {
+        "name": "icon",
+        "label": "Icon (SVG Only)",
+        "type": "text",
+        "default": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-cpu\"><rect width=\"16\" height=\"16\" x=\"4\" y=\"4\" rx=\"2\"/><rect width=\"6\" height=\"6\" x=\"9\" y=\"9\" rx=\"1\"/><path d=\"M15 2v2\"/><path d=\"M15 20v2\"/><path d=\"M2 15h2\"/><path d=\"M2 9h2\"/><path d=\"M20 15h2\"/><path d=\"M20 9h2\"/><path d=\"M9 2v2\"/><path d=\"M9 20v2\"/></svg>"
+      },
+      {
+        "name": "title",
+        "label": "Title",
+        "type": "text",
+        "default": "Título"
+      },
+      {
+        "name": "description",
+        "label": "Description",
+        "type": "text",
+        "default": "Descrição do diferencial"
+      }
+    ]
+  },
+  {
+    "name": "styles",
+    "label": "Estilos",
+    "type": "group",
+    "tab": "STYLE",
+    "children": [
+      {
+        "name": "section_bg",
+        "label": "Cor de Fundo",
+        "type": "color",
+        "default": {
+          "color": "#030508",
+          "opacity": 100
+        }
+      },
+      {
+        "name": "card_bg",
+        "label": "Cor do Card",
+        "type": "color",
+        "default": {
+          "color": "#0d1117",
+          "opacity": 100
+        }
+      },
+      {
+        "name": "icon_color",
+        "label": "Cor do Ícone",
+        "type": "color",
+        "default": {
+          "color": "#C0C0C0",
+          "opacity": 100
+        }
+      },
+      {
+        "name": "title_color",
+        "label": "Cor do Título",
+        "type": "color",
+        "default": {
+          "color": "#FFFFFF",
+          "opacity": 100
+        }
+      }
     ]
   }
 ]
