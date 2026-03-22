@@ -2112,3 +2112,63 @@ tfoot td {
 
   ;
 }
+
+/* ============================================
+   Global Back-to-Top Button — Industrial Dark / Silver
+   Positioned above WhatsApp floater (if exists)
+   ============================================ */
+#tfa-back-to-top {
+  position: fixed;
+  bottom: 130px;
+  right: 24px;
+  z-index: 9990;
+  width: 48px;
+  height: 48px;
+  background: rgba(8, 12, 16, 0.9);
+  border: 1px solid rgba(192, 192, 192, 0.25);
+  border-radius: 50%;
+  color: #C0C0C0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+#tfa-back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+#tfa-back-to-top:hover {
+  background: rgba(192, 192, 192, 0.15);
+  border-color: rgba(192, 192, 192, 0.5);
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(192, 192, 192, 0.1);
+}
+
+#tfa-back-to-top:active {
+  transform: translateY(0) scale(0.95);
+}
+
+/* Editor mode: hide */
+.hs-edit-mode #tfa-back-to-top {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  #tfa-back-to-top {
+    bottom: 100px;
+    right: 16px;
+    width: 42px;
+    height: 42px;
+  }
+}

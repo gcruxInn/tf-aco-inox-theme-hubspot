@@ -5,6 +5,7 @@
 
 window.addEventListener('load', () => {
   initStickyHeader();
+  initBackToTop();
 
   // Initialize the Cinematic Engine if libraries are loaded
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined' && typeof Lenis !== 'undefined') {
@@ -453,6 +454,45 @@ function initFallbackAnimations() {
 
   const elements = document.querySelectorAll('[data-animate], .animate-fade-up');
   elements.forEach(el => observer.observe(el));
+}
+
+/* ============================================
+   Back-to-Top — Global Floating Button
+   Industrial Dark / Silver Aesthetic
+   ============================================ */
+function initBackToTop() {
+  // Peace Protocol
+  if (document.body.classList.contains('hs-edit-mode') || document.querySelector('.hs-inline-edit')) return;
+
+  const btn = document.getElementById('tfa-back-to-top');
+  if (!btn) return;
+
+  const scrollThreshold = 300;
+  let isVisible = false;
+
+  window.addEventListener('scroll', () => {
+    const shouldShow = window.scrollY > scrollThreshold;
+    if (shouldShow && !isVisible) {
+      isVisible = true;
+      btn.classList.add('is-visible');
+    } else if (!shouldShow && isVisible) {
+      isVisible = false;
+      btn.classList.remove('is-visible');
+    }
+  }, { passive: true });
+
+  btn.addEventListener('click', () => {
+    if (window.lenis) {
+      window.lenis.scrollTo(0, {
+        duration: 2.0,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+      });
+    } else if (typeof gsap !== 'undefined') {
+      gsap.to(window, { duration: 1.2, scrollTo: 0, ease: 'power4.inOut' });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  });
 }
 
 /* ============================================

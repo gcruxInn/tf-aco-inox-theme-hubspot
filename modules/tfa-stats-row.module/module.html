@@ -26,6 +26,11 @@
         <div class="btn-glow"></div>
     </button>
 
+    {# Back Scene Button — Text Only #}
+    <button class="tfa-back-scene-btn" aria-label="Voltar à seção anterior">
+        <span class="btn-text">← VOLTAR CENA</span>
+    </button>
+
     <div class="tfa-container h-100">
       <div class="stats-layout-huge">
 
@@ -442,6 +447,41 @@
       animation: skip-glow 2s linear infinite;
   }
 
+  /* Back Scene Button — Text Only (Industrial Silver) */
+  .tfa-back-scene-btn {
+      position: absolute;
+      bottom: 2.5rem;
+      left: calc(3rem + 200px);
+      z-index: 100;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      padding: 0.75rem 0;
+  }
+
+  .tfa-back-scene-btn .btn-text {
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      color: rgba(241, 245, 249, 0.5);
+      transition: color 0.3s ease;
+      text-transform: uppercase;
+  }
+
+  .tfa-back-scene-btn:hover .btn-text {
+      color: #fff;
+  }
+
+  @media (max-width: 992px) {
+    .tfa-back-scene-btn {
+      display: none;
+    }
+  }
+
   @keyframes skip-glow {
       0% { transform: translateX(-100%); }
       100% { transform: translateX(100%); }
@@ -657,6 +697,45 @@
               
               // Fade out button early on click
               gsap.to(skipBtn, { opacity: 0, y: 10, duration: 0.4 });
+          });
+      }
+
+      // --- BACK SCENE BUTTON LOGIC ---
+      var backBtn = section.querySelector('.tfa-back-scene-btn');
+      if (backBtn) {
+          gsap.to(backBtn, {
+              scrollTrigger: {
+                  trigger: section,
+                  start: 'top 10%',
+                  end: 'bottom 90%',
+                  toggleActions: 'play reverse play reverse'
+              },
+              opacity: 1,
+              visibility: 'visible',
+              y: 0,
+              duration: 0.6,
+              ease: 'power3.out'
+          });
+
+          backBtn.addEventListener('click', function() {
+              gsap.to(backBtn, { scale: 0.9, duration: 0.1, yoyo: true, repeat: 1 });
+
+              var prevSection = section.previousElementSibling;
+              while (prevSection && prevSection.tagName !== 'SECTION' && !prevSection.querySelector('section')) {
+                  prevSection = prevSection.previousElementSibling;
+              }
+              var targetScroll = prevSection ? prevSection.offsetTop : 0;
+
+              if (window.lenis) {
+                  window.lenis.scrollTo(targetScroll, {
+                      duration: 2.2,
+                      easing: function(t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); }
+                  });
+              } else {
+                  window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+              }
+
+              gsap.to(backBtn, { opacity: 0, y: 10, duration: 0.4 });
           });
       }
 
