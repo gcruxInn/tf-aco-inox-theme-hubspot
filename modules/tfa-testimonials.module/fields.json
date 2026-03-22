@@ -14,23 +14,26 @@
     "type": "group",
     "occurrence": { "min": 1, "max": 6, "sorting_label_field": "client_name" },
     "default": [
-      { 
+      {
         "quote": "A TF Aço e Inox superou nossas expectativas. A estrutura metálica foi entregue no prazo e com acabamento impecável. Profissionalismo nota 10!",
         "client_name": "João Silva",
         "client_role": "Engenheiro Civil",
-        "client_company": "Construtora ABC"
+        "client_company": "Construtora ABC",
+        "rating": 5
       },
-      { 
+      {
         "quote": "Trabalho excepcional! Os corrimãos em aço inox ficaram perfeitos, com design moderno e instalação sem problemas. Recomendo fortemente.",
         "client_name": "Maria Santos",
         "client_role": "Arquiteta",
-        "client_company": "MS Arquitetura"
+        "client_company": "MS Arquitetura",
+        "rating": 5
       },
-      { 
+      {
         "quote": "Precisávamos de uma solução urgente para nosso projeto industrial. A TF entregou com agilidade e qualidade, cumprindo todos os prazos prometidos.",
         "client_name": "Carlos Mendes",
         "client_role": "Gerente de Projetos",
-        "client_company": "Indústria XYZ"
+        "client_company": "Indústria XYZ",
+        "rating": 5
       }
     ],
     "children": [
@@ -40,7 +43,57 @@
       { "name": "client_company", "label": "Empresa", "type": "text", "default": "Nome da Empresa" },
       { "name": "client_photo", "label": "Foto do Cliente", "type": "image" },
       { "name": "company_logo", "label": "Logo da Empresa", "type": "image" },
-      { "name": "rating", "label": "Rating (1-5)", "type": "number", "default": 5 }
+      { "name": "rating", "label": "Rating (1-5)", "type": "number", "default": 5, "min": 1, "max": 5 }
+    ]
+  },
+  {
+    "name": "styles",
+    "label": "Estilos",
+    "type": "group",
+    "tab": "STYLE",
+    "children": [
+      {
+        "name": "section_bg_color",
+        "label": "Cor de Fundo da Seção",
+        "type": "color",
+        "default": { "color": "#030508", "opacity": 100 }
+      },
+      {
+        "name": "title_color",
+        "label": "Cor do Título",
+        "type": "color",
+        "default": { "color": "#FFFFFF", "opacity": 100 }
+      },
+      {
+        "name": "quote_color",
+        "label": "Cor das Quotes",
+        "type": "color",
+        "default": { "color": "#FFFFFF", "opacity": 95 }
+      },
+      {
+        "name": "star_color",
+        "label": "Cor das Estrelas",
+        "type": "color",
+        "default": { "color": "#FFD700", "opacity": 80 }
+      },
+      {
+        "name": "name_color",
+        "label": "Cor do Nome",
+        "type": "color",
+        "default": { "color": "#FFFFFF", "opacity": 100 }
+      },
+      {
+        "name": "meta_color",
+        "label": "Cor do Cargo/Empresa",
+        "type": "color",
+        "default": { "color": "#FFFFFF", "opacity": 40 }
+      },
+      {
+        "name": "section_padding",
+        "label": "Padding da Seção",
+        "type": "spacing",
+        "default": { "padding": { "top": { "value": 0, "units": "px" }, "bottom": { "value": 0, "units": "px" } } }
+      }
     ]
   }
 ]

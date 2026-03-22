@@ -28,10 +28,36 @@
                         <blockquote class="testimonial-quote reveal-text" data-split-cursive>
                             {{ testimonial.quote }}
                         </blockquote>
+
+                        {# Rating Stars (1-5) #}
+                        {% if testimonial.rating %}
+                        <div class="testimonial-rating" aria-label="{{ testimonial.rating }} de 5 estrelas">
+                            {% for i in range(1, 6) %}
+                            <svg class="star-icon {% if i <= testimonial.rating %}star-filled{% else %}star-empty{% endif %}" width="18" height="18" viewBox="0 0 24 24" fill="{% if i <= testimonial.rating %}currentColor{% else %}none{% endif %}" stroke="currentColor" stroke-width="1.5">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                            </svg>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+
                         <div class="client-info-reveal">
+                            {# Client Photo with Initials Fallback #}
+                            <div class="client-avatar-wrap">
+                                {% if testimonial.client_photo.src %}
+                                <img class="client-avatar" src="{{ testimonial.client_photo.src }}" alt="{{ testimonial.client_name }}" loading="lazy">
+                                {% else %}
+                                <div class="client-avatar client-avatar-initials">{{ testimonial.client_name|truncate(1, true, '') }}</div>
+                                {% endif %}
+                            </div>
                             <span class="client-name">{{ testimonial.client_name }}</span>
-                            <span class="client-meta">{{ testimonial.client_role }}{% if testimonial.client_company %},
-                                {{ testimonial.client_company }}{% endif %}</span>
+                            <span class="client-meta">{{ testimonial.client_role }}{% if testimonial.client_company %}, {{ testimonial.client_company }}{% endif %}</span>
+
+                            {# Company Logo #}
+                            {% if testimonial.company_logo.src %}
+                            <div class="client-company-logo">
+                                <img src="{{ testimonial.company_logo.src }}" alt="{{ testimonial.client_company }}" loading="lazy">
+                            </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -169,6 +195,60 @@
         text-transform: uppercase;
         letter-spacing: 0.2em;
         color: rgba(255, 255, 255, 0.4);
+    }
+
+    /* ── Rating Stars ── */
+    .testimonial-rating {
+        display: flex;
+        gap: 4px;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .star-icon {
+        color: rgba(255, 215, 0, 0.8);
+        transition: transform 0.2s ease;
+    }
+
+    .star-empty {
+        color: rgba(255, 255, 255, 0.15);
+    }
+
+    /* ── Client Avatar ── */
+    .client-avatar-wrap {
+        margin-bottom: 0.8rem;
+    }
+
+    .client-avatar {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid rgba(192, 192, 192, 0.3);
+    }
+
+    .client-avatar-initials {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(192, 192, 192, 0.1);
+        color: #C0C0C0;
+        font-weight: 700;
+        font-size: 1.4rem;
+        font-family: 'Inter', sans-serif;
+    }
+
+    /* ── Company Logo ── */
+    .client-company-logo {
+        margin-top: 1rem;
+    }
+
+    .client-company-logo img {
+        max-height: 28px;
+        width: auto;
+        opacity: 0.5;
+        filter: grayscale(100%) brightness(2);
+        transition: opacity 0.3s ease;
     }
 
     /* ── Skip Button ── */
