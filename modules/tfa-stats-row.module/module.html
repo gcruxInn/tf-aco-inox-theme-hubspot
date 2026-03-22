@@ -451,7 +451,7 @@
   .tfa-back-scene-btn {
       position: absolute;
       bottom: 2.5rem;
-      left: calc(3rem + 200px);
+      left: calc(3rem + 195px);
       z-index: 100;
       background: transparent;
       border: none;
@@ -460,7 +460,10 @@
       visibility: hidden;
       transform: translateY(20px);
       transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-      padding: 0.75rem 0;
+      padding: 0;
+      height: 44px;
+      display: flex;
+      align-items: center;
   }
 
   .tfa-back-scene-btn .btn-text {
@@ -720,15 +723,12 @@
           backBtn.addEventListener('click', function() {
               gsap.to(backBtn, { scale: 0.9, duration: 0.1, yoyo: true, repeat: 1 });
 
-              var prevSection = section.previousElementSibling;
-              while (prevSection && prevSection.tagName !== 'SECTION' && !prevSection.querySelector('section')) {
-                  prevSection = prevSection.previousElementSibling;
-              }
-              var targetScroll = prevSection ? prevSection.offsetTop : 0;
+              // Scroll to TOP of this section (not previous section)
+              var targetScroll = section.offsetTop;
 
               if (window.lenis) {
                   window.lenis.scrollTo(targetScroll, {
-                      duration: 2.2,
+                      duration: 2.0,
                       easing: function(t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); }
                   });
               } else {
